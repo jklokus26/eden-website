@@ -1,0 +1,117 @@
+// News items appearing on the homepage (hp-news-section)
+export const homeNewsItems = [
+  {
+    title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House",
+    outlet: 'Inc.com',
+    date: 'May 22, 2025',
+    thumbnail: '/assets/images/franzy-cover-generated.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a403f/69656118f0f15bf596e28030_Screenshot%202026-01-12%20at%204.00.48%E2%80%AFPM.png',
+    alt: 'Inc.com article about Franzy franchise marketplace startup',
+    url: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941',
+  },
+  {
+    title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose",
+    outlet: 'Bloomberg',
+    date: 'March 5, 2026',
+    thumbnail: '/assets/images/news-screenshot-3.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a403f/686ed73d2edc7f0dd2f36184_Screenshot%202025-07-09%20at%204.55.13%E2%80%AFPM.png',
+    alt: 'Bloomberg video interview about UN using Stellar blockchain for refugee aid',
+    url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video',
+  },
+  {
+    title: 'The Tetris Company - How I Built This with Guy Raz',
+    outlet: 'How I Built This',
+    date: '',
+    thumbnail: '/assets/images/news-henk-hibt.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a403f/686ed8db780bf6c94d4ddd01_Henk%20HIBT%20resizes.png',
+    alt: 'How I Built This podcast episode featuring The Tetris Company',
+    url: 'https://wondery.com/shows/how-i-built-this/',
+  },
+  {
+    title: "The Rise of Bitcoin Treasuries - CNBC's Crypto World",
+    outlet: 'CNBC',
+    date: '',
+    thumbnail: '/assets/images/news-screenshot-1.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a403f/686ed9bb7a6d0aca7a7d48de_Screenshot%202025-07-09%20at%205.05.43%E2%80%AFPM.png',
+    alt: 'CNBC Crypto World segment on the rise of Bitcoin treasuries',
+    url: '#',
+  },
+  {
+    title: "Why do some Americans feel franchising is a 'great business model' to consider?",
+    outlet: 'Fox Business',
+    date: '',
+    thumbnail: '/assets/images/news-screenshot-2.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a403f/686eda61e0b24fbe5b7df208_Screenshot%202025-07-09%20at%205.08.33%E2%80%AFPM.png',
+    alt: 'Fox Business segment about franchising as a business model',
+    url: 'https://www.foxbusiness.com/video/6368967718112',
+  },
+];
+
+// News items appearing on the /news page
+export const newsPageItems = [
+  {
+    title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon",
+    date: 'March 5, 2026',
+    description: "The UN's refugee agency is using the Stellar network to distribute monetary aid in stablecoins to refugees. Stellar Development Foundation CEO Denelle Dixon says this is why crypto exists and the technology solves many problems.",
+    thumbnail: '/assets/images/news-cleanshot.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/692e26221352dabc7b26a90d_CleanShot%202025-12-01%20at%2018.34.41.png',
+    alt: 'Bloomberg interview with Stellar CEO about UN refugee aid using crypto',
+    url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video',
+  },
+  {
+    title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise',
+    date: 'March 5, 2026',
+    description: "Have you ever wanted to own your own McDonalds franchise? What about a Taco Bell, or a KFC? If so, you're in luck: With the launch of a new platform called Franzy, it's never been easier to shop for a franchise.",
+    thumbnail: '/assets/images/franzy-funding-pano.webp',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/688a23868a8cfec82f5920c8_franzy-funding-pano-inc.webp',
+    alt: 'Cheddar News segment about Franzy franchise app for entrepreneurs',
+    url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/',
+  },
+  {
+    title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House",
+    outlet: 'Inc.com',
+    date: 'May 22, 2025',
+    description: '',
+    thumbnail: '/assets/images/case-study-image6.jpeg',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40ba_image6.jpeg',
+    alt: 'Inc.com article about Franzy making franchise ownership accessible',
+    url: '#',
+  },
+  {
+    title: 'Forbes: Crypto Vies For Influence In Washington, But Seats On Crypto Council May Be Off The Table',
+    date: 'April 28, 2025',
+    description: 'Investing in our workforce.',
+    thumbnail: '/assets/images/case-study-news.jpeg',
+    cdnUrl: 'https://cdn.prod.website-files.com/678fc01e9c372400cbfadb11/67c31440b95763f913e66382_image12.jpeg',
+    alt: 'Forbes article about crypto industry lobbying efforts in Washington DC',
+    url: '#',
+  },
+  {
+    title: 'CNBC: Trump voters could fuel holiday spending, while Harris supporters may pull back',
+    date: 'April 28, 2025',
+    description: 'Reflecting on our achievements.',
+    thumbnail: '/assets/images/case-study-image4.jpeg',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40be_image4.jpeg',
+    alt: 'CNBC article about election impact on consumer spending',
+    url: '#',
+  },
+];
+
+// Sidebar news items that appear on case study detail pages
+export const sidebarNewsItems = [
+  {
+    title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon",
+    date: 'March 5, 2026',
+    url: '/news/un-stellar-refugee-aid-bloomberg',
+  },
+  {
+    title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise',
+    date: 'March 5, 2026',
+    url: '/news/cheddar-franzy-franchise-app',
+  },
+  {
+    title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House",
+    date: 'May 22, 2025',
+    url: '/news/company-product-update',
+  },
+];

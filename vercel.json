@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/case-studies", "destination": "/case-studies/index.html" },
+    { "source": "/news", "destination": "/news/index.html" }
+  ]
+}
