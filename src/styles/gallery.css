@@ -12,7 +12,7 @@
   letter-spacing: -0.02em;
   line-height: 1.05;
   margin-top: var(--sp-2);
-  max-width: 900px;
+  max-width: 1100px;
 }
 
 /* ─── Card Grid ──────────────────────────────────────────────────────────── */
@@ -135,11 +135,15 @@
 /* All cards: image left, text right */
 .cs-card--regular {
   grid-template-columns: 1fr 1fr;
-  min-height: 320px;
+  min-height: 260px;
 }
 
 .cs-card--regular .cs-card-img-wrap {
-  min-height: 320px;
+  min-height: 260px;
+}
+
+.cs-card--regular .cs-card-body {
+  justify-content: center;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
@@ -153,6 +157,10 @@
   .cs-card--regular .cs-card-img-wrap {
     min-height: unset;
     aspect-ratio: 16 / 9;
+  }
+
+  .cs-card--regular .cs-card-body {
+    justify-content: flex-start;
   }
 }
 

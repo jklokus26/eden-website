@@ -264,16 +264,12 @@
 }
 
 .featured-cs-metric-number {
-  font-size: clamp(14px, 1.3vw, 18px);
+  font-size: clamp(12px, 1.1vw, 15px);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--gradient-mint);
   letter-spacing: -0.01em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-}
-
-.featured-cs-metric-prefix {
-  color: var(--gradient-mint);
 }
 
 .featured-cs-metric-label {
@@ -299,9 +295,9 @@
 .featured-cs-card::before {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: calc(var(--card-radius) + 1px);
-  padding: 1px;
+  inset: -2px;
+  border-radius: calc(var(--card-radius) + 2px);
+  padding: 2px;
   background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -521,9 +517,9 @@
 .service-card::before {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: calc(var(--card-radius) + 1px);
-  padding: 1px;
+  inset: -2px;
+  border-radius: calc(var(--card-radius) + 2px);
+  padding: 2px;
   background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;

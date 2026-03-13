@@ -44,7 +44,6 @@ function parseMetric(str) {
 
 function animateValue(el, start, end, prefix, suffix, duration) {
   const startTime = performance.now();
-  const prefixSpan = el.querySelector('.featured-cs-metric-prefix');
 
   function update(currentTime) {
     const elapsed = currentTime - startTime;
@@ -52,12 +51,7 @@ function animateValue(el, start, end, prefix, suffix, duration) {
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = Math.floor(start + (end - start) * eased);
 
-    if (prefixSpan) {
-      prefixSpan.textContent = prefix;
-      el.childNodes[el.childNodes.length - 1].textContent = current.toLocaleString() + suffix;
-    } else {
-      el.textContent = prefix + current.toLocaleString() + suffix;
-    }
+    el.textContent = prefix + current.toLocaleString() + suffix;
 
     if (progress < 1) {
       requestAnimationFrame(update);
@@ -218,7 +212,7 @@ function buildFeaturedCaseStudies() {
           </div>
           <div class="featured-cs-body">
             <div class="featured-cs-metric" data-value="${m.value}" data-prefix="${m.prefix}" data-suffix="${m.suffix}">
-              <span class="featured-cs-metric-number">${m.prefix ? `<span class="featured-cs-metric-prefix">${m.prefix}</span>` : ''}0${m.suffix}</span>
+              <span class="featured-cs-metric-number">${m.prefix}0${m.suffix}</span>
               <span class="featured-cs-metric-label">${m.label}</span>
             </div>
             <h3 class="featured-cs-title">${cs.title.replace('Case study: ', '').replace('Case Study: ', '')}</h3>
