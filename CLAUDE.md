@@ -1,104 +1,87 @@
 # Eden Communications Website
 
-## About This Site
+Marketing website for Eden Communications, a crypto and fintech PR agency.
 
-Marketing website for Eden Communications, a crypto and fintech PR agency. Built with Vite, vanilla JavaScript, GSAP animations, and CSS.
+**Live URL:** https://eden-communications.vercel.app
+**Auto-deploy:** Every push to `main` goes live on Vercel within ~60 seconds.
 
-**Live URL:** https://eden-communications.vercel.app (will move to edencommunications.com after DNS switch)
+## Critical Rules
 
-## Tech Stack
+1. **Every push is a live deploy.** Test your changes mentally before committing. If unsure, describe what you plan to do and ask for confirmation first.
+2. **Never modify animation or layout code** unless specifically asked. The files in `src/animations.js`, `src/components/`, and `src/styles/` control the site's visual design and are carefully tuned. Content changes should only touch `data/` files and occasionally HTML files.
+3. **Follow existing patterns exactly.** When adding new content (case studies, team members, news items), copy the structure of an existing entry. Do not invent new fields or change the data shape.
+4. **Keep the dark theme and brand intact.** Primary background is dark (#020408 area), accent color is #c8ff00 (yellow-green). Typography is Schibsted Grotesk for headings, Inter for body. Do not change colors, fonts, or spacing without explicit approval.
+5. **Images go in `public/assets/images/`**, logos in `public/assets/logos/`. Use descriptive filenames (e.g., `team-firstname.png`, `client-name-logo.png`). Always add alt text.
+6. **Update `public/sitemap.xml`** whenever adding a new page.
 
-- **Build:** Vite 7
-- **Animations:** GSAP 3 + ScrollTrigger + SplitType
+## Safe Changes (data/ files)
+
+These files contain all site content. Editing them is the primary way to update the site:
+
+| File | What It Controls |
+|------|-----------------|
+| `data/site-content.js` | Homepage headlines, descriptions, hero text |
+| `data/team.js` | Team member names, titles, bios, photos |
+| `data/services.js` | Service offerings and FAQ section |
+| `data/case-studies.js` | Case study content, metrics, quotes, images |
+| `data/clients.js` | Client logos on homepage carousel |
+| `data/coverage.js` | Press coverage items (homepage + results page) |
+| `data/news-items.js` | News page articles and screenshots |
+| `data/testimonials.js` | Client testimonials |
+| `data/media-logos.js` | Media outlet logos in the ticker |
+
+To update text, swap a photo, add a team member, or change a testimonial — edit the relevant data file above. Follow the exact format of existing entries.
+
+## Adding a New Case Study
+
+This is a multi-file change. Follow these steps in order:
+
+1. Add the case study data to `data/case-studies.js` — copy an existing entry's full structure (id, title, client, heroImage, metrics array, content sections, quotes)
+2. Create a new HTML file in `case-studies/` — copy `case-studies/grip-shipping.html` as a template, update the meta tags (title, description, og:title, og:description, og:url, canonical URL)
+3. Register the new page in `vite.config.js` — add an entry to `rollupOptions.input`
+4. Add a URL rewrite in `vercel.json` if the URL needs clean routing
+5. Add the URL to `public/sitemap.xml`
+
+## Adding a New Page
+
+Only do this if explicitly requested. New pages require:
+
+1. An HTML file (copy an existing page's HTML as template)
+2. A page renderer in `src/pages/` (copy an existing one)
+3. A route in `src/main.js`
+4. Registration in `vite.config.js`
+5. Entry in `public/sitemap.xml`
+6. Navigation link in `src/components/nav.js`
+
+## Do Not Touch (without explicit request)
+
+| File/Directory | Why |
+|---------------|-----|
+| `src/animations.js` | Hero animation, scroll triggers, parallax — carefully calibrated |
+| `src/styles/*.css` | Layout, spacing, responsive breakpoints — tuned across all devices |
+| `src/components/nav.js` | Navigation structure and mobile hamburger menu |
+| `src/components/footer.js` | Footer layout and links |
+| `src/main.js` | Page routing logic |
+| `public/assets/video/` | Hero video with baked-in color grading |
+| `vercel.json` | Routing rules (only add new rewrites, don't modify existing) |
+
+## Rolling Back Changes
+
+If a change doesn't look right, say "roll back the last change" to revert the most recent commit. This will push a revert commit and Vercel will auto-deploy the previous version.
+
+## Tech Stack (for reference)
+
+- **Build:** Vite
+- **Animations:** GSAP + ScrollTrigger + SplitType
 - **Smooth scroll:** Lenis
-- **Hosting:** Vercel (auto-deploys from this repo's `main` branch)
+- **Hosting:** Vercel (auto-deploys from `main` branch)
 - **Contact form:** FormSubmit.co → hello@edencommunications.com
+- **SEO:** Unique meta tags, Open Graph, Twitter Cards, and JSON-LD structured data per page
 
-## Project Structure
-
-```
-├── index.html                    # Homepage
-├── about/index.html              # About page
-├── services/index.html           # Services page
-├── results/index.html            # Results/metrics page
-├── recent-work/index.html        # Recent work gallery
-├── news/index.html               # News/press page
-├── case-studies/
-│   ├── index.html                # Case studies listing
-│   ├── grip-shipping.html        # Case study: Grip Shipping
-│   ├── franzy.html               # Case study: Franzy
-│   ├── stellar-development-foundation.html
-│   └── reed-smith-on-chain.html
-├── data/                         # Content data (edit these to update site content)
-│   ├── case-studies.js           # Case study content and metadata
-│   ├── clients.js                # Client logos for homepage carousel
-│   ├── coverage.js               # Press coverage items
-│   ├── media-logos.js            # Media outlet logos
-│   ├── news-items.js             # News page items
-│   ├── services.js               # Services list and FAQ
-│   ├── site-content.js           # Homepage copy, headlines, descriptions
-│   ├── team.js                   # Team member bios and photos
-│   └── testimonials.js           # Client testimonials
-├── src/
-│   ├── main.js                   # App entry point and page router
-│   ├── animations.js             # All GSAP scroll/entrance animations
-│   ├── components/               # Shared components (nav, footer, form, etc.)
-│   ├── pages/                    # Page-specific rendering logic
-│   └── styles/                   # CSS files (one per page/component)
-├── public/
-│   ├── assets/images/            # Photos, screenshots
-│   ├── assets/video/             # Hero background video
-│   ├── assets/logos/             # Client and media logos
-│   ├── assets/icons/             # Favicons, social icons
-│   ├── robots.txt                # Search engine directives
-│   ├── sitemap.xml               # XML sitemap for SEO
-│   └── llms.txt                  # AI crawler guidance
-└── vercel.json                   # Vercel routing config
-```
-
-## How to Update Content
-
-Most site content lives in the `data/` directory as JavaScript modules. To update text, add team members, or modify services:
-
-1. Edit the relevant file in `data/`
-2. Commit and push to `main`
-3. Vercel auto-deploys within ~60 seconds
-
-### Common Tasks
-
-**Update homepage headline or copy:**
-Edit `data/site-content.js`
-
-**Add a new team member:**
-Add an entry to `data/team.js` with name, title, bio, and photo path. Place their photo in `public/assets/images/`.
-
-**Add a new case study:**
-1. Add the case study data to `data/case-studies.js` (follow the existing pattern with id, title, client, metrics, content sections)
-2. Create a new HTML file in `case-studies/` (copy an existing one as template)
-3. Add the new HTML file to `vite.config.js` in the `rollupOptions.input` object
-4. Add a rewrite rule to `vercel.json` if needed
-5. Update `public/sitemap.xml` with the new URL
-
-**Update services or FAQ:**
-Edit `data/services.js`
-
-**Add press coverage:**
-Add items to `data/coverage.js` and/or `data/news-items.js`
-
-## Development
+## Local Development (optional)
 
 ```bash
 npm install          # Install dependencies
-npm run dev          # Start dev server (usually http://localhost:5173)
-npm run build        # Production build to dist/
-npm run preview      # Preview production build locally
+npm run dev          # Start dev server
+npm run build        # Production build
 ```
-
-## Design Notes
-
-- **Dark theme** with accent color `#c8ff00` (yellow-green)
-- **Typography:** Schibsted Grotesk (headings) + Inter (body) via Google Fonts
-- **Animations:** Blur-to-focus hero entrance, scroll-triggered reveals, parallax, card tilt on hover
-- **Mobile breakpoints:** 480px, 768px, 1024px
-- **All images use lazy loading** except hero video poster
-- **SEO:** Each page has unique meta tags, Open Graph, Twitter Cards, and structured data (JSON-LD)
