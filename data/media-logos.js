@@ -11,7 +11,7 @@ export const mediaLogos = [
   },
   {
     name: 'The New York Times',
-    logo: '/assets/logos/cnbc.png',
+    logo: '/assets/logos/new-york-times.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c8_Frame%20124.png',
     alt: 'The New York Times logo',
     row: 1,
@@ -52,20 +52,6 @@ export const mediaLogos = [
     row: 1,
   },
   {
-    name: 'CoinDesk',
-    logo: '/assets/logos/coindesk.png',
-    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c6_coindesk_logo.svg.png',
-    alt: 'CoinDesk logo variant',
-    row: 1,
-  },
-  {
-    name: 'Cointelegraph',
-    logo: '/assets/logos/ondo.png',
-    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/682efa5c1028fc0b2cc6bbe3_Vector.png',
-    alt: 'Cointelegraph cryptocurrency news logo',
-    row: 1,
-  },
-  {
     name: 'Forbes',
     logo: '/assets/logos/forbes.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c7_forbes_logo.svg.png',
@@ -78,6 +64,7 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f3b6872f67e0e9a1895_fortune_logo.svg.png',
     alt: 'Fortune magazine logo',
     row: 1,
+    displayHeight: 30,
   },
   {
     name: 'Fox Business',
@@ -87,18 +74,12 @@ export const mediaLogos = [
     row: 1,
   },
   {
-    name: 'How I Built This',
-    logo: '/assets/logos/npr-how-i-built-this.png',
-    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c9_kisspng-how-i-built-this-national-public-radio-podcast.png',
-    alt: 'How I Built This with Guy Raz podcast logo',
-    row: 1,
-  },
-  {
     name: 'Inc.',
     logo: '/assets/logos/inc-magazine.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235ff455a7b9c770358448_Inc._magazine_logo%201%20(Traced).png',
     alt: 'Inc. magazine logo',
     row: 1,
+    displayHeight: 30,
   },
   {
     name: 'New York Post',
@@ -106,6 +87,7 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40cd_new_york_post_logo.svg.png',
     alt: 'New York Post newspaper logo',
     row: 1,
+    displayHeight: 28,
   },
   {
     name: 'Reuters',
@@ -127,5 +109,22 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f979312d1125dfa19ea_USA_Today_(2020-01-29)%201.png',
     alt: 'USA Today newspaper logo',
     row: 1,
+    displayHeight: 28,
+  },
+  {
+    name: 'Financial Times',
+    logo: '/assets/logos/financial-times.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fc0d35d72fb4da04def_financial-times-logo.png',
+    alt: 'Financial Times newspaper logo',
+    row: 1,
+    displayHeight: 20,
+  },
+  {
+    name: 'CoinTelegraph',
+    logo: '/assets/logos/cointelegraph.png',
+    cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fd0a7e087aa01c94b2e_cointelegraph_logo.png',
+    alt: 'CoinTelegraph crypto news logo',
+    row: 1,
+    displayHeight: 38,
   },
 ];

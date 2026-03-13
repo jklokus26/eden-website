@@ -12,6 +12,10 @@ export default defineConfig({
         stellar: resolve(__dirname, 'case-studies/stellar-development-foundation.html'),
         reedSmith: resolve(__dirname, 'case-studies/reed-smith-on-chain.html'),
         news: resolve(__dirname, 'news/index.html'),
+        about: resolve(__dirname, 'about/index.html'),
+        services: resolve(__dirname, 'services/index.html'),
+        results: resolve(__dirname, 'results/index.html'),
+        recentWork: resolve(__dirname, 'recent-work/index.html'),
       }
     }
   }

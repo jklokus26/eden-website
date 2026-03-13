@@ -1,15 +1,7 @@
 import '../styles/case-study.css';
-import { caseStudies } from '../../data/case-studies.js';
+import { caseStudies, HERO_IMAGE_MAP } from '../../data/case-studies.js';
 import { createDivider } from '../components/section-divider.js';
 import { initAnimations } from '../animations.js';
-
-// Map data heroImage paths → actual downloaded filenames
-const HERO_IMAGE_MAP = {
-  'grip-shipping': '/assets/images/grip-shipping-team.jpg',
-  'franzy': '/assets/images/franzy-fox-business.jpg',
-  'stellar-development-foundation': '/assets/images/stellar-screenshot.png',
-  'reed-smith-on-chain': '/assets/images/reed-smith-dixon.jpg',
-};
 
 function getSlugFromPath() {
   // Path: /case-studies/grip-shipping (or .html in dev)
@@ -56,7 +48,7 @@ function buildCaseStudy() {
 
   const sidebarNewsItems = (cs.sidebarNews || []).map(item => `
     <li class="sidebar-news-item">
-      <a href="${item.url}" class="sidebar-news-link">
+      <a href="${item.url}" class="sidebar-news-link" target="_blank" rel="noopener noreferrer">
         <span class="sidebar-news-date">${item.date}</span>
         <p class="sidebar-news-title">${item.title}</p>
       </a>
@@ -75,11 +67,25 @@ function buildCaseStudy() {
         <div class="cs-detail-hero-overlay"></div>
       </div>
       <div class="cs-detail-hero-content container">
-        ${createDivider(cs.service)}
         <h1 class="cs-detail-title" data-animate="words">${cs.title}</h1>
         <p class="cs-detail-subtitle">${cs.subtitle}</p>
       </div>
     </section>
+
+    ${cs.metrics && cs.metrics.length ? `
+    <section class="cs-hero-metrics">
+      <div class="container">
+        <div class="cs-hero-metrics-grid">
+          ${cs.metrics.slice(0, 3).map(m => `
+            <div class="cs-hero-metric-item">
+              <span class="cs-hero-metric-number">${m.number}</span>
+              <span class="cs-hero-metric-label">${m.label}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+    ` : ''}
 
     <section class="cs-detail-body section-padding">
       <div class="container">
@@ -93,10 +99,6 @@ function buildCaseStudy() {
               <div class="cs-detail-meta-item">
                 <span class="cs-detail-meta-label">Industry</span>
                 <span class="cs-detail-meta-value">${cs.industries}</span>
-              </div>
-              <div class="cs-detail-meta-item">
-                <span class="cs-detail-meta-label">Date</span>
-                <span class="cs-detail-meta-value">${cs.date}</span>
               </div>
             </div>
             <div class="cs-detail-content">

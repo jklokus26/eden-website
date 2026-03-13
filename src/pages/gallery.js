@@ -1,16 +1,8 @@
 import '../styles/gallery.css';
-import { caseStudies } from '../../data/case-studies.js';
+import { caseStudies, HERO_IMAGE_MAP } from '../../data/case-studies.js';
 import { caseStudiesPageHeadline } from '../../data/site-content.js';
 import { createDivider } from '../components/section-divider.js';
 import { initAnimations } from '../animations.js';
-
-// Map data heroImage paths to actual downloaded filenames
-const HERO_IMAGE_MAP = {
-  'grip-shipping': '/assets/images/grip-shipping-team.jpg',
-  'franzy': '/assets/images/franzy-fox-business.jpg',
-  'stellar-development-foundation': '/assets/images/stellar-screenshot.png',
-  'reed-smith-on-chain': '/assets/images/reed-smith-dixon.jpg',
-};
 
 function buildGallery() {
   const main = document.getElementById('case-studies-gallery');
@@ -32,7 +24,6 @@ function buildGallery() {
         <div class="cs-card-body">
           <div class="cs-card-meta">
             <span class="cs-card-service">${cs.service}</span>
-            <span class="cs-card-date">${cs.date}</span>
           </div>
           <h2 class="cs-card-title">${cs.title}</h2>
           <p class="cs-card-subtitle">${cs.subtitle}</p>

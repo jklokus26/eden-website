@@ -27,7 +27,8 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(18, 19, 31, 0.1) 0%,
+    rgba(18, 19, 31, 0.6) 0%,
+    rgba(18, 19, 31, 0.25) 30%,
     rgba(18, 19, 31, 0.45) 50%,
     rgba(18, 19, 31, 0.9) 100%
   );
@@ -55,6 +56,44 @@
   margin-top: var(--sp-1);
   max-width: 600px;
   line-height: 1.6;
+}
+
+/* ─── Hero Metrics Bar ───────────────────────────────────────────────────── */
+
+.cs-hero-metrics {
+  background: var(--bg);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cs-hero-metrics-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-5);
+}
+
+.cs-hero-metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.cs-hero-metric-number {
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 800;
+  color: var(--gradient-mint);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.cs-hero-metric-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-grey);
 }
 
 /* ─── Body Layout ────────────────────────────────────────────────────────── */
@@ -369,6 +408,14 @@
   .cs-detail-meta {
     flex-direction: column;
     gap: var(--sp-2);
+  }
+
+  .cs-hero-metrics-grid {
+    gap: var(--sp-3);
+  }
+
+  .cs-hero-metric-number {
+    font-size: clamp(36px, 8vw, 56px);
   }
 
   .related-grid {

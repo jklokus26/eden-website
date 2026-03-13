@@ -1,4 +1,154 @@
+export const HERO_IMAGE_MAP = {
+  'grip-shipping': '/assets/images/grip-shipping-team.jpg',
+  'franzy': '/assets/images/franzy-fox-business.jpg',
+  'stellar-development-foundation': '/assets/images/stellar-screenshot.webp',
+  'reed-smith-on-chain': '/assets/images/reed-smith-dixon.jpg',
+};
+
 export const caseStudies = [
+  {
+    slug: 'reed-smith-on-chain',
+    title: 'Case Study: Reed Smith On Chain',
+    subtitle: "How a law firm became crypto's most trusted voice during the industry's most pivotal trial",
+    date: 'March 5, 2026',
+    service: 'Thought Leadership',
+    description: "How a law firm became crypto's most trusted voice during the industry's most pivotal trial",
+    heroImage: '/assets/images/reed-smith-dixon.jpg',
+    cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68890f9f843e9f091c5c94c2_107399355-0410_Dixon_ISO.jpg',
+    alt: 'Reed Smith On Chain thought leadership initiative visual',
+    industries: 'Legal, Digital Assets, Financial Regulation',
+    bodyHtml: `<h3>The Challenge</h3>
+<p>Reed Smith, a global law firm with deep roots in financial regulation, saw an opportunity to lead in a volatile moment for the digital asset space. With the sentencing of FTX founder Sam Bankman-Fried dominating headlines, the firm launched Reed Smith On Chain \u2014 a thought leadership initiative designed to guide institutions, investors, and innovators through crypto's evolving legal landscape.</p>
+<p>The firm needed to:</p>
+<ul>
+<li>Establish Reed Smith as the go-to legal authority in crypto</li>
+<li>Provide real-time, trusted legal analysis during the most high-profile trial in crypto history</li>
+<li>Break through the noise and educate journalists, regulators, and clients on what the FTX case meant for the future of digital assets</li>
+</ul>
+
+<h3>Our Approach</h3>
+<p>Eden crafted a proactive, real-time media strategy designed to embed Reed Smith's voice across every major moment of the FTX legal saga \u2014 and beyond. We focused on:</p>
+<p><strong>1. Rapid Response Newsroom</strong> Positioned Reed Smith attorneys as expert commentators during key milestones \u2014 sentencing hearings, DOJ motions, and regulatory crackdowns \u2014 offering timely analysis to tier-one reporters.</p>
+<p><strong>2. Strategic Storytelling</strong> We worked with reporters at Bloomberg, CNBC, CoinDesk, and the Washington Post to translate legal nuance into public understanding, positioning the firm as the sober voice in a highly polarized industry.</p>
+<p><strong>3. Always-On Distribution</strong> Our team monitored crypto, legal, and financial news cycles to ensure Reed Smith On Chain's insights landed in high-traffic stories and were widely shared across social media.</p>
+
+<h3>The Results</h3>
+<h4>Media Reach & Visibility</h4>
+<ul>
+<li>48 pieces of earned coverage across tier-one, financial, and crypto media</li>
+<li>2.88M+ estimated views on content featuring Reed Smith attorneys</li>
+<li>467M total audience across all outlets</li>
+<li>Coverage in CNBC, Bloomberg, Washington Post, New York Post, Fortune, Cointelegraph, CoinDesk, Reuters, and TechCrunch</li>
+</ul>
+<h4>Social Engagement</h4>
+<ul>
+<li>2.49K+ total engagements on social platforms</li>
+<li>1.06K X shares of Reed Smith-linked coverage</li>
+</ul>
+<h4>Market Perception</h4>
+<ul>
+<li>85 average domain authority \u2014 signaling placement on highly credible platforms</li>
+<li>Reed Smith became a default source for legal analysis on SBF, Binance, SEC enforcement, and ETH ETF rulings</li>
+</ul>
+<h4>Business Impact</h4>
+<ul>
+<li>Expanded brand equity among crypto founders, exchanges, and fintech clients seeking sophisticated legal counsel</li>
+<li>New inbound inquiries from blockchain and tokenization projects</li>
+<li>Reinforced Reed Smith's positioning as the firm of record for institutional crypto clients navigating regulatory uncertainty</li>
+</ul>
+
+<h3>The Bottom Line</h3>
+<p>Reed Smith On Chain transformed a legacy law firm into a modern authority on digital asset regulation \u2014 all in the middle of crypto's most chaotic courtroom drama. Eden's agile media strategy didn't just earn headlines \u2014 it earned trust, opened doors, and helped Reed Smith claim a front-row seat in crypto's next chapter.</p>
+<p>This case proves how expert-led storytelling and smart timing can elevate even the most traditional institutions in disruptive markets.</p>`,
+    sidebarNews: [
+      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
+      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
+      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941' },
+    ],
+    metricHighlight: '48 Earned Placements',
+    metrics: [
+      { number: '48', label: 'Earned Placements' },
+      { number: '467M', label: 'Total Audience' },
+      { number: '2.88M+', label: 'Estimated Views' },
+    ],
+    featured: false,
+    industryTag: 'Legal & Digital Assets',
+    relatedCaseStudies: ['grip-shipping', 'stellar-development-foundation', 'franzy'],
+  },
+  {
+    slug: 'stellar-development-foundation',
+    title: 'Case Study: Stellar Development Foundation',
+    subtitle: 'How Eden helped a blockchain pioneer break into the global financial mainstream',
+    date: 'March 5, 2026',
+    service: 'Media Relations',
+    description: 'How Eden helped a blockchain pioneer break into the global financial mainstream',
+    heroImage: '/assets/images/stellar-screenshot.webp',
+    cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/688910e6533f25dc9d1cf34c_Screenshot%202025-07-29%20at%202.19.59%E2%80%AFPM.png',
+    alt: 'Stellar Development Foundation CEO Denelle Dixon in a professional broadcast setting',
+    industries: 'Blockchain, Fintech, Financial Inclusion',
+    bodyHtml: `<h3>The Challenge</h3>
+<p>The Stellar Development Foundation (SDF) is one of the most established names in blockchain \u2014 but in an industry flooded with hype and noise, SDF needed to:</p>
+<ul>
+<li>Cement its reputation as a serious infrastructure layer for real-world financial applications</li>
+<li>Elevate public understanding of Stellar's partnerships with global financial players like Mastercard and PayPal and organizations like the United Nations</li>
+<li>Reframe the blockchain conversation around usability, financial inclusion, and global access</li>
+<li>Reach both institutional decision-makers and culturally relevant audiences in key emerging markets</li>
+</ul>
+
+<h3>Our Approach</h3>
+<p>Eden developed a global communications strategy built on three pillars:</p>
+<p><strong>1. Narrative Reset</strong> We moved Stellar away from the crypto echo chamber and into the mainstream financial and tech conversation \u2014 emphasizing real-world assets, compliance, and emerging-market adoption.</p>
+<p><strong>2. Strategic Launch Amplification</strong> We drove high-impact coverage around major announcements, including:</p>
+<ul>
+<li>Mastercard x Stellar Crypto Credential launch</li>
+<li>PayPal's stablecoin (PYUSD) integration on Stellar</li>
+</ul>
+<p>These moments weren't just covered \u2014 they were featured on CNBC Television and Bloomberg Television, giving Stellar rare institutional visibility.</p>
+<p><strong>3. Global Media Activation</strong> We secured coverage across outlets with influence in the U.S., Africa, and LATAM, tying Stellar's work to bigger stories around financial access, tech sovereignty, and public-private infrastructure.</p>
+
+<h3>The Results</h3>
+<h4>Media Reach</h4>
+<ul>
+<li>36 earned media placements across crypto, fintech, and mainstream outlets</li>
+<li>Coverage in CNN, CNBC, Bloomberg, Yahoo Finance, CoinDesk, Decrypt, Cointelegraph, Axios, and more</li>
+<li>4.65M+ estimated views on campaign content</li>
+<li>632M total outlet audience reach</li>
+</ul>
+<h4>Broadcast Breakthrough</h4>
+<ul>
+<li>Live appearances on CNBC and Bloomberg TV, a rare feat for blockchain infrastructure foundations</li>
+<li>On-air interviews with SDF CEO Denelle Dixon, driving home Stellar's relevance in payments and stablecoins</li>
+</ul>
+<h4>Cultural & Geographic Expansion</h4>
+<ul>
+<li>Features highlighting Stellar's work in Africa (via partnerships with Idris Elba and BET)</li>
+<li>Campaign reach spanned from Davos to Ghana, repositioning Stellar as a truly global player</li>
+</ul>
+<h4>Business Impact</h4>
+<ul>
+<li>Repositioned Stellar from "crypto protocol" to "public infrastructure for finance"</li>
+<li>Enabled deeper enterprise conversations with institutions like PayPal, MoneyGram, and Franklin Templeton</li>
+<li>Attracted new developer and fintech partners aligned with real-world utility</li>
+</ul>
+
+<h3>The Bottom Line</h3>
+<p>In one of the most crowded and credibility-challenged sectors in tech, Eden helped the Stellar Development Foundation break out of the crypto bubble and into the global financial spotlight. Our media strategy didn't just land headlines \u2014 it reshaped how Stellar is perceived by regulators, developers, and institutions alike.</p>
+<p>This case demonstrates how mission-aligned, media-savvy storytelling can turn protocol-layer technology into mainstream relevance.</p>`,
+    sidebarNews: [
+      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
+      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
+      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941' },
+    ],
+    metricHighlight: '+632M Audience Reach',
+    metrics: [
+      { number: '632M', label: 'Audience Reach' },
+      { number: '36', label: 'Media Placements' },
+      { number: '4.65M+', label: 'Content Views' },
+    ],
+    featured: true,
+    industryTag: 'Blockchain & Fintech',
+    relatedCaseStudies: ['reed-smith-on-chain', 'grip-shipping', 'franzy'],
+  },
   {
     slug: 'grip-shipping',
     title: 'Case study: Grip Shipping',
@@ -61,10 +211,18 @@ export const caseStudies = [
 <p>Grip Shipping's partnership with Eden transformed the company from a promising startup into a recognized industry leader. The dramatic increase in media coverage not only elevated brand awareness but also generated concrete business opportunities, including investor interest and qualified leads.</p>
 <p>This case demonstrates how strategic public relations can accelerate growth for innovative companies ready to claim their market position.</p>`,
     sidebarNews: [
-      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: '/news/un-stellar-refugee-aid-bloomberg' },
-      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: '/news/cheddar-franzy-franchise-app' },
-      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: '/news/company-product-update' },
+      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
+      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
+      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941' },
     ],
+    metricHighlight: '+4,050% Coverage Increase',
+    metrics: [
+      { number: '4,050%', label: 'Coverage Increase' },
+      { number: '20+', label: 'Media Placements' },
+      { number: '135%', label: 'Share of Voice Growth' },
+    ],
+    featured: true,
+    industryTag: 'Logistics & eCommerce',
     relatedCaseStudies: ['franzy', 'reed-smith-on-chain', 'stellar-development-foundation'],
   },
   {
@@ -123,139 +281,20 @@ export const caseStudies = [
 <p>Eden helped transform Franzy from a stealth-mode startup into the most visible voice in franchise tech in under six months. Our campaign not only drove massive media buzz but also delivered real business outcomes: user growth, high-quality leads, and top-of-market visibility.</p>
 <p>This case shows how Eden's founder-first, performance-driven approach to public relations helps ambitious startups win fast in competitive markets.</p>`,
     sidebarNews: [
-      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: '/news/un-stellar-refugee-aid-bloomberg' },
-      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: '/news/cheddar-franzy-franchise-app' },
-      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: '/news/company-product-update' },
+      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
+      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
+      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941' },
     ],
+    metricHighlight: '+4,300% Platform Sign-ups',
+    metrics: [
+      { number: '4,300%', label: 'Platform Sign-ups' },
+      { number: '22', label: 'Media Placements' },
+      { number: '73M+', label: 'Media Reach' },
+    ],
+    featured: true,
+    industryTag: 'Franchise Tech',
     relatedCaseStudies: ['reed-smith-on-chain', 'grip-shipping', 'stellar-development-foundation'],
-  },
-  {
-    slug: 'stellar-development-foundation',
-    title: 'Case Study: Stellar Development Foundation',
-    subtitle: 'How Eden helped a blockchain pioneer break into the global financial mainstream',
-    date: 'March 5, 2026',
-    service: 'Media Relations',
-    description: 'How Eden helped a blockchain pioneer break into the global financial mainstream',
-    heroImage: '/assets/images/reed-smith-dixon.jpg',
-    cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68890f9f843e9f091c5c94c2_107399355-0410_Dixon_ISO.jpg',
-    alt: 'Stellar Development Foundation CEO Denelle Dixon in a professional broadcast setting',
-    industries: 'Blockchain, Fintech, Financial Inclusion',
-    bodyHtml: `<h3>The Challenge</h3>
-<p>The Stellar Development Foundation (SDF) is one of the most established names in blockchain \u2014 but in an industry flooded with hype and noise, SDF needed to:</p>
-<ul>
-<li>Cement its reputation as a serious infrastructure layer for real-world financial applications</li>
-<li>Elevate public understanding of Stellar's partnerships with global financial players like Mastercard and PayPal and organizations like the United Nations</li>
-<li>Reframe the blockchain conversation around usability, financial inclusion, and global access</li>
-<li>Reach both institutional decision-makers and culturally relevant audiences in key emerging markets</li>
-</ul>
-
-<h3>Our Approach</h3>
-<p>Eden developed a global communications strategy built on three pillars:</p>
-<p><strong>1. Narrative Reset</strong> We moved Stellar away from the crypto echo chamber and into the mainstream financial and tech conversation \u2014 emphasizing real-world assets, compliance, and emerging-market adoption.</p>
-<p><strong>2. Strategic Launch Amplification</strong> We drove high-impact coverage around major announcements, including:</p>
-<ul>
-<li>Mastercard x Stellar Crypto Credential launch</li>
-<li>PayPal's stablecoin (PYUSD) integration on Stellar</li>
-</ul>
-<p>These moments weren't just covered \u2014 they were featured on CNBC Television and Bloomberg Television, giving Stellar rare institutional visibility.</p>
-<p><strong>3. Global Media Activation</strong> We secured coverage across outlets with influence in the U.S., Africa, and LATAM, tying Stellar's work to bigger stories around financial access, tech sovereignty, and public-private infrastructure.</p>
-
-<h3>The Results</h3>
-<h4>Media Reach</h4>
-<ul>
-<li>36 earned media placements across crypto, fintech, and mainstream outlets</li>
-<li>Coverage in CNN, CNBC, Bloomberg, Yahoo Finance, CoinDesk, Decrypt, Cointelegraph, Axios, and more</li>
-<li>4.65M+ estimated views on campaign content</li>
-<li>632M total outlet audience reach</li>
-</ul>
-<h4>Broadcast Breakthrough</h4>
-<ul>
-<li>Live appearances on CNBC and Bloomberg TV, a rare feat for blockchain infrastructure foundations</li>
-<li>On-air interviews with SDF CEO Denelle Dixon, driving home Stellar's relevance in payments and stablecoins</li>
-</ul>
-<h4>Cultural & Geographic Expansion</h4>
-<ul>
-<li>Features highlighting Stellar's work in Africa (via partnerships with Idris Elba and BET)</li>
-<li>Campaign reach spanned from Davos to Ghana, repositioning Stellar as a truly global player</li>
-</ul>
-<h4>Business Impact</h4>
-<ul>
-<li>Repositioned Stellar from "crypto protocol" to "public infrastructure for finance"</li>
-<li>Enabled deeper enterprise conversations with institutions like PayPal, MoneyGram, and Franklin Templeton</li>
-<li>Attracted new developer and fintech partners aligned with real-world utility</li>
-</ul>
-
-<h3>The Bottom Line</h3>
-<p>In one of the most crowded and credibility-challenged sectors in tech, Eden helped the Stellar Development Foundation break out of the crypto bubble and into the global financial spotlight. Our media strategy didn't just land headlines \u2014 it reshaped how Stellar is perceived by regulators, developers, and institutions alike.</p>
-<p>This case demonstrates how mission-aligned, media-savvy storytelling can turn protocol-layer technology into mainstream relevance.</p>`,
-    sidebarNews: [
-      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: '/news/un-stellar-refugee-aid-bloomberg' },
-      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: '/news/cheddar-franzy-franchise-app' },
-      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: '/news/company-product-update' },
-    ],
-    relatedCaseStudies: ['reed-smith-on-chain', 'grip-shipping', 'franzy'],
-  },
-  {
-    slug: 'reed-smith-on-chain',
-    title: 'Case Study: Reed Smith On Chain',
-    subtitle: "How a law firm became crypto's most trusted voice during the industry's most pivotal trial",
-    date: 'March 5, 2026',
-    service: 'Thought Leadership',
-    description: "How a law firm became crypto's most trusted voice during the industry's most pivotal trial",
-    heroImage: '/assets/images/stellar-screenshot.png',
-    cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/688910e6533f25dc9d1cf34c_Screenshot%202025-07-29%20at%202.19.59%E2%80%AFPM.png',
-    alt: 'Reed Smith On Chain thought leadership initiative visual',
-    industries: 'Legal, Digital Assets, Financial Regulation',
-    bodyHtml: `<h3>The Challenge</h3>
-<p>Reed Smith, a global law firm with deep roots in financial regulation, saw an opportunity to lead in a volatile moment for the digital asset space. With the sentencing of FTX founder Sam Bankman-Fried dominating headlines, the firm launched Reed Smith On Chain \u2014 a thought leadership initiative designed to guide institutions, investors, and innovators through crypto's evolving legal landscape.</p>
-<p>The firm needed to:</p>
-<ul>
-<li>Establish Reed Smith as the go-to legal authority in crypto</li>
-<li>Provide real-time, trusted legal analysis during the most high-profile trial in crypto history</li>
-<li>Break through the noise and educate journalists, regulators, and clients on what the FTX case meant for the future of digital assets</li>
-</ul>
-
-<h3>Our Approach</h3>
-<p>Eden crafted a proactive, real-time media strategy designed to embed Reed Smith's voice across every major moment of the FTX legal saga \u2014 and beyond. We focused on:</p>
-<p><strong>1. Rapid Response Newsroom</strong> Positioned Reed Smith attorneys as expert commentators during key milestones \u2014 sentencing hearings, DOJ motions, and regulatory crackdowns \u2014 offering timely analysis to tier-one reporters.</p>
-<p><strong>2. Strategic Storytelling</strong> We worked with reporters at Bloomberg, CNBC, CoinDesk, and the Washington Post to translate legal nuance into public understanding, positioning the firm as the sober voice in a highly polarized industry.</p>
-<p><strong>3. Always-On Distribution</strong> Our team monitored crypto, legal, and financial news cycles to ensure Reed Smith On Chain's insights landed in high-traffic stories and were widely shared across social media.</p>
-
-<h3>The Results</h3>
-<h4>Media Reach & Visibility</h4>
-<ul>
-<li>48 pieces of earned coverage across tier-one, financial, and crypto media</li>
-<li>2.88M+ estimated views on content featuring Reed Smith attorneys</li>
-<li>467M total audience across all outlets</li>
-<li>Coverage in CNBC, Bloomberg, Washington Post, New York Post, Fortune, Cointelegraph, CoinDesk, Reuters, and TechCrunch</li>
-</ul>
-<h4>Social Engagement</h4>
-<ul>
-<li>2.49K+ total engagements on social platforms</li>
-<li>1.06K X shares of Reed Smith-linked coverage</li>
-</ul>
-<h4>Market Perception</h4>
-<ul>
-<li>85 average domain authority \u2014 signaling placement on highly credible platforms</li>
-<li>Reed Smith became a default source for legal analysis on SBF, Binance, SEC enforcement, and ETH ETF rulings</li>
-</ul>
-<h4>Business Impact</h4>
-<ul>
-<li>Expanded brand equity among crypto founders, exchanges, and fintech clients seeking sophisticated legal counsel</li>
-<li>New inbound inquiries from blockchain and tokenization projects</li>
-<li>Reinforced Reed Smith's positioning as the firm of record for institutional crypto clients navigating regulatory uncertainty</li>
-</ul>
-
-<h3>The Bottom Line</h3>
-<p>Reed Smith On Chain transformed a legacy law firm into a modern authority on digital asset regulation \u2014 all in the middle of crypto's most chaotic courtroom drama. Eden's agile media strategy didn't just earn headlines \u2014 it earned trust, opened doors, and helped Reed Smith claim a front-row seat in crypto's next chapter.</p>
-<p>This case proves how expert-led storytelling and smart timing can elevate even the most traditional institutions in disruptive markets.</p>`,
-    sidebarNews: [
-      { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: '/news/un-stellar-refugee-aid-bloomberg' },
-      { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: '/news/cheddar-franzy-franchise-app' },
-      { title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House", date: 'May 22, 2025', url: '/news/company-product-update' },
-    ],
-    relatedCaseStudies: ['grip-shipping', 'stellar-development-foundation', 'franzy'],
     isLast: true,
-    lastMessage: 'You have reached the the end of our case studies',
+    lastMessage: 'You have reached the end of our case studies',
   },
 ];

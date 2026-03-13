@@ -1,28 +1,28 @@
 export const heroContent = {
-  headline: 'Institutional credibility\nbuilt in public.',
-  gradientText: 'Eden Communications.',
-  subtitle: 'We help complex, misunderstood, or high-stakes companies earn institutional trust, market legitimacy, and executive visibility — not just media coverage.',
+  headline: 'Coverage fades.',
+  gradientText: 'Credibility compounds.',
+  subtitle: 'Strategic PR for crypto, fintech, and frontier technology. Institutional trust earned from the stakeholders who matter most.',
 };
 
 export const missionContent = {
   sectionLabel: 'Our Mission',
-  mainText: "We don't chase coverage — we build institutional trust. Eden exists to help visionary companies become understood, respected, and credible in the markets that matter.",
-  secondaryText: "You don't hire Eden for noise. You hire Eden so your market takes you seriously — from journalists and investors to regulators, executives, and your own ecosystem.",
-  ctaText: 'Our clients',
+  mainText: "We don't chase coverage. We build institutional trust.",
+  secondaryText: "Your market needs to take you seriously. We make that happen with journalists, investors, regulators, and the ecosystem that matters most.",
+  ctaText: 'Meet our clients',
 };
 
 export const youtubeVideoId = 'NkX8geILMw8';
 
 export const newsHeading = {
-  sectionLabel: 'Client coverage',
-  headline: 'The results speak for themselves',
+  sectionLabel: 'Recent coverage',
+  headline: 'In the press',
 };
 
 export const clientsHeading = 'Trusted by visionaries';
 
 export const teamHeading = {
   sectionLabel: 'Our team',
-  headline: 'Our mission-driven team',
+  headline: 'The team',
 };
 
 export const aboutMarqueeText = 'EDEN COMMUNICATIONS';
@@ -33,7 +33,7 @@ export const footerContent = {
   subheading: "We'll deliver impact.",
   email: 'hello@edencommunications.com',
   phone: '+1 201-279-5403',
-  copyright: '© 2025 - All Right Reserved Eden Communications LLC',
+  copyright: '© 2026 Eden Communications LLC',
   companyName: 'Eden Communications LLC',
   address: '600 Lexington Avenue',
   cityStateZip: 'New York NY 10022',
@@ -42,8 +42,10 @@ export const footerContent = {
 };
 
 export const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Our Results', href: '/results' },
+  { label: 'Recent Work', href: '/recent-work' },
 ];
 
 export const caseStudiesPageHeadline = 'Campaigns that create market leaders.';

@@ -6,7 +6,7 @@ import { initAnimations } from '../animations.js';
 
 // Map data thumbnail paths to actual downloaded files
 const NEWS_IMAGE_MAP = {
-  '/assets/images/news-page-stellar.png': '/assets/images/news-cleanshot.png',
+  '/assets/images/news-page-stellar.png': '/assets/images/news-cleanshot.webp',
   '/assets/images/news-page-cheddar.webp': '/assets/images/franzy-funding-pano.webp',
   '/assets/images/news-page-inc.jpeg': '/assets/images/case-study-image6.jpeg',
   '/assets/images/news-page-forbes.jpeg': '/assets/images/case-study-news.jpeg',

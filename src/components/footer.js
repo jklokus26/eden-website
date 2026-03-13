@@ -15,35 +15,24 @@ export function initFooter() {
 
   footerEl.innerHTML = `
     <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-sayhi-wrap">
-          <h2 class="footer-sayhi">SAY HI!</h2>
-          <p class="footer-tagline">Drop your intel. We'll deliver impact.</p>
-          <div class="footer-contact">
-            <a href="mailto:hello@edencommunications.com" class="footer-contact-link">hello@edencommunications.com</a>
-            <a href="tel:+12012795403" class="footer-contact-link">+1 (201) 279-5403</a>
-          </div>
-        </div>
-        <div class="footer-blob" aria-hidden="true"></div>
-      </div>
-
       <hr class="footer-divider">
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">
+      <div class="footer-grid">
+        <div class="footer-col footer-col--left">
           <a href="/" aria-label="Eden Communications home">
             ${EDEN_LOGO_SVG_SMALL}
           </a>
+          <a href="mailto:hello@edencommunications.com" class="footer-link">hello@edencommunications.com</a>
+        </div>
+        <div class="footer-col footer-col--center">
+          <a href="tel:+12012795403" class="footer-link">+1 (201) 279-5403</a>
+          <span class="footer-address">600 Lexington Ave, New York, NY 10022</span>
+        </div>
+        <div class="footer-col footer-col--right">
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/edencomms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on Instagram">${INSTAGRAM_SVG}</a>
+            <a href="https://www.linkedin.com/company/eden-comms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on LinkedIn">${LINKEDIN_SVG}</a>
+          </div>
           <span class="footer-copy">&copy; 2026 Eden Communications</span>
-        </div>
-        <div class="footer-bottom-center">
-          <span class="footer-address">600 Lexington Avenue, New York NY 10022</span>
-        </div>
-        <div class="footer-bottom-right">
-          <a href="/" class="footer-nav-link">Home</a>
-          <a href="/case-studies" class="footer-nav-link">Case Studies</a>
-          <a href="https://www.instagram.com/edencomms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on Instagram">${INSTAGRAM_SVG}</a>
-          <a href="https://www.linkedin.com/company/eden-comms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on LinkedIn">${LINKEDIN_SVG}</a>
         </div>
       </div>
     </div>

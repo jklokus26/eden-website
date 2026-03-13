@@ -91,59 +91,19 @@ export function initStaggerGroups() {
 }
 
 // ─── Hero entrance ────────────────────────────────────────────────────────────
+// Blur-to-focus reveal matching Eden's current site animation.
 
 export function initHeroAnimation() {
-  const headline = document.querySelector('.hero-headline');
-  const subtitle = document.querySelector('.hero-subtitle');
-  const scrollHint = document.querySelector('.hero-scroll-hint');
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
 
-  if (!headline) return;
-
-  const tl = gsap.timeline({ delay: 0.3 });
-
-  // Wrap each line span in a clip container so text slides up from below
-  // Skip .gradient-text spans — the nested block wrapper breaks background-clip: text
-  const lines = headline.querySelectorAll('span:not(.gradient-text)');
-  lines.forEach(line => {
-    line.style.overflow = 'hidden';
-    line.style.display = 'block';
+  gsap.to(hero, {
+    opacity: 1,
+    filter: 'blur(0px)',
+    duration: 1.8,
+    ease: 'power2.out',
+    delay: 0.3,
   });
-
-  const innerWraps = Array.from(lines).map(line => {
-    const inner = document.createElement('span');
-    inner.style.display = 'block';
-    inner.innerHTML = line.innerHTML;
-    line.innerHTML = '';
-    line.appendChild(inner);
-    return inner;
-  });
-
-  tl.from(innerWraps, {
-    yPercent: 105,
-    opacity: 0,
-    duration: 1.1,
-    ease: 'power4.out',
-    stagger: 0.12,
-  });
-
-  // Animate gradient text separately (no wrapper — preserves background-clip: text)
-  const gradientEl = headline.querySelector('.gradient-text');
-  if (gradientEl) {
-    tl.from(gradientEl, {
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      ease: 'power4.out',
-    }, '-=0.8');
-  }
-
-  if (subtitle) {
-    tl.from(subtitle, { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
-  }
-
-  if (scrollHint) {
-    tl.from(scrollHint, { opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
-  }
 }
 
 // ─── Hero video parallax ──────────────────────────────────────────────────────
@@ -198,17 +158,23 @@ export function initDividerAnimations() {
 // ─── Card hover tilt (desktop only) ──────────────────────────────────────────
 
 export function initCardTilt() {
-  document.querySelectorAll('.cs-card, .team-card, .news-card--featured').forEach(card => {
+  document.querySelectorAll('.cs-card, .team-card, .featured-cs-card, .service-card').forEach(card => {
+    let ticking = false;
     card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(card, {
-        rotateY: x * 4,
-        rotateX: -y * 4,
-        duration: 0.4,
-        ease: 'power2.out',
-        transformPerspective: 1000,
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(card, {
+          rotateY: x * 4,
+          rotateX: -y * 4,
+          duration: 0.4,
+          ease: 'power2.out',
+          transformPerspective: 1000,
+        });
+        ticking = false;
       });
     });
     card.addEventListener('mouseleave', () => {
@@ -217,20 +183,94 @@ export function initCardTilt() {
   });
 }
 
-// ─── News grid stagger ────────────────────────────────────────────────────────
+// ─── Featured case studies stagger ───────────────────────────────────────────
 
-export function initNewsAnimation() {
-  const newsGrid = document.querySelector('.news-grid');
-  if (!newsGrid) return;
+export function initFeaturedCaseStudiesAnimation() {
+  const grid = document.querySelector('.featured-cs-grid');
+  if (!grid) return;
 
-  gsap.from(newsGrid.querySelectorAll('.news-card'), {
-    y: 50,
+  gsap.from(grid.querySelectorAll('.featured-cs-col'), {
+    y: 40,
     opacity: 0,
-    duration: 0.7,
+    duration: 0.8,
     ease: 'power3.out',
-    stagger: 0.1,
     scrollTrigger: {
-      trigger: newsGrid,
+      trigger: grid,
+      start: 'top 80%',
+      once: true,
+    },
+  });
+}
+
+// ─── Services stagger ────────────────────────────────────────────────────────
+
+export function initServicesAnimation() {
+  const grid = document.querySelector('.services-grid');
+  if (!grid) return;
+
+  gsap.from(grid.querySelectorAll('.service-card'), {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: grid,
+      start: 'top 80%',
+      once: true,
+    },
+  });
+}
+
+// ─── Coverage fade in ────────────────────────────────────────────────────────
+
+export function initCoverageAnimation() {
+  const section = document.querySelector('.coverage-section');
+  if (!section) return;
+
+  gsap.from(section.querySelector('.coverage-scroll-container'), {
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse',
+    },
+  });
+}
+
+// ─── Testimonials fade ───────────────────────────────────────────────────────
+
+export function initTestimonialsAnimation() {
+  const section = document.querySelector('.testimonials-section');
+  if (!section) return;
+
+  gsap.from(section.querySelector('.testimonials-wrap'), {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse',
+    },
+  });
+}
+
+// ─── Contact form fade up ────────────────────────────────────────────────────
+
+export function initContactFormAnimation() {
+  const section = document.querySelector('.contact-section');
+  if (!section) return;
+
+  gsap.from(section.querySelector('.contact-form'), {
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: section,
       start: 'top 80%',
       toggleActions: 'play none none reverse',
     },
@@ -296,7 +336,11 @@ export function initAnimations() {
   initStaggerGroups();
   initHeroAnimation();
   initNavScroll();
-  initNewsAnimation();
+  initFeaturedCaseStudiesAnimation();
+  initServicesAnimation();
+  initCoverageAnimation();
   initTeamAnimation();
+  initTestimonialsAnimation();
+  initContactFormAnimation();
   initGalleryAnimation();
 }

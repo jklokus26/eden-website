@@ -21,9 +21,8 @@ export function createTicker(containerEl, items, options = {}) {
   const track = document.createElement('div');
   track.className = 'ticker-track';
 
-  // We need at least enough items to fill the screen + overflow
-  // Duplicate 3x to guarantee seamless looping at any viewport
-  const repeated = [...items, ...items, ...items, ...items, ...items];
+  // Duplicate 3x for seamless looping (items must fill viewport before repeating)
+  const repeated = [...items, ...items, ...items];
 
   repeated.forEach(item => {
     const el = document.createElement('div');
@@ -40,13 +39,16 @@ export function createTicker(containerEl, items, options = {}) {
 
   // Inject keyframe + apply animation
   const animName = `ticker-scroll-${Math.random().toString(36).slice(2, 7)}`;
-  const translateDir = direction === 'right' ? '20%' : '-20%';
+  // For left-scroll: 0 → -33.33% (items flow left, loop seamlessly with 3x duplication)
+  // For right-scroll: -33.33% → 0 (items flow right, start offset so left side is filled)
+  const fromX = direction === 'right' ? '-33.33%' : '0';
+  const toX = direction === 'right' ? '0' : '-33.33%';
 
   const style = document.createElement('style');
   style.textContent = `
     @keyframes ${animName} {
-      from { transform: translateX(0); }
-      to   { transform: translateX(${translateDir}); }
+      from { transform: translateX(${fromX}); }
+      to   { transform: translateX(${toX}); }
     }
     .${containerEl.className.split(' ').join('.')} .ticker-track {
       animation: ${animName} ${duration}s linear infinite;
