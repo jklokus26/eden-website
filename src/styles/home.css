@@ -257,12 +257,10 @@
 .featured-cs-metric {
   display: flex;
   align-items: baseline;
-  justify-content: center;
   gap: 6px;
   padding-bottom: 8px;
   margin-bottom: 6px;
   border-bottom: 1px solid var(--border-subtle);
-  text-align: center;
 }
 
 .featured-cs-metric-number {
@@ -413,10 +411,22 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(160deg, rgba(149, 27, 255, 0.06) 0%, rgba(28, 164, 255, 0.04) 40%, rgba(19, 255, 153, 0.06) 100%);
+  border: 1px solid rgba(149, 27, 255, 0.15);
   border-radius: var(--card-radius);
   padding: var(--sp-3);
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
 }
 
 .stats-panel-heading {
@@ -424,7 +434,10 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(90deg, rgba(149, 27, 255, 0.7), rgba(28, 164, 255, 0.7), rgba(19, 255, 153, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: var(--sp-2);
 }
 
@@ -432,7 +445,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   padding: var(--sp-2) 0;
   width: 100%;
 }
@@ -452,13 +465,13 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--accent-grey);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .stats-panel-divider {
-  width: 100%;
+  width: 60%;
   height: 1px;
-  background: var(--border-subtle);
+  background: linear-gradient(90deg, transparent, rgba(149, 27, 255, 0.3), rgba(28, 164, 255, 0.3), transparent);
 }
 
 /* ─── Services ──────────────────────────────────────────────────────────── */
@@ -492,26 +505,24 @@
   gap: 8px;
   min-height: 280px;
   position: relative;
-  overflow: hidden;
 }
 
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
+  inset: -1px;
+  border-radius: calc(var(--card-radius) + 1px);
+  background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.35s ease;
+  z-index: -1;
 }
 
 .service-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(19, 255, 153, 0.2);
-  box-shadow: 0 12px 40px rgba(19, 255, 153, 0.08), 0 4px 16px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: transparent;
+  box-shadow: 0 12px 40px rgba(149, 27, 255, 0.1), 0 4px 16px rgba(0, 0, 0, 0.3);
+  background: var(--bg);
 }
 
 .service-card:hover::before {

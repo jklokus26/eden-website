@@ -121,6 +121,7 @@
 
 .cs-card:hover .cs-card-cta {
   gap: 14px;
+  color: var(--gradient-mint);
 }
 
 .cs-card-arrow {

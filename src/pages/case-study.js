@@ -23,7 +23,8 @@ function buildCaseStudy() {
   }
 
   // Update page title dynamically
-  document.title = `${cs.title} | Eden Communications`;
+  const cleanTitle = cs.title.replace(/^Case [Ss]tudy:\s*/i, '');
+  document.title = `${cleanTitle} | Eden Communications`;
 
   const heroImg = HERO_IMAGE_MAP[cs.slug] || cs.heroImage;
 
@@ -67,7 +68,7 @@ function buildCaseStudy() {
         <div class="cs-detail-hero-overlay"></div>
       </div>
       <div class="cs-detail-hero-content container">
-        <h1 class="cs-detail-title" data-animate="words">${cs.title}</h1>
+        <h1 class="cs-detail-title" data-animate="words">${cleanTitle}</h1>
         <p class="cs-detail-subtitle">${cs.subtitle}</p>
       </div>
     </section>

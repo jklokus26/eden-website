@@ -23,10 +23,7 @@ function buildResults() {
           <div class="cs-card-overlay"></div>
         </div>
         <div class="cs-card-body">
-          <div class="cs-card-meta">
-            <span class="cs-card-service">${cs.service}</span>
-          </div>
-          <h2 class="cs-card-title">${cs.title}</h2>
+          <h2 class="cs-card-title">${cs.title.replace(/^Case [Ss]tudy:\s*/i, '')}</h2>
           <p class="cs-card-subtitle">${cs.subtitle}</p>
           <span class="cs-card-cta">View case study <span class="cs-card-arrow">→</span></span>
         </div>
