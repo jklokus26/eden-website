@@ -131,22 +131,7 @@
   transform: translateX(4px);
 }
 
-/* Featured card: large image left, text right */
-.cs-card--featured {
-  grid-template-columns: 1fr 1fr;
-  min-height: 480px;
-}
-
-.cs-card--featured .cs-card-img-wrap {
-  aspect-ratio: auto;
-  min-height: 480px;
-}
-
-.cs-card--featured .cs-card-title {
-  font-size: var(--h2);
-}
-
-/* Regular cards: image top, text below */
+/* All cards: image left, text right */
 .cs-card--regular {
   grid-template-columns: 1fr 1fr;
   min-height: 320px;
@@ -159,13 +144,11 @@
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
-  .cs-card--featured,
   .cs-card--regular {
     grid-template-columns: 1fr;
     min-height: unset;
   }
 
-  .cs-card--featured .cs-card-img-wrap,
   .cs-card--regular .cs-card-img-wrap {
     min-height: unset;
     aspect-ratio: 16 / 9;
@@ -178,10 +161,6 @@
   }
 
   .cs-card-title {
-    font-size: var(--h3);
-  }
-
-  .cs-card--featured .cs-card-title {
     font-size: var(--h3);
   }
 }

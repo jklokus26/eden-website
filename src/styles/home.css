@@ -257,14 +257,16 @@
 .featured-cs-metric {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  padding-bottom: 10px;
-  margin-bottom: 4px;
+  justify-content: center;
+  gap: 6px;
+  padding-bottom: 8px;
+  margin-bottom: 6px;
   border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
 }
 
 .featured-cs-metric-number {
-  font-size: clamp(20px, 2vw, 28px);
+  font-size: clamp(16px, 1.6vw, 22px);
   font-weight: 800;
   color: var(--gradient-mint);
   letter-spacing: -0.02em;
@@ -273,11 +275,11 @@
 }
 
 .featured-cs-metric-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--accent-grey);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 .featured-cs-card {
@@ -409,6 +411,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: var(--card-radius);
@@ -427,8 +431,10 @@
 .stats-panel-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
   padding: var(--sp-2) 0;
+  width: 100%;
 }
 
 .stats-panel-number {
@@ -480,17 +486,44 @@
   border-radius: var(--card-radius);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(19, 255, 153, 0.25);
-  box-shadow: 0 8px 32px rgba(19, 255, 153, 0.06), 0 0 0 1px rgba(19, 255, 153, 0.08);
+  transform: translateY(-6px);
+  border-color: rgba(19, 255, 153, 0.2);
+  box-shadow: 0 12px 40px rgba(19, 255, 153, 0.08), 0 4px 16px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card-number {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(19, 255, 153, 0.4);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
 }
 
 .service-card-title {
@@ -525,7 +558,7 @@
 
 .service-card:hover .service-card-arrow {
   color: var(--gradient-mint);
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 /* ─── Shared Section CTAs ─────────────────────────────────────────────── */

@@ -1,8 +1,8 @@
 export const HERO_IMAGE_MAP = {
   'grip-shipping': '/assets/images/grip-shipping-team.jpg',
   'franzy': '/assets/images/franzy-fox-business.jpg',
-  'stellar-development-foundation': '/assets/images/stellar-screenshot.webp',
-  'reed-smith-on-chain': '/assets/images/reed-smith-dixon.jpg',
+  'stellar-development-foundation': '/assets/images/reed-smith-dixon.jpg',
+  'reed-smith-on-chain': '/assets/images/stellar-screenshot.webp',
 };
 
 export const caseStudies = [
@@ -13,7 +13,7 @@ export const caseStudies = [
     date: 'March 5, 2026',
     service: 'Thought Leadership',
     description: "How a law firm became crypto's most trusted voice during the industry's most pivotal trial",
-    heroImage: '/assets/images/reed-smith-dixon.jpg',
+    heroImage: '/assets/images/stellar-screenshot.webp',
     cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68890f9f843e9f091c5c94c2_107399355-0410_Dixon_ISO.jpg',
     alt: 'Reed Smith On Chain thought leadership initiative visual',
     industries: 'Legal, Digital Assets, Financial Regulation',
@@ -82,7 +82,7 @@ export const caseStudies = [
     date: 'March 5, 2026',
     service: 'Media Relations',
     description: 'How Eden helped a blockchain pioneer break into the global financial mainstream',
-    heroImage: '/assets/images/stellar-screenshot.webp',
+    heroImage: '/assets/images/reed-smith-dixon.jpg',
     cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/688910e6533f25dc9d1cf34c_Screenshot%202025-07-29%20at%202.19.59%E2%80%AFPM.png',
     alt: 'Stellar Development Foundation CEO Denelle Dixon in a professional broadcast setting',
     industries: 'Blockchain, Fintech, Financial Inclusion',

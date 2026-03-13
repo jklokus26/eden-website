@@ -11,7 +11,7 @@ function buildResults() {
   const cards = caseStudies.map((cs, i) => {
     const img = HERO_IMAGE_MAP[cs.slug] || cs.heroImage;
     return `
-      <a href="/case-studies/${cs.slug}" class="cs-card cs-card--${i === 0 ? 'featured' : 'regular'}">
+      <a href="/case-studies/${cs.slug}" class="cs-card cs-card--regular">
         <div class="cs-card-img-wrap">
           <img
             src="${img}"

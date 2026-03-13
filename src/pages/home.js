@@ -215,7 +215,6 @@ function buildFeaturedCaseStudies() {
               <span class="featured-cs-metric-number">${m.prefix}0${m.suffix}</span>
               <span class="featured-cs-metric-label">${m.label}</span>
             </div>
-            <span class="featured-cs-tag">${cs.industryTag || ''}</span>
             <h3 class="featured-cs-title">${cs.title.replace('Case study: ', '').replace('Case Study: ', '')}</h3>
             <p class="featured-cs-desc">${cs.description}</p>
             <span class="featured-cs-link">Read the full case study →</span>
@@ -323,8 +322,9 @@ function buildServices() {
   section.id = 'services';
   section.className = 'services-section section-padding';
 
-  const cards = services.map(s => `
+  const cards = services.map((s, i) => `
     <a href="/services#${s.anchorId}" class="service-card" id="${s.anchorId}">
+      <span class="service-card-number">0${i + 1}</span>
       <h3 class="service-card-title">${s.title}</h3>
       <p class="service-card-desc">${s.tagline}</p>
       <span class="service-card-arrow">→</span>
