@@ -135,11 +135,11 @@
 /* All cards: image left, text right */
 .cs-card--regular {
   grid-template-columns: 1fr 1fr;
-  min-height: 260px;
+  min-height: 240px;
 }
 
 .cs-card--regular .cs-card-img-wrap {
-  min-height: 260px;
+  min-height: 240px;
 }
 
 .cs-card--regular .cs-card-body {

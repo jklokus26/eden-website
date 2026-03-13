@@ -47,14 +47,26 @@ function buildCaseStudy() {
     `;
   }).join('');
 
-  const sidebarNewsItems = (cs.sidebarNews || []).map(item => `
-    <li class="sidebar-news-item">
-      <a href="${item.url}" class="sidebar-news-link" target="_blank" rel="noopener noreferrer">
-        <span class="sidebar-news-date">${item.date}</span>
-        <p class="sidebar-news-title">${item.title}</p>
-      </a>
-    </li>
-  `).join('');
+  const sidebarMetricsHtml = (cs.metrics && cs.metrics.length) ? (() => {
+    const items = cs.metrics.map((m, i) => {
+      const divider = i < cs.metrics.length - 1
+        ? `<div class="sidebar-metric-divider"></div>`
+        : '';
+      return `
+        <div class="sidebar-metric-item">
+          <span class="sidebar-metric-number">${m.number}</span>
+          <span class="sidebar-metric-label">${m.label}</span>
+        </div>
+        ${divider}
+      `;
+    }).join('');
+    return `
+      <div class="sidebar-metrics">
+        ${createDivider('By the Numbers')}
+        ${items}
+      </div>
+    `;
+  })() : '';
 
   main.innerHTML = `
     <section class="cs-detail-hero">
@@ -108,14 +120,7 @@ function buildCaseStudy() {
           </article>
 
           <aside class="cs-detail-sidebar">
-            ${sidebarNewsItems.length ? `
-              <div class="sidebar-section">
-                ${createDivider('Recent Coverage')}
-                <ul class="sidebar-news-list">
-                  ${sidebarNewsItems}
-                </ul>
-              </div>
-            ` : ''}
+            ${sidebarMetricsHtml}
 
             <div class="sidebar-cta">
               <p class="sidebar-cta-text">Ready to build institutional credibility?</p>
