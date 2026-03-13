@@ -62,7 +62,7 @@ function buildCaseStudy() {
     }).join('');
     return `
       <div class="sidebar-metrics">
-        ${createDivider('By the Numbers')}
+        <h3 class="sidebar-metrics-heading">BY THE NUMBERS</h3>
         ${items}
       </div>
     `;
@@ -85,20 +85,6 @@ function buildCaseStudy() {
       </div>
     </section>
 
-    ${cs.metrics && cs.metrics.length ? `
-    <section class="cs-hero-metrics">
-      <div class="container">
-        <div class="cs-hero-metrics-grid">
-          ${cs.metrics.slice(0, 3).map(m => `
-            <div class="cs-hero-metric-item">
-              <span class="cs-hero-metric-number">${m.number}</span>
-              <span class="cs-hero-metric-label">${m.label}</span>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-    </section>
-    ` : ''}
 
     <section class="cs-detail-body section-padding">
       <div class="container">

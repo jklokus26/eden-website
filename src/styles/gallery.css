@@ -302,6 +302,69 @@
   color: var(--gradient-mint);
 }
 
+/* ─── Coverage Filter Chips ─────────────────────────────────────────── */
+
+.coverage-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-3);
+}
+
+.coverage-filter {
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-grey);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.coverage-filter:hover {
+  color: var(--text);
+  border-color: var(--border-medium);
+}
+
+.coverage-filter.active {
+  color: var(--bg);
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+/* ─── Coverage Card Logo Area ───────────────────────────────────── */
+
+.coverage-grid-tile-logo {
+  padding: 20px 24px 12px;
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.coverage-grid-tile-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Filter animation */
+.coverage-grid-tile {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.coverage-grid-tile.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
 /* ─── Coverage Static Grid (Recent Work page) ───────────────────────── */
 
 .coverage-static-grid {

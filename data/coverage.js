@@ -6,6 +6,7 @@ export const coverageItems = [
     screenshotImage: '/assets/images/news-screenshot-3.webp',
     datePublished: 'March 5, 2026',
     coverageType: 'Broadcast',
+    logoImage: '/assets/logos/bloomberg.png',
   },
   {
     title: 'The Tetris Company - How I Built This with Guy Raz',
@@ -14,6 +15,7 @@ export const coverageItems = [
     screenshotImage: '/assets/images/news-henk-hibt.webp',
     datePublished: '',
     coverageType: 'Podcast',
+    logoImage: '/assets/logos/npr-how-i-built-this.png',
   },
   {
     title: "Why do some Americans feel franchising is a 'great business model' to consider?",
@@ -22,6 +24,7 @@ export const coverageItems = [
     screenshotImage: '/assets/images/news-screenshot-2.webp',
     datePublished: '',
     coverageType: 'Broadcast',
+    logoImage: '/assets/logos/fox-business.png',
   },
   {
     title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House",
@@ -30,6 +33,7 @@ export const coverageItems = [
     screenshotImage: '/assets/images/franzy-cover-generated.webp',
     datePublished: 'May 22, 2025',
     coverageType: 'Online',
+    logoImage: '/assets/logos/inc-magazine.png',
   },
   {
     title: 'Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise',
@@ -38,5 +42,6 @@ export const coverageItems = [
     screenshotImage: '/assets/images/franzy-funding-pano.webp',
     datePublished: 'March 5, 2026',
     coverageType: 'Broadcast',
+    logoImage: '/assets/logos/cheddar.png',
   },
 ];
