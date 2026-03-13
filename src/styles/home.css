@@ -266,10 +266,14 @@
 .featured-cs-metric-number {
   font-size: clamp(14px, 1.3vw, 18px);
   font-weight: 700;
-  color: var(--gradient-mint);
+  color: #ffffff;
   letter-spacing: -0.01em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+}
+
+.featured-cs-metric-prefix {
+  color: var(--gradient-mint);
 }
 
 .featured-cs-metric-label {
@@ -288,13 +292,35 @@
   overflow: hidden;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   flex: 1;
+}
+
+.featured-cs-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--card-radius) + 1px);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .featured-cs-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-medium);
+  border-color: transparent;
+  box-shadow: 0 8px 32px rgba(149, 27, 255, 0.08), 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.featured-cs-card:hover::before {
+  opacity: 1;
 }
 
 .featured-cs-img-wrap {
