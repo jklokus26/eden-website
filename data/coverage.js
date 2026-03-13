@@ -1,0 +1,42 @@
+export const coverageItems = [
+  {
+    title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose",
+    publication: 'Bloomberg',
+    externalUrl: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video',
+    screenshotImage: '/assets/images/news-screenshot-3.webp',
+    datePublished: 'March 5, 2026',
+    coverageType: 'Broadcast',
+  },
+  {
+    title: 'The Tetris Company - How I Built This with Guy Raz',
+    publication: 'How I Built This',
+    externalUrl: 'https://wondery.com/shows/how-i-built-this/',
+    screenshotImage: '/assets/images/news-henk-hibt.webp',
+    datePublished: '',
+    coverageType: 'Podcast',
+  },
+  {
+    title: "Why do some Americans feel franchising is a 'great business model' to consider?",
+    publication: 'Fox Business',
+    externalUrl: 'https://www.foxbusiness.com/video/6368967718112',
+    screenshotImage: '/assets/images/news-screenshot-2.webp',
+    datePublished: '',
+    coverageType: 'Broadcast',
+  },
+  {
+    title: "This Startup Wants to Make Buying a McDonald's as Easy as Buying a House",
+    publication: 'Inc.com',
+    externalUrl: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941',
+    screenshotImage: '/assets/images/franzy-cover-generated.webp',
+    datePublished: 'May 22, 2025',
+    coverageType: 'Online',
+  },
+  {
+    title: 'Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise',
+    publication: 'Cheddar',
+    externalUrl: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/',
+    screenshotImage: '/assets/images/franzy-funding-pano.webp',
+    datePublished: 'March 5, 2026',
+    coverageType: 'Broadcast',
+  },
+];

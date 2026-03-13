@@ -1,0 +1,205 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors */
+  --bg: #0a0a06;
+  --bg-section: #0a0a06;
+  --text: #ffffff;
+  --accent-grey: #9b9b9b;
+  --gradient-purple: #951bff;
+  --gradient-sky: #1ca4ff;
+  --gradient-mint: #13ff99;
+  --blue: #19254e;
+
+  /* Typography - Plus Jakarta Sans variable 300-800 */
+  --font: 'Plus Jakarta Sans', Arial, sans-serif;
+  --h1: clamp(48px, 6vw, 85.74px);
+  --h2: clamp(36px, 4.5vw, 58.94px);
+  --h3: clamp(28px, 3.3vw, 42.86px);
+  --body: clamp(16px, 1.4vw, 18.75px);
+  --small: clamp(14px, 1.2vw, 16.08px);
+
+  /* Spacing */
+  --sp-1: 16px;
+  --sp-2: 32px;
+  --sp-3: 48px;
+  --sp-4: 64px;
+  --sp-5: 80px;
+  --sp-6: 120px;
+  --sp-7: 128px;
+  --sp-8: 155px;
+
+  /* Borders */
+  --card-radius: 22.78px;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+
+  /* Nav */
+  --nav-scrolled-bg: rgba(18, 19, 31, 0.85);
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Offset scroll targets so headings sit just below the fixed nav */
+section[id] > h2,
+section[id] .container > h2 {
+  scroll-margin-top: 100px;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* Utility Classes */
+.section-padding {
+  padding: var(--sp-6) var(--sp-3);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--sp-3);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(45deg, var(--gradient-purple), var(--gradient-sky) 50%, var(--gradient-mint));
+  background-size: 350% 350%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 8s ease-in-out infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 80%; }
+  50% { background-position: 100% 80%; }
+  100% { background-position: 0% 80%; }
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .section-padding {
+    padding: var(--sp-4) var(--sp-2);
+  }
+
+  .container {
+    padding: 0 var(--sp-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padding {
+    padding: var(--sp-3) var(--sp-1);
+  }
+
+  .container {
+    padding: 0 var(--sp-1);
+  }
+
+  /* Prevent any horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Selection */
+::selection {
+  background: var(--gradient-purple);
+  color: var(--text);
+}
+
+/* Noise texture overlay — eliminates flat digital feel */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+}
+
+/* Ticker (used by src/components/ticker.js) */
+.ticker-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.ticker-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Section Divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--sp-2) 0;
+  border-top: 1px solid var(--border-medium);
+}
+
+.divider-dot {
+  color: var(--gradient-mint);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.divider-label {
+  color: var(--text);
+  font-size: var(--small);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

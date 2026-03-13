@@ -1,0 +1,206 @@
+/* ─── Services Page ──────────────────────────────────────────────────── */
+
+.services-content {
+  background: var(--bg);
+  padding-top: var(--sp-2);
+  padding-bottom: var(--sp-2);
+}
+
+.services-intro-text {
+  max-width: 900px;
+  margin-bottom: var(--sp-3);
+}
+
+.services-intro-text p {
+  font-size: var(--body);
+  color: var(--accent-grey);
+  line-height: 1.7;
+}
+
+/* ─── Pillars ────────────────────────────────────────────────────────── */
+
+.services-pillar {
+  max-width: 900px;
+  padding-bottom: var(--sp-4);
+  scroll-margin-top: 100px;
+}
+
+.services-pillar:last-child {
+  padding-bottom: 0;
+}
+
+.services-pillar + .services-pillar {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--sp-4);
+}
+
+.services-pillar-title {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+
+.services-pillar-intro {
+  font-size: var(--body);
+  color: var(--accent-grey);
+  line-height: 1.7;
+  margin: var(--sp-1) 0 var(--sp-2);
+}
+
+.services-sub-list {
+  list-style: none;
+  counter-reset: service-counter;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.services-sub-item {
+  font-size: var(--body);
+  line-height: 1.6;
+  color: var(--accent-grey);
+  font-weight: 400;
+  counter-increment: service-counter;
+  padding-left: 32px;
+  position: relative;
+}
+
+.services-sub-item::before {
+  content: counter(service-counter) ".";
+  position: absolute;
+  left: 0;
+  color: var(--gradient-mint);
+  font-weight: 700;
+}
+
+.services-sub-item strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* ─── FAQ ────────────────────────────────────────────────────────────── */
+
+.services-faq-section {
+  background: var(--bg);
+  padding-top: var(--sp-3);
+}
+
+.services-faq-headline {
+  font-size: var(--h2);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
+.services-faq {
+  max-width: 900px;
+}
+
+.services-faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.services-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  padding: var(--sp-2) 0;
+  font-size: var(--body);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.services-faq-q:hover {
+  color: var(--gradient-mint);
+}
+
+.services-faq-icon {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--accent-grey);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.services-faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.services-faq-a p {
+  font-size: var(--body);
+  color: var(--accent-grey);
+  line-height: 1.6;
+  padding-bottom: var(--sp-2);
+}
+
+/* ─── Contact override (left-align to match page layout) ─────────────── */
+
+#services-page .contact-headline {
+  text-align: left;
+}
+
+#services-page .contact-form {
+  max-width: 900px;
+  margin: 0;
+}
+
+#services-page .contact-submit {
+  align-self: flex-start;
+}
+
+#services-page .contact-success {
+  text-align: left;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .services-pillar {
+    padding-bottom: var(--sp-4);
+  }
+
+  .services-pillar:last-child {
+    padding-bottom: 0;
+  }
+
+  .services-pillar + .services-pillar {
+    padding-top: var(--sp-4);
+  }
+
+  .services-faq-headline {
+    font-size: clamp(28px, 6vw, 44px);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-pillar-intro {
+    margin: var(--sp-1) 0 var(--sp-2);
+  }
+
+  .services-sub-list {
+    gap: var(--sp-1);
+  }
+
+  .services-sub-item {
+    padding-left: 24px;
+  }
+
+  .services-faq-q {
+    gap: var(--sp-1);
+  }
+}
