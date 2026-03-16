@@ -49,21 +49,20 @@ function buildAbout() {
 
     <section class="about-story section-padding">
       <div class="container">
-        <h2 class="about-section-heading" data-animate="words">Our Story</h2>
-        <div class="about-story-body">
-          <p>We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
-          <p>We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases and report metrics that don\u2019t connect to business outcomes. The \u201Cgo direct\u201D movement got a lot right \u2014 but a founder with a massive following and no institutional credibility will lose the enterprise deal. A protocol with a thriving community and no presence in AI search is invisible to the next wave of capital and users.</p>
-          <p>We\u2019re building something different. An AI-native firm that uses automation and intelligence to move faster than shops ten times our size \u2014 and a human-first team that maintains the journalist relationships, taste-making abilities and executive network that technology cannot replicate.</p>
-          <p>We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.</p>
-          <p>We don\u2019t do awareness. We build credibility that compounds.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-group-photo section-padding">
-      <div class="container">
-        <div class="about-team-photo-full">
-          <img src="/assets/images/team-group.jpg" alt="Eden Communications team" class="about-team-group-img" loading="lazy">
+        <div class="about-story-grid">
+          <div class="about-story-text">
+            <h2 class="about-section-heading" data-animate="words">Our Story</h2>
+            <div class="about-story-body">
+              <p>We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
+              <p>We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases and report metrics that don\u2019t connect to business outcomes. The \u201Cgo direct\u201D movement got a lot right \u2014 but a founder with a massive following and no institutional credibility will lose the enterprise deal. A protocol with a thriving community and no presence in AI search is invisible to the next wave of capital and users.</p>
+              <p>We\u2019re building something different. An AI-native firm that uses automation and intelligence to move faster than shops ten times our size \u2014 and a human-first team that maintains the journalist relationships, taste-making abilities and executive network that technology cannot replicate.</p>
+              <p>We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.</p>
+              <p>We don\u2019t do awareness. We build credibility that compounds.</p>
+            </div>
+          </div>
+          <div class="about-story-photo">
+            <img src="/assets/images/team-group.jpg" alt="Eden Communications team" class="about-team-group-img" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
