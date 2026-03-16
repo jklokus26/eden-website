@@ -10,7 +10,7 @@ function buildServicesPage() {
   const main = document.getElementById('services-page');
   if (!main) return;
 
-  const pillars = services.map(s => {
+  const pillars = services.map((s, i) => {
     const subItems = s.subServices.map(sub =>
       `<li class="services-sub-item">
         <strong>${sub.name}:</strong> ${sub.description}
@@ -18,12 +18,20 @@ function buildServicesPage() {
     ).join('');
 
     return `
-      <div class="services-pillar" id="${s.anchorId}">
-        <h3 class="services-pillar-title">${s.title}</h3>
-        <p class="services-pillar-intro">${s.intro}</p>
-        <ol class="services-sub-list">
-          ${subItems}
-        </ol>
+      <div class="services-pillar${i === 0 ? ' services-pillar--open' : ''}" id="${s.anchorId}">
+        <button class="services-pillar-header" aria-expanded="${i === 0 ? 'true' : 'false'}" data-pillar="${i}">
+          <div class="services-pillar-header-text">
+            <h3 class="services-pillar-title">${s.title}</h3>
+            <span class="services-pillar-tagline">${s.tagline}</span>
+          </div>
+          <span class="services-pillar-icon">${i === 0 ? '\u2212' : '+'}</span>
+        </button>
+        <div class="services-pillar-body"${i === 0 ? ' style="max-height:2000px"' : ''}>
+          <p class="services-pillar-intro">${s.intro}</p>
+          <ol class="services-sub-list">
+            ${subItems}
+          </ol>
+        </div>
       </div>
     `;
   }).join('');
@@ -51,7 +59,8 @@ function buildServicesPage() {
     <section class="services-content section-padding">
       <div class="container">
         <div class="services-intro-text">
-          <p>Eden offers four integrated service pillars. Each is designed to work independently or as part of a unified communications strategy tailored to your company's goals, stage, and market position.</p>
+          <p>Your stakeholders don\u2019t live in one place. Your investors read Bloomberg. Your developers follow crypto Twitter. Your next partner is asking ChatGPT who the leaders in your space are. And the deal that changes your trajectory might close over dinner, not over email.</p>
+          <p>Eden operates across three surfaces \u2014 earned media, AI visibility, and in-person gravity \u2014 because credibility compounds only when they work together. Each of our four service pillars is designed to reinforce the others.</p>
         </div>
         ${pillars}
       </div>
@@ -71,6 +80,34 @@ function buildServicesPage() {
   `;
 
   initFaqAccordion();
+  initPillarAccordion();
+}
+
+function initPillarAccordion() {
+  document.querySelectorAll('.services-pillar-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pillar = btn.closest('.services-pillar');
+      const isOpen = pillar.classList.contains('services-pillar--open');
+
+      // Close all pillars
+      document.querySelectorAll('.services-pillar').forEach(p => {
+        p.classList.remove('services-pillar--open');
+        p.querySelector('.services-pillar-header').setAttribute('aria-expanded', 'false');
+        p.querySelector('.services-pillar-icon').textContent = '+';
+        const body = p.querySelector('.services-pillar-body');
+        body.style.maxHeight = null;
+      });
+
+      // Toggle clicked (open if was closed)
+      if (!isOpen) {
+        pillar.classList.add('services-pillar--open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.querySelector('.services-pillar-icon').textContent = '\u2212';
+        const body = pillar.querySelector('.services-pillar-body');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
 }
 
 function initFaqAccordion() {
@@ -103,11 +140,20 @@ function initServicesPage() {
   buildServicesPage();
   initContactForm();
 
-  // Handle anchor scroll from homepage service cards
+  // Handle anchor scroll from homepage service cards — auto-expand target pillar
   if (window.location.hash) {
     requestAnimationFrame(() => {
       const target = document.querySelector(window.location.hash);
-      if (target) {
+      if (target && target.classList.contains('services-pillar')) {
+        // Auto-expand the target pillar
+        const header = target.querySelector('.services-pillar-header');
+        if (header && !target.classList.contains('services-pillar--open')) {
+          header.click();
+        }
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      } else if (target) {
         setTimeout(() => {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);

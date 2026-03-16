@@ -1,13 +1,13 @@
 export const heroContent = {
   headline: 'Coverage fades.',
   gradientText: 'Credibility compounds.',
-  subtitle: 'Strategic PR for crypto, fintech, and frontier technology. Institutional trust earned from the stakeholders who matter most.',
+  subtitle: 'Your investors read Bloomberg. Your users are querying Claude. Your next partner is in the rooms where deals close. We make sure you show up everywhere that matters.',
 };
 
 export const missionContent = {
-  sectionLabel: 'Our Mission',
-  mainText: "We don't chase coverage. We build institutional trust.",
-  secondaryText: "Your market needs to take you seriously. We make that happen with journalists, investors, regulators, and the ecosystem that matters most.",
+  sectionLabel: 'Our Manifesto',
+  mainText: "The old model is broken. The new one is incomplete.",
+  secondaryText: "Traditional agencies sell impressions. The \u201Cgo direct\u201D crowd says skip the press entirely. Both are wrong. A Bloomberg placement trains the AI model that informs the investor who meets your CEO at the dinner that closes the deal. Every surface reinforces the next. Or none of them work at all.",
   ctaText: 'Meet our clients',
 };
 

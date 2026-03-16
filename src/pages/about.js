@@ -32,7 +32,7 @@ function buildAbout() {
           <h3 class="about-team-name">${member.name}</h3>
           <p class="about-team-role">${member.role}</p>
           ${tags ? `<div class="about-team-tags">${tags}</div>` : ''}
-          <p class="about-team-bio">${member.bio}</p>
+          <p class="about-team-bio">${member.bioShort || member.bio}</p>
           ${member.linkedin ? `<a href="${member.linkedin}" class="about-team-linkedin" target="_blank" rel="noopener noreferrer" aria-label="${member.name} on LinkedIn">${LINKEDIN_ICON_SVG} <span>LinkedIn</span></a>` : ''}
         </div>
       </div>
@@ -51,8 +51,20 @@ function buildAbout() {
       <div class="container">
         <h2 class="about-section-heading" data-animate="words">Our Story</h2>
         <div class="about-story-body">
-          <p>Eden was founded by Ebony Lewkovitz, a former Washington correspondent for the New York Post and journalist at ABC News and Al Jazeera, who saw an industry stuck in an outdated model. Traditional agencies were bloated, slow, and disconnected from the companies reshaping finance and technology.</p>
-          <p>Eden was built to fix that: a lean team that earns tier-one coverage for the companies defining the future of money, markets, and technology.</p>
+          <p>Eden is a strategic communications firm for companies at the frontier of finance and technology.</p>
+          <p>We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
+          <p>We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases and report metrics that don\u2019t connect to business outcomes. The \u201Cgo direct\u201D movement got a lot right \u2014 but a founder with a massive following and no institutional credibility will lose the enterprise deal. A protocol with a thriving community and no presence in AI search is invisible to the next wave of capital and users.</p>
+          <p>We\u2019re building something different. An AI-native firm that uses automation and intelligence to move faster than shops ten times our size \u2014 and a human-first team that maintains the journalist relationships, taste-making abilities and executive network that technology cannot replicate.</p>
+          <p>We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.</p>
+          <p>We don\u2019t do awareness. We build credibility that compounds.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-group-photo section-padding">
+      <div class="container">
+        <div class="about-team-photo-full">
+          <img src="/assets/images/team-group.jpg" alt="Eden Communications team" class="about-team-group-img" loading="lazy">
         </div>
       </div>
     </section>

@@ -22,6 +22,27 @@
   font-weight: 400;
 }
 
+/* ─── Team Group Photo ──────────────────────────────────────────────── */
+
+.about-group-photo {
+  background: var(--bg);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.about-team-photo-full {
+  max-width: 900px;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.about-team-group-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--card-radius);
+}
+
 /* ─── Team Grid ──────────────────────────────────────────────────────── */
 
 .about-team {

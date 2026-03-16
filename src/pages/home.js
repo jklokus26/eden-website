@@ -91,7 +91,7 @@ function animateCounters() {
         const el = entry.target;
         const value = parseInt(el.dataset.value);
         const suffix = el.dataset.suffix || '';
-        animateValue(el, 0, value, '', suffix, 1800);
+        animateValue(el, 0, value, el.dataset.prefix || '', suffix, 1800);
         statsObserver.unobserve(el);
       }
     });
@@ -109,23 +109,8 @@ function buildHero() {
 
   const lines = heroContent.headline.split('\n');
 
+  /* Hero video removed per Ebony D2 feedback — files preserved in public/assets/video/ */
   section.innerHTML = `
-    <div class="hero-video-wrap">
-      <video
-        class="hero-video"
-        autoplay
-        muted
-        playsinline
-        loop
-        preload="metadata"
-        poster="/assets/images/hero-video-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src="/assets/video/hero-video.webm" type="video/webm">
-        <source src="/assets/video/hero-video.mp4" type="video/mp4">
-      </video>
-      <div class="hero-video-overlay"></div>
-    </div>
     <div class="hero-content container">
       <div class="hero-headline-wrap">
         <h1 class="hero-headline hero-headline--line1">${heroContent.headline}</h1>
@@ -135,11 +120,14 @@ function buildHero() {
     </div>
   `;
 
+  // Append media ticker inside the hero (visible without scrolling)
+  section.appendChild(buildMediaTicker());
+
   return section;
 }
 
 function buildMediaTicker() {
-  const section = document.createElement('section');
+  const section = document.createElement('div');
   section.id = 'media-ticker';
   section.className = 'media-ticker-section';
 
@@ -162,14 +150,14 @@ function buildMediaTicker() {
       row1.map(l => ({
         html: `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`,
       })),
-      { direction: 'left', speed: 25, gap: '80px' }
+      { direction: 'left', speed: 15, gap: '80px' }
     );
     createTicker(
       tickerWrap2,
       row2.map(l => ({
         html: `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`,
       })),
-      { direction: 'right', speed: 25, gap: '80px' }
+      { direction: 'right', speed: 15, gap: '80px' }
     );
   });
 
@@ -279,14 +267,14 @@ function buildYouTube() {
   section.className = 'youtube-section section-padding';
 
   const stats = [
-    { value: 2500, suffix: '+', label: 'MEDIA PLACEMENTS' },
-    { value: 100, suffix: '+', label: 'TOP-TIER OUTLETS' },
-    { value: 15, suffix: '+', label: 'CLIENTS SERVED' },
+    { value: 1793, suffix: '', label: 'TOP-TIER PLACEMENTS IN 2025' },
+    { value: 10, prefix: '$', suffix: 'B', label: 'CLIENT ECOSYSTEM VALUE' },
+    { value: 100, suffix: '+', label: 'GLOBAL OUTLETS' },
   ];
 
   const statsHtml = stats.map((s, i) => `
     <div class="stats-panel-item">
-      <span class="stats-panel-number stats-counter" data-value="${s.value}" data-suffix="${s.suffix}">0${s.suffix}</span>
+      <span class="stats-panel-number stats-counter" data-value="${s.value}" data-prefix="${s.prefix || ''}" data-suffix="${s.suffix}">${s.prefix || ''}0${s.suffix}</span>
       <span class="stats-panel-label">${s.label}</span>
     </div>
     ${i < stats.length - 1 ? '<div class="stats-panel-divider"></div>' : ''}
@@ -519,7 +507,7 @@ function openTeamModal(overlay, member) {
   modalImg.alt = member.alt;
   overlay.querySelector('.team-modal-name').textContent = member.name;
   overlay.querySelector('.team-modal-role').textContent = member.role;
-  overlay.querySelector('.team-modal-bio').textContent = member.bio || '';
+  overlay.querySelector('.team-modal-bio').textContent = member.bioShort || member.bio || '';
 
   const tagsEl = overlay.querySelector('.team-modal-tags');
   if (member.expertise && member.expertise.length) {
@@ -589,7 +577,6 @@ function initHomepage() {
 
   const sections = [
     buildHero(),
-    buildMediaTicker(),
     buildMission(),
     buildFeaturedCaseStudies(),
     buildClients(),
