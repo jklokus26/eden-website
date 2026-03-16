@@ -66,4 +66,10 @@
     <s:changefreq>monthly</s:changefreq>
     <s:priority>0.6</s:priority>
   </s:url>
+  <s:url>
+    <s:loc>https://edencommunications.com/case-studies/ondo</s:loc>
+    <s:lastmod>2026-03-13</s:lastmod>
+    <s:changefreq>monthly</s:changefreq>
+    <s:priority>0.6</s:priority>
+  </s:url>
 </urlset>

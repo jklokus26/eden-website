@@ -149,6 +149,12 @@ button {
   color: var(--text);
 }
 
+/* Keyboard Focus */
+:focus-visible {
+  outline: 2px solid var(--gradient-mint);
+  outline-offset: 2px;
+}
+
 /* Noise texture overlay — eliminates flat digital feel */
 body::after {
   content: '';
@@ -191,9 +197,12 @@ body::after {
 }
 
 .divider-dot {
-  color: var(--gradient-mint);
-  font-size: 10px;
-  line-height: 1;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
+  flex-shrink: 0;
 }
 
 .divider-label {

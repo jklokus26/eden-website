@@ -303,18 +303,19 @@ export function initGalleryAnimation() {
   const grid = document.querySelector('.cs-grid');
   if (!grid) return;
 
-  gsap.from(grid.querySelectorAll('.cs-card'), {
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    stagger: 0.15,
-    scrollTrigger: {
-      trigger: grid,
-      start: 'top 80%',
-      toggleActions: 'play none none reverse',
-    },
-  });
+  // Temporarily disabled to debug spacing issue
+  // gsap.from(grid.querySelectorAll('.cs-card'), {
+  //   y: 60,
+  //   opacity: 0,
+  //   duration: 0.8,
+  //   ease: 'power3.out',
+  //   stagger: 0.15,
+  //   scrollTrigger: {
+  //     trigger: grid,
+  //     start: 'top 80%',
+  //     toggleActions: 'play none none reverse',
+  //   },
+  // });
 }
 
 // ─── Master init ──────────────────────────────────────────────────────────────

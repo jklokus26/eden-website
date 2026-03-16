@@ -34,7 +34,7 @@ function buildRecentWork() {
           <button class="coverage-filter active" data-filter="all">All</button>
           <button class="coverage-filter" data-filter="Broadcast">Broadcast</button>
           <button class="coverage-filter" data-filter="Podcast">Podcast</button>
-          <button class="coverage-filter" data-filter="Online">Online</button>
+          <button class="coverage-filter" data-filter="Article">Article</button>
         </div>
         <div class="coverage-static-grid">
           ${tiles}

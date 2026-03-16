@@ -11,6 +11,7 @@ export default defineConfig({
         franzy: resolve(__dirname, 'case-studies/franzy.html'),
         stellar: resolve(__dirname, 'case-studies/stellar-development-foundation.html'),
         reedSmith: resolve(__dirname, 'case-studies/reed-smith-on-chain.html'),
+        ondo: resolve(__dirname, 'case-studies/ondo.html'),
         news: resolve(__dirname, 'news/index.html'),
         about: resolve(__dirname, 'about/index.html'),
         services: resolve(__dirname, 'services/index.html'),

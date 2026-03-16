@@ -40,7 +40,7 @@ function buildGallery() {
         <h1 class="gallery-headline">${caseStudiesPageHeadline}</h1>
       </div>
     </section>
-    <section class="gallery-grid section-padding">
+    <section class="gallery-grid">
       <div class="container">
         <div class="cs-grid">
           ${cards}

@@ -19,13 +19,21 @@
 
 .gallery-grid {
   background: var(--bg);
-  padding-top: 0;
+  padding: 0;
 }
 
 .cs-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: 0 !important;
+}
+
+.cs-grid > * {
+  margin: 0 !important;
+}
+
+.cs-grid > * + * {
+  margin-top: 40px !important;
 }
 
 /* Shared card styles */
@@ -33,14 +41,17 @@
   display: grid;
   border-radius: var(--card-radius);
   overflow: hidden;
-  background: var(--bg-section);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
   text-decoration: none;
   color: inherit;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cs-card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 8px 32px rgba(149, 27, 255, 0.08), 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .cs-card-img-wrap {
@@ -135,11 +146,11 @@
 /* All cards: image left, text right */
 .cs-card--regular {
   grid-template-columns: 1fr 1fr;
-  min-height: 240px;
+  height: 300px;
 }
 
 .cs-card--regular .cs-card-img-wrap {
-  min-height: 240px;
+  height: 100%;
 }
 
 .cs-card--regular .cs-card-body {
@@ -151,11 +162,11 @@
 @media (max-width: 1024px) {
   .cs-card--regular {
     grid-template-columns: 1fr;
-    min-height: unset;
+    height: auto;
   }
 
   .cs-card--regular .cs-card-img-wrap {
-    min-height: unset;
+    height: auto;
     aspect-ratio: 16 / 9;
   }
 
@@ -342,14 +353,32 @@
   padding: 20px 24px 12px;
   display: flex;
   align-items: center;
-  min-height: 60px;
+  justify-content: center;
+  min-height: 68px;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
 }
 
 .coverage-grid-tile-logo-img {
-  height: 28px;
+  height: 34px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
+}
+
+/* How I Built This logo: scale up for different shape, reduce container padding to align images */
+.coverage-grid-tile-logo-img[alt="How I Built This"] {
+  height: 72px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.coverage-grid-tile:has(.coverage-grid-tile-logo-img[alt="How I Built This"]) .coverage-grid-tile-logo {
+  padding: 0 24px;
+  min-height: 68px;
+  max-height: 68px;
+  overflow: visible;
+  z-index: 2;
 }
 
 /* Filter animation */
@@ -377,18 +406,41 @@
   display: flex;
   flex-direction: column;
   border-radius: 16px;
-  overflow: hidden;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
   text-decoration: none;
   color: inherit;
+  position: relative;
+}
+
+.coverage-grid-tile::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: calc(16px + 1.5px);
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-sky), var(--gradient-mint));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .coverage-grid-tile:hover {
   transform: translateY(-4px);
-  border-color: var(--border-medium);
+  border-color: transparent;
+  box-shadow: 0 6px 24px rgba(149, 27, 255, 0.06), 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.coverage-grid-tile:hover::before {
+  opacity: 1;
 }
 
 .coverage-grid-tile-img-wrap {
@@ -413,6 +465,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  border-radius: 0 0 16px 16px;
 }
 
 .coverage-grid-tile-pub {

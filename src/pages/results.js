@@ -38,7 +38,7 @@ function buildResults() {
         <h1 class="gallery-headline">Campaigns that create market leaders.</h1>
       </div>
     </section>
-    <section class="gallery-grid section-padding">
+    <section class="gallery-grid">
       <div class="container">
         <div class="cs-grid">
           ${cards}

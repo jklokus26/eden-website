@@ -32,7 +32,7 @@ export const coverageItems = [
     externalUrl: 'https://www.inc.com/tim-crino/this-startup-wants-to-make-buying-a-mcdonalds-as-easy-as-buying-a-house/91169941',
     screenshotImage: '/assets/images/franzy-cover-generated.webp',
     datePublished: 'May 22, 2025',
-    coverageType: 'Online',
+    coverageType: 'Article',
     logoImage: '/assets/logos/inc-magazine.png',
   },
   {

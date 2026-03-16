@@ -1,4 +1,5 @@
 export const HERO_IMAGE_MAP = {
+  'ondo': '/assets/images/ondo-cnbc-squawk-box.jpg',
   'grip-shipping': '/assets/images/grip-shipping-team.jpg',
   'franzy': '/assets/images/franzy-fox-business.jpg',
   'stellar-development-foundation': '/assets/images/reed-smith-dixon.jpg',
@@ -6,6 +7,47 @@ export const HERO_IMAGE_MAP = {
 };
 
 export const caseStudies = [
+  {
+    slug: 'ondo',
+    title: 'Case Study: Ondo Finance',
+    subtitle: 'How Eden established Ondo as the defining voice in tokenized securities',
+    date: 'March 13, 2026',
+    service: 'Communications Strategy',
+    description: 'How Eden established Ondo as the defining voice in tokenized securities',
+    heroImage: '/assets/images/ondo-cnbc-squawk-box.jpg',
+    cdnHeroUrl: '',
+    alt: 'Ondo Finance featured on CNBC Squawk Box discussing tokenized securities',
+    industries: 'Tokenized Securities, DeFi, Digital Assets',
+    bodyHtml: `<h3>The Challenge</h3>
+<p>Ondo Finance needed to establish market leadership in tokenized securities while navigating complex regulatory environments and competitive threats. Competitor Securitize actively lobbied against Ondo\u2019s model and publicly labeled it \u201Cillegal,\u201D while a well-funded challenger replicated Ondo\u2019s core product within six weeks of launch while claiming market leadership. Ondo needed to win over two deeply skeptical audiences\u2014institutional investors and the crypto community\u2014across fragmented regulatory frameworks in the US, APAC, MENA, and Europe.</p>
+
+<h3>Our Approach</h3>
+<p>When Eden took over Ondo\u2019s communications, the brand was losing the narrative war. Eden built a strategy around tier-1 broadcast placement, regulatory credentialing, and controlled narrative ownership\u2014using each to systematically counter competitive threats and establish Ondo as the category leader. We targeted sustained volume growth across tokenization coverage while aggressively defending Ondo\u2019s positioning against both Securitize\u2019s regulatory attacks and Robinhood\u2019s market entry blitz.</p>
+
+<h3>The Results</h3>
+<ul>
+<li>Flipped a 24-point share of voice deficit against Securitize into a 61% SOV lead \u2014 a 23-point swing achieved within 90 days and maintained every month since</li>
+<li>Tripled monthly media volume from baseline \u2014 peaking at over 2,000 articles in a single month</li>
+<li>BlackRock called Ondo the \u201Cgold standard\u201D \u2014 neutralizing competitor attacks</li>
+<li>Leads all competitors in tokenized asset coverage (35.3% SOV) and platform-specific mentions (46.3% SOV) \u2014 despite competing against Robinhood, Kraken, and Dinari</li>
+<li>CNBC Squawk Box segment alongside Rep. Patrick McHenry</li>
+<li>Wall Street Journal reporter proactively requested updated Ondo figures every other day</li>
+<li>Featured across top-tier media including Axios, Bloomberg, CNBC, Reuters, The New York Times, and The Wall Street Journal</li>
+</ul>
+
+<h3>The Impact</h3>
+<p>Ondo entered as a strong product fighting for legitimacy. They exited as the market\u2019s defining reference point for tokenized securities\u2014leading every major competitive benchmark in media share of voice.</p>`,
+    sidebarNews: [],
+    metricHighlight: '+61% SOV Lead',
+    metrics: [
+      { number: '61%', label: 'SOV Lead' },
+      { number: '3x', label: 'Monthly Media Volume' },
+      { number: '23pt', label: 'SOV Swing in 90 Days' },
+    ],
+    featured: true,
+    industryTag: 'Tokenized Securities & DeFi',
+    relatedCaseStudies: ['stellar-development-foundation', 'reed-smith-on-chain', 'grip-shipping'],
+  },
   {
     slug: 'reed-smith-on-chain',
     title: 'Case Study: Reed Smith On Chain',
@@ -18,8 +60,7 @@ export const caseStudies = [
     alt: 'Reed Smith On Chain thought leadership initiative visual',
     industries: 'Legal, Digital Assets, Financial Regulation',
     bodyHtml: `<h3>The Challenge</h3>
-<p>Reed Smith, a global law firm with deep roots in financial regulation, saw an opportunity to lead in a volatile moment for the digital asset space. With the sentencing of FTX founder Sam Bankman-Fried dominating headlines, the firm launched Reed Smith On Chain \u2014 a thought leadership initiative designed to guide institutions, investors, and innovators through crypto's evolving legal landscape.</p>
-<p>The firm needed to:</p>
+<p>Reed Smith, a global law firm with deep roots in financial regulation, saw an opportunity to lead in a volatile moment for the digital asset space. With the sentencing of FTX founder Sam Bankman-Fried dominating headlines, the firm launched Reed Smith On Chain \u2014 a thought leadership initiative designed to guide institutions, investors, and innovators through crypto\u2019s evolving legal landscape. The firm needed to:</p>
 <ul>
 <li>Establish Reed Smith as the go-to legal authority in crypto</li>
 <li>Provide real-time, trusted legal analysis during the most high-profile trial in crypto history</li>
@@ -27,39 +68,23 @@ export const caseStudies = [
 </ul>
 
 <h3>Our Approach</h3>
-<p>Eden crafted a proactive, real-time media strategy designed to embed Reed Smith's voice across every major moment of the FTX legal saga \u2014 and beyond. We focused on:</p>
-<p><strong>1. Rapid Response Newsroom</strong> Positioned Reed Smith attorneys as expert commentators during key milestones \u2014 sentencing hearings, DOJ motions, and regulatory crackdowns \u2014 offering timely analysis to tier-one reporters.</p>
-<p><strong>2. Strategic Storytelling</strong> We worked with reporters at Bloomberg, CNBC, CoinDesk, and the Washington Post to translate legal nuance into public understanding, positioning the firm as the sober voice in a highly polarized industry.</p>
-<p><strong>3. Always-On Distribution</strong> Our team monitored crypto, legal, and financial news cycles to ensure Reed Smith On Chain's insights landed in high-traffic stories and were widely shared across social media.</p>
+<p>Eden crafted a proactive, real-time media strategy designed to embed Reed Smith\u2019s voice across every major moment of the FTX legal saga \u2014 and beyond. We focused on:</p>
+<ul>
+<li><strong>Rapid Response Newsroom</strong> \u2014 Positioned Reed Smith attorneys as expert commentators during key milestones \u2014 sentencing hearings, DOJ motions, and regulatory crackdowns \u2014 offering timely analysis to tier-one reporters.</li>
+<li><strong>Strategic Storytelling</strong> \u2014 We worked with reporters at Bloomberg, CNBC, CoinDesk, and the Washington Post to translate legal nuance into public understanding, positioning the firm as the sober voice in a highly polarized industry.</li>
+<li><strong>Always-On Distribution</strong> \u2014 Our team monitored crypto, legal, and financial news cycles to ensure Reed Smith On Chain\u2019s insights landed in high-traffic stories and were widely shared across social media.</li>
+</ul>
 
 <h3>The Results</h3>
-<h4>Media Reach & Visibility</h4>
 <ul>
-<li>48 pieces of earned coverage across tier-one, financial, and crypto media</li>
+<li>48 pieces of earned coverage across CNBC, Bloomberg, Washington Post, New York Post, Fortune, Cointelegraph, CoinDesk, Reuters, and TechCrunch</li>
 <li>2.88M+ estimated views on content featuring Reed Smith attorneys</li>
 <li>467M total audience across all outlets</li>
-<li>Coverage in CNBC, Bloomberg, Washington Post, New York Post, Fortune, Cointelegraph, CoinDesk, Reuters, and TechCrunch</li>
-</ul>
-<h4>Social Engagement</h4>
-<ul>
-<li>2.49K+ total engagements on social platforms</li>
-<li>1.06K X shares of Reed Smith-linked coverage</li>
-</ul>
-<h4>Market Perception</h4>
-<ul>
-<li>85 average domain authority \u2014 signaling placement on highly credible platforms</li>
-<li>Reed Smith became a default source for legal analysis on SBF, Binance, SEC enforcement, and ETH ETF rulings</li>
-</ul>
-<h4>Business Impact</h4>
-<ul>
-<li>Expanded brand equity among crypto founders, exchanges, and fintech clients seeking sophisticated legal counsel</li>
 <li>New inbound inquiries from blockchain and tokenization projects</li>
-<li>Reinforced Reed Smith's positioning as the firm of record for institutional crypto clients navigating regulatory uncertainty</li>
 </ul>
 
-<h3>The Bottom Line</h3>
-<p>Reed Smith On Chain transformed a legacy law firm into a modern authority on digital asset regulation \u2014 all in the middle of crypto's most chaotic courtroom drama. Eden's agile media strategy didn't just earn headlines \u2014 it earned trust, opened doors, and helped Reed Smith claim a front-row seat in crypto's next chapter.</p>
-<p>This case proves how expert-led storytelling and smart timing can elevate even the most traditional institutions in disruptive markets.</p>`,
+<h3>The Impact</h3>
+<p>Reed Smith On Chain transformed a legacy law firm into a modern authority on digital asset regulation; earning trust, opening doors, and helping Reed Smith claim a front-row seat in crypto\u2019s next chapter.</p>`,
     sidebarNews: [
       { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
       { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
@@ -73,7 +98,7 @@ export const caseStudies = [
     ],
     featured: false,
     industryTag: 'Legal & Digital Assets',
-    relatedCaseStudies: ['grip-shipping', 'stellar-development-foundation', 'franzy'],
+    relatedCaseStudies: ['ondo', 'stellar-development-foundation', 'grip-shipping'],
   },
   {
     slug: 'stellar-development-foundation',
@@ -90,50 +115,30 @@ export const caseStudies = [
 <p>The Stellar Development Foundation (SDF) is one of the most established names in blockchain \u2014 but in an industry flooded with hype and noise, SDF needed to:</p>
 <ul>
 <li>Cement its reputation as a serious infrastructure layer for real-world financial applications</li>
-<li>Elevate public understanding of Stellar's partnerships with global financial players like Mastercard and PayPal and organizations like the United Nations</li>
+<li>Elevate public understanding of Stellar\u2019s partnerships with global financial players like Mastercard and PayPal and organizations like the United Nations</li>
 <li>Reframe the blockchain conversation around usability, financial inclusion, and global access</li>
 <li>Reach both institutional decision-makers and culturally relevant audiences in key emerging markets</li>
 </ul>
 
 <h3>Our Approach</h3>
 <p>Eden developed a global communications strategy built on three pillars:</p>
-<p><strong>1. Narrative Reset</strong> We moved Stellar away from the crypto echo chamber and into the mainstream financial and tech conversation \u2014 emphasizing real-world assets, compliance, and emerging-market adoption.</p>
-<p><strong>2. Strategic Launch Amplification</strong> We drove high-impact coverage around major announcements, including:</p>
 <ul>
-<li>Mastercard x Stellar Crypto Credential launch</li>
-<li>PayPal's stablecoin (PYUSD) integration on Stellar</li>
+<li><strong>Narrative Reset</strong> \u2014 We moved Stellar away from the crypto echo chamber and into the mainstream financial and tech conversation \u2014 emphasizing real-world assets, compliance, and emerging-market adoption.</li>
+<li><strong>Strategic Launch Amplification</strong> \u2014 We drove high-impact coverage around major announcements, including: Mastercard x Stellar Crypto Credential launch and PayPal\u2019s stablecoin (PYUSD) integration on Stellar. These moments weren\u2019t just covered \u2014 they were featured on CNBC Television and Bloomberg Television, giving Stellar rare institutional visibility.</li>
+<li><strong>Global Media Activation</strong> \u2014 We secured coverage across outlets with influence in the U.S., Africa, and LATAM, tying Stellar\u2019s work to bigger stories around financial access, tech sovereignty, and public-private infrastructure.</li>
 </ul>
-<p>These moments weren't just covered \u2014 they were featured on CNBC Television and Bloomberg Television, giving Stellar rare institutional visibility.</p>
-<p><strong>3. Global Media Activation</strong> We secured coverage across outlets with influence in the U.S., Africa, and LATAM, tying Stellar's work to bigger stories around financial access, tech sovereignty, and public-private infrastructure.</p>
 
 <h3>The Results</h3>
-<h4>Media Reach</h4>
 <ul>
-<li>36 earned media placements across crypto, fintech, and mainstream outlets</li>
-<li>Coverage in CNN, CNBC, Bloomberg, Yahoo Finance, CoinDesk, Decrypt, Cointelegraph, Axios, and more</li>
-<li>4.65M+ estimated views on campaign content</li>
-<li>632M total outlet audience reach</li>
-</ul>
-<h4>Broadcast Breakthrough</h4>
-<ul>
-<li>Live appearances on CNBC and Bloomberg TV, a rare feat for blockchain infrastructure foundations</li>
-<li>On-air interviews with SDF CEO Denelle Dixon, driving home Stellar's relevance in payments and stablecoins</li>
-</ul>
-<h4>Cultural & Geographic Expansion</h4>
-<ul>
-<li>Features highlighting Stellar's work in Africa (via partnerships with Idris Elba and BET)</li>
-<li>Campaign reach spanned from Davos to Ghana, repositioning Stellar as a truly global player</li>
-</ul>
-<h4>Business Impact</h4>
-<ul>
-<li>Repositioned Stellar from "crypto protocol" to "public infrastructure for finance"</li>
-<li>Enabled deeper enterprise conversations with institutions like PayPal, MoneyGram, and Franklin Templeton</li>
-<li>Attracted new developer and fintech partners aligned with real-world utility</li>
+<li>4.65M+ views on campaign content</li>
+<li>632M total audience reach</li>
+<li>36 placements including CNN, CNBC, Bloomberg, Yahoo Finance, Axios</li>
+<li>Live CNBC and Bloomberg TV appearances \u2014 rare for blockchain infrastructure</li>
+<li>New developer and fintech partners aligned with real-world utility</li>
 </ul>
 
-<h3>The Bottom Line</h3>
-<p>In one of the most crowded and credibility-challenged sectors in tech, Eden helped the Stellar Development Foundation break out of the crypto bubble and into the global financial spotlight. Our media strategy didn't just land headlines \u2014 it reshaped how Stellar is perceived by regulators, developers, and institutions alike.</p>
-<p>This case demonstrates how mission-aligned, media-savvy storytelling can turn protocol-layer technology into mainstream relevance.</p>`,
+<h3>The Impact</h3>
+<p>In one of the most crowded and credibility-challenged sectors in tech, Eden helped the Stellar Development Foundation break out of the crypto bubble and into the global financial spotlight. Our founder-first, performance-driven approach to public relations helped Stellar win fast in their competitive marketplace, turning protocol-layer technology into mainstream relevance.</p>`,
     sidebarNews: [
       { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
       { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
@@ -147,11 +152,11 @@ export const caseStudies = [
     ],
     featured: true,
     industryTag: 'Blockchain & Fintech',
-    relatedCaseStudies: ['reed-smith-on-chain', 'grip-shipping', 'franzy'],
+    relatedCaseStudies: ['ondo', 'reed-smith-on-chain', 'grip-shipping'],
   },
   {
     slug: 'grip-shipping',
-    title: 'Case study: Grip Shipping',
+    title: 'Case Study: Grip Shipping',
     subtitle: "Eden's campaign created a category leader in the refrigerated shipping sector",
     date: 'March 5, 2026',
     service: 'PR Strategy',
@@ -160,11 +165,7 @@ export const caseStudies = [
     cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/688906285bc2bd4bf48b3145_El-equipo-grip-shipping.jpg',
     alt: 'Grip Shipping team photo showing the logistics startup team',
     industries: 'Logistics, eCommerce, Software',
-    bodyHtml: `<p>Grip Shipping is a Miami-based SaaS and logistics startup revolutionizing the perishable eCommerce space. As an innovative technology company operating at the intersection of logistics, eCommerce, and software solutions, Grip Shipping recognized the need to establish itself as the definitive first mover in this rapidly expanding market segment.</p>
-
-<p class="industries">Industries: Logistics, eCommerce, Software</p>
-
-<h3>The challenge</h3>
+    bodyHtml: `<h3>The Challenge</h3>
 <p>Despite having groundbreaking technology and being positioned as a market pioneer, Grip Shipping faced a common startup dilemma: how to cut through the noise in a crowded logistics and eCommerce landscape. The company needed to:</p>
 <ul>
 <li>Build brand awareness in a competitive market</li>
@@ -173,43 +174,25 @@ export const caseStudies = [
 <li>Generate qualified leads through strategic media exposure</li>
 </ul>
 
-<h3>Our approach</h3>
+<h3>Our Approach</h3>
 <p>Eden developed a comprehensive public relations strategy focused on positioning Grip Shipping as the authoritative voice in perishable eCommerce logistics. Our campaign centered on two key pillars:</p>
-<p><strong>Strategic Media Targeting:</strong> We identified and engaged top-tier publications and platforms in the eCommerce and supply chain sectors, ensuring Grip's story reached decision-makers and industry influencers.</p>
-<p><strong>Thought Leadership Development:</strong> Our team worked closely with Grip's leadership to develop compelling narratives around industry trends, challenges, and innovations, positioning the company as forward-thinking solution providers.</p>
+<ul>
+<li><strong>Strategic Media Targeting</strong> \u2014 We identified and engaged top-tier publications and platforms in the eCommerce and supply chain sectors, ensuring Grip\u2019s story reached decision-makers and industry influencers.</li>
+<li><strong>Thought Leadership Development</strong> \u2014 Our team worked closely with Grip\u2019s leadership to develop compelling narratives around industry trends, challenges, and innovations, positioning the company as forward-thinking solution providers.</li>
+</ul>
 
-<h3>The results</h3>
-<p>The impact of our partnership with Grip Shipping exceeded all expectations:</p>
-<h4>Media Coverage Explosion</h4>
+<h3>The Results</h3>
 <ul>
-<li>4,050% increase in press coverage within the engagement period</li>
 <li>20+ media placements</li>
+<li>4,050% increase in press coverage within the engagement period</li>
 <li>Featured interviews on top 5% podcasts globally, reaching highly engaged audiences</li>
-</ul>
-<h4>Market Position Strengthening</h4>
-<ul>
 <li>135% growth in market share of voice, establishing Grip as a dominant voice in their sector</li>
-<li>Consistent coverage across leading eCommerce and supply chain publications</li>
-</ul>
-<h4>Business Development Impact</h4>
-<p>The strategic media coverage delivered tangible business results:</p>
-<ul>
 <li>Multiple qualified leads generated directly from media exposure</li>
 <li>Inquiries from VC funds actively seeking investment opportunities in the logistics space</li>
-<li>Enhanced credibility leading to new partnership discussions</li>
 </ul>
 
-<h3>Key Success Factors</h3>
-<p>This campaign's success stemmed from several critical elements:</p>
-<ul>
-<li><strong>Industry-Focused Strategy:</strong> By concentrating on eCommerce and supply chain media, we ensured every placement reached Grip's target audience</li>
-<li><strong>Consistent Messaging:</strong> We maintained clear, compelling narratives about Grip's first-mover advantage and innovative solutions</li>
-<li><strong>Multi-Platform Approach:</strong> From traditional publications to high-profile podcasts, we diversified media channels to maximize reach and impact</li>
-</ul>
-
-<h3>The Bottom Line</h3>
-<p>Grip Shipping's partnership with Eden transformed the company from a promising startup into a recognized industry leader. The dramatic increase in media coverage not only elevated brand awareness but also generated concrete business opportunities, including investor interest and qualified leads.</p>
-<p>This case demonstrates how strategic public relations can accelerate growth for innovative companies ready to claim their market position.</p>`,
+<h3>The Impact</h3>
+<p>Grip Shipping\u2019s partnership with Eden transformed the company from a promising startup into a recognized industry leader. The dramatic increase in media coverage not only elevated brand awareness but also generated concrete business opportunities, including investor interest and qualified leads.</p>`,
     sidebarNews: [
       { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
       { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
@@ -223,7 +206,7 @@ export const caseStudies = [
     ],
     featured: true,
     industryTag: 'Logistics & eCommerce',
-    relatedCaseStudies: ['franzy', 'reed-smith-on-chain', 'stellar-development-foundation'],
+    relatedCaseStudies: ['ondo', 'franzy', 'stellar-development-foundation'],
   },
   {
     slug: 'franzy',
@@ -236,11 +219,7 @@ export const caseStudies = [
     cdnHeroUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/688907d93bcb645c89469d0e_Franzy-Fox-Business-Eden-Communications.jpg',
     alt: 'Franzy CEO appearing on Fox Business television interview',
     industries: 'Franchise Tech, Entrepreneurship, SaaS',
-    bodyHtml: `<p>Franzy is a franchise tech startup revolutionizing how aspiring entrepreneurs discover and buy franchises. As a platform that blends data, AI-driven matchmaking, and an intuitive user experience, Franzy aims to democratize access to business ownership and replace outdated broker systems.</p>
-
-<p class="industries">Industries: Franchise Tech, Entrepreneurship, SaaS</p>
-
-<h3>The Mission</h3>
+    bodyHtml: `<h3>The Challenge</h3>
 <p>Franzy had a bold vision, compelling founder story and AI-powered tech stack, but faced several early-stage hurdles:</p>
 <ul>
 <li>Cut through noise in a crowded entrepreneurship and franchise landscape</li>
@@ -252,34 +231,25 @@ export const caseStudies = [
 
 <h3>Our Approach</h3>
 <p>Eden developed a multi-channel public relations strategy focused on turning Franzy into a household name in franchising. Our campaign centered on three strategic pillars:</p>
-<p>We worked closely with CEO Alex Smereczniak to craft a resonant narrative \u2014 from college side hustle to multi-million dollar founder.</p>
-<p>We positioned Franzy within macro trends, including the "blue-collar boom," Gen Z's entrepreneurial drive, and the mass exodus from 9-to-5 work.</p>
-<p>We prioritized podcasts and outlets with highly engaged audiences, layered with affiliate links and data-rich messaging to drive conversions.</p>
+<ul>
+<li>We worked closely with CEO Alex Smereczniak to craft a resonant narrative \u2014 from college side hustle to multi-million dollar founder.</li>
+<li>We positioned Franzy within macro trends, including the \u201Cblue-collar boom,\u201D Gen Z\u2019s entrepreneurial drive, and the mass exodus from 9-to-5 work.</li>
+<li>We prioritized podcasts and outlets with highly engaged audiences, layered with affiliate links and data-rich messaging to drive conversions.</li>
+</ul>
 
 <h3>The Results</h3>
-<p>A campaign focused on mainstream financial news networks and leading business and entrepreneurship podcasts delivered the following results:</p>
 <ul>
-<li>22 earned media placements</li>
-<li>Featured in Business Insider, Entrepreneur, Inc., Fox Business, Franchise Times, Yahoo Finance</li>
+<li>22 placements including Business Insider, Entrepreneur, Inc., Fox Business, Franchise Times, Yahoo Finance</li>
 <li>Live national TV hits on Cheddar, NYSE TV, and Fox Business</li>
-<li>Interviews on top-tier podcasts including Entrepreneurs on Fire and The Pomp Podcast (Top 0.5% globally)</li>
-</ul>
-<h4>Market Penetration</h4>
-<ul>
 <li>52.9% share of voice in the franchise tech category (vs. competitor at 11.8%)</li>
 <li>88% positive sentiment in all media coverage (Source: MuckRack)</li>
 <li>73M+ estimated media reach across TV, print, digital, and audio platforms</li>
-</ul>
-<h4>Business Impact</h4>
-<ul>
 <li>4,300% increase in platform sign-ups post-launch</li>
 <li>120% average month-over-month user growth during the campaign</li>
-<li>Direct attribution of qualified leads from podcast traffic and live interviews</li>
 </ul>
 
-<h3>The Bottom Line</h3>
-<p>Eden helped transform Franzy from a stealth-mode startup into the most visible voice in franchise tech in under six months. Our campaign not only drove massive media buzz but also delivered real business outcomes: user growth, high-quality leads, and top-of-market visibility.</p>
-<p>This case shows how Eden's founder-first, performance-driven approach to public relations helps ambitious startups win fast in competitive markets.</p>`,
+<h3>The Impact</h3>
+<p>Eden helped transform Franzy from a stealth-mode startup into the most visible voice in franchise tech in under six months. Our campaign not only drove massive media buzz but also delivered real business outcomes: user growth, high-quality leads, and top-of-market visibility.</p>`,
     sidebarNews: [
       { title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon", date: 'March 5, 2026', url: 'https://www.bloomberg.com/news/videos/2024-10-01/stellar-s-use-in-refugee-aid-shows-crypto-purpose-dixon-video' },
       { title: 'Cheddar: Calling All Entrepreneurs! How One App May Help You Build the Perfect Franchise', date: 'March 5, 2026', url: 'https://www.cheddar.com/media/calling-all-entrepreneurs-how-one-app-may-help-you-build-the-perfect-franchise/' },
@@ -291,9 +261,9 @@ export const caseStudies = [
       { number: '22', label: 'Media Placements' },
       { number: '73M+', label: 'Media Reach' },
     ],
-    featured: true,
+    featured: false,
     industryTag: 'Franchise Tech',
-    relatedCaseStudies: ['reed-smith-on-chain', 'grip-shipping', 'stellar-development-foundation'],
+    relatedCaseStudies: ['ondo', 'reed-smith-on-chain', 'stellar-development-foundation'],
     isLast: true,
     lastMessage: 'You have reached the end of our case studies',
   },

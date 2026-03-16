@@ -393,7 +393,7 @@ function buildMarquee() {
   section.appendChild(tickerWrap);
 
   const items = Array.from({ length: 8 }, () => ({
-    html: `<span class="marquee-text">${aboutMarqueeText}</span><span class="marquee-dot">●</span>`,
+    html: `<span class="marquee-text">${aboutMarqueeText}</span><span class="marquee-dot"></span>`,
   }));
 
   requestAnimationFrame(() => {

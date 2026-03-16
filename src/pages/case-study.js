@@ -41,7 +41,6 @@ function buildCaseStudy() {
         <div class="related-card-img-wrap">
           <img src="${relImg}" alt="${rel.alt}" class="related-card-img" loading="lazy">
         </div>
-        <span class="related-card-service">${rel.service}</span>
         <p class="related-card-title">${rel.title}</p>
       </a>
     `;
