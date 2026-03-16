@@ -43,7 +43,7 @@ function buildAbout() {
     <section class="gallery-hero section-padding">
       <div class="container">
         ${createDivider('About Us')}
-        <h1 class="gallery-headline" data-animate="words">The team behind your next headline.</h1>
+        <h1 class="gallery-headline" data-animate="words">A strategic communications firm for companies at the frontier of finance and technology.</h1>
       </div>
     </section>
 
@@ -51,7 +51,6 @@ function buildAbout() {
       <div class="container">
         <h2 class="about-section-heading" data-animate="words">Our Story</h2>
         <div class="about-story-body">
-          <p>Eden is a strategic communications firm for companies at the frontier of finance and technology.</p>
           <p>We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
           <p>We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases and report metrics that don\u2019t connect to business outcomes. The \u201Cgo direct\u201D movement got a lot right \u2014 but a founder with a massive following and no institutional credibility will lose the enterprise deal. A protocol with a thriving community and no presence in AI search is invisible to the next wave of capital and users.</p>
           <p>We\u2019re building something different. An AI-native firm that uses automation and intelligence to move faster than shops ten times our size \u2014 and a human-first team that maintains the journalist relationships, taste-making abilities and executive network that technology cannot replicate.</p>
