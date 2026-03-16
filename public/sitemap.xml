@@ -72,4 +72,16 @@
     <s:changefreq>monthly</s:changefreq>
     <s:priority>0.6</s:priority>
   </s:url>
+  <s:url>
+    <s:loc>https://edencommunications.com/case-studies/blue-planet-energy</s:loc>
+    <s:lastmod>2026-03-16</s:lastmod>
+    <s:changefreq>monthly</s:changefreq>
+    <s:priority>0.6</s:priority>
+  </s:url>
+  <s:url>
+    <s:loc>https://edencommunications.com/case-studies/henk-rogers</s:loc>
+    <s:lastmod>2026-03-16</s:lastmod>
+    <s:changefreq>monthly</s:changefreq>
+    <s:priority>0.6</s:priority>
+  </s:url>
 </urlset>

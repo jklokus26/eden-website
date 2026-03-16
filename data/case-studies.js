@@ -4,6 +4,8 @@ export const HERO_IMAGE_MAP = {
   'franzy': '/assets/images/franzy-fox-business.jpg',
   'stellar-development-foundation': '/assets/images/reed-smith-dixon.jpg',
   'reed-smith-on-chain': '/assets/images/stellar-screenshot.webp',
+  'blue-planet-energy': '/assets/images/blue-planet-energy-team.jpg',
+  'henk-rogers': '/assets/images/henk-rogers-how-i-built-this.jpg',
 };
 
 export const caseStudies = [
@@ -46,7 +48,7 @@ export const caseStudies = [
     ],
     featured: true,
     industryTag: 'Tokenized Securities & DeFi',
-    relatedCaseStudies: ['stellar-development-foundation', 'reed-smith-on-chain', 'grip-shipping'],
+    relatedCaseStudies: ['stellar-development-foundation', 'blue-planet-energy', 'henk-rogers'],
   },
   {
     slug: 'reed-smith-on-chain',
@@ -98,7 +100,51 @@ export const caseStudies = [
     ],
     featured: false,
     industryTag: 'Legal & Digital Assets',
-    relatedCaseStudies: ['ondo', 'stellar-development-foundation', 'grip-shipping'],
+    relatedCaseStudies: ['ondo', 'blue-planet-energy', 'stellar-development-foundation'],
+  },
+  {
+    slug: 'blue-planet-energy',
+    title: 'Case Study: Blue Planet Energy',
+    subtitle: 'How Eden helped a renewable energy challenger take on Tesla \u2014 and win attention',
+    date: 'March 16, 2026',
+    service: 'Earned Media',
+    description: 'How Eden helped a renewable energy challenger take on Tesla and win attention',
+    heroImage: '/assets/images/blue-planet-energy-team.jpg',
+    cdnHeroUrl: '',
+    alt: 'Blue Planet Energy team holding award in front of company headquarters',
+    industries: 'Renewable Energy, Climate Tech',
+    bodyHtml: `<h3>The Challenge</h3>
+<p>Blue Planet Energy, a Hawai\u02BBi-based clean energy company, had developed one of the most advanced lithium iron phosphate battery systems on the market \u2014 but faced a near-impossible communications challenge. In a category dominated by Tesla\u2019s brand recognition and marketing budget, Blue Planet needed to break through as a credible alternative in the residential and commercial energy storage space. The company also needed to educate consumers on why its technology was different \u2014 safer, longer-lasting, and better suited for island and off-grid environments \u2014 while competing against a brand with cultural cachet far beyond the energy sector.</p>
+
+<h3>Our Approach</h3>
+<p>Eden built a strategic earned media campaign designed to position Blue Planet Energy as the smarter, more resilient choice for energy independence. The strategy focused on three pillars:</p>
+<ul>
+<li><strong>David vs. Goliath Narrative</strong> \u2014 We leaned into the underdog angle, framing Blue Planet as the scrappy innovator going head-to-head with Tesla on product quality, safety, and long-term performance. This narrative resonated with journalists looking for a fresh angle in the saturated EV and energy storage beat.</li>
+<li><strong>Targeted Tier-1 Media Outreach</strong> \u2014 We identified and pitched reporters covering clean energy, climate tech, and sustainability at outlets like Forbes, Business Insider, and Fast Company, emphasizing Blue Planet\u2019s differentiated technology and real-world deployment in hurricane-prone and off-grid markets.</li>
+<li><strong>Founder-Led Thought Leadership</strong> \u2014 We positioned Blue Planet\u2019s leadership as credible voices on energy resilience, grid independence, and the future of distributed power \u2014 securing speaking opportunities and contributed content in key industry publications.</li>
+</ul>
+
+<h3>The Results</h3>
+<ul>
+<li>1,898% increase in landing page traffic during the campaign period</li>
+<li>300% growth in overall website traffic</li>
+<li>$500K+ in ad value equivalency from earned media placements</li>
+<li>Featured in Forbes, Business Insider, and leading clean energy publications</li>
+<li>Significant increase in inbound dealer and distributor inquiries</li>
+</ul>
+
+<h3>The Impact</h3>
+<p>Eden\u2019s campaign transformed Blue Planet Energy from a regional player into a nationally recognized challenger brand in the energy storage space. By owning the \u201Csmarter alternative to Tesla\u201D narrative, the company gained the media visibility and market credibility needed to compete at scale.</p>`,
+    sidebarNews: [],
+    metricHighlight: '+1,898% Landing Page Traffic',
+    metrics: [
+      { number: '1,898%', label: 'Landing Page Traffic' },
+      { number: '300%', label: 'Website Traffic Growth' },
+      { number: '500K', label: 'Ad Value Equivalency' },
+    ],
+    featured: false,
+    industryTag: 'Renewable Energy & Climate Tech',
+    relatedCaseStudies: ['ondo', 'henk-rogers', 'grip-shipping'],
   },
   {
     slug: 'stellar-development-foundation',
@@ -152,7 +198,51 @@ export const caseStudies = [
     ],
     featured: true,
     industryTag: 'Blockchain & Fintech',
-    relatedCaseStudies: ['ondo', 'reed-smith-on-chain', 'grip-shipping'],
+    relatedCaseStudies: ['ondo', 'reed-smith-on-chain', 'henk-rogers'],
+  },
+  {
+    slug: 'henk-rogers',
+    title: 'Case Study: Henk Rogers',
+    subtitle: 'How Eden turned a Hollywood moment into a global climate platform for the co-founder of Tetris',
+    date: 'March 16, 2026',
+    service: 'Campaign Strategy',
+    description: 'How Eden turned a Hollywood moment into a global climate platform for the co-founder of Tetris',
+    heroImage: '/assets/images/henk-rogers-how-i-built-this.jpg',
+    cdnHeroUrl: '',
+    alt: 'Henk Rogers featured on NPR How I Built This podcast',
+    industries: 'Technology, Climate Change, Philanthropy',
+    bodyHtml: `<h3>The Challenge</h3>
+<p>Henk Rogers is best known as the man who brought Tetris to the world \u2014 a story so dramatic it became an Apple TV+ feature film. But Rogers had evolved far beyond gaming. As the founder of the Blue Planet Foundation and a leading voice in Hawai\u02BBi\u2019s clean energy movement, he needed a communications strategy that could leverage his pop culture moment to amplify a much bigger mission: accelerating the global transition to 100% renewable energy. The challenge was twofold \u2014 capitalize on the Tetris film\u2019s massive publicity wave while ensuring the conversation shifted from nostalgia to climate action.</p>
+
+<h3>Our Approach</h3>
+<p>Eden designed a multi-phase campaign that used the Tetris film premiere as a launchpad for Rogers\u2019 climate advocacy platform:</p>
+<ul>
+<li><strong>Hollywood-to-Climate Pipeline</strong> \u2014 We timed a coordinated media blitz around the film\u2019s release, securing interviews that started with the Tetris story but pivoted to Rogers\u2019 clean energy work. This gave journalists the entertainment hook they wanted while delivering the climate message Rogers needed to amplify.</li>
+<li><strong>Tier-1 Broadcast and Podcast Strategy</strong> \u2014 We targeted high-reach audio and video platforms where long-form storytelling could do justice to Rogers\u2019 journey \u2014 from Cold War-era deal-making to founding one of Hawai\u02BBi\u2019s most impactful environmental organizations. Secured appearances on NPR\u2019s How I Built This and other major platforms.</li>
+<li><strong>Global Press Activation</strong> \u2014 We activated media across the US, Europe, and Asia-Pacific, leveraging Rogers\u2019 international profile and the film\u2019s global distribution to maximize reach across markets.</li>
+</ul>
+
+<h3>The Results</h3>
+<ul>
+<li>28.5M+ total campaign impressions across all channels</li>
+<li>40 media placements including NPR, Forbes, Bloomberg, and international outlets</li>
+<li>$2.19M in ad value equivalency</li>
+<li>NPR\u2019s How I Built This feature \u2014 one of the most-listened episodes of the season</li>
+<li>Significant increase in Blue Planet Foundation awareness and donation inquiries</li>
+</ul>
+
+<h3>The Impact</h3>
+<p>Eden successfully transformed a Hollywood entertainment moment into a sustained global platform for climate advocacy. Rogers went from being covered as a gaming nostalgia figure to being profiled as one of the most compelling voices in the clean energy movement \u2014 proving that strategic communications can turn cultural moments into lasting impact.</p>`,
+    sidebarNews: [],
+    metricHighlight: '+28M Campaign Impressions',
+    metrics: [
+      { number: '28.5M', label: 'Impressions' },
+      { number: '40', label: 'Media Placements' },
+      { number: '2.19M', label: 'Ad Value Equivalency' },
+    ],
+    featured: false,
+    industryTag: 'Technology & Climate',
+    relatedCaseStudies: ['ondo', 'blue-planet-energy', 'stellar-development-foundation'],
   },
   {
     slug: 'grip-shipping',
@@ -206,7 +296,7 @@ export const caseStudies = [
     ],
     featured: true,
     industryTag: 'Logistics & eCommerce',
-    relatedCaseStudies: ['ondo', 'franzy', 'stellar-development-foundation'],
+    relatedCaseStudies: ['ondo', 'blue-planet-energy', 'franzy'],
   },
   {
     slug: 'franzy',
@@ -263,7 +353,7 @@ export const caseStudies = [
     ],
     featured: false,
     industryTag: 'Franchise Tech',
-    relatedCaseStudies: ['ondo', 'reed-smith-on-chain', 'stellar-development-foundation'],
+    relatedCaseStudies: ['ondo', 'henk-rogers', 'blue-planet-energy'],
     isLast: true,
     lastMessage: 'You have reached the end of our case studies',
   },
