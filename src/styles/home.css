@@ -1194,7 +1194,7 @@
 
   .hero-subtitle {
     max-width: 100%;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   /* Force uniform media logo height on mobile, override inline displayHeight */
@@ -1290,7 +1290,7 @@
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: clamp(30px, 8.5vw, 48px);
+    font-size: clamp(28px, 7.5vw, 42px);
   }
 
   .featured-cs-headline,
@@ -1355,10 +1355,6 @@
 
   .hero-content {
     padding-bottom: 110px;
-  }
-
-  .hero-subtitle {
-    font-size: 13px;
   }
 
   /* Force uniform on small mobile too */

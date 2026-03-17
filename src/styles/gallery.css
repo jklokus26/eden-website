@@ -176,8 +176,24 @@
 }
 
 @media (max-width: 768px) {
+  .gallery-hero {
+    padding-bottom: var(--sp-1);
+  }
+
   .gallery-headline {
     font-size: clamp(28px, 6vw, 44px);
+    margin-top: var(--sp-1);
+  }
+
+  .coverage-filters {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .coverage-filter {
+    padding: 6px 14px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   .cs-card-title {
