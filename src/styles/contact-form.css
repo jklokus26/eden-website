@@ -108,6 +108,14 @@
   font-weight: 600;
 }
 
+.contact-error {
+  text-align: center;
+  padding: var(--sp-2) 0;
+  font-size: var(--small);
+  color: #ff6b6b;
+  font-weight: 500;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {

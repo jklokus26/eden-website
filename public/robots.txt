@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /assets/video/
+Disallow: /assets/icons/
 
 Sitemap: https://edencommunications.com/sitemap.xml

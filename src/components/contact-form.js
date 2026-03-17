@@ -78,7 +78,14 @@ export function initContactForm() {
         if (success) success.style.display = 'block';
       }
     } catch (err) {
-      // Silently fail — form still submits via browser default
+      let errMsg = form.querySelector('.contact-error');
+      if (!errMsg) {
+        errMsg = document.createElement('p');
+        errMsg.className = 'contact-error';
+        errMsg.textContent = 'Something went wrong. Please try again or email us directly at hello@edencommunications.com';
+        form.appendChild(errMsg);
+      }
+      errMsg.style.display = 'block';
     }
   });
 }

@@ -113,8 +113,10 @@ function buildHero() {
   section.innerHTML = `
     <div class="hero-content container">
       <div class="hero-headline-wrap">
-        <h1 class="hero-headline hero-headline--line1">${heroContent.headline}</h1>
-        <h1 class="hero-headline hero-headline--line2 gradient-text">${heroContent.gradientText}</h1>
+        <h1 class="hero-headline">
+          <span class="hero-headline--line1">${heroContent.headline}</span>
+          <span class="hero-headline--line2 gradient-text">${heroContent.gradientText}</span>
+        </h1>
       </div>
       <p class="hero-subtitle">${heroContent.subtitle}</p>
     </div>
@@ -293,7 +295,7 @@ function buildYouTube() {
             src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&modestbranding=1&autoplay=1&mute=1"
             title="Eden Communications video"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; playsinline"
             allowfullscreen
             loading="lazy"
           ></iframe>

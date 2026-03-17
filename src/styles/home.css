@@ -73,6 +73,11 @@
   margin: 0;
 }
 
+.hero-headline--line1,
+.hero-headline--line2 {
+  display: block;
+}
+
 .hero-headline--line2 {
   padding-bottom: 0.1em;
 }
