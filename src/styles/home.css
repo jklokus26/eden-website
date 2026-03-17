@@ -1201,8 +1201,8 @@
   .media-logo {
     height: auto !important;
     width: auto !important;
-    max-height: 26px;
-    max-width: 100px;
+    max-height: 32px;
+    max-width: 125px;
   }
 
   /* Left-align mission section on mobile for consistency */
@@ -1326,8 +1326,8 @@
   .media-logo {
     height: auto !important;
     width: auto !important;
-    max-height: 22px;
-    max-width: 90px;
+    max-height: 28px;
+    max-width: 110px;
   }
 
   .client-logo {
