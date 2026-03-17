@@ -7,10 +7,10 @@
 }
 
 .gallery-headline {
-  font-size: var(--h1);
+  font-size: var(--h2);
   font-weight: 800;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.15;
   margin-top: var(--sp-2);
   max-width: 1100px;
 }
@@ -177,7 +177,7 @@
 
 @media (max-width: 768px) {
   .gallery-headline {
-    font-size: clamp(36px, 8vw, 60px);
+    font-size: clamp(28px, 6vw, 44px);
   }
 
   .cs-card-title {

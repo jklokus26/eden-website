@@ -69,7 +69,7 @@ function buildServicesPage() {
     <section class="services-faq-section section-padding">
       <div class="container">
         ${createDivider('FAQ')}
-        <h2 class="services-faq-headline" data-animate="words">Frequently asked questions</h2>
+        <h2 class="services-faq-headline">Frequently asked questions</h2>
         <div class="services-faq">
           ${faqItems}
         </div>
