@@ -36,8 +36,6 @@
 .about-story-photo {
   border-radius: var(--card-radius);
   overflow: hidden;
-  position: sticky;
-  top: 100px;
 }
 
 .about-team-group-img {
@@ -191,7 +189,6 @@
   }
 
   .about-story-photo {
-    position: static;
     max-width: 500px;
   }
 

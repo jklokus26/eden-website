@@ -40,10 +40,15 @@ function buildAbout() {
   }).join('');
 
   main.innerHTML = `
-    <section class="about-story section-padding" style="padding-top: var(--sp-6);">
+    <section class="gallery-hero section-padding">
       <div class="container">
         ${createDivider('About Us')}
-        <h1 class="gallery-headline" data-animate="words" style="margin-bottom: var(--sp-3);">Our Story</h1>
+        <h1 class="gallery-headline" data-animate="words">Our Story</h1>
+      </div>
+    </section>
+
+    <section class="about-story section-padding">
+      <div class="container">
         <div class="about-story-grid">
           <div class="about-story-text">
             <div class="about-story-body">

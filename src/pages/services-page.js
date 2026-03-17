@@ -18,15 +18,15 @@ function buildServicesPage() {
     ).join('');
 
     return `
-      <div class="services-pillar${i === 0 ? ' services-pillar--open' : ''}" id="${s.anchorId}">
-        <button class="services-pillar-header" aria-expanded="${i === 0 ? 'true' : 'false'}" data-pillar="${i}">
+      <div class="services-pillar" id="${s.anchorId}">
+        <button class="services-pillar-header" aria-expanded="false" data-pillar="${i}">
           <div class="services-pillar-header-text">
             <h3 class="services-pillar-title">${s.title}</h3>
             <span class="services-pillar-tagline">${s.tagline}</span>
           </div>
-          <span class="services-pillar-icon">${i === 0 ? '\u2212' : '+'}</span>
+          <span class="services-pillar-icon">+</span>
         </button>
-        <div class="services-pillar-body"${i === 0 ? ' style="max-height:2000px"' : ''}>
+        <div class="services-pillar-body">
           <p class="services-pillar-intro">${s.intro}</p>
           <ol class="services-sub-list">
             ${subItems}
