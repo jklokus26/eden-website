@@ -1189,12 +1189,23 @@
   }
 
   .hero-content {
-    padding-bottom: 90px;
+    padding-bottom: 120px;
   }
 
   .hero-subtitle {
     max-width: 100%;
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  /* Force uniform media logo height on mobile, override inline displayHeight */
+  .media-logo {
+    height: 24px !important;
+  }
+
+  /* Left-align mission section on mobile for consistency */
+  .mission-body {
+    text-align: left;
+    align-items: flex-start;
   }
 
   .clients-section {
@@ -1242,6 +1253,13 @@
   }
 
   .clients-headline {
+    text-align: left;
+  }
+
+  /* Left-align CTAs and centered elements on mobile */
+  .section-cta-wrap,
+  .featured-cs-cta-wrap,
+  .coverage-cta-wrap {
     text-align: left;
   }
 
@@ -1336,7 +1354,16 @@
   }
 
   .hero-content {
-    padding-bottom: 80px;
+    padding-bottom: 110px;
+  }
+
+  .hero-subtitle {
+    font-size: 13px;
+  }
+
+  /* Force uniform on small mobile too */
+  .media-logo {
+    height: 22px !important;
   }
 
   .media-ticker-section {
