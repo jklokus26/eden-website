@@ -57,7 +57,7 @@
   text-align: center;
   padding: 0 var(--sp-3);
   padding-top: 88px;
-  padding-bottom: 100px; /* Room for the media ticker at bottom of hero */
+  padding-bottom: 140px; /* Room for the media ticker at bottom of hero */
 }
 
 .hero-headline-wrap {
