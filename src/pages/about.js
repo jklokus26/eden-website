@@ -47,8 +47,7 @@ function buildAbout() {
         <div class="about-story-grid">
           <div class="about-story-text">
             <div class="about-story-body">
-              <p>Eden is a strategic communications firm for companies at the frontier of finance and technology.</p>
-              <p>We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
+              <p>Eden is a strategic communications firm for companies at the frontier of finance and technology. We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
               <p>We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases and report metrics that don\u2019t connect to business outcomes. The \u201Cgo direct\u201D movement got a lot right \u2014 but a founder with a massive following and no institutional credibility will lose the enterprise deal. A protocol with a thriving community and no presence in AI search is invisible to the next wave of capital and users.</p>
               <p>We\u2019re building something different. An AI-native firm that uses automation and intelligence to move faster than shops ten times our size \u2014 and a human-first team that maintains the journalist relationships, taste-making abilities and executive network that technology cannot replicate.</p>
               <p>We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.</p>
