@@ -509,12 +509,13 @@ a.coverage-row:hover .coverage-row-title {
 
 @media (max-width: 768px) {
   .coverage-row-logo {
-    width: 140px;
+    width: 160px;
   }
 
+  /* Override inline heights on mobile for uniform sizing */
   .coverage-row-logo-img {
-    max-width: 130px;
-    height: 24px;
+    max-width: 150px;
+    height: 22px !important;
   }
 
   .coverage-row-logo-text {
@@ -542,6 +543,7 @@ a.coverage-row:hover .coverage-row-title {
 @media (max-width: 480px) {
   .coverage-row {
     flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
   }
 
@@ -551,11 +553,11 @@ a.coverage-row:hover .coverage-row-title {
   }
 
   .coverage-row-logo-img {
-    height: 22px;
+    height: 20px !important;
   }
 
   .coverage-row-logo-text {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .coverage-filters {

@@ -1269,8 +1269,13 @@
   }
 
   .team-modal-photo {
-    aspect-ratio: 4 / 3;
-    max-height: 220px;
+    aspect-ratio: auto;
+    max-height: 280px;
+    width: 100%;
+  }
+
+  .team-modal-img {
+    object-position: top center;
   }
 
   .team-modal-info {
@@ -1319,10 +1324,18 @@
 
   .coverage-tile-logo-wrap {
     justify-content: flex-start;
+    min-height: 48px;
+    height: 48px;
+  }
+
+  /* Override inline heights on mobile for uniform logo sizing */
+  .coverage-tile-logo-img {
+    height: 22px !important;
+    max-width: 140px;
   }
 
   .coverage-tile-logo-text {
-    font-size: 16px;
+    font-size: 15px;
     text-align: left;
   }
 }
