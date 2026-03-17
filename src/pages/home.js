@@ -145,18 +145,18 @@ function buildMediaTicker() {
   section.appendChild(tickerWrap2);
 
   requestAnimationFrame(() => {
+    // On mobile (<768px), skip inline displayHeight so CSS controls uniform sizing
+    const isMobile = window.innerWidth < 768;
+    const logoHtml = (l) => `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${!isMobile && l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`;
+
     createTicker(
       tickerWrap1,
-      row1.map(l => ({
-        html: `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`,
-      })),
+      row1.map(l => ({ html: logoHtml(l) })),
       { direction: 'left', speed: 8, gap: '80px' }
     );
     createTicker(
       tickerWrap2,
-      row2.map(l => ({
-        html: `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`,
-      })),
+      row2.map(l => ({ html: logoHtml(l) })),
       { direction: 'right', speed: 8, gap: '80px' }
     );
   });

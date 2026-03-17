@@ -1197,9 +1197,9 @@
     font-size: 15px;
   }
 
-  /* Force ALL logos uniform on mobile — !important overrides inline displayHeight */
+  /* No inline displayHeight on mobile — CSS controls uniform sizing */
   .media-logo {
-    height: 28px !important;
+    height: 28px;
   }
 
   /* Left-align mission section on mobile for consistency */
@@ -1321,7 +1321,7 @@
   }
 
   .media-logo {
-    height: 24px !important;
+    height: 24px;
   }
 
   .client-logo {
