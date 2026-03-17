@@ -19,7 +19,7 @@ import { mediaLogos } from '../../data/media-logos.js';
 import { team } from '../../data/team.js';
 import { caseStudies } from '../../data/case-studies.js';
 import { services } from '../../data/services.js';
-import { coverageItems } from '../../data/coverage.js';
+import { coverageItems, OUTLET_LOGO_MAP } from '../../data/coverage.js';
 import { testimonials } from '../../data/testimonials.js';
 
 // Data files already have corrected local paths from the image-fixer agent.
@@ -169,12 +169,16 @@ function buildMission() {
   section.id = 'mission';
   section.className = 'mission-section section-padding';
 
+  const secondaryHtml = Array.isArray(missionContent.secondaryText)
+    ? missionContent.secondaryText.map(p => `<p class="mission-secondary-text">${p}</p>`).join('')
+    : `<p class="mission-secondary-text">${missionContent.secondaryText}</p>`;
+
   section.innerHTML = `
     <div class="container">
       ${createDivider(missionContent.sectionLabel)}
       <div class="mission-body">
         <h2 class="mission-main-text" data-animate="words">${missionContent.mainText}</h2>
-        <p class="mission-secondary-text">${missionContent.secondaryText}</p>
+        ${secondaryHtml}
         <a href="#clients" class="mission-cta">${missionContent.ctaText} <span class="mission-cta-arrow">→</span></a>
       </div>
     </div>
@@ -340,17 +344,38 @@ function buildCoverageCarousel() {
   section.id = 'coverage';
   section.className = 'coverage-section section-padding';
 
-  const tiles = coverageItems.map(item => `
-    <a href="${item.externalUrl}" class="coverage-tile" target="_blank" rel="noopener noreferrer">
-      <div class="coverage-tile-img-wrap">
-        <img src="${item.screenshotImage}" alt="${item.title}" class="coverage-tile-img" loading="lazy" onerror="this.style.display='none'">
-      </div>
-      <div class="coverage-tile-info">
-        <span class="coverage-tile-pub">${item.publication}</span>
-        <p class="coverage-tile-title">${item.title}</p>
-      </div>
-    </a>
-  `).join('');
+  // Show most recent 20 items in the carousel
+  const recentItems = coverageItems.slice(0, 20);
+
+  const tiles = recentItems.map(item => {
+    const logoPath = OUTLET_LOGO_MAP[item.logoKey];
+    const logoHtml = logoPath
+      ? `<img src="${logoPath}" alt="${item.publication}" class="coverage-tile-logo-img" loading="lazy">`
+      : `<span class="coverage-tile-logo-text">${item.publication}</span>`;
+
+    const tag = item.externalUrl ? 'a' : 'div';
+    const linkAttrs = item.externalUrl
+      ? `href="${item.externalUrl}" target="_blank" rel="noopener noreferrer"`
+      : '';
+
+    const d = new Date(item.datePublished + 'T12:00:00');
+    const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+    return `
+      <${tag} class="coverage-tile" ${linkAttrs}>
+        <div class="coverage-tile-logo-wrap">
+          ${logoHtml}
+        </div>
+        <div class="coverage-tile-info">
+          <div class="coverage-tile-meta">
+            <span class="coverage-tile-date">${dateStr}</span>
+            <span class="coverage-tile-client">${item.client}</span>
+          </div>
+          <p class="coverage-tile-title">${item.title}</p>
+        </div>
+      </${tag}>
+    `;
+  }).join('');
 
   section.innerHTML = `
     <div class="container">

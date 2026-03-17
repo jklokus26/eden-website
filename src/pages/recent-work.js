@@ -1,25 +1,59 @@
 import '../styles/gallery.css';
-import { coverageItems } from '../../data/coverage.js';
+import { coverageItems, OUTLET_LOGO_MAP } from '../../data/coverage.js';
 import { createDivider } from '../components/section-divider.js';
 import { initAnimations } from '../animations.js';
+
+const ITEMS_PER_PAGE = 15;
+
+function formatDate(isoDate) {
+  const d = new Date(isoDate + 'T12:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function buildLogoHtml(item) {
+  const logoPath = OUTLET_LOGO_MAP[item.logoKey];
+  if (logoPath) {
+    return `<img src="${logoPath}" alt="${item.publication}" class="coverage-row-logo-img" loading="lazy">`;
+  }
+  // Text fallback for outlets without a logo file
+  return `<span class="coverage-row-logo-text">${item.publication}</span>`;
+}
+
+function buildRow(item) {
+  const tag = item.externalUrl ? 'a' : 'div';
+  const linkAttrs = item.externalUrl
+    ? `href="${item.externalUrl}" target="_blank" rel="noopener noreferrer"`
+    : '';
+
+  return `
+    <${tag} class="coverage-row" data-client="${item.client}" ${linkAttrs}>
+      <div class="coverage-row-logo">
+        ${buildLogoHtml(item)}
+      </div>
+      <div class="coverage-row-content">
+        <div class="coverage-row-meta">
+          <span class="coverage-row-date">${formatDate(item.datePublished)}</span>
+          <span class="coverage-row-dot">\u00B7</span>
+          <span class="coverage-row-client">${item.client}</span>
+        </div>
+        <h3 class="coverage-row-title">${item.title}</h3>
+        ${item.summary ? `<p class="coverage-row-summary">${item.summary}</p>` : ''}
+      </div>
+      ${item.externalUrl ? '<span class="coverage-row-arrow">\u2192</span>' : ''}
+    </${tag}>
+  `;
+}
 
 function buildRecentWork() {
   const main = document.getElementById('recent-work');
   if (!main) return;
 
-  const tiles = coverageItems.map(item => `
-    <a href="${item.externalUrl}" class="coverage-grid-tile" data-category="${item.coverageType}" target="_blank" rel="noopener noreferrer">
-      <div class="coverage-grid-tile-logo">
-        <img src="${item.logoImage}" alt="${item.publication}" class="coverage-grid-tile-logo-img" loading="lazy">
-      </div>
-      <div class="coverage-grid-tile-img-wrap">
-        <img src="${item.screenshotImage}" alt="${item.title}" loading="lazy" onerror="this.style.display='none'">
-      </div>
-      <div class="coverage-grid-tile-info">
-        <p class="coverage-grid-tile-title">${item.title}</p>
-      </div>
-    </a>
-  `).join('');
+  // Get unique clients for filter chips
+  const clients = [...new Set(coverageItems.map(i => i.client))];
+
+  const filterChips = clients.map(c =>
+    `<button class="coverage-filter" data-filter="${c}">${c}</button>`
+  ).join('');
 
   main.innerHTML = `
     <section class="gallery-hero section-padding">
@@ -32,38 +66,59 @@ function buildRecentWork() {
       <div class="container">
         <div class="coverage-filters">
           <button class="coverage-filter active" data-filter="all">All</button>
-          <button class="coverage-filter" data-filter="Broadcast">Broadcast</button>
-          <button class="coverage-filter" data-filter="Podcast">Podcast</button>
-          <button class="coverage-filter" data-filter="Article">Article</button>
+          ${filterChips}
         </div>
-        <div class="coverage-static-grid">
-          ${tiles}
+        <div class="coverage-list" id="coverage-list"></div>
+        <div class="coverage-load-more-wrap" id="load-more-wrap">
+          <button class="coverage-load-more" id="load-more-btn">Load More</button>
         </div>
       </div>
     </section>
   `;
 
-  // Filter chip interactivity
-  const filters = main.querySelectorAll('.coverage-filter');
-  const grid = main.querySelector('.coverage-static-grid');
+  // State
+  let activeFilter = 'all';
+  let visibleCount = ITEMS_PER_PAGE;
 
+  const listEl = main.querySelector('#coverage-list');
+  const loadMoreBtn = main.querySelector('#load-more-btn');
+  const loadMoreWrap = main.querySelector('#load-more-wrap');
+
+  function getFiltered() {
+    if (activeFilter === 'all') return coverageItems;
+    return coverageItems.filter(i => i.client === activeFilter);
+  }
+
+  function render() {
+    const filtered = getFiltered();
+    const toShow = filtered.slice(0, visibleCount);
+    listEl.innerHTML = toShow.map(buildRow).join('');
+
+    // Show/hide Load More
+    if (visibleCount >= filtered.length) {
+      loadMoreWrap.style.display = 'none';
+    } else {
+      loadMoreWrap.style.display = '';
+    }
+  }
+
+  render();
+
+  // Load More
+  loadMoreBtn.addEventListener('click', () => {
+    visibleCount += ITEMS_PER_PAGE;
+    render();
+  });
+
+  // Filter chips
+  const filters = main.querySelectorAll('.coverage-filter');
   filters.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-
-      // Update active chip
       filters.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      // Show/hide tiles
-      const tiles = grid.querySelectorAll('.coverage-grid-tile');
-      tiles.forEach(tile => {
-        if (filter === 'all' || tile.dataset.category === filter) {
-          tile.classList.remove('hidden');
-        } else {
-          tile.classList.add('hidden');
-        }
-      });
+      activeFilter = btn.dataset.filter;
+      visibleCount = ITEMS_PER_PAGE;
+      render();
     });
   });
 }

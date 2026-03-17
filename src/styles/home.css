@@ -500,7 +500,7 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-2);
 }
 
@@ -569,7 +569,7 @@
   color: rgba(255, 255, 255, 0.65);
   line-height: 1.55;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -658,13 +658,15 @@
 .coverage-tile {
   display: flex;
   flex-direction: column;
-  width: 320px;
+  width: 300px;
   flex-shrink: 0;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   transition: border-color 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   position: relative;
+  text-decoration: none;
+  color: inherit;
 }
 
 .coverage-tile::before {
@@ -694,46 +696,63 @@
   opacity: 1;
 }
 
-.coverage-tile-img-wrap {
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 16px 16px 0 0;
+.coverage-tile-logo-wrap {
+  padding: 20px 20px 12px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
 }
 
-.coverage-tile-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+.coverage-tile-logo-img {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
-.coverage-tile:hover .coverage-tile-img {
-  transform: scale(1.03);
+.coverage-tile-logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .coverage-tile-info {
-  padding: 14px 16px;
+  padding: 0 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  flex: 1;
 }
 
-.coverage-tile-pub {
+.coverage-tile-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coverage-tile-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-grey);
+}
+
+.coverage-tile-client {
   font-size: 11px;
   font-weight: 700;
   color: var(--gradient-mint);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .coverage-tile-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text);
   line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1285,6 +1304,10 @@
   .coverage-tile {
     width: 260px;
   }
+
+  .coverage-tile-logo-img {
+    height: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1339,7 +1362,7 @@
   }
 
   .coverage-tile {
-    width: 220px;
+    width: 240px;
   }
 
   .contact-field input,

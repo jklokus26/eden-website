@@ -59,8 +59,8 @@ function buildServicesPage() {
     <section class="services-content section-padding">
       <div class="container">
         <div class="services-intro-text">
-          <p>Your stakeholders don\u2019t live in one place. Your investors read Bloomberg. Your developers follow crypto Twitter. Your next partner is asking ChatGPT who the leaders in your space are. And the deal that changes your trajectory might close over dinner, not over email.</p>
-          <p>Eden operates across three surfaces \u2014 earned media, AI visibility, and in-person gravity \u2014 because credibility compounds only when they work together. Each of our four service pillars is designed to reinforce the others.</p>
+          <p>Your stakeholders don\u2019t live in one place. Your investors read Bloomberg. Your developers follow crypto Twitter. And the deal that changes your trajectory might close over dinner, not over email.</p>
+          <p>Eden operates across every surface where credibility is built and deals get done. Our three practice areas are designed to reinforce each other, because credibility compounds only when every surface is working.</p>
         </div>
         ${pillars}
       </div>

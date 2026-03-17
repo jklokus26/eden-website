@@ -1,13 +1,18 @@
 export const heroContent = {
   headline: 'Coverage fades.',
   gradientText: 'Credibility compounds.',
-  subtitle: 'Your investors read Bloomberg. Your users are querying Claude. Your next partner is in the rooms where deals close. We make sure you show up everywhere that matters.',
+  subtitle: 'Your investors read Bloomberg. Your users are querying AI. Your next partner is in the rooms where deals close. We make sure you show up everywhere that matters.',
 };
 
 export const missionContent = {
   sectionLabel: 'Our Manifesto',
   mainText: "The old model is broken. The new one is incomplete.",
-  secondaryText: "Traditional agencies sell impressions. The \u201Cgo direct\u201D crowd says skip the press entirely. Both are wrong. A Bloomberg placement trains the AI model that informs the investor who meets your CEO at the dinner that closes the deal. Every surface reinforces the next. Or none of them work at all.",
+  secondaryText: [
+    'Traditional agencies pitch reporters and pray for coverage. The \u201Cgo direct\u201D crowd says skip the press entirely. Both are wrong.',
+    'Today, a Bloomberg placement isn\u2019t just about eyeballs. It serves as training data for the AI models that surface your company to your next investor. At an invite-only dinner, that investor and your CEO connect \u2014 and the deal is all but done. Every surface reinforces the next.',
+    'Most agencies work one surface at a time. Pitch, wait, report. Eden works them simultaneously. We don\u2019t pitch and wait. We build the conditions for coverage to happen.',
+    'That\u2019s not a service you can replicate with a bigger team or a better tool. It\u2019s a position in the ecosystem that took years to build. And it\u2019s what your company gets access to when you work with Eden.',
+  ],
   ctaText: 'Meet our clients',
 };
 
