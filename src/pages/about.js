@@ -40,18 +40,12 @@ function buildAbout() {
   }).join('');
 
   main.innerHTML = `
-    <section class="gallery-hero section-padding">
+    <section class="about-story section-padding" style="padding-top: var(--sp-6);">
       <div class="container">
         ${createDivider('About Us')}
-        <h1 class="gallery-headline" data-animate="words">The team behind your next headline.</h1>
-      </div>
-    </section>
-
-    <section class="about-story section-padding">
-      <div class="container">
+        <h1 class="gallery-headline" data-animate="words" style="margin-bottom: var(--sp-3);">Our Story</h1>
         <div class="about-story-grid">
           <div class="about-story-text">
-            <h2 class="about-section-heading" data-animate="words">Our Story</h2>
             <div class="about-story-body">
               <p>Eden is a strategic communications firm for companies at the frontier of finance and technology.</p>
               <p>We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
