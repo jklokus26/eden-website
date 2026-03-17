@@ -40,9 +40,12 @@
 
 .about-team-group-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   border-radius: var(--card-radius);
+  object-fit: cover;
+  object-position: center 35%;
+  max-height: 620px;
 }
 
 /* ─── Team Grid ──────────────────────────────────────────────────────── */
