@@ -150,14 +150,14 @@ function buildMediaTicker() {
       row1.map(l => ({
         html: `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`,
       })),
-      { direction: 'left', speed: 6, gap: '80px' }
+      { direction: 'left', speed: 15, gap: '80px' }
     );
     createTicker(
       tickerWrap2,
       row2.map(l => ({
         html: `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`,
       })),
-      { direction: 'right', speed: 6, gap: '80px' }
+      { direction: 'right', speed: 15, gap: '80px' }
     );
   });
 
