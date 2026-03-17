@@ -26,8 +26,8 @@ export function initWordAnimation() {
         stagger: { amount: 0.5 },
         scrollTrigger: {
           trigger: el,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          start: 'top 95%',
+          toggleActions: 'play none none none',
         },
       });
     });
