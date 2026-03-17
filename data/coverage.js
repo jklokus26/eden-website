@@ -1,14 +1,15 @@
-// Outlet logo map: maps logoKey → local image path
-// Outlets without a logo file use text-only display in the UI
+// Outlet logo map: maps logoKey → { src, height }
+// height is the display height in px, tuned so all logos have similar visual weight
+// Outlets without an entry use text-only display in the UI
 export const OUTLET_LOGO_MAP = {
-  'bloomberg': '/assets/logos/bloomberg.png',
-  'cnbc': '/assets/logos/cnbc.png',
-  'coindesk': '/assets/logos/coindesk.png',
-  'financial-times': '/assets/logos/financial-times.png',
-  'forbes': '/assets/logos/forbes.png',
-  'fortune': '/assets/logos/fortune.png',
-  'new-york-times': '/assets/logos/new-york-times.png',
-  'bloomberg-law': '/assets/logos/bloomberg-law.svg',
+  'bloomberg':      { src: '/assets/logos/bloomberg.png',      height: 28 },
+  'cnbc':           { src: '/assets/logos/media-logo-1.png',   height: 28 },
+  'coindesk':       { src: '/assets/logos/coindesk.png',       height: 28 },
+  'financial-times':{ src: '/assets/logos/financial-times.png', height: 22 },
+  'forbes':         { src: '/assets/logos/forbes.png',         height: 32 },
+  'fortune':        { src: '/assets/logos/fortune.png',        height: 28 },
+  'new-york-times': { src: '/assets/logos/new-york-times.png', height: 28 },
+  'bloomberg-law':  { src: '/assets/logos/bloomberg-law.svg',  height: 26 },
 };
 
 export const coverageItems = [

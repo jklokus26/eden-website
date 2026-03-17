@@ -348,9 +348,9 @@ function buildCoverageCarousel() {
   const recentItems = coverageItems.slice(0, 20);
 
   const tiles = recentItems.map(item => {
-    const logoPath = OUTLET_LOGO_MAP[item.logoKey];
-    const logoHtml = logoPath
-      ? `<img src="${logoPath}" alt="${item.publication}" class="coverage-tile-logo-img" loading="lazy">`
+    const logo = OUTLET_LOGO_MAP[item.logoKey];
+    const logoHtml = logo
+      ? `<img src="${logo.src}" alt="${item.publication}" class="coverage-tile-logo-img" style="height:${logo.height}px" loading="lazy">`
       : `<span class="coverage-tile-logo-text">${item.publication}</span>`;
 
     const tag = item.externalUrl ? 'a' : 'div';

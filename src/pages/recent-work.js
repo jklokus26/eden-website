@@ -11,9 +11,9 @@ function formatDate(isoDate) {
 }
 
 function buildLogoHtml(item) {
-  const logoPath = OUTLET_LOGO_MAP[item.logoKey];
-  if (logoPath) {
-    return `<img src="${logoPath}" alt="${item.publication}" class="coverage-row-logo-img" loading="lazy">`;
+  const logo = OUTLET_LOGO_MAP[item.logoKey];
+  if (logo) {
+    return `<img src="${logo.src}" alt="${item.publication}" class="coverage-row-logo-img" style="height:${logo.height}px" loading="lazy">`;
   }
   // Text fallback for outlets without a logo file
   return `<span class="coverage-row-logo-text">${item.publication}</span>`;

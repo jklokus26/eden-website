@@ -700,23 +700,25 @@
   padding: 20px 20px 12px;
   display: flex;
   align-items: center;
-  min-height: 56px;
+  justify-content: center;
+  min-height: 60px;
 }
 
 .coverage-tile-logo-img {
-  height: 30px;
+  /* height set via inline style per logo for uniform visual weight */
   width: auto;
-  max-width: 160px;
+  max-width: 180px;
   object-fit: contain;
   filter: brightness(0) invert(1) drop-shadow(0 0 1px white);
 }
 
 .coverage-tile-logo-text {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 22px;
+  font-weight: 900;
   color: #ffffff;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .coverage-tile-info {
@@ -1306,8 +1308,8 @@
     width: 260px;
   }
 
-  .coverage-tile-logo-img {
-    height: 26px;
+  .coverage-tile-logo-text {
+    font-size: 18px;
   }
 }
 
