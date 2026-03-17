@@ -64,7 +64,7 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f3b6872f67e0e9a1895_fortune_logo.svg.png',
     alt: 'Fortune magazine logo',
     row: 1,
-    displayHeight: 30,
+    displayHeight: 26,
   },
   {
     name: 'Fox Business',
@@ -79,7 +79,7 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235ff455a7b9c770358448_Inc._magazine_logo%201%20(Traced).png',
     alt: 'Inc. magazine logo',
     row: 1,
-    displayHeight: 30,
+    displayHeight: 22,
   },
   {
     name: 'New York Post',
@@ -117,7 +117,7 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fc0d35d72fb4da04def_financial-times-logo.png',
     alt: 'Financial Times newspaper logo',
     row: 1,
-    displayHeight: 20,
+    displayHeight: 28,
   },
   {
     name: 'CoinTelegraph',
@@ -125,6 +125,6 @@ export const mediaLogos = [
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fd0a7e087aa01c94b2e_cointelegraph_logo.png',
     alt: 'CoinTelegraph crypto news logo',
     row: 1,
-    displayHeight: 38,
+    displayHeight: 30,
   },
 ];
