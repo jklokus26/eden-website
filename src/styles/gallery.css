@@ -391,26 +391,25 @@ a.coverage-row:hover {
 
 .coverage-row-logo {
   flex-shrink: 0;
-  width: 140px;
+  width: 160px;
   min-height: 40px;
   display: flex;
   align-items: center;
 }
 
 .coverage-row-logo-img {
-  height: 22px;
+  height: 30px;
   width: auto;
-  max-width: 130px;
+  max-width: 150px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
+  filter: brightness(0) invert(1) drop-shadow(0 0 1px white);
 }
 
 .coverage-row-logo-text {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.04em;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   line-height: 1.3;
 }
@@ -509,16 +508,16 @@ a.coverage-row:hover .coverage-row-title {
 
 @media (max-width: 768px) {
   .coverage-row-logo {
-    width: 100px;
+    width: 120px;
   }
 
   .coverage-row-logo-img {
-    height: 18px;
-    max-width: 90px;
+    height: 24px;
+    max-width: 110px;
   }
 
   .coverage-row-logo-text {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .coverage-row-arrow {

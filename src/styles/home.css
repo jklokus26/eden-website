@@ -205,7 +205,7 @@
   font-size: var(--body);
   color: var(--accent-grey);
   line-height: 1.6;
-  max-width: 720px;
+  max-width: 820px;
 }
 
 .mission-cta {
@@ -704,17 +704,18 @@
 }
 
 .coverage-tile-logo-img {
-  height: 24px;
+  height: 30px;
   width: auto;
+  max-width: 160px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) drop-shadow(0 0 1px white);
 }
 
 .coverage-tile-logo-text {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.06em;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -1306,7 +1307,7 @@
   }
 
   .coverage-tile-logo-img {
-    height: 20px;
+    height: 26px;
   }
 }
 
