@@ -514,12 +514,12 @@ a.coverage-row:hover .coverage-row-title {
 
   /* Override inline heights on mobile for uniform sizing */
   .coverage-row-logo-img {
-    max-width: 150px;
-    height: 22px !important;
+    max-width: 180px;
+    height: 28px !important;
   }
 
   .coverage-row-logo-text {
-    font-size: 16px;
+    font-size: 22px;
     text-align: left;
   }
 
@@ -553,11 +553,11 @@ a.coverage-row:hover .coverage-row-title {
   }
 
   .coverage-row-logo-img {
-    height: 20px !important;
+    height: 26px !important;
   }
 
   .coverage-row-logo-text {
-    font-size: 14px;
+    font-size: 20px;
   }
 
   .coverage-filters {
