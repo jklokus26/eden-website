@@ -59,10 +59,9 @@
 }
 
 .services-pillar-title {
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(17px, 1.6vw, 21px);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--text);
   margin: 0;
   transition: color 0.2s ease;
@@ -165,11 +164,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-2);
-  padding: var(--sp-3) 0 var(--sp-2);
-  font-size: clamp(20px, 2vw, 26px);
+  padding: var(--sp-2) 0;
+  font-size: clamp(17px, 1.6vw, 21px);
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--text);
   cursor: pointer;
   text-align: left;

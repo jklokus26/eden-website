@@ -1199,7 +1199,7 @@
 
   /* Force uniform media logo height on mobile, override inline displayHeight */
   .media-logo {
-    height: 24px !important;
+    height: 26px !important;
   }
 
   /* Left-align mission section on mobile for consistency */
@@ -1272,7 +1272,7 @@
   }
 
   .media-logo {
-    height: 24px;
+    height: 26px !important;
   }
 
   .client-logo {
@@ -1290,7 +1290,7 @@
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: clamp(28px, 7.5vw, 42px);
+    font-size: clamp(36px, 10vw, 52px);
   }
 
   .featured-cs-headline,
