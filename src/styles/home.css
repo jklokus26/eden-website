@@ -1270,11 +1270,20 @@
 
   .team-modal-photo {
     aspect-ratio: 4 / 3;
-    max-height: 300px;
+    max-height: 220px;
   }
 
   .team-modal-info {
     padding: var(--sp-2);
+  }
+
+  .team-modal-name {
+    font-size: 22px;
+  }
+
+  .team-modal-bio {
+    font-size: 13px;
+    line-height: 1.6;
   }
 
   .clients-headline {
@@ -1308,8 +1317,13 @@
     width: 260px;
   }
 
+  .coverage-tile-logo-wrap {
+    justify-content: flex-start;
+  }
+
   .coverage-tile-logo-text {
-    font-size: 18px;
+    font-size: 16px;
+    text-align: left;
   }
 }
 

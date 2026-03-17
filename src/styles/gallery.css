@@ -395,7 +395,6 @@ a.coverage-row:hover {
   min-height: 48px;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .coverage-row-logo-img {
@@ -413,7 +412,7 @@ a.coverage-row:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
 }
 
 .coverage-row-content {
@@ -515,10 +514,12 @@ a.coverage-row:hover .coverage-row-title {
 
   .coverage-row-logo-img {
     max-width: 130px;
+    height: 24px;
   }
 
   .coverage-row-logo-text {
-    font-size: 18px;
+    font-size: 16px;
+    text-align: left;
   }
 
   .coverage-row-arrow {
@@ -546,6 +547,15 @@ a.coverage-row:hover .coverage-row-title {
 
   .coverage-row-logo {
     width: auto;
+    min-height: auto;
+  }
+
+  .coverage-row-logo-img {
+    height: 22px;
+  }
+
+  .coverage-row-logo-text {
+    font-size: 15px;
   }
 
   .coverage-filters {
