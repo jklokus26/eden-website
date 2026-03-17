@@ -1197,9 +1197,10 @@
     font-size: 15px;
   }
 
-  /* Force uniform media logo height on mobile, override inline displayHeight */
+  /* Force uniform media logo sizing on mobile, override inline displayHeight */
   .media-logo {
-    height: 30px !important;
+    height: 32px !important;
+    max-width: 120px;
   }
 
   /* Left-align mission section on mobile for consistency */
@@ -1272,7 +1273,8 @@
   }
 
   .media-logo {
-    height: 30px !important;
+    height: 32px !important;
+    max-width: 120px;
   }
 
   .client-logo {
@@ -1290,7 +1292,7 @@
 
 @media (max-width: 480px) {
   .hero-headline {
-    font-size: clamp(32px, 9vw, 46px);
+    font-size: clamp(38px, 11vw, 56px);
   }
 
   .featured-cs-headline,
@@ -1359,7 +1361,8 @@
 
   /* Force uniform on small mobile too */
   .media-logo {
-    height: 28px !important;
+    height: 30px !important;
+    max-width: 110px;
   }
 
   .media-ticker-section {
