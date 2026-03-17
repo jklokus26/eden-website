@@ -3,7 +3,7 @@
 // Outlets without an entry use text-only display in the UI
 export const OUTLET_LOGO_MAP = {
   'bloomberg':      { src: '/assets/logos/bloomberg.png',      height: 34 },
-  'cnbc':           { src: '/assets/logos/media-logo-1.png',   height: 28 },
+  'cnbc':           { src: '/assets/logos/cnbc-text.svg',       height: 28 },
   'coindesk':       { src: '/assets/logos/coindesk.png',       height: 34 },
   'financial-times':{ src: '/assets/logos/financial-times.png', height: 22 },
   'forbes':         { src: '/assets/logos/forbes.png',         height: 32 },
