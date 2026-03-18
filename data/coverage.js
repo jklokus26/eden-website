@@ -14,15 +14,6 @@ export const OUTLET_LOGO_MAP = {
 
 export const coverageItems = [
   {
-    title: 'Reed Smith Taps Lawyers from 7 Am Law 50 Firms for New Boston Launch',
-    publication: 'American Lawyer',
-    externalUrl: 'https://www.law.com/americanlawyer/2026/03/17/reed-smith-taps-lawyers-from-7-am-law-50-firms-for-new-boston-launch/',
-    datePublished: '2026-03-17',
-    client: 'Reed Smith',
-    logoKey: 'american-lawyer',
-    summary: 'Reed Smith assembles a team from seven Am Law 50 firms to launch its new Boston office.',
-  },
-  {
     title: 'The next big thing in crypto will be tokenized stocks: Here are the likely winners and losers',
     publication: 'Fortune',
     externalUrl: 'https://fortune.com/crypto/2026/03/16/crypto-tokenized-stocks-next-big-thing-reserveone/',
@@ -30,15 +21,6 @@ export const coverageItems = [
     client: 'Ondo',
     logoKey: 'fortune',
     summary: 'Fortune examines how tokenized equities are reshaping crypto markets, with Ondo positioned as a frontrunner.',
-  },
-  {
-    title: 'Reed Smith Hires Entertainment, Media Lawyer Malphettes in Paris',
-    publication: 'Bloomberg Law',
-    externalUrl: 'https://news.bloomberglaw.com/business-and-practice/reed-smith-hires-entertainment-media-lawyer-malphettes-in-paris',
-    datePublished: '2026-03-16',
-    client: 'Reed Smith',
-    logoKey: 'bloomberg-law',
-    summary: 'Reed Smith expands its Paris office with a new entertainment and media law hire.',
   },
   {
     title: 'Bitcoin Rises to $73,000, Boosting Crypto Stocks',
@@ -66,15 +48,6 @@ export const coverageItems = [
     client: 'Wintermute',
     logoKey: 'coindesk',
     summary: 'Bitcoin demonstrates resilience at $70,000, outperforming traditional equities and commodities.',
-  },
-  {
-    title: 'Reed Smith Rehires Corporate Partner Rele From Arnold & Porter',
-    publication: 'Bloomberg Law',
-    externalUrl: 'https://news.bloomberglaw.com/business-and-practice/reed-smith-rehires-corporate-partner-rele-from-arnold-porter',
-    datePublished: '2026-03-11',
-    client: 'Reed Smith',
-    logoKey: 'bloomberg-law',
-    summary: 'Reed Smith brings back a corporate partner from Arnold & Porter to strengthen its transactional practice.',
   },
   {
     title: 'Reed Smith Boosts London NQ Salaries To \u00A3135K',
