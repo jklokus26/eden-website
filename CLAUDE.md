@@ -7,6 +7,7 @@ Marketing website for Eden Communications, a crypto and fintech PR agency.
 
 ## Rules
 
+0. **ALWAYS commit and push directly to the `main` branch.** Do NOT create feature branches, side branches, or branches named `claude/*`. Always use `main`. This repo auto-deploys from `main` to the live site. Feature branches only deploy as previews, which is not what we want.
 1. **Every push is a live deploy.** Changes go live on Vercel within ~60 seconds of pushing to `main`. Before committing, describe what you plan to change and confirm with the user first.
 2. **Only change what was asked for.** Do not make unsolicited changes to files outside the scope of the request. If someone asks to update a team bio, only edit `data/team.js`. Do not also "improve" animations, restyle components, or refactor code.
 3. **Follow existing patterns exactly.** When adding new content (case studies, team members, news items), copy the structure of an existing entry. Do not invent new fields or change the data shape.
