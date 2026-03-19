@@ -14,6 +14,15 @@ export const OUTLET_LOGO_MAP = {
 
 export const coverageItems = [
   {
+    title: 'Eden Communications Appoints Ryan Brack as Senior Vice President to Expand Deep Technology Practice',
+    publication: 'Yahoo Finance',
+    externalUrl: 'https://finance.yahoo.com/news/eden-communications-appoints-ryan-brack-120000755.html',
+    datePublished: '2026-03-18',
+    client: 'Eden Communications',
+    logoKey: 'yahoo-finance',
+    summary: 'Eden Communications appoints Ryan Brack as SVP to lead strategic counsel for clients navigating AI, privacy, and digital transformation, expanding the firm\'s deep technology communications practice.',
+  },
+  {
     title: 'The next big thing in crypto will be tokenized stocks: Here are the likely winners and losers',
     publication: 'Fortune',
     externalUrl: 'https://fortune.com/crypto/2026/03/16/crypto-tokenized-stocks-next-big-thing-reserveone/',
