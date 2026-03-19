@@ -4,3 +4,4 @@ Disallow: /assets/video/
 Disallow: /assets/icons/
 
 Sitemap: https://edencommunications.com/sitemap.xml
+# Auto-deploy test
