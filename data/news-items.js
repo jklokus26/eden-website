@@ -1,15 +1,6 @@
 // News items appearing on the homepage (hp-news-section)
 export const homeNewsItems = [
   {
-    title: 'Eden Communications Appoints Ryan Brack as SVP to Expand Deep Technology Practice',
-    outlet: 'Yahoo Finance',
-    date: 'March 18, 2026',
-    thumbnail: '/assets/images/news-ryan-brack-yahoo.webp',
-    cdnUrl: '',
-    alt: 'Yahoo Finance article about Eden Communications appointing Ryan Brack as SVP',
-    url: 'https://finance.yahoo.com/news/eden-communications-appoints-ryan-brack-120000755.html',
-  },
-  {
     title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose",
     outlet: 'Bloomberg',
     date: 'March 5, 2026',
@@ -58,16 +49,6 @@ export const homeNewsItems = [
 
 // News items appearing on the /news page
 export const newsPageItems = [
-  {
-    title: 'Eden Communications Appoints Ryan Brack as Senior Vice President to Expand Deep Technology Practice',
-    outlet: 'Yahoo Finance',
-    date: 'March 18, 2026',
-    description: 'Eden Communications announced the appointment of Ryan Brack as Senior Vice President to expand the firm\'s deep technology practice. Brack brings over two decades of strategic communications experience from Meta, Google, and roles spanning Silicon Valley, Washington, D.C., and New York City.',
-    thumbnail: '/assets/images/news-ryan-brack-yahoo.webp',
-    cdnUrl: '',
-    alt: 'Yahoo Finance article about Eden Communications appointing Ryan Brack as SVP',
-    url: 'https://finance.yahoo.com/news/eden-communications-appoints-ryan-brack-120000755.html',
-  },
   {
     title: "UN Using Stellar For Refugee Aid Demonstrates Crypto's Purpose: Dixon",
     date: 'March 5, 2026',
