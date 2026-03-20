@@ -1,0 +1,30 @@
+name: Auto-merge Claude branches to main
+
+# Triggers when Claude Code web pushes to any claude/* branch
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Merge Claude branch into main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git merge origin/${{ github.ref_name }} --no-edit
+          git push origin main
+
+      - name: Delete Claude branch
+        run: git push origin --delete ${{ github.ref_name }}
+        continue-on-error: true
