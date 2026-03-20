@@ -38,7 +38,7 @@ export const footerContent = {
   subheading: "We'll deliver impact.",
   email: 'hello@edencommunications.com',
   phone: '+1 201-279-5403',
-  copyright: '© 2026 Eden Communications LLC',
+  copyright: '© 2026 Eden Communications LLC test',
   companyName: 'Eden Communications LLC',
   address: '600 Lexington Avenue',
   cityStateZip: 'New York NY 10022',
