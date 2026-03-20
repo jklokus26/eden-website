@@ -1,30 +1,68 @@
 name: Auto-merge Claude branches to main
 
-# Triggers when Claude Code web pushes to any claude/* branch
+# Two triggers:
+# 1. pull_request: fires immediately when Claude creates a PR (runs from main, so workflow exists)
+# 2. schedule: every 5 min fallback for branches pushed WITHOUT a PR
 on:
-  push:
-    branches:
-      - 'claude/**'
+  pull_request:
+    types: [opened, reopened, synchronize]
+  schedule:
+    - cron: '*/5 * * * *'
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
-      - name: Checkout repo
+      - name: Checkout main
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
 
-      - name: Merge Claude branch into main
+      - name: Merge Claude branches
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git merge origin/${{ github.ref_name }} --no-edit
-          git push origin main
+          git fetch origin
 
-      - name: Delete Claude branch
-        run: git push origin --delete ${{ github.ref_name }}
-        continue-on-error: true
+          # Find all claude/* branches
+          CLAUDE_BRANCHES=$(git branch -r | grep 'origin/claude/' | sed 's|origin/||' | tr -d ' ')
+
+          if [ -z "$CLAUDE_BRANCHES" ]; then
+            echo "No claude/* branches to merge"
+            exit 0
+          fi
+
+          MERGED=0
+          for branch in $CLAUDE_BRANCHES; do
+            echo "Merging $branch into main..."
+            if git merge "origin/$branch" --no-edit; then
+              echo "Deleting remote branch $branch..."
+              git push origin --delete "$branch" 2>/dev/null || true
+              MERGED=$((MERGED + 1))
+            else
+              echo "WARNING: Merge conflict on $branch, skipping"
+              git merge --abort
+            fi
+          done
+
+          if [ $MERGED -gt 0 ]; then
+            git push origin main
+            echo "Merged $MERGED branch(es) to main"
+          fi
+
+      - name: Close related PRs
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Close any open PRs from claude/* branches (they're already merged)
+          gh pr list --state open --head "claude/" --json number,headRefName --jq '.[] | select(.headRefName | startswith("claude/")) | .number' 2>/dev/null | while read pr_num; do
+            echo "Closing PR #$pr_num (already merged)"
+            gh pr close "$pr_num" 2>/dev/null || true
+          done
