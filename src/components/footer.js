@@ -32,7 +32,7 @@ export function initFooter() {
             <a href="https://www.instagram.com/edencomms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on Instagram">${INSTAGRAM_SVG}</a>
             <a href="https://www.linkedin.com/company/eden-comms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on LinkedIn">${LINKEDIN_SVG}</a>
           </div>
-          <span class="footer-copy">&copy; 2026 Eden Communications</span>
+          <span class="footer-copy">&copy; 2026 Eden Communications Test</span>
         </div>
       </div>
     </div>
