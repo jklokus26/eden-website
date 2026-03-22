@@ -129,11 +129,10 @@ export const mediaLogos = [
   },
   {
     name: 'The Wall Street Journal',
-    logo: '/assets/logos/wsj-text.svg',
+    logo: '/assets/logos/wsj-text.png',
     alt: 'The Wall Street Journal logo',
     row: 1,
     displayHeight: 28,
-    isTextLogo: true,
   },
   {
     name: 'The Block',
