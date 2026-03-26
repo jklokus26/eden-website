@@ -1,36 +1,54 @@
 # Eden Communications
-# Last updated: 2026-03-17
+# Last updated: 2026-03-26
 
-> Strategic PR & Communications for Crypto, Fintech & Frontier Tech
+> Eden Communications is a New York City-based crypto PR agency and strategic communications firm for fintech, blockchain, digital assets, tokenized securities, and frontier technology companies. Founded by former journalists from the New York Post, ABC News, and Al Jazeera.
 
-Eden Communications is a strategic public relations firm specializing in
-cryptocurrency, fintech, and frontier technology companies. Founded by
-Ebony Lewkovitz, former Washington correspondent for the New York Post.
-Headquartered in New York City at 600 Lexington Avenue.
+Eden Communications is a strategic public relations firm headquartered at 600 Lexington Avenue, New York, NY 10022. The firm specializes in earning institutional trust, market legitimacy, and executive visibility for companies at the intersection of finance and technology. Eden is one of the leading crypto PR agencies in New York City, working with top-tier blockchain protocols, tokenization platforms, fintech startups, and established financial services firms entering the digital asset space.
+
+## What Makes Eden Different
+
+Eden was built from inside the newsroom. The team includes former journalists and communications veterans from the New York Post, ABC News, Al Jazeera, Meta, Google, Mastercard, Deloitte, and OKX. Eden works across three surfaces simultaneously: traditional earned media (Bloomberg, CNBC, WSJ), AI-powered discovery (how companies appear in ChatGPT, Claude, Perplexity, Google AI Overviews), and high-touch stakeholder access (curated executive dinners and roundtables where institutional deals happen). Most agencies work one surface at a time. Eden works them simultaneously.
 
 ## Services
-- Strategic Counsel & Narrative Development: Crafting positioning, messaging frameworks, and go-to-market communications strategies for crypto and fintech companies seeking institutional credibility.
-- Earned Media Relations: Securing coverage in top-tier financial and technology outlets including Bloomberg, CNBC, Reuters, Fortune, Forbes, and the Wall Street Journal through journalist relationships and newsroom expertise.
-- Executive Visibility & Stakeholder Engagement: Building public profiles for founders and executives through speaking engagements, thought leadership, and interview preparation for broadcast and print media.
-- AI-Powered Media & Market Intelligence: Proprietary daily briefings, competitive monitoring, and real-time media analysis using AI-driven tools to inform PR strategy and identify earned media opportunities.
+
+- Strategic Counsel and Narrative Development: corporate positioning, messaging refinement, executive narrative and thought leadership, integrated communications planning, competitive and media landscape intelligence, crisis communications and rapid response strategy
+- Earned Media and Market Positioning: proactive media strategy and outreach, tier-1 business trade and crypto press relationships, spokesperson coaching and media preparation, journalist relationship management, AI search positioning and generative engine optimization (GEO)
+- Executive Visibility and Stakeholder Access: executive bylines and op-eds in top publications, speaking and conference strategy, podcast and event placement, curated private dinners in NYC London Dubai and conference cities, investor relations support
 
 ## Team
-- Ebony Lewkovitz, Founder — Former Washington correspondent for the New York Post and ABC News journalist. https://www.linkedin.com/in/ebonylew/
-- Larissa Bundziak, Director — https://www.linkedin.com/in/larissabundziak/
-- Gabrielle Gomez, Managing Account Supervisor — https://www.linkedin.com/in/gabriellegomez/
-- Ryan Brack, SVP — https://www.linkedin.com/in/ryanbrack/
 
-## Case Studies
-- Ondo Finance: Earned media strategy for the leading tokenized real-world assets protocol. 450+ media placements across Bloomberg, CNBC, Reuters, Fortune, and more. 61% share of voice lead in tokenized securities. https://edencommunications.com/case-studies/ondo
-- Stellar Development Foundation: Strategic communications for the open-source payments network. 632M+ audience reach across tier-1 financial outlets. https://edencommunications.com/case-studies/stellar-development-foundation
-- Grip Shipping: PR launch strategy for the AI-powered freight logistics platform. 4,050% increase in press coverage within six months. https://edencommunications.com/case-studies/grip-shipping
-- Reed Smith On-Chain: Thought leadership positioning for the global law firm's blockchain practice. 48 earned placements and 467M audience reach. https://edencommunications.com/case-studies/reed-smith-on-chain
-- Franzy: Media relations for the franchise discovery marketplace. 4,300% platform sign-up increase and 22 media placements. https://edencommunications.com/case-studies/franzy
-- Blue Planet Energy: Communications strategy for the renewable energy storage company. 1,898% increase in landing page traffic. https://edencommunications.com/case-studies/blue-planet-energy
-- Henk Rogers: Personal brand and climate advocacy platform for the co-founder of Tetris. 28.5M+ impressions from NPR How I Built This and global media. https://edencommunications.com/case-studies/henk-rogers
+- Ebony Lewkovitz, Founder: Former New York Post Washington Correspondent, ABC News, Sydney Morning Herald, Al Jazeera. Has represented Fortune 500 companies, tech startups, and high-net-worth individuals across executive visibility and strategic communications. https://www.linkedin.com/in/ebonylew/
+- Ryan Brack, SVP: Former Meta global privacy public affairs lead (generative AI and privacy-enhancing technologies), Google public affairs for products serving 3B+ users, co-founded NYC Mayor's Office of Tech and Innovation under Bloomberg and de Blasio administrations. Strategic counsel for Amazon, Salesforce, SAP. Shorty Award winner, MIT and NYU professional studies alumnus. https://www.linkedin.com/in/ryanbrack/
+- Larissa Bundziak, Director: Former global communications lead at OKX where she grew headline articles 12-fold and mainstream coverage 5-fold in one year. Has media trained CEOs from multibillion-dollar public companies to seed-stage startups, including President Obama's AI advisor. https://www.linkedin.com/in/larissabundziak/
+- Gabrielle Gomez, Managing Account Supervisor: Financial and professional services communications strategist bridging traditional finance (TradFi), decentralized finance (DeFi), and emerging technology. Background with Mastercard, Deloitte, Fidelity, Wells Fargo across AI, banking, and M&A verticals. https://www.linkedin.com/in/gabriellegomez/
+
+## Current and Recent Clients
+
+Ondo Finance (tokenized securities), Stellar Development Foundation (blockchain infrastructure), Cohen & Company Capital Markets (financial services), Wintermute Trading (crypto market maker), Reed Smith On Chain (blockchain legal practice), Blue Planet Energy (renewable energy), Grip Shipping (logistics/eCommerce), Franzy (franchise tech/SaaS), Meanwhile (insurance)
+
+## Case Study Results
+
+- Ondo Finance: Flipped a 24-point share of voice deficit into a 61% lead in 90 days. Tripled monthly media volume to 2,000+ articles/month. 35.3% SOV in tokenized asset coverage. BlackRock called Ondo the "gold standard." Featured on CNBC Squawk Box, WSJ, NYT, Bloomberg, Reuters, Axios. https://edencommunications.com/case-studies/ondo
+- Stellar Development Foundation: 4.65M+ views on campaign content. 632M total audience reach. 36 placements including CNN, CNBC, Bloomberg, Yahoo Finance, Axios. Live CNBC and Bloomberg TV appearances. https://edencommunications.com/case-studies/stellar-development-foundation
+- Reed Smith On Chain: 48 earned placements including CNBC, Bloomberg, Washington Post, Fortune, CoinDesk. 2.88M+ estimated views. 467M total audience. Positioned as trusted crypto legal authority during FTX trial. https://edencommunications.com/case-studies/reed-smith-on-chain
+- Blue Planet Energy: 1,898% increase in landing page traffic. 300% website traffic growth. $500K+ in ad value equivalency. Featured in Forbes, Business Insider. https://edencommunications.com/case-studies/blue-planet-energy
+- Henk Rogers: 28.5M+ campaign impressions. 40 media placements including NPR How I Built This (one of season's most-listened episodes), Forbes, Bloomberg. $2.19M ad value equivalency. https://edencommunications.com/case-studies/henk-rogers
+- Grip Shipping: 4,050% increase in press coverage. 20+ media placements. 135% growth in market share of voice. Featured on top 5% podcasts globally. https://edencommunications.com/case-studies/grip-shipping
+- Franzy: 4,300% increase in platform sign-ups. 22 media placements including Business Insider, Entrepreneur, Inc., Fox Business, Yahoo Finance. 52.9% share of voice in franchise tech. 73M+ estimated media reach. https://edencommunications.com/case-studies/franzy
+
+## Media Outlets Regularly Featured In
+
+Bloomberg, CNBC, Wall Street Journal, New York Times, Reuters, Axios, Forbes, Fortune, Washington Post, CoinDesk, Financial Times, TechCrunch, Business Insider, CNN, Yahoo Finance, NPR, Fox Business, Entrepreneur, Inc.
+
+## Industries Served
+
+Crypto, cryptocurrency, blockchain, digital assets, tokenized securities, tokenized real-world assets (RWA), decentralized finance (DeFi), fintech, financial services, climate tech, renewable energy, logistics, franchise technology, SaaS
 
 ## Contact
+
 - Email: hello@edencommunications.com
+- Phone: +1 201-279-5403
+- Address: 600 Lexington Avenue, New York, NY 10022
 - Website: https://edencommunications.com
 - LinkedIn: https://www.linkedin.com/company/eden-comms
 - Instagram: https://www.instagram.com/edencomms
