@@ -11,17 +11,6 @@ export const team = [
     expertise: ['Media Strategy', 'Crisis Comms', 'Executive Visibility'],
   },
   {
-    name: 'Ryan Brack',
-    role: 'SVP, Eden Communications',
-    photo: '/assets/images/team-ryan.jpg',
-    cdnUrl: '',
-    alt: 'Ryan Brack, SVP at Eden Communications, professional headshot',
-    bio: "Ryan builds institutional credibility at the intersection of high-stakes policy and emerging technology. With a career spanning Silicon Valley, D.C., and NYC, he specializes in navigating the complex reputational landscapes of frontier technologies. Before co-founding the AI-driven Moon Howl Media, Ryan managed Meta's global privacy public affairs, focusing on the deployment of generative AI and privacy-enhancing technologies. At Google, he led public affairs for a product portfolio serving over 3 billion users. A veteran of the public sector, Ryan co-founded the NYC Mayor's Office of Tech and Innovation, serving under both the Bloomberg and de Blasio administrations. His strategic counsel has been leveraged by global giants including Amazon, Salesforce, and SAP. Ryan is a Shorty Award winner, an alumnus of NYU and MIT professional studies, and an Advisor for Ragan's Center for AI Strategy.",
-    bioShort: "Ryan builds institutional credibility at the intersection of policy and emerging technology, with a career spanning Silicon Valley, D.C., and NYC. He previously managed Meta's global privacy public affairs, led public affairs at Google for products serving 3B+ users, and co-founded the NYC Mayor's Office of Tech and Innovation.",
-    linkedin: 'https://www.linkedin.com/in/ryanbrack/',
-    expertise: ['Public Affairs', 'Privacy & AI Policy', 'Government Relations', 'Tech Communications'],
-  },
-  {
     name: 'Larissa Bundziak',
     role: 'Director',
     photo: '/assets/images/team-larissa.webp',
