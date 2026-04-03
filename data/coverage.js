@@ -14,6 +14,33 @@ export const OUTLET_LOGO_MAP = {
 
 export const coverageItems = [
   {
+    title: 'Tokenized Stocks Are Sweeping the Globe—and Coming Soon to America',
+    publication: 'WSJ',
+    externalUrl: 'https://www.wsj.com/finance/investing/tokenized-stocks-are-sweeping-the-globe-and-coming-soon-to-america-75d30446',
+    datePublished: '2026-03-30',
+    client: 'Ondo',
+    logoKey: 'wsj',
+    summary: 'The Wall Street Journal reports on the global rise of tokenized stocks and their imminent arrival in the U.S. market.',
+  },
+  {
+    title: 'Tokenization Brings ETFs to Wallets: Ondo\'s Wheeler',
+    publication: 'Bloomberg',
+    externalUrl: 'https://www.bloomberg.com/news/videos/2026-03-30/tokenization-brings-etfs-to-wallets-ondo-s-wheeler-video',
+    datePublished: '2026-03-30',
+    client: 'Ondo',
+    logoKey: 'bloomberg',
+    summary: 'Ondo\'s Wheeler discusses how tokenization is enabling ETFs to be traded directly from crypto wallets.',
+  },
+  {
+    title: 'Franklin Templeton Debuts ETFs That Trade in Crypto Wallets 24/7',
+    publication: 'Bloomberg',
+    externalUrl: 'https://www.bloomberg.com/news/articles/2026-03-25/franklin-templeton-debuts-etfs-that-trade-in-crypto-wallets-24-7',
+    datePublished: '2026-03-25',
+    client: 'Ondo',
+    logoKey: 'bloomberg',
+    summary: 'Franklin Templeton launches ETFs that can be traded around the clock inside crypto wallets.',
+  },
+  {
     title: 'The next big thing in crypto will be tokenized stocks: Here are the likely winners and losers',
     publication: 'Fortune',
     externalUrl: 'https://fortune.com/crypto/2026/03/16/crypto-tokenized-stocks-next-big-thing-reserveone/',
