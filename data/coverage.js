@@ -14,6 +14,42 @@ export const OUTLET_LOGO_MAP = {
 
 export const coverageItems = [
   {
+    title: 'Quantum Computing Awaits Its ChatGPT Moment',
+    publication: 'Reuters',
+    externalUrl: 'https://www.reuters.com/commentary/breakingviews/quantum-computing-awaits-its-chatgpt-moment-2026-04-28/',
+    datePublished: '2026-04-28',
+    client: 'Reed Smith',
+    logoKey: 'reuters',
+    summary: 'Reuters Breakingviews explores when quantum computing will have its breakthrough moment for mainstream adoption.',
+  },
+  {
+    title: 'Ondo Finance Adds Proxy Voting for Holders of Its $700 Million Tokenized Equities',
+    publication: 'CoinDesk',
+    externalUrl: 'https://www.coindesk.com/tech/2026/04/28/ondo-finance-adds-proxy-voting-for-holders-of-its-usd700-million-tokenized-equities',
+    datePublished: '2026-04-28',
+    client: 'Ondo',
+    logoKey: 'coindesk',
+    summary: 'Ondo Finance introduces proxy voting rights for holders of its $700 million in tokenized equities.',
+  },
+  {
+    title: 'Ondo and Broadridge Partner to Enable Voting for Tokenized Stocks',
+    publication: 'TheStreet',
+    externalUrl: 'https://www.thestreet.com/crypto/markets/ondo-and-broadridge-partner-to-enable-voting-for-tokenized-stocks',
+    datePublished: '2026-04-28',
+    client: 'Ondo',
+    logoKey: 'thestreet',
+    summary: 'Ondo partners with Broadridge to bring shareholder voting capabilities to tokenized stock holders.',
+  },
+  {
+    title: 'Stellar CMO: Why Stablecoins Are the Gateway to Mainstream Crypto',
+    publication: 'Yahoo Finance',
+    externalUrl: 'https://finance.yahoo.com/video/stellar-cmo-why-stablecoins-gateway-180443394.html',
+    datePublished: '2026-04-28',
+    client: 'Stellar',
+    logoKey: 'yahoo-finance',
+    summary: 'Stellar\'s CMO explains why stablecoins serve as the entry point for mainstream crypto adoption on Yahoo Finance.',
+  },
+  {
     title: 'Tokenized Stocks Are Sweeping the Globe and Coming Soon to America',
     publication: 'WSJ',
     externalUrl: 'https://www.wsj.com/finance/investing/tokenized-stocks-are-sweeping-the-globe-and-coming-soon-to-america-75d30446',
