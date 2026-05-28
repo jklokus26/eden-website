@@ -887,7 +887,7 @@
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 240px));
+  grid-template-columns: repeat(3, minmax(0, 240px));
   gap: var(--sp-2);
   justify-content: center;
 }
