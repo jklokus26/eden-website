@@ -1,9 +1,13 @@
 name: Auto-merge Claude branches to main
 
-# Two triggers:
-# 1. pull_request: fires immediately when Claude creates a PR (runs from main, so workflow exists)
-# 2. schedule: every 5 min fallback for branches pushed WITHOUT a PR
+# Three triggers:
+# 1. push to claude/*: fires immediately when Claude pushes a branch (with or without a PR)
+# 2. pull_request: fires immediately when Claude creates a PR (runs from main, so workflow exists)
+# 3. schedule: cron fallback — note GitHub throttles schedules on low-activity repos to ~hourly, so the push trigger is the primary path
 on:
+  push:
+    branches:
+      - 'claude/**'
   pull_request:
     types: [opened, reopened, synchronize]
   schedule:
@@ -12,6 +16,7 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
       pull-requests: write
