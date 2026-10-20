@@ -68,3 +68,23 @@ export const clients = [
     caseStudyUrl: '/case-studies/stellar-development-foundation',
   },
 ];
+
+// ─── Oct 2026 client strip ──────────────────────────────────────────────
+// The 10 current clients from Eden's Oct 2026 doc, in the doc's order.
+// Single-color logos (SVG fill="currentColor"). An <img> tag does not pass
+// CSS color into an SVG, so the strip must inline the SVG or use it as a CSS
+// mask (mask-image + background-color) to set the ink color. displayHeight is the optical-balance height in px.
+// Replaces `clients` above when the homepage builders switch over.
+
+export const clientStrip = [
+  { name: 'Ondo Finance', logo: '/assets/logos/clients/ondo.svg', alt: 'Ondo Finance logo', displayHeight: 32, caseStudyUrl: '/case-studies/ondo' },
+  { name: 'Wintermute', logo: '/assets/logos/clients/wintermute.svg', alt: 'Wintermute logo', displayHeight: 18, caseStudyUrl: null },
+  { name: 'Reed Smith', logo: '/assets/logos/clients/reed-smith.svg', alt: 'Reed Smith logo', displayHeight: 24, caseStudyUrl: '/case-studies/reed-smith-on-chain' },
+  { name: 'Cohen & Company Capital Markets', logo: '/assets/logos/clients/cohen-capital-markets.svg', alt: 'Cohen & Company Capital Markets logo', displayHeight: 34, caseStudyUrl: null },
+  { name: 'Alpaca', logo: '/assets/logos/clients/alpaca.svg', alt: 'Alpaca logo', displayHeight: 30, caseStudyUrl: null },
+  { name: 'LayerZero', logo: '/assets/logos/clients/layerzero.svg', alt: 'LayerZero logo', displayHeight: 28, caseStudyUrl: null },
+  { name: 'Grindr', logo: '/assets/logos/clients/grindr.svg', alt: 'Grindr logo', displayHeight: 26, caseStudyUrl: null },
+  { name: 'RoboStrategy', logo: '/assets/logos/clients/robostrategy.svg', alt: 'RoboStrategy logo', displayHeight: 18, caseStudyUrl: null },
+  { name: 'Rox', logo: '/assets/logos/clients/rox.svg', alt: 'Rox logo', displayHeight: 28, caseStudyUrl: null },
+  { name: 'Jito Labs', logo: '/assets/logos/clients/jito-labs.svg', alt: 'Jito Labs logo', displayHeight: 22, caseStudyUrl: null },
+];

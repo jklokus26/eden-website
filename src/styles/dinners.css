@@ -1,0 +1,89 @@
+/* ─── Private Dinners Page ───────────────────────────────────────────── */
+/* Placeholder layout in the current site tokens so the page is usable.
+   The Oct 2026 design pass replaces this file once Eden picks the look. */
+
+.dinners-intro {
+  padding: 0 var(--sp-3) var(--sp-5);
+}
+
+.dinners-copy {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.dinners-copy p {
+  font-size: var(--body);
+  color: var(--accent-grey);
+  line-height: 1.7;
+}
+
+.dinners-cta {
+  align-self: flex-start;
+  margin-top: var(--sp-1);
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.dinners-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+.dinners-stat-value {
+  display: block;
+  font-size: var(--h2);
+  font-weight: 800;
+}
+
+.dinners-stat-label {
+  font-size: var(--small);
+  color: var(--accent-grey);
+}
+
+.dinners-gallery {
+  padding: 0 var(--sp-3) var(--sp-6);
+}
+
+.dinners-gallery figure {
+  margin: 0 0 var(--sp-3);
+}
+
+.dinners-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--card-radius);
+}
+
+.dinners-grid {
+  column-count: 3;
+  column-gap: var(--sp-3);
+}
+
+.dinners-photo {
+  break-inside: avoid;
+}
+
+@media (max-width: 1024px) {
+  .dinners-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .dinners-intro,
+  .dinners-gallery {
+    padding-left: var(--sp-2);
+    padding-right: var(--sp-2);
+  }
+
+  .dinners-grid {
+    column-count: 1;
+  }
+}

@@ -59,9 +59,6 @@ function buildAbout() {
               <p>We don\u2019t do awareness. We build credibility.</p>
             </div>
           </div>
-          <div class="about-story-photo">
-            <img src="/assets/images/team-group.jpg" alt="Eden Communications team" class="about-team-group-img" loading="lazy">
-          </div>
         </div>
       </div>
     </section>

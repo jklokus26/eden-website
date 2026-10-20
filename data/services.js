@@ -45,8 +45,8 @@ export const services = [
 
 export const servicesFaq = [
   {
-    question: 'What does a crypto PR agency do?',
-    answer: 'A crypto PR agency helps digital asset companies build credibility with the stakeholders that matter most \u2014 journalists, investors, regulators, and institutional partners. At Eden Communications, that means securing earned media placements in outlets like Bloomberg, CoinDesk, CNBC, and The Wall Street Journal, developing executive narratives for founders and C-suite leaders, managing crisis communications, and increasingly, ensuring companies show up accurately in AI-powered search tools like ChatGPT, Claude, Gemini and Perplexity. The best crypto PR goes beyond press hits \u2014 it builds the kind of institutional trust that moves capital and closes enterprise deals.',
+    question: 'What does a strategic communications firm do?',
+    answer: 'A strategic communications firm helps ambitious companies build credibility with the stakeholders that matter most: journalists, investors, regulators, and institutional partners. At Eden Communications, which works across financial services, digital assets and frontier tech, that means securing earned media placements in outlets like Bloomberg, CoinDesk, CNBC, and The Wall Street Journal, developing executive narratives for founders and C-suite leaders, managing crisis communications, and increasingly, ensuring companies show up accurately in AI-powered search tools like ChatGPT, Claude, Gemini and Perplexity. The best strategic communications goes beyond press hits. It builds the kind of institutional trust that moves capital and closes enterprise deals.',
   },
   {
     question: 'How is Eden Communications different from traditional PR firms?',
@@ -62,7 +62,7 @@ export const servicesFaq = [
   },
   {
     question: 'What industries does Eden Communications specialize in?',
-    answer: 'Eden Communications specializes in crypto, fintech, digital assets, blockchain infrastructure, tokenization, and financial services. We work with companies at every stage \u2014 from high-growth protocols to established financial institutions entering the digital asset space. Our current and recent clients include Ondo Finance, Stellar Development Foundation, Wintermute Trading, Cohen & Company Capital Markets, and Reed Smith\u2019s On Chain practice group. Our team\u2019s background spanning newsrooms, Big Tech, and global financial services means we understand both the technology and the institutional stakeholders our clients need to reach.',
+    answer: 'Eden Communications specializes in three areas. Financial services: capital markets, asset management, fintech, investment banking and professional services. Digital assets: tokenization, stablecoins, trading, infrastructure and institutional crypto. Frontier technology: AI, energy, defense, advanced manufacturing and emerging infrastructure. We work with companies at every stage, from high-growth startups and protocols to established financial institutions. Our clients include Ondo Finance, Wintermute, Reed Smith, Cohen & Company Capital Markets, Alpaca, LayerZero, Grindr, RoboStrategy, Rox and Jito Labs. Our team\u2019s background spanning newsrooms, Big Tech, and global financial services means we understand both the technology and the institutional stakeholders our clients need to reach.',
   },
   {
     question: 'How can a small team compete with larger PR agencies?',

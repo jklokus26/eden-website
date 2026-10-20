@@ -19,6 +19,7 @@ export default defineConfig({
         services: resolve(__dirname, 'services/index.html'),
         results: resolve(__dirname, 'results/index.html'),
         recentWork: resolve(__dirname, 'recent-work/index.html'),
+        dinners: resolve(__dirname, 'dinners/index.html'),
       }
     }
   }

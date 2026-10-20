@@ -102,6 +102,16 @@
   padding: var(--sp-4);
 }
 
+/* Empty until a message arrives, but kept in the page so it is announced */
+.contact-success:empty,
+.contact-error:empty {
+  padding: 0;
+}
+
+.contact-success:focus {
+  outline: none;
+}
+
 .contact-success p {
   font-size: var(--body);
   color: var(--gradient-mint);
@@ -139,4 +149,23 @@
     padding: 14px 32px;
     font-size: var(--small);
   }
+}
+
+/* State toggles use the hidden attribute; keep it winning over display rules */
+.contact-section [hidden] {
+  display: none !important;
+}
+
+/* Honeypot field for FormSubmit's _honey spam filter, kept off-screen for people */
+.contact-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.contact-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }

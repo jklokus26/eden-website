@@ -1,6 +1,15 @@
 import '../styles/contact-form.css';
 import { createDivider } from './section-divider.js';
 
+// FormSubmit activates each web address separately. A submit from any other
+// address (Vercel previews, localhost) sends an "activate this form" email to
+// hello@ instead of delivering, so the form only sends from the live site.
+const LIVE_HOSTS = ['edencommunications.com', 'www.edencommunications.com'];
+
+const ERROR_TEXT = 'Something went wrong. Please try again or email us directly at hello@edencommunications.com';
+const PREVIEW_TEXT = 'Preview only: this form sends from the live site, so nothing was sent.';
+const SUCCESS_TEXT = 'Thanks for reaching out. We\'ll be in touch within 24 hours.';
+
 /**
  * Build the shared contact form section.
  * Used on homepage, about, services, and results pages.
@@ -15,6 +24,7 @@ export function buildContactSection() {
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="New inquiry from Eden website">
           <input type="hidden" name="referringPage" value="">
+          <input type="text" name="_honey" class="contact-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="contact-form-row">
             <div class="contact-field">
               <label for="contact-name">Name</label>
@@ -36,10 +46,9 @@ export function buildContactSection() {
             <textarea id="contact-message" name="message" rows="5" required placeholder="Tell us about your project or inquiry..."></textarea>
           </div>
           <button type="submit" class="contact-submit">Let's Talk</button>
-          <div class="contact-success" style="display:none">
-            <p>Thanks for reaching out. We'll be in touch within 24 hours.</p>
-          </div>
+          <p class="contact-error" role="alert"></p>
         </form>
+        <div class="contact-success" role="status" tabindex="-1"></div>
       </div>
     </section>
   `;
@@ -57,10 +66,31 @@ export function initContactForm() {
   const hiddenField = form.querySelector('input[name="referringPage"]');
   if (hiddenField) hiddenField.value = window.location.href;
 
+  const button = form.querySelector('.contact-submit');
+  const buttonLabel = button ? button.textContent : '';
+  const errMsg = form.querySelector('.contact-error');
+  const success = form.parentElement.querySelector('.contact-success');
+
+  // The status and alert regions stay in the page and start empty; filling
+  // them is what makes screen readers announce the message.
+  const showError = (text) => {
+    if (errMsg) errMsg.textContent = text;
+  };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    if (errMsg) errMsg.textContent = '';
+
+    if (!LIVE_HOSTS.includes(window.location.hostname)) {
+      showError(PREVIEW_TEXT);
+      return;
+    }
+
+    const data = Object.fromEntries(new FormData(form));
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Sending...';
+    }
 
     try {
       const response = await fetch(form.action, {
@@ -71,21 +101,24 @@ export function initContactForm() {
           'Accept': 'application/json',
         },
       });
+      // FormSubmit can answer HTTP 200 with success "false" (e.g. a form that
+      // still needs activation), so the JSON flag decides, not the status code.
+      const result = await response.json().catch(() => ({}));
+      const delivered = response.ok && String(result.success) === 'true';
+      if (!delivered) throw new Error(result.message || `HTTP ${response.status}`);
 
-      if (response.ok) {
-        form.style.display = 'none';
-        const success = form.parentElement.querySelector('.contact-success') || form.querySelector('.contact-success');
-        if (success) success.style.display = 'block';
+      form.hidden = true;
+      if (success) {
+        success.innerHTML = `<p>${SUCCESS_TEXT}</p>`;
+        success.focus();
       }
     } catch (err) {
-      let errMsg = form.querySelector('.contact-error');
-      if (!errMsg) {
-        errMsg = document.createElement('p');
-        errMsg.className = 'contact-error';
-        errMsg.textContent = 'Something went wrong. Please try again or email us directly at hello@edencommunications.com';
-        form.appendChild(errMsg);
+      showError(ERROR_TEXT);
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = buttonLabel;
       }
-      errMsg.style.display = 'block';
     }
   });
 }

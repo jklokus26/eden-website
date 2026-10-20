@@ -66,3 +66,72 @@ export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="curre
   <path fill-rule="evenodd" clip-rule="evenodd" d="M65 39.5C69.1174 39.5 72.7877 37.5858 75.1696 34.5988L71.3079 31.421C69.8437 33.2951 67.5625 34.5 65 34.5C63.0084 34.5 61.1868 33.7722 59.7866 32.5682L75.0811 23.8123C75.9067 23.3396 76.2966 22.3451 75.9156 21.4735C73.9603 17.0009 70.1748 13.5 65 13.5C57.8203 13.5 52 19.3203 52 26.5C52 33.6797 57.8203 39.5 65 39.5ZM70 21L57.2005 28.2876C57.0693 27.7129 57 27.1145 57 26.5C57 22.0817 60.5817 19 65 19C67.1108 19 68.5704 19.6643 70 21Z" fill="currentColor"/>
   <path d="M86.5287 13.9846C88.1051 13.3345 89.7943 13 91.5 13C93.2057 13 94.8949 13.3345 96.4713 13.9846C98.0478 14.6348 99.4809 15.588 100.689 16.7904C101.896 17.9929 102.855 19.421 103.509 20.9935C104.163 22.566 104.5 24.2518 104.5 25.9545V39H99.5V25.9545C99.5 24.9114 99.2937 23.8783 98.8925 22.914C98.4913 21.9497 97.903 21.0728 97.1607 20.3336C96.4183 19.5945 95.5364 19.0076 94.565 18.6069C93.5936 18.2063 92.5521 18 91.5 18C90.4479 18 89.4064 18.2063 88.435 18.6069C87.4636 19.0076 86.5817 19.5945 85.8393 20.3336C85.0969 21.0728 84.5087 21.9497 84.1075 22.914C83.7063 23.8783 83.5 24.9114 83.5 25.9545V39L78.5 39L78.5 25.9545C78.5 24.2518 78.8368 22.566 79.491 20.9935C80.1452 19.421 81.1038 17.9929 82.3115 16.7904C83.5191 15.588 84.9522 14.6348 86.5287 13.9846Z" fill="currentColor"/>
 </svg>`;
+
+// ─── Oct 2026 homepage revamp ───────────────────────────────────────────
+// Copy from Eden's "Website Flow (October 2026)" doc, verbatim. The homepage
+// builders switch to these exports in the design pass; the older exports
+// above (heroContent, missionContent, ...) get removed at that point.
+
+export const homeHero = {
+  eyebrow: 'A modern communications firm for companies who don’t believe in PR',
+  headline: 'Reputation is the first advantage.',
+  body: 'Eden helps ambitious companies become trusted market leaders. We build your point of view, make you visible in the rooms that matter, and build relationships that open doors to customers, capital and opportunity.',
+  primaryCta: { label: 'View our work', href: '/results' },
+  secondaryCta: { label: 'Talk to Eden', href: '#contact' },
+};
+
+// Numbers shown in the proof band (value is animated, label shown as written)
+export const homeProof = [
+  { value: 1793, suffix: '', label: 'Top-tier placements in 2025' },
+  { value: 558, suffix: '', label: 'Tier 1' },
+  { value: 100, suffix: '+', label: 'Global outlets' },
+];
+
+// Label over the client logo strip (from the mockup; the doc gives no label)
+export const homeClientsLabel = 'Trusted by ambitious companies';
+
+export const homeWhatWeDo = {
+  sectionLabel: 'What we do',
+  headline: 'Markets reward companies they understand and trust.',
+  body: 'We make complex, regulated and high-stakes companies impossible to ignore. Traditional PR agencies wait for orders and pray for coverage. Not Eden. We serve as a core component of your growth and go-to-market strategy, bringing ideas, opportunities and increasing your influence.',
+  pillars: [
+    { number: '01', title: 'Position', text: 'Strategy, corporate narrative, executive positioning and issues counsel' },
+    { number: '02', title: 'Build market visibility', text: 'Earned media, thought leadership, market positioning, community building and AI/search visibility' },
+    { number: '03', title: 'Open the right doors', text: 'Private dinners, strategic introductions, investor and stakeholder engagement, conferences' },
+  ],
+};
+
+export const homeDinners = {
+  sectionLabel: 'Private dinners',
+  headline: 'The most valuable relationships are often built in private rooms.',
+  paragraphs: [
+    'Eden creates intimate, highly curated dinners and private gatherings for the people shaping finance, technology, media and culture.',
+    'We bring together founders, investors, creators, journalists and industry leaders around a shared idea to create the kind of conversations and relationships that make a meaningful difference to your business.',
+  ],
+  cta: { label: 'See our dinners', href: '/dinners' },
+};
+
+export const homeIndustries = {
+  sectionLabel: 'Industries we serve',
+  items: [
+    {
+      name: 'Financial Services',
+      areas: ['Capital markets', 'Asset management', 'Fintech', 'Investment banking', 'Professional services'],
+    },
+    {
+      name: 'Digital Assets',
+      areas: ['Tokenization', 'Stablecoins', 'Trading', 'Infrastructure', 'Institutional crypto'],
+    },
+    {
+      name: 'Frontier Technology',
+      areas: ['AI', 'Energy', 'Defense', 'Advanced manufacturing', 'Emerging infrastructure'],
+    },
+  ],
+};
+
+export const homeContactBand = {
+  headline: 'Your reputation should arrive before you do.',
+  body: 'If you’re entering a bigger market, raising your profile or defining a new category, we’d like to hear what you’re building.',
+  cta: { label: 'Talk to Eden', href: '#contact' },
+  words: ['People', 'Ideas', 'Markets', 'Opportunity'],
+};

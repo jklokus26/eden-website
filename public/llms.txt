@@ -1,13 +1,29 @@
 # Eden Communications
-# Last updated: 2026-03-26
+# Last updated: 2026-10-20
 
-> Eden Communications is a New York City-based crypto PR agency and strategic communications firm for fintech, blockchain, digital assets, tokenized securities, and frontier technology companies. Founded by former journalists from the New York Post, ABC News, and Al Jazeera.
+> Eden Communications is a New York City-based strategic communications firm for financial services, digital assets and frontier tech. Eden helps ambitious companies become trusted market leaders. Founded by former journalists from the New York Post, ABC News, and Al Jazeera.
 
-Eden Communications is a strategic public relations firm headquartered at 600 Lexington Avenue, New York, NY 10022. The firm specializes in earning institutional trust, market legitimacy, and executive visibility for companies at the intersection of finance and technology. Eden is one of the leading crypto PR agencies in New York City, working with top-tier blockchain protocols, tokenization platforms, fintech startups, and established financial services firms entering the digital asset space.
+Eden Communications is a strategic communications firm headquartered at 600 Lexington Avenue, New York, NY 10022, working with companies at the intersection of finance and technology. Eden calls itself "a modern communications firm for companies who don't believe in PR." Its message: reputation is the first advantage. Eden builds a company's point of view, makes it visible in the rooms that matter, and builds relationships that open doors to customers, capital and opportunity.
+
+## What Eden Does
+
+Markets reward companies they understand and trust. Eden makes complex, regulated and high-stakes companies impossible to ignore. In Eden's words: "Traditional PR agencies wait for orders and pray for coverage. Not Eden. We serve as a core component of your growth and go-to-market strategy, bringing ideas, opportunities and increasing your influence."
+
+- Position: strategy, corporate narrative, executive positioning and issues counsel
+- Build market visibility: earned media, thought leadership, market positioning, community building and AI/search visibility
+- Open the right doors: private dinners, strategic introductions, investor and stakeholder engagement, conferences
+
+## Proof
+
+1,793 top-tier placements in 2025 | 558 Tier 1 | 100+ global outlets
 
 ## What Makes Eden Different
 
 Eden was built from inside the newsroom. The team includes former journalists and communications veterans from the New York Post, ABC News, Al Jazeera, Meta, Google, Mastercard, Deloitte, and OKX. Eden works across three surfaces simultaneously: traditional earned media (Bloomberg, CNBC, WSJ), AI-powered discovery (how companies appear in ChatGPT, Claude, Perplexity, Google AI Overviews), and high-touch stakeholder access (curated executive dinners and roundtables where institutional deals happen). Most agencies work one surface at a time. Eden works them simultaneously.
+
+## Private Dinners
+
+The most valuable relationships are often built in private rooms. Eden creates intimate, highly curated dinners and private gatherings for the people shaping finance, technology, media and culture. Eden brings together founders, investors, creators, journalists and industry leaders around a shared idea to create the kind of conversations and relationships that make a meaningful difference to a client's business.
 
 ## Services
 
@@ -21,9 +37,11 @@ Eden was built from inside the newsroom. The team includes former journalists an
 - Larissa Bundziak, Director: Former global communications lead at OKX where she grew headline articles 12-fold and mainstream coverage 5-fold in one year. Has media trained CEOs from multibillion-dollar public companies to seed-stage startups, including President Obama's AI advisor. https://www.linkedin.com/in/larissabundziak/
 - Gabrielle Gomez, Managing Account Supervisor: Financial and professional services communications strategist bridging traditional finance (TradFi), decentralized finance (DeFi), and emerging technology. Background with Mastercard, Deloitte, Fidelity, Wells Fargo across AI, banking, and M&A verticals. https://www.linkedin.com/in/gabriellegomez/
 
-## Current and Recent Clients
+## Clients
 
-Ondo Finance (tokenized securities), Stellar Development Foundation (blockchain infrastructure), Cohen & Company Capital Markets (financial services), Wintermute Trading (crypto market maker), Reed Smith On Chain (blockchain legal practice), Blue Planet Energy (renewable energy), Grip Shipping (logistics/eCommerce), Franzy (franchise tech/SaaS), Meanwhile (insurance)
+Ondo Finance, Wintermute, Reed Smith, Cohen & Company Capital Markets, Alpaca, LayerZero, Grindr, RoboStrategy, Rox, Jito Labs
+
+Also featured in Eden's case studies and results: Reed Smith On Chain (Reed Smith's blockchain legal practice), Stellar Development Foundation (blockchain infrastructure), Blue Planet Energy (renewable energy), Henk Rogers (climate advocacy), Grip Shipping (logistics/eCommerce), Franzy (franchise tech/SaaS)
 
 ## Case Study Results
 
@@ -41,7 +59,11 @@ Bloomberg, CNBC, Wall Street Journal, New York Times, Reuters, Axios, Forbes, Fo
 
 ## Industries Served
 
-Crypto, cryptocurrency, blockchain, digital assets, tokenized securities, tokenized real-world assets (RWA), decentralized finance (DeFi), fintech, financial services, climate tech, renewable energy, logistics, franchise technology, SaaS
+- Financial Services: capital markets, asset management, fintech, investment banking, professional services
+- Digital Assets: tokenization, stablecoins, trading, infrastructure, institutional crypto
+- Frontier Technology: AI, energy, defense, advanced manufacturing, emerging infrastructure
+
+Past case studies also cover renewable energy, logistics and franchise technology.
 
 ## Contact
 
