@@ -1,7 +1,20 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
+// Share images (og:image, twitter:image) need an absolute URL. Production uses
+// the live domain; a Vercel preview build points at its own deployment so the
+// image exists when the preview link is shared.
+const shareOrigin = process.env.VERCEL_ENV === 'preview' && process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : 'https://edencommunications.com';
+
+const shareImageOrigin = {
+  name: 'share-image-origin',
+  transformIndexHtml: (html) => html.replaceAll('%SHARE_ORIGIN%', shareOrigin),
+};
+
 export default defineConfig({
+  plugins: [shareImageOrigin],
   build: {
     rollupOptions: {
       input: {

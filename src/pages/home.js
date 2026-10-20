@@ -315,7 +315,7 @@ function buildTeam() {
         </div>
         <ul class="team__grid">${members}</ul>
       </div>
-      <dialog class="bio-dialog" aria-labelledby="bio-name">
+      <dialog class="bio-dialog" aria-labelledby="bio-name" data-lenis-prevent>
         <div class="bio">
           <div class="bio__photo"><img alt="" width="500" height="625"></div>
           <div class="bio__body">

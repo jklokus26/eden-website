@@ -38,6 +38,9 @@ export function initNav() {
   const navEl = document.getElementById('nav');
   if (!navEl) return;
   navEl.setAttribute('aria-label', 'Primary');
+  // Pages on the Oct 2026 look use the doc's button label; the rest keep
+  // theirs until they're carried over.
+  const ctaLabel = document.body.classList.contains('look-2026') ? 'Talk to Eden' : 'Get in Touch';
 
   // Skip link: first focusable thing on the page, jumps past the nav.
   const main = document.querySelector('main');
@@ -63,7 +66,7 @@ export function initNav() {
         ${textLinks}
       </div>
       <div class="nav-right">
-        <a href="/#contact" class="nav-cta">Talk to Eden</a>
+        <a href="/#contact" class="nav-cta">${ctaLabel}</a>
       </div>
       <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile-menu">
         <span></span><span></span><span></span>
@@ -72,7 +75,7 @@ export function initNav() {
     <div class="nav-mobile-overlay" id="nav-mobile-menu" aria-hidden="true">
       <div class="nav-mobile-links">
         ${mobileLinks}
-        <a href="/#contact" class="nav-mobile-cta">Talk to Eden</a>
+        <a href="/#contact" class="nav-mobile-cta">${ctaLabel}</a>
       </div>
     </div>
   `;
@@ -106,10 +109,25 @@ export function initNav() {
   hamburger.addEventListener('click', () => setMenu(!overlay.classList.contains('open')));
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') {
       setMenu(false);
       hamburger.focus();
+      return;
     }
+    // Keep Tab cycling through the menu button and the menu's links.
+    if (e.key === 'Tab') {
+      const stops = [hamburger, ...overlay.querySelectorAll('a')];
+      const i = stops.indexOf(document.activeElement);
+      const next = e.shiftKey ? (i <= 0 ? stops.length - 1 : i - 1) : (i === stops.length - 1 ? 0 : i + 1);
+      e.preventDefault();
+      stops[next].focus();
+    }
+  });
+
+  // The menu only exists on narrow layouts; widening the window closes it.
+  window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+    if (e.matches && overlay.classList.contains('open')) setMenu(false);
   });
 
   // Close overlay on link click

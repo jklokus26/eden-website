@@ -130,12 +130,3 @@
   }
 }
 
-/* Page links row */
-.footer-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 var(--sp-2);
-  margin-top: var(--sp-3);
-  padding-top: var(--sp-1);
-  border-top: 1px solid var(--border-medium);
-}
