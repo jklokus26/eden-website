@@ -99,9 +99,7 @@
 .look-2026 .hero__tagline {
   max-width: 30rem;
   text-wrap: balance;
-  margin-top: var(--s-7);
-  padding-top: var(--s-4);
-  border-top: 1px solid var(--rule);
+  margin-top: var(--s-6);
   font-size: var(--t-small);
   color: var(--ink-muted);
 }
@@ -121,8 +119,9 @@
 }
 
 .look-2026 .hero__media img {
+  filter: var(--photo-grade);
   object-fit: cover;
-  object-position: 50% 63%;
+  object-position: 50% 72%;
 }
 
 @media (max-width: 900px) {
@@ -188,20 +187,27 @@
 }
 
 .look-2026 .press__list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--s-6) var(--s-5);
   align-items: center;
-  justify-content: space-between;
-  gap: var(--s-5) var(--s-6);
   list-style: none;
   color: var(--logo-ink);
 }
 
-@media (max-width: 900px) {
+.look-2026 .press__item {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.look-2026 .press__item .ink-logo {
+  max-width: 100%;
+}
+
+@media (max-width: 1199px) {
   .look-2026 .press__list {
-    display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    row-gap: var(--s-6);
   }
 }
 
@@ -222,6 +228,9 @@
     font-size: 2.25rem;
   }
 
+}
+
+@media (max-width: 767px) {
   .look-2026 .press__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -285,7 +294,7 @@
 
 
 .look-2026 .what__head {
-  align-items: end;
+  align-items: start;
 }
 
 .look-2026 .what__title {
@@ -400,7 +409,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.55) contrast(0.97);
+  filter: grayscale(1) sepia(0.06) contrast(1.02);
 }
 
 .look-2026 .case__client {
@@ -436,8 +445,6 @@
   gap: var(--s-4);
   align-self: start;
   margin-top: var(--s-5);
-  padding-top: var(--s-4);
-  border-top: 1px solid var(--rule);
 }
 
 .look-2026 .case__metric {
@@ -473,6 +480,26 @@
   text-decoration-color: var(--accent);
 }
 
+/* Laptop widths: columns are too narrow for three figures side by side,
+   so they stack as rows (figure left, label right), like the phone proof band. */
+@media (min-width: 901px) and (max-width: 1279px) {
+  .look-2026 .case__metrics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-2);
+  }
+
+  .look-2026 .case__metric {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: var(--s-3);
+  }
+
+  .look-2026 .case__metric dd {
+    flex: 0 0 5.5rem;
+  }
+}
+
 @media (max-width: 900px) {
   .look-2026 .work__grid {
     grid-template-columns: minmax(0, 1fr);
@@ -491,8 +518,12 @@
     border-top: 1px solid var(--rule);
   }
 
-  .look-2026 .case__media {
-    aspect-ratio: 16 / 9;
+  .look-2026 .case__metrics {
+    align-self: stretch;
+  }
+
+  .look-2026 .case__more {
+    align-self: flex-start;
   }
 }
 
@@ -510,6 +541,8 @@
 }
 
 .look-2026 .quote {
+  display: flex;
+  flex-direction: column;
   margin: 0;
 }
 
@@ -536,9 +569,13 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  margin-top: var(--s-6);
+  margin-top: auto;
   padding-top: var(--s-4);
   border-top: 1px solid var(--rule);
+}
+
+.look-2026 .quote__text {
+  margin-bottom: var(--s-6);
 }
 
 .look-2026 .quote__name {
@@ -554,6 +591,12 @@
 @media (max-width: 900px) {
   .look-2026 .quotes__grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .look-2026 .quote__text p {
+    text-indent: 0;
   }
 }
 
@@ -610,6 +653,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: var(--photo-grade);
 }
 
 @media (max-width: 900px) {
@@ -648,7 +692,7 @@
 .look-2026 .industry__areas {
   list-style: none;
   line-height: 1.9;
-  color: var(--ink-body);
+  color: var(--ink-muted);
 }
 
 @media (max-width: 640px) {

@@ -44,8 +44,8 @@ const CLIENT_HEIGHTS = {
   'Grindr': 19, 'RoboStrategy': 15, 'Rox': 20, 'Jito Labs': 21,
 };
 const PRESS_HEIGHTS = {
-  'The Wall Street Journal': 15, 'Bloomberg': 20, 'Financial Times': 15,
-  'The New York Times': 21, 'Reuters': 24, 'CNBC': 21, 'Forbes': 22, 'Fortune': 17,
+  'The Wall Street Journal': 13, 'Bloomberg': 19, 'Financial Times': 13,
+  'The New York Times': 17, 'Reuters': 22, 'CNBC': 18, 'Forbes': 20, 'Fortune': 15,
 };
 
 // Stock photos: CC0 / public domain from Wikimedia Commons, graded to one
@@ -60,11 +60,12 @@ const INDUSTRY_IMAGES = {
   'Frontier Technology': { base: 'industry-frontier-technology', alt: 'City lights across the Midwest at night, seen from the International Space Station' },
 };
 
-// Where each case study photo keeps its subject in a 3:2 crop.
-const CASE_FOCUS = {
-  'ondo': '50% 40%',
-  'stellar-development-foundation': '50% 30%',
-  'grip-shipping': '50% 22%',
+// Homepage crops of each case study photo: 3:2, cut inside the broadcast
+// frame so no channel logo or news bar is sliced.
+const CASE_IMAGES = {
+  'ondo': 'case-ondo',
+  'stellar-development-foundation': 'case-stellar',
+  'grip-shipping': 'case-grip',
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
@@ -182,8 +183,12 @@ function buildWork() {
   const cards = featured.map((cs, i) => `
     <li class="case" data-reveal style="--i: ${i}">
       <div class="case__media">
-        <img src="${cs.heroImage}" alt="" width="1200" height="800" loading="lazy" decoding="async"
-          style="object-position: ${CASE_FOCUS[cs.slug] || '50% 40%'}">
+        ${CASE_IMAGES[cs.slug] ? `
+          <picture>
+            <source type="image/webp" srcset="${HOME_DIR}/${CASE_IMAGES[cs.slug]}.webp">
+            <img src="${HOME_DIR}/${CASE_IMAGES[cs.slug]}.jpg" alt="" width="676" height="450" loading="lazy" decoding="async">
+          </picture>
+        ` : `<img src="${cs.heroImage}" alt="" width="1200" height="800" loading="lazy" decoding="async">`}
       </div>
       <p class="t-label case__client">${clientName(cs)}</p>
       <h3 class="t-card case__title"><a class="case__link" href="/case-studies/${cs.slug}">${cs.subtitle}</a></h3>
@@ -215,7 +220,7 @@ function buildTestimonials() {
       <blockquote class="quote__text"><p>${t.quote}</p></blockquote>
       <figcaption class="quote__by">
         <span class="quote__name">${t.name}</span>
-        <span class="quote__role">${t.title}, ${t.company}</span>
+        <span class="quote__role">${t.title}, ${t.company.replace(/ (\S+)$/, '&nbsp;$1')}</span>
       </figcaption>
     </figure>
   `).join('');

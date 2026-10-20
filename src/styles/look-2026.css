@@ -21,7 +21,9 @@
   --on-dark-muted: rgba(244, 242, 236, 0.74);
   --on-dark-rule: rgba(244, 242, 236, 0.5);
   --band-bg: #1A211D;
-  --scrim: rgba(10, 16, 13, 0.62);
+  --scrim: linear-gradient(90deg, rgba(14, 19, 16, 0.86) 0%, rgba(14, 19, 16, 0.62) 50%, rgba(14, 19, 16, 0.48) 100%);
+  --backdrop: rgba(10, 16, 13, 0.6);
+  --photo-grade: saturate(0.82) sepia(0.06);
 
   --font-display: 'Newsreader', 'Iowan Old Style', 'Times New Roman', serif;
   --font-sans: 'Geist', 'Helvetica Neue', Arial, sans-serif;
@@ -467,14 +469,22 @@ html:has(> body.look-2026) {
 .look-2026 .footer-col,
 .look-2026 .footer-col--center,
 .look-2026 .footer-col--right {
-  align-items: flex-start;
+  display: grid;
+  grid-template-rows: 44px auto;
+  align-items: center;
+  justify-items: start;
   text-align: left;
-  gap: 0;
+  gap: var(--s-2);
 }
 
 .look-2026 .footer-col--right {
-  align-items: flex-end;
+  justify-items: end;
   text-align: right;
+}
+
+.look-2026 .footer-socials {
+  gap: var(--s-1);
+  margin-right: -12px;
 }
 
 .look-2026 .footer-nav {
@@ -486,15 +496,20 @@ html:has(> body.look-2026) {
   border-top: 1px solid var(--rule);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .look-2026 .footer-grid {
     grid-template-columns: minmax(0, 1fr);
     row-gap: var(--s-5);
   }
 
   .look-2026 .footer-col--right {
-    align-items: flex-start;
+    justify-items: start;
     text-align: left;
+  }
+
+  .look-2026 .footer-socials {
+    margin-right: 0;
+    margin-left: -12px;
   }
 }
 
@@ -580,6 +595,10 @@ html:has(> body.look-2026) {
   transition: border-color var(--dur-ui) var(--ease-out);
 }
 
+.look-2026 .contact-field textarea {
+  resize: none;
+}
+
 .look-2026 .contact-field input::placeholder,
 .look-2026 .contact-field textarea::placeholder {
   color: var(--ink-muted);
@@ -646,7 +665,7 @@ html:has(> body.look-2026) {
 }
 
 .look-2026 .bio-dialog::backdrop {
-  background: var(--scrim);
+  background: var(--backdrop);
 }
 
 .look-2026 .bio-dialog[open] {
@@ -690,7 +709,7 @@ html:has(> body.look-2026) {
 
 .look-2026 .band__media img {
   object-fit: cover;
-  object-position: 40% 50%;
+  object-position: 58% 50%;
 }
 
 .look-2026 .band__media::after {
@@ -722,8 +741,6 @@ html:has(> body.look-2026) {
 
 .look-2026 .band__words {
   list-style: none;
-  padding-bottom: var(--s-4);
-  border-bottom: 1px solid var(--on-dark-rule);
   font-size: var(--t-label);
   font-weight: 500;
   line-height: 2;
@@ -739,9 +756,6 @@ html:has(> body.look-2026) {
   }
 
   .look-2026 .band__words {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    gap: 0 var(--s-6);
     text-align: left;
   }
 }
@@ -749,7 +763,7 @@ html:has(> body.look-2026) {
 /* ─── Form section under the band ───────────────────────────────────── */
 
 .look-2026 .contact-section.section-padding {
-  padding: var(--section) 0;
+  padding: var(--s-9) 0 var(--section);
 }
 
 .look-2026 .contact-section .container {
@@ -764,7 +778,7 @@ html:has(> body.look-2026) {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--s-5);
   row-gap: var(--s-5);
-  max-width: none;
+  max-width: 760px;
   margin: 0;
 }
 
@@ -786,18 +800,17 @@ html:has(> body.look-2026) {
   justify-self: start;
 }
 
-@media (max-width: 900px) {
-  .look-2026 .contact-form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .look-2026 .contact-field:has(#contact-company) {
-    grid-column: 1 / -1;
-  }
-}
 
 @media (max-width: 640px) {
   .look-2026 .contact-form {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phones: the text runs the full width of the photo, so the shadow stays
+   strong across it. */
+@media (max-width: 640px) {
+  .look-2026 .band {
+    --scrim: linear-gradient(180deg, rgba(14, 19, 16, 0.84) 0%, rgba(14, 19, 16, 0.72) 100%);
   }
 }
