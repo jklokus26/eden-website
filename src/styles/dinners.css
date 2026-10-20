@@ -28,11 +28,54 @@
   border-bottom: 1px solid currentColor;
 }
 
+.dinners-results {
+  padding: 0 0 var(--sp-6);
+}
+
+.dinners-results-heading {
+  font-size: var(--h3);
+  margin: 0 0 var(--sp-3);
+}
+
+.dinners-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--sp-5);
+}
+
+.dinners-result-name {
+  font-size: var(--small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--sp-2);
+}
+
+.dinners-result-outlets {
+  margin: var(--sp-2) 0 0;
+  max-width: 46ch;
+  color: var(--accent-grey);
+}
+
+.dinners-quote {
+  margin: var(--sp-5) 0 0;
+  max-width: 760px;
+}
+
+.dinners-quote blockquote {
+  margin: 0;
+  font-size: var(--h3);
+}
+
+.dinners-quote figcaption {
+  margin-top: var(--sp-2);
+  font-size: var(--small);
+  color: var(--accent-grey);
+}
+
 .dinners-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--sp-3);
-  margin-top: var(--sp-5);
 }
 
 .dinners-stat-value {

@@ -26,17 +26,37 @@ function buildPicture(photo, sizes, eager = false) {
   `;
 }
 
-function buildStats(stats) {
-  if (!stats.length) return '';
+function buildResults(results) {
+  if (!results || !results.dinners.length) return '';
+  const { quote } = results;
   return `
-    <div class="dinners-stats">
-      ${stats.map(s => `
-        <div class="dinners-stat">
-          <span class="dinners-stat-value">${s.value}</span>
-          <span class="dinners-stat-label">${s.label}</span>
+    <section class="dinners-results">
+      <div class="container">
+        <h2 class="dinners-results-heading">${results.heading}</h2>
+        <div class="dinners-results-grid">
+          ${results.dinners.map(d => `
+            <article class="dinners-result">
+              <h3 class="dinners-result-name">${d.name}</h3>
+              <div class="dinners-stats">
+                ${d.stats.map(s => `
+                  <div class="dinners-stat">
+                    <span class="dinners-stat-value">${s.value}</span>
+                    <span class="dinners-stat-label">${s.label}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <p class="dinners-result-outlets">${d.outlets}</p>
+            </article>
+          `).join('')}
         </div>
-      `).join('')}
-    </div>
+        ${quote ? `
+          <figure class="dinners-quote">
+            <blockquote><p>${quote.text}</p></blockquote>
+            <figcaption>${quote.name}, ${quote.outlet}</figcaption>
+          </figure>
+        ` : ''}
+      </div>
+    </section>
   `;
 }
 
@@ -60,9 +80,10 @@ function buildDinners() {
           ${dinnersPage.paragraphs.map(p => `<p>${p}</p>`).join('')}
           <a class="dinners-cta" href="${dinnersPage.cta.href}">${dinnersPage.cta.label} &rarr;</a>
         </div>
-        ${buildStats(dinnersPage.stats)}
       </div>
     </section>
+
+    ${buildResults(dinnersPage.results)}
 
     <section class="dinners-gallery">
       <div class="container">

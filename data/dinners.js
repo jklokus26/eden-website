@@ -10,9 +10,37 @@ export const dinnersPage = {
     'Eden creates intimate, highly curated dinners and private gatherings for the people shaping finance, technology, media and culture.',
     'We bring together founders, investors, creators, journalists and industry leaders around a shared idea to create the kind of conversations and relationships that make a meaningful difference to your business.',
   ],
-  // Results from past dinners (interviews, journalists attending, coverage).
-  // Eden is sending these; the section stays hidden while the list is empty.
-  stats: [],
+  // "Media Dinner Impact" slide from Eden's dinner deck, numbers and outlet
+  // lists verbatim (Alkida, 2026-10-20: "the only dinner stats I have for
+  // now"). Add a dinner as one more entry. The section hides when empty.
+  results: {
+    heading: 'Media dinner impact',
+    dinners: [
+      {
+        name: 'Ondo dinner',
+        stats: [
+          { value: '32', label: 'guests' },
+          { value: '22', label: 'reporters & producers' },
+        ],
+        outlets: 'from CNBC (Squawk Box, Closing Bell, Fast Money), FOX Business, Forbes, MarketWatch, Reuters and WSJ.',
+      },
+      {
+        name: 'Wintermute dinner',
+        stats: [
+          { value: '30', label: 'guests' },
+          { value: '23', label: 'reporters & producers' },
+        ],
+        outlets: 'from Bloomberg TV, CNBC, FOX Business (Claman Countdown, Varney & Co.), Forbes, Fortune, MarketWatch and WSJ.',
+      },
+    ],
+    // From the same slide. It came from a client deck, so Eden confirms it
+    // can run publicly before launch; set to null to hide it.
+    quote: {
+      text: 'Eden hosts the highest-quality events. I consider your events required attendance.',
+      name: 'MacKenzie Sigalos',
+      outlet: 'CNBC',
+    },
+  },
   cta: { label: 'Talk to Eden', href: '#contact' },
 };
 
