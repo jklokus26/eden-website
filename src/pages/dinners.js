@@ -27,7 +27,7 @@ function buildPicture(photo, sizes, eager = false) {
 }
 
 function buildResults(results) {
-  if (!results || !results.dinners.length) return '';
+  if (!results?.dinners?.length) return '';
   const { quote } = results;
   return `
     <section class="dinners-results">
