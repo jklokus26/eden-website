@@ -4,7 +4,6 @@ import { initContactForm } from '../components/contact-form.js';
 import {
   ARROW, picture, textLink, buildContactBand, initReveal, initAnchors, initNavState,
 } from '../components/look-2026.js';
-import { lenis } from '../main.js';
 import {
   homeHero,
   homeProof,
@@ -12,11 +11,9 @@ import {
   homeWhatWeDo,
   homeDinners,
   homeIndustries,
-  teamHeading,
 } from '../../data/site-content.js';
 import { clientStrip } from '../../data/clients.js';
 import { mediaLogos } from '../../data/media-logos.js';
-import { team } from '../../data/team.js';
 import { caseStudies } from '../../data/case-studies.js';
 import { testimonials } from '../../data/testimonials.js';
 
@@ -26,10 +23,20 @@ import { testimonials } from '../../data/testimonials.js';
 const DINNER_DIR = '/assets/images/dinners';
 const HOME_DIR = '/assets/images/home';
 
+// Hero photo until Ebony's video arrives (the frame takes a video as is):
+// the New York Stock Exchange facade, by Maxim Klimashin on Unsplash
+// (https://unsplash.com/photos/1QSXCd0LHVs, Unsplash License, free for
+// commercial use, no attribution required). Cropped to 4:5.
+const HERO_IMAGE = {
+  base: 'hero-financial-district',
+  alt: 'The columns and sculpted pediment of the New York Stock Exchange on Wall Street',
+};
+
 // Label over the outlet logos (ours; the doc has none).
 const PRESS_LABEL = 'Where our clients appear';
 
-// The homepage shows the eight best-known outlets in one still row. All of
+// The outlet row sits with the client quotes, away from the client logos,
+// so no two logo rows meet. It shows the eight best-known outlets; all of
 // Eden's outlet logos stay in data/media-logos.js.
 const PRESS_PICKS = [
   'The Wall Street Journal', 'Bloomberg', 'Financial Times', 'The New York Times',
@@ -44,28 +51,31 @@ const CLIENT_HEIGHTS = {
   'Grindr': 19, 'RoboStrategy': 15, 'Rox': 20, 'Jito Labs': 21,
 };
 const PRESS_HEIGHTS = {
-  'The Wall Street Journal': 13, 'Bloomberg': 19, 'Financial Times': 13,
-  'The New York Times': 17, 'Reuters': 22, 'CNBC': 18, 'Forbes': 20, 'Fortune': 15,
+  'The Wall Street Journal': 13, 'Bloomberg': 23, 'Financial Times': 13,
+  'The New York Times': 17, 'Reuters': 22, 'CNBC': 16, 'Forbes': 18, 'Fortune': 15,
 };
 
-// Stock photos: CC0 / public domain from Wikimedia Commons, graded to one
-// warm, muted tone. Sources: Financial Services "Window with Doric columns of
-// the Neues Museum in Berlin" (CC0); Digital Assets "Polygonal Brown Facade"
-// by Mike Wilson (CC0); Frontier Technology NASA ISS photo iss075e0099858
-// (public domain); contact band "Sunset in New York City" by Joseph
-// Barrientos (CC0).
+// Stock photos, all in color and graded to one warm tone. Financial Services:
+// "Golden hour illuminates classical architecture with columns" by Nhan Hoang
+// (https://unsplash.com/photos/aKioE8ayPZs); Digital Assets: "Contemporary
+// building facade reflecting golden light at sunset" by Vincent Y
+// (https://unsplash.com/photos/-Cr-DYZoWvk); both Unsplash License, free for
+// commercial use. Frontier Technology: NASA ISS photo iss075e0099858 (public
+// domain, Wikimedia Commons); contact band: "Sunset in New York City" by
+// Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
-  'Financial Services': { base: 'industry-financial-services', alt: 'Neoclassical stone facade with columns between tall windows' },
-  'Digital Assets': { base: 'industry-digital-assets', alt: 'Angular, faceted facade of a modern building in shadow' },
+  'Financial Services': { base: 'industry-financial-services', alt: 'Classical columns and a carved frieze lit by golden evening sun' },
+  'Digital Assets': { base: 'industry-digital-assets', alt: 'Glass bands of a modern cantilevered building reflecting sunset light' },
   'Frontier Technology': { base: 'industry-frontier-technology', alt: 'City lights across the Midwest at night, seen from the International Space Station' },
 };
 
 // Homepage crops of each case study photo: 3:2, cut inside the broadcast
-// frame so no channel logo or news bar is sliced.
+// frame so no channel logo or news bar is sliced. Shown in color with the
+// deeper --photo-grade-muted, which tames the studio blues.
 const CASE_IMAGES = {
-  'ondo': 'case-ondo',
-  'stellar-development-foundation': 'case-stellar',
-  'grip-shipping': 'case-grip',
+  'ondo': { base: 'case-ondo', width: 618, height: 412 },
+  'stellar-development-foundation': { base: 'case-stellar', width: 392, height: 261 },
+  'grip-shipping': { base: 'case-grip', width: 826, height: 551 },
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
@@ -83,32 +93,36 @@ function clientName(cs) {
 function buildHero() {
   return `
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__text">
-        <p class="hero__eyebrow">${homeHero.eyebrow}</p>
-        <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
-        <p class="t-lead hero__body">${homeHero.body}</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
-          <a class="btn btn--secondary" href="${homeHero.secondaryCta.href}">${homeHero.secondaryCta.label}</a>
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="t-label hero__eyebrow">${homeHero.eyebrow}</p>
+          <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
+          <p class="t-lead hero__body">${homeHero.body}</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
+            <a class="btn btn--secondary" href="${homeHero.secondaryCta.href}">${homeHero.secondaryCta.label}</a>
+          </div>
         </div>
-        <p class="hero__tagline">${homeHero.tagline}</p>
-      </div>
-      <div class="hero__media">
-        ${picture({
-          dir: DINNER_DIR,
-          base: 'wintermute-dinner-long-table-flowers',
-          widths: [640, 1024, 1600],
-          sizes: '(max-width: 900px) 100vw, 50vw',
-          alt: 'A long dinner table set with white flowers and glassware at a private Eden dinner',
-          width: 1600,
-          height: 2240,
-          eager: true,
-        })}
+        <div class="hero__media">
+          ${picture({
+            dir: HOME_DIR,
+            base: HERO_IMAGE.base,
+            widths: [640, 1024, 1600],
+            sizes: '(max-width: 900px) 100vw, 46vw',
+            alt: HERO_IMAGE.alt,
+            width: 1600,
+            height: 2000,
+            eager: true,
+          })}
+        </div>
       </div>
     </section>
   `;
 }
 
+// The numbers, then one strip of client logos under them (Ebony on the
+// Oct 9 call: "the performance numbers up across the top, with a scrolling
+// logo strip of companies beneath").
 function buildProof() {
   const figures = homeProof.map(f => `
     <li class="proof__figure">
@@ -117,39 +131,28 @@ function buildProof() {
     </li>
   `).join('');
 
-  const press = PRESS_PICKS
-    .map(name => mediaLogos.find(l => l.name === name))
-    .filter(Boolean)
-    .map(l => `<li class="press__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 20)}</li>`)
+  const logos = clientStrip
+    .map(c => `<li class="marquee__item">${inkLogo(c, CLIENT_HEIGHTS[c.name] || Math.round(c.displayHeight * 0.85))}</li>`)
     .join('');
 
   return `
     <section class="proof" aria-labelledby="proof-title">
       <div class="wrap">
-        <h2 id="proof-title" class="visually-hidden">Eden in numbers</h2>
+        <h2 id="proof-title" class="t-label proof__title">${homeHero.tagline}</h2>
         <ul class="proof__figures">${figures}</ul>
-        <div class="press">
-          <h3 class="t-label press__label">${PRESS_LABEL}</h3>
-          <ul class="press__list">${press}</ul>
+        <div class="clients">
+          <div class="clients__head">
+            <h2 class="t-label">${homeClientsLabel}</h2>
+            <button class="marquee__toggle" type="button" aria-pressed="false" aria-label="Pause the logo strip">
+              <svg class="marquee__icon marquee__icon--pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="2.5" height="10"/><rect x="8.5" y="2" width="2.5" height="10"/></svg>
+              <svg class="marquee__icon marquee__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
+            </button>
+          </div>
+          <div class="marquee">
+            <ul class="marquee__track">${logos}</ul>
+            <ul class="marquee__track" aria-hidden="true">${logos}</ul>
+          </div>
         </div>
-      </div>
-    </section>
-  `;
-}
-
-function buildClients() {
-  const items = clientStrip.map(c => {
-    const logo = inkLogo(c, CLIENT_HEIGHTS[c.name] || Math.round(c.displayHeight * 0.85));
-    return c.caseStudyUrl
-      ? `<li class="clients__item"><a class="clients__link" href="${c.caseStudyUrl}" aria-label="${c.name} case study">${logo}</a></li>`
-      : `<li class="clients__item">${logo}</li>`;
-  }).join('');
-
-  return `
-    <section class="clients" aria-labelledby="clients-title">
-      <div class="wrap">
-        <h2 id="clients-title" class="t-label clients__label">${homeClientsLabel}</h2>
-        <ul class="clients__grid">${items}</ul>
       </div>
     </section>
   `;
@@ -180,13 +183,15 @@ function buildWhatWeDo() {
 
 function buildWork() {
   const featured = caseStudies.filter(cs => cs.featured).slice(0, 3);
-  const cards = featured.map((cs, i) => `
+  const cards = featured.map((cs, i) => {
+    const caseImg = CASE_IMAGES[cs.slug];
+    return `
     <li class="case" data-reveal style="--i: ${i}">
       <div class="case__media">
-        ${CASE_IMAGES[cs.slug] ? `
+        ${caseImg ? `
           <picture>
-            <source type="image/webp" srcset="${HOME_DIR}/${CASE_IMAGES[cs.slug]}.webp">
-            <img src="${HOME_DIR}/${CASE_IMAGES[cs.slug]}.jpg" alt="" width="676" height="450" loading="lazy" decoding="async">
+            <source type="image/webp" srcset="${HOME_DIR}/${caseImg.base}.webp">
+            <img src="${HOME_DIR}/${caseImg.base}.jpg" alt="" width="${caseImg.width}" height="${caseImg.height}" loading="lazy" decoding="async">
           </picture>
         ` : `<img src="${cs.heroImage}" alt="" width="1200" height="800" loading="lazy" decoding="async">`}
       </div>
@@ -199,7 +204,8 @@ function buildWork() {
       </dl>
       <span class="text-link case__more" aria-hidden="true"><span class="text-link__label">View case study</span>${ARROW}</span>
     </li>
-  `).join('');
+  `;
+  }).join('');
 
   return `
     <section class="work" aria-labelledby="work-title">
@@ -225,11 +231,21 @@ function buildTestimonials() {
     </figure>
   `).join('');
 
+  const press = PRESS_PICKS
+    .map(name => mediaLogos.find(l => l.name === name))
+    .filter(Boolean)
+    .map(l => `<li class="press__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 20)}</li>`)
+    .join('');
+
   return `
     <section class="quotes" aria-labelledby="quotes-title">
       <div class="wrap">
         <h2 id="quotes-title" class="visually-hidden">What clients say</h2>
         <div class="quotes__grid">${quotes}</div>
+        <div class="press">
+          <h2 class="t-label press__label">${PRESS_LABEL}</h2>
+          <ul class="press__list">${press}</ul>
+        </div>
       </div>
     </section>
   `;
@@ -274,7 +290,7 @@ function buildIndustries() {
       <li class="industry" data-reveal style="--i: ${i}">
         ${img ? picture({
           dir: HOME_DIR, base: img.base, widths: [640, 1024], sizes: '(max-width: 640px) 100vw, 33vw',
-          width: 1600, height: 800, alt: img.alt, className: 'industry__photo',
+          width: 1600, height: 1067, alt: img.alt, className: 'industry__photo',
         }) : ''}
         <h3 class="t-h3 industry__name">${ind.name}</h3>
         <ul class="industry__areas">${ind.areas.map(a => `<li>${a}</li>`).join('')}</ul>
@@ -292,80 +308,19 @@ function buildIndustries() {
   `;
 }
 
-function buildTeam() {
-  const members = team.map((m, i) => `
-    <li class="member" data-reveal style="--i: ${i}">
-      <button class="member__button" type="button" data-index="${i}" aria-haspopup="dialog">
-        <span class="member__photo"><img src="${m.photo}" alt="" width="500" height="625" loading="lazy" decoding="async"></span>
-        <span class="member__info">
-          <span class="member__name">${m.name}</span>
-          <span class="member__role">${m.role}</span>
-          <span class="member__more">Read bio</span>
-        </span>
-      </button>
-    </li>
-  `).join('');
-
-  return `
-    <section class="team" aria-labelledby="team-title">
-      <div class="wrap">
-        <div class="sec-head sec-head--ruled">
-          <h2 id="team-title" class="t-label">${teamHeading.sectionLabel}</h2>
-          ${textLink('/about', 'Meet the full team')}
-        </div>
-        <ul class="team__grid">${members}</ul>
-      </div>
-      <dialog class="bio-dialog" aria-labelledby="bio-name" data-lenis-prevent>
-        <div class="bio">
-          <div class="bio__photo"><img alt="" width="500" height="625"></div>
-          <div class="bio__body">
-            <h3 id="bio-name" class="t-h3 bio__name"></h3>
-            <p class="bio__role"></p>
-            <p class="bio__text"></p>
-            <a class="text-link bio__linkedin" href="#" target="_blank" rel="noopener noreferrer"><span class="text-link__label">LinkedIn</span>${ARROW}</a>
-          </div>
-          <button class="bio__close" type="button" aria-label="Close bio">Close</button>
-        </div>
-      </dialog>
-    </section>
-  `;
-}
-
 // ─── Behaviour ────────────────────────────────────────────────────────────
 
-function initBios(root) {
-  const dialog = root.querySelector('.bio-dialog');
-  if (!dialog || typeof dialog.showModal !== 'function') return;
-  let opener = null;
-  const photo = dialog.querySelector('.bio__photo img');
-
-  root.querySelectorAll('.member__button').forEach(button => {
-    button.addEventListener('click', () => {
-      const m = team[Number(button.dataset.index)];
-      photo.src = m.photo;
-      photo.alt = m.alt || '';
-      dialog.querySelector('.bio__name').textContent = m.name;
-      dialog.querySelector('.bio__role').textContent = m.role;
-      dialog.querySelector('.bio__text').textContent = m.bio;
-      const linkedin = dialog.querySelector('.bio__linkedin');
-      linkedin.hidden = !m.linkedin;
-      if (m.linkedin) {
-        linkedin.href = m.linkedin;
-        linkedin.setAttribute('aria-label', `${m.name} on LinkedIn`);
-      }
-      opener = button;
-      if (lenis) lenis.stop();
-      dialog.showModal();
-      dialog.querySelector('.bio__close').focus();
-    });
-  });
-
-  dialog.querySelector('.bio__close').addEventListener('click', () => dialog.close());
-  // A click on the backdrop lands on the dialog element itself.
-  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-  dialog.addEventListener('close', () => {
-    if (lenis) lenis.start();
-    if (opener) opener.focus();
+// The client strip scrolls on its own; the button stops and restarts it
+// (moving content needs a pause control). Its label stays "Pause the logo
+// strip" and aria-pressed says whether it's paused; the icon swaps to play.
+// Reduced motion shows the strip still.
+function initMarquee(root) {
+  const toggle = root.querySelector('.marquee__toggle');
+  const marquee = root.querySelector('.marquee');
+  if (!toggle || !marquee) return;
+  toggle.addEventListener('click', () => {
+    const paused = marquee.classList.toggle('is-paused');
+    toggle.setAttribute('aria-pressed', String(paused));
   });
 }
 
@@ -378,20 +333,18 @@ function initHomepage() {
   main.insertAdjacentHTML('beforeend', [
     buildHero(),
     buildProof(),
-    buildClients(),
     buildWhatWeDo(),
     buildWork(),
     buildTestimonials(),
     buildDinners(),
     buildIndustries(),
-    buildTeam(),
     buildContactBand(),
   ].join(''));
 
   initReveal(main);
   initAnchors(main);
   initNavState();
-  initBios(main);
+  initMarquee(main);
   initContactForm();
 }
 

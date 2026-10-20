@@ -57,9 +57,11 @@ function buildDinners() {
   if (!main) return;
 
   const [lead, ...rest] = dinnerPhotos;
-  // The long-table shot is the homepage hero, so the gallery skips it and
-  // the remaining nine sit in an even 3 by 3 grid.
-  const gallery = rest.filter(p => p.base !== 'wintermute-dinner-long-table-flowers');
+  // The gallery skips the menu card (a landscape detail shot that loses its
+  // text in a portrait tile) and the shot that is mostly the backs of heads,
+  // so eight photos sit in an even 4 by 2 grid.
+  const GALLERY_SKIP = ['wintermute-dinner-wintermute-menu', 'wintermute-dinner-guest-smiling'];
+  const gallery = rest.filter(p => !GALLERY_SKIP.includes(p.base));
 
   main.innerHTML = `
     <section class="dhero" aria-labelledby="dinners-title">
@@ -83,7 +85,7 @@ function buildDinners() {
     <section class="dgallery" aria-label="Photos from the Wintermute dinner">
       <div class="wrap">
         <ul class="dgallery__grid">
-          ${gallery.map(p => `<li class="dgallery__item">${photo(p, '(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw')}</li>`).join('')}
+          ${gallery.map(p => `<li class="dgallery__item"${p.focus ? ` style="--focus: ${p.focus}"` : ''}>${photo(p, '(max-width: 900px) 50vw, 25vw')}</li>`).join('')}
         </ul>
       </div>
     </section>

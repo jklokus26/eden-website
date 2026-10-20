@@ -21,11 +21,13 @@ export function textLink(href, label, extra = '') {
   return `<a class="text-link" href="${href}"${extra}><span class="text-link__label">${label}</span>${ARROW}</a>`;
 }
 
-// The dark skyline band that closes a page, followed by the contact form.
-// The form section carries id="contact" so every "Talk to Eden" lands on it.
+// The dark skyline band that closes a page, with the contact form on a paper
+// panel inside it (the form takes the place of the band's button). The band
+// carries id="contact" so every "Talk to Eden" lands on headline and form
+// together.
 export function buildContactBand() {
   return `
-    <section class="band on-dark" aria-labelledby="band-title">
+    <section class="band on-dark" id="contact" aria-labelledby="band-title">
       <div class="band__media" aria-hidden="true">
         ${picture({
           dir: '/assets/images/home', base: 'contact-nyc-skyline', widths: [1024, 1600, 2400], sizes: '100vw',
@@ -36,12 +38,14 @@ export function buildContactBand() {
         <div class="band__copy">
           <h2 id="band-title" class="t-h2 band__title">${homeContactBand.headline}</h2>
           <p class="band__body">${homeContactBand.body}</p>
-          <a class="btn btn--inverse" href="#contact">${homeContactBand.cta.label} ${ARROW}</a>
+          <p class="band__alt">Or email <a class="band__email" href="mailto:hello@edencommunications.com">hello@edencommunications.com</a></p>
+          <ul class="band__words">${homeContactBand.words.map(w => `<li>${w}</li>`).join('')}</ul>
         </div>
-        <ul class="band__words">${homeContactBand.words.map(w => `<li>${w}</li>`).join('')}</ul>
+        <div class="band__panel">
+          ${buildContactSection({ id: 'contact-form', headline: false })}
+        </div>
       </div>
     </section>
-    ${buildContactSection({ id: 'contact', headline: false })}
   `;
 }
 

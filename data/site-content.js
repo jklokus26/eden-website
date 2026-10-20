@@ -25,11 +25,6 @@ export const newsHeading = {
 
 export const clientsHeading = 'Trusted by visionaries';
 
-export const teamHeading = {
-  sectionLabel: 'Our team',
-  headline: 'The team',
-};
-
 export const aboutMarqueeText = 'EDEN COMMUNICATIONS';
 
 export const footerContent = {
@@ -69,18 +64,20 @@ export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="curre
 
 // ─── Oct 2026 homepage revamp ───────────────────────────────────────────
 // Copy from Eden's "Website Flow (October 2026)" doc, verbatim. The homepage
-// builders switch to these exports in the design pass. The team section
-// (teamHeading), testimonials and outlet logos stay on the homepage (Eden,
-// 2026-10-20). The manifesto section comes off the homepage ("Manifesto can
-// go for now", Ebony, 2026-10-20), but keep missionContent so it can come
-// back. Other older exports nothing uses after the switch (heroContent, ...)
+// builders switch to these exports in the design pass. Testimonials and
+// outlet logos stay on the homepage (Alkida, 2026-10-20). The homepage team
+// section is off for Preview 2 at Joe's direction (2026-10-20 evening), though
+// Alkida asked to keep it the same day; the team stays on the About page. The manifesto section comes off the homepage ("Manifesto
+// can go for now", Ebony, 2026-10-20), but keep missionContent so it can
+// come back. Other older exports nothing uses after the switch (heroContent, ...)
 // get removed then.
 
 export const homeHero = {
   eyebrow: 'A modern communications firm for companies who don’t believe in PR',
   headline: 'Reputation is the first advantage.',
-  // The doc's "SEO/Tagline", shown as a quiet line in the hero so visitors
-  // see who Eden serves (also the page title and description).
+  // The doc's "SEO/Tagline": the label over the numbers band right under the
+  // hero, so visitors see who Eden serves (also the page title and
+  // description).
   tagline: 'Strategic communications for financial services, digital assets and frontier tech',
   body: 'Eden helps ambitious companies become trusted market leaders. We build your point of view, make you visible in the rooms that matter, and build relationships that open doors to customers, capital and opportunity.',
   primaryCta: { label: 'View our work', href: '/results' },
@@ -136,9 +133,10 @@ export const homeIndustries = {
   ],
 };
 
+// The doc's band also has a "Talk to Eden" button; on the site the contact
+// form sits in the band itself, so the form takes the button's place.
 export const homeContactBand = {
   headline: 'Your reputation should arrive before you do.',
   body: 'If you’re entering a bigger market, raising your profile or defining a new category, we’d like to hear what you’re building.',
-  cta: { label: 'Talk to Eden', href: '#contact' },
   words: ['People', 'Ideas', 'Markets', 'Opportunity'],
 };

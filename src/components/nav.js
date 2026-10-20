@@ -24,8 +24,12 @@ function handleNavClick(e, href) {
       const target = document.getElementById(targetId);
       if (!target) return;
 
-      // Scroll to the heading inside the section, not the section top
-      const heading = target.querySelector('h2') || target;
+      // Old-look pages scroll to the heading inside the section. On the new
+      // look the section itself is the target (its scroll margin clears the
+      // nav), since the contact band's form panel starts above its heading.
+      const heading = document.body.classList.contains('look-2026')
+        ? target
+        : (target.querySelector('h2') || target);
       if (lenis) lenis.stop();
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
