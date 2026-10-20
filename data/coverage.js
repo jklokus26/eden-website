@@ -3,13 +3,16 @@
 // Outlets without an entry use text-only display in the UI
 export const OUTLET_LOGO_MAP = {
   'bloomberg':      { src: '/assets/logos/bloomberg.png',      height: 34 },
-  'cnbc':           { src: '/assets/logos/cnbc-text.svg',       height: 28 },
+  'cnbc':           { src: '/assets/logos/cnbc.png',            height: 28 },
   'coindesk':       { src: '/assets/logos/coindesk.png',       height: 34 },
   'financial-times':{ src: '/assets/logos/financial-times.png', height: 22 },
   'forbes':         { src: '/assets/logos/forbes.png',         height: 32 },
   'fortune':        { src: '/assets/logos/fortune.png',        height: 28 },
-  'new-york-times': { src: '/assets/logos/new-york-times.png', height: 28 },
+  'new-york-times': { src: '/assets/logos/new-york-times.svg', height: 22 },
   'bloomberg-law':  { src: '/assets/logos/bloomberg-law.svg',  height: 26 },
+  'wsj':            { src: '/assets/logos/wsj.svg',            height: 15 },
+  'the-block':      { src: '/assets/logos/the-block.svg',      height: 22 },
+  'yahoo-finance':  { src: '/assets/logos/yahoo-finance.svg',  height: 22 },
 };
 
 export const coverageItems = [

@@ -69,8 +69,10 @@ export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="curre
 
 // ─── Oct 2026 homepage revamp ───────────────────────────────────────────
 // Copy from Eden's "Website Flow (October 2026)" doc, verbatim. The homepage
-// builders switch to these exports in the design pass; the older exports
-// above (heroContent, missionContent, ...) get removed at that point.
+// builders switch to these exports in the design pass. The team section
+// (teamHeading), testimonials and outlet logos stay on the homepage (Eden,
+// 2026-10-20). missionContent (the manifesto) waits on Ebony's call. Older
+// exports nothing uses after the switch (heroContent, ...) get removed then.
 
 export const homeHero = {
   eyebrow: 'A modern communications firm for companies who don’t believe in PR',
