@@ -8,7 +8,7 @@ export const OUTLET_LOGO_MAP = {
   'financial-times':{ src: '/assets/logos/financial-times.png', height: 22 },
   'forbes':         { src: '/assets/logos/forbes.png',         height: 32 },
   'fortune':        { src: '/assets/logos/fortune.png',        height: 28 },
-  'new-york-times': { src: '/assets/logos/new-york-times.png', height: 28 },
+  'new-york-times': { src: '/assets/logos/new-york-times.svg', height: 22 },
   'bloomberg-law':  { src: '/assets/logos/bloomberg-law.svg',  height: 26 },
 };
 

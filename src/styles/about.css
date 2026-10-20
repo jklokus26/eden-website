@@ -1,6 +1,6 @@
 /* ─── About Page ─────────────────────────────────────────────────────── */
 
-/* ─── Founding Story (two-column with team photo) ───────────────────── */
+/* ─── Founding Story ─────────────────────────────────────────────────── */
 
 .about-story {
   background: var(--bg);
@@ -10,9 +10,8 @@
 
 .about-story-grid {
   display: grid;
-  grid-template-columns: 55fr 45fr;
-  gap: var(--sp-3);
-  align-items: start;
+  grid-template-columns: 1fr;
+  max-width: 760px;
 }
 
 .about-story-text {
@@ -31,21 +30,6 @@
   color: var(--accent-grey);
   line-height: 1.7;
   font-weight: 400;
-}
-
-.about-story-photo {
-  border-radius: var(--card-radius);
-  overflow: hidden;
-}
-
-.about-team-group-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: var(--card-radius);
-  object-fit: cover;
-  object-position: center center;
-  max-height: 720px;
 }
 
 /* ─── Team Grid ──────────────────────────────────────────────────────── */
@@ -189,10 +173,6 @@
 @media (max-width: 768px) {
   .about-story-grid {
     grid-template-columns: 1fr;
-  }
-
-  .about-story-photo {
-    max-width: 500px;
   }
 
   .about-team-card {

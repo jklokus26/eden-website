@@ -1,19 +1,22 @@
 // Row 1: Media outlet logos (hero section ticker, scrolls left)
 // Row 2: Client logos (hp-mlogos-section "Trusted by visionaries", scrolls right)
+//
+// Each name, alt and file name must match what the image actually shows.
+// Checked by eye 2026-10-20: four entries had been labeled as the wrong outlet.
 
 export const mediaLogos = [
   {
-    name: 'CNBC',
-    logo: '/assets/logos/media-logo-1.png',
+    name: 'Axios',
+    logo: '/assets/logos/axios.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40ca_logo.png',
-    alt: 'CNBC news network logo',
+    alt: 'Axios logo',
     row: 1,
   },
   {
-    name: 'The New York Times',
-    logo: '/assets/logos/new-york-times.png',
+    name: 'Blockworks',
+    logo: '/assets/logos/blockworks.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c8_Frame%20124.png',
-    alt: 'The New York Times logo',
+    alt: 'Blockworks logo',
     row: 1,
   },
   {
@@ -38,10 +41,10 @@ export const mediaLogos = [
     row: 1,
   },
   {
-    name: 'CoinDesk',
-    logo: '/assets/logos/media-logo-2.png',
+    name: 'CNBC',
+    logo: '/assets/logos/cnbc.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40cb_Logo.svg-1.png',
-    alt: 'CoinDesk cryptocurrency news logo',
+    alt: 'CNBC news network logo',
     row: 1,
   },
   {
@@ -97,10 +100,10 @@ export const mediaLogos = [
     row: 1,
   },
   {
-    name: 'TechCrunch',
-    logo: '/assets/logos/media-logo-3.png',
+    name: 'The Washington Post',
+    logo: '/assets/logos/washington-post.png',
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40cc_Logo.svg.png',
-    alt: 'TechCrunch technology news logo',
+    alt: 'The Washington Post logo',
     row: 1,
   },
   {
