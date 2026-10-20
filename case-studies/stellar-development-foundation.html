@@ -7,7 +7,8 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-2KYXP2V8RR');
+    // Count visits on the live site only, not previews or local builds.
+    if (location.hostname === 'edencommunications.com') gtag('config', 'G-2KYXP2V8RR');
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

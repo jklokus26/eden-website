@@ -1,0 +1,204 @@
+/* Private Dinners page, Oct 2026 look. Tokens, chrome and the contact band
+   live in look-2026.css; the system is described in DESIGN.md. */
+
+.look-2026 #dinners picture,
+.look-2026 #dinners img {
+  display: block;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────────── */
+
+.look-2026 .dhero {
+  padding: calc(var(--nav-h) + clamp(48px, 7vw, 96px)) 0 var(--section);
+}
+
+.look-2026 .dhero__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: end;
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.look-2026 .dhero__head {
+  grid-column: 1 / 8;
+}
+
+.look-2026 .dhero__title {
+  max-width: 16ch;
+  margin-top: var(--s-5);
+}
+
+.look-2026 .dhero__copy {
+  grid-column: 9 / 13;
+}
+
+.look-2026 .dhero__copy p {
+  margin-bottom: var(--s-4);
+  color: var(--ink-body);
+}
+
+.look-2026 .dhero__copy .btn {
+  margin-top: var(--s-3);
+}
+
+.look-2026 .dhero__lead {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.look-2026 .dhero__lead img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .look-2026 .dhero__head,
+  .look-2026 .dhero__copy {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .dhero__copy {
+    margin-top: var(--s-6);
+  }
+
+  .look-2026 .dhero__lead {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ─── Results ───────────────────────────────────────────────────────── */
+
+.look-2026 .dresults {
+  background: var(--paper-deep);
+  padding: var(--section) 0;
+}
+
+.look-2026 .dresults__label {
+  margin-bottom: var(--s-7);
+}
+
+.look-2026 .dresults__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--s-8);
+  row-gap: var(--s-7);
+}
+
+.look-2026 .dresult {
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule-strong);
+}
+
+.look-2026 .dresult__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5) var(--s-8);
+  margin: var(--s-6) 0 var(--s-5);
+  list-style: none;
+}
+
+.look-2026 .dresult__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.look-2026 .dresult__value {
+  font-family: var(--font-display);
+  font-size: var(--t-figure);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ink);
+}
+
+.look-2026 .dresult__unit {
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+.look-2026 .dresult__outlets {
+  max-width: 36rem;
+  color: var(--ink-body);
+}
+
+.look-2026 .dquote {
+  margin: clamp(56px, 7vw, 96px) 0 0;
+  max-width: 52rem;
+}
+
+.look-2026 .dquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 1.2rem + 1.5vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-indent: -0.42em;
+  text-wrap: pretty;
+}
+
+.look-2026 .dquote p::before {
+  content: '“';
+}
+
+.look-2026 .dquote p::after {
+  content: '”';
+}
+
+.look-2026 .dquote figcaption {
+  margin-top: var(--s-5);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+@media (max-width: 900px) {
+  .look-2026 .dresults__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ─── Gallery ───────────────────────────────────────────────────────── */
+
+.look-2026 .dgallery {
+  padding: var(--section) 0;
+}
+
+/* Nine photos in an even 3 by 3 grid, all cropped to 4:5. */
+.look-2026 .dgallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+  list-style: none;
+}
+
+.look-2026 .dgallery__item {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.look-2026 .dgallery__item picture,
+.look-2026 .dgallery__item img {
+  width: 100%;
+  height: 100%;
+}
+
+.look-2026 .dgallery__item img {
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .look-2026 .dgallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .look-2026 .dgallery__item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+  }
+}

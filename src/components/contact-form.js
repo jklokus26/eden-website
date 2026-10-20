@@ -13,13 +13,18 @@ const SUCCESS_TEXT = 'Thanks for reaching out. We\'ll be in touch within 24 hour
 /**
  * Build the shared contact form section.
  * Used on homepage, about, services, and results pages.
+ * The homepage passes { id: 'contact-form', headline: false } because its
+ * contact band above the form already carries the heading.
  */
-export function buildContactSection() {
+export function buildContactSection({ id = 'contact', headline = true } = {}) {
+  const heading = headline
+    ? `${createDivider('Contact')}
+        <h2 class="contact-headline" data-animate="words">Let's Talk</h2>`
+    : '';
   return `
-    <section class="contact-section section-padding" id="contact">
+    <section class="contact-section section-padding" id="${id}"${headline ? '' : ' aria-label="Contact form"'}>
       <div class="container">
-        ${createDivider('Contact')}
-        <h2 class="contact-headline" data-animate="words">Let's Talk</h2>
+        ${heading}
         <form class="contact-form" action="https://formsubmit.co/ajax/hello@edencommunications.com" method="POST">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="New inquiry from Eden website">

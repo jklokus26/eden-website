@@ -7,7 +7,8 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-2KYXP2V8RR');
+    // Count visits on the live site only, not previews or local builds.
+    if (location.hostname === 'edencommunications.com') gtag('config', 'G-2KYXP2V8RR');
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +17,16 @@
   <meta property="og:title" content="Eden Communications | Strategic Communications for Financial Services, Digital Assets and Frontier Tech">
   <meta property="og:description" content="Eden helps ambitious companies become trusted market leaders. Strategic communications for financial services, digital assets and frontier tech.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://edencommunications.com/assets/icons/eden-fav-icon-256.png">
+  <meta property="og:image" content="https://edencommunications.com/assets/images/og/eden-og-1200x630.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Eden Communications: Reputation is the first advantage.">
   <meta property="og:url" content="https://edencommunications.com/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Eden Communications | Strategic Communications for Financial Services, Digital Assets and Frontier Tech">
   <meta name="twitter:description" content="Eden helps ambitious companies become trusted market leaders. Strategic communications for financial services, digital assets and frontier tech.">
-  <meta name="twitter:image" content="https://edencommunications.com/assets/icons/eden-fav-icon-256.png">
+  <meta name="twitter:image" content="https://edencommunications.com/assets/images/og/eden-og-1200x630.jpg">
+  <meta name="twitter:image:alt" content="Eden Communications: Reputation is the first advantage.">
   <link rel="canonical" href="https://edencommunications.com/">
   <link rel="icon" type="image/png" href="/assets/icons/eden-fav-icon-32.png" sizes="32x32">
   <link rel="icon" type="image/png" href="/assets/icons/eden-fav-icon-256.png" sizes="256x256">
@@ -29,6 +34,8 @@
   <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap">
+  <link rel="preload" as="image" fetchpriority="high" href="/assets/images/dinners/wintermute-dinner-long-table-flowers-1024.webp" imagesrcset="/assets/images/dinners/wintermute-dinner-long-table-flowers-640.webp 640w, /assets/images/dinners/wintermute-dinner-long-table-flowers-1024.webp 1024w, /assets/images/dinners/wintermute-dinner-long-table-flowers-1600.webp 1600w" imagesizes="(max-width: 900px) 100vw, 50vw">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -214,8 +221,7 @@
   <script type="module" src="/src/main.js"></script>
   <script type="module" src="/src/pages/home.js"></script>
 </head>
-<body>
-  <div id="loader"></div>
+<body class="look-2026">
   <nav id="nav"></nav>
   <main id="home">
     <!-- Sections injected by home.js -->

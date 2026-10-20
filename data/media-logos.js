@@ -8,6 +8,7 @@ export const mediaLogos = [
   {
     name: 'Axios',
     logo: '/assets/logos/axios.png',
+    ratio: 2.375,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40ca_logo.png',
     alt: 'Axios logo',
     row: 1,
@@ -15,6 +16,7 @@ export const mediaLogos = [
   {
     name: 'Blockworks',
     logo: '/assets/logos/blockworks.png',
+    ratio: 3.825,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c8_Frame%20124.png',
     alt: 'Blockworks logo',
     row: 1,
@@ -22,6 +24,7 @@ export const mediaLogos = [
   {
     name: 'Bloomberg',
     logo: '/assets/logos/bloomberg.png',
+    ratio: 3.550,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40d0_bloomberg_logo.png',
     alt: 'Bloomberg news logo',
     row: 1,
@@ -29,6 +32,7 @@ export const mediaLogos = [
   {
     name: 'Business Insider',
     logo: '/assets/logos/business-insider.png',
+    ratio: 2.857,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235ee2a7e087aa01c8c3ca_business_insider_logo.png',
     alt: 'Business Insider logo',
     row: 1,
@@ -36,6 +40,7 @@ export const mediaLogos = [
   {
     name: 'Cheddar News',
     logo: '/assets/logos/cheddar.png',
+    ratio: 2.750,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f0b2b1b4cdb9eb9ae50_cheddar-news-logo.png',
     alt: 'Cheddar News logo',
     row: 1,
@@ -43,6 +48,7 @@ export const mediaLogos = [
   {
     name: 'CNBC',
     logo: '/assets/logos/cnbc.png',
+    ratio: 4.225,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40cb_Logo.svg-1.png',
     alt: 'CNBC news network logo',
     row: 1,
@@ -50,6 +56,7 @@ export const mediaLogos = [
   {
     name: 'CNN',
     logo: '/assets/logos/cnn.png',
+    ratio: 2.161,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235e94e2411f1809378ffe_cnn-logo%201.png',
     alt: 'CNN news network logo',
     row: 1,
@@ -57,6 +64,7 @@ export const mediaLogos = [
   {
     name: 'Forbes',
     logo: '/assets/logos/forbes.png',
+    ratio: 2.800,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40c7_forbes_logo.svg.png',
     alt: 'Forbes business magazine logo',
     row: 1,
@@ -64,6 +72,7 @@ export const mediaLogos = [
   {
     name: 'Fortune',
     logo: '/assets/logos/fortune.png',
+    ratio: 4.161,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f3b6872f67e0e9a1895_fortune_logo.svg.png',
     alt: 'Fortune magazine logo',
     row: 1,
@@ -72,6 +81,7 @@ export const mediaLogos = [
   {
     name: 'Fox Business',
     logo: '/assets/logos/fox-business.png',
+    ratio: 2.054,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f571f40e62996d360b1_Fox_Business_Logo.png',
     alt: 'Fox Business news channel logo',
     row: 1,
@@ -79,6 +89,7 @@ export const mediaLogos = [
   {
     name: 'Inc.',
     logo: '/assets/logos/inc-magazine.png',
+    ratio: 2.893,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235ff455a7b9c770358448_Inc._magazine_logo%201%20(Traced).png',
     alt: 'Inc. magazine logo',
     row: 1,
@@ -87,6 +98,7 @@ export const mediaLogos = [
   {
     name: 'New York Post',
     logo: '/assets/logos/new-york-post.svg',
+    ratio: 7.911,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40cd_new_york_post_logo.svg.png',
     alt: 'New York Post newspaper logo',
     row: 1,
@@ -95,6 +107,7 @@ export const mediaLogos = [
   {
     name: 'Reuters',
     logo: '/assets/logos/reuters.png',
+    ratio: 3.571,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fb79c1e2d9972068158_reuters.png',
     alt: 'Reuters news agency logo',
     row: 1,
@@ -102,6 +115,7 @@ export const mediaLogos = [
   {
     name: 'The Washington Post',
     logo: '/assets/logos/washington-post.png',
+    ratio: 5.525,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/67fe47f3a4961f92223a40cc_Logo.svg.png',
     alt: 'The Washington Post logo',
     row: 1,
@@ -109,6 +123,7 @@ export const mediaLogos = [
   {
     name: 'USA Today',
     logo: '/assets/logos/usa-today.png',
+    ratio: 6.679,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235f979312d1125dfa19ea_USA_Today_(2020-01-29)%201.png',
     alt: 'USA Today newspaper logo',
     row: 1,
@@ -117,6 +132,7 @@ export const mediaLogos = [
   {
     name: 'Financial Times',
     logo: '/assets/logos/financial-times.png',
+    ratio: 10.860,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fc0d35d72fb4da04def_financial-times-logo.png',
     alt: 'Financial Times newspaper logo',
     row: 1,
@@ -125,6 +141,7 @@ export const mediaLogos = [
   {
     name: 'CoinTelegraph',
     logo: '/assets/logos/cointelegraph.png',
+    ratio: 4.660,
     cdnUrl: 'https://cdn.prod.website-files.com/67fe47f3a4961f92223a4072/68235fd0a7e087aa01c94b2e_cointelegraph_logo.png',
     alt: 'CoinTelegraph crypto news logo',
     row: 1,
@@ -133,6 +150,7 @@ export const mediaLogos = [
   {
     name: 'The Wall Street Journal',
     logo: '/assets/logos/wsj.svg',
+    ratio: 11.799,
     alt: 'The Wall Street Journal logo',
     row: 1,
     displayHeight: 24,
@@ -140,6 +158,7 @@ export const mediaLogos = [
   {
     name: 'The Block',
     logo: '/assets/logos/the-block.svg',
+    ratio: 6.546,
     alt: 'The Block crypto news logo',
     row: 1,
     displayHeight: 24,
@@ -147,6 +166,7 @@ export const mediaLogos = [
   {
     name: 'Yahoo Finance',
     logo: '/assets/logos/yahoo-finance.svg',
+    ratio: 7.080,
     alt: 'Yahoo Finance logo',
     row: 1,
     displayHeight: 26,
@@ -154,6 +174,7 @@ export const mediaLogos = [
   {
     name: 'Bloomberg Law',
     logo: '/assets/logos/bloomberg-law.svg',
+    ratio: 7.320,
     alt: 'Bloomberg Law logo',
     row: 1,
     displayHeight: 24,
@@ -161,12 +182,14 @@ export const mediaLogos = [
   {
     name: 'CoinDesk',
     logo: '/assets/logos/coindesk.png',
+    ratio: 4.250,
     alt: 'CoinDesk logo',
     row: 1,
   },
   {
     name: 'The New York Times',
     logo: '/assets/logos/new-york-times.svg',
+    ratio: 7.599,
     alt: 'The New York Times logo',
     row: 1,
     displayHeight: 28,

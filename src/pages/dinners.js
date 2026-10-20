@@ -1,56 +1,48 @@
-import '../styles/gallery.css';
-import '../styles/dinners.css';
+import '../styles/look-2026.css';
+import '../styles/dinners-2026.css';
 import { dinnersPage, dinnerPhotos } from '../../data/dinners.js';
-import { createDivider } from '../components/section-divider.js';
-import { initAnimations } from '../animations.js';
-import { buildContactSection, initContactForm } from '../components/contact-form.js';
+import { initContactForm } from '../components/contact-form.js';
+import {
+  ARROW, picture, buildContactBand, initReveal, initAnchors, initNavState,
+} from '../components/look-2026.js';
+
+// Private Dinners page, Oct 2026 look (DESIGN.md). Copy and numbers come
+// from data/dinners.js (Eden's doc and dinner deck, verbatim).
 
 const IMG_DIR = '/assets/images/dinners';
 
-function buildPicture(photo, sizes, eager = false) {
-  const srcset = [640, 1024, 1600]
-    .map(w => `${IMG_DIR}/${photo.base}-${w}.webp ${w}w`)
-    .join(', ');
-  return `
-    <picture>
-      <source type="image/webp" srcset="${srcset}" sizes="${sizes}">
-      <img
-        src="${IMG_DIR}/${photo.base}-1024.jpg"
-        alt="${photo.alt}"
-        width="${photo.width}"
-        height="${photo.height}"
-        loading="${eager ? 'eager' : 'lazy'}"
-        decoding="async"
-      >
-    </picture>
-  `;
+function photo(p, sizes, eager = false) {
+  return picture({
+    dir: IMG_DIR, base: p.base, widths: [640, 1024, 1600], sizes,
+    alt: p.alt, width: p.width, height: p.height, eager,
+  });
 }
 
 function buildResults(results) {
   if (!results?.dinners?.length) return '';
   const { quote } = results;
   return `
-    <section class="dinners-results">
-      <div class="container">
-        <h2 class="dinners-results-heading">${results.heading}</h2>
-        <div class="dinners-results-grid">
-          ${results.dinners.map(d => `
-            <article class="dinners-result">
-              <h3 class="dinners-result-name">${d.name}</h3>
-              <div class="dinners-stats">
+    <section class="dresults" aria-labelledby="results-title">
+      <div class="wrap">
+        <h2 id="results-title" class="t-label dresults__label">${results.heading}</h2>
+        <div class="dresults__grid">
+          ${results.dinners.map((d, i) => `
+            <article class="dresult" data-reveal style="--i: ${i}">
+              <h3 class="t-card dresult__name">${d.name}</h3>
+              <ul class="dresult__stats">
                 ${d.stats.map(s => `
-                  <div class="dinners-stat">
-                    <span class="dinners-stat-value">${s.value}</span>
-                    <span class="dinners-stat-label">${s.label}</span>
-                  </div>
+                  <li class="dresult__stat">
+                    <span class="dresult__value">${s.value}</span>
+                    <span class="dresult__unit">${s.label}</span>
+                  </li>
                 `).join('')}
-              </div>
-              <p class="dinners-result-outlets">${d.outlets}</p>
+              </ul>
+              <p class="dresult__outlets">${d.outlets}</p>
             </article>
           `).join('')}
         </div>
         ${quote ? `
-          <figure class="dinners-quote">
+          <figure class="dquote" data-reveal>
             <blockquote><p>${quote.text}</p></blockquote>
             <figcaption>${quote.name}, ${quote.outlet}</figcaption>
           </figure>
@@ -65,49 +57,48 @@ function buildDinners() {
   if (!main) return;
 
   const [lead, ...rest] = dinnerPhotos;
+  // The long-table shot is the homepage hero, so the gallery skips it and
+  // the remaining nine sit in an even 3 by 3 grid.
+  const gallery = rest.filter(p => p.base !== 'wintermute-dinner-long-table-flowers');
 
   main.innerHTML = `
-    <section class="gallery-hero section-padding">
-      <div class="container">
-        ${createDivider(dinnersPage.sectionLabel)}
-        <h1 class="gallery-headline" data-animate="words">${dinnersPage.headline}</h1>
-      </div>
-    </section>
-
-    <section class="dinners-intro">
-      <div class="container">
-        <div class="dinners-copy">
-          ${dinnersPage.paragraphs.map(p => `<p>${p}</p>`).join('')}
-          <a class="dinners-cta" href="${dinnersPage.cta.href}">${dinnersPage.cta.label} &rarr;</a>
+    <section class="dhero" aria-labelledby="dinners-title">
+      <div class="wrap dhero__grid">
+        <div class="dhero__head">
+          <p class="t-label">${dinnersPage.sectionLabel}</p>
+          <h1 id="dinners-title" class="t-h2 dhero__title">${dinnersPage.headline}</h1>
         </div>
+        <div class="dhero__copy">
+          ${dinnersPage.paragraphs.map(p => `<p>${p}</p>`).join('')}
+          <a class="btn btn--primary" href="${dinnersPage.cta.href}">${dinnersPage.cta.label} ${ARROW}</a>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="dhero__lead">${photo(lead, '(max-width: 1280px) 100vw, 1184px', true)}</div>
       </div>
     </section>
 
     ${buildResults(dinnersPage.results)}
 
-    <section class="dinners-gallery">
-      <div class="container">
-        <figure class="dinners-lead">
-          ${buildPicture(lead, '(max-width: 1280px) 100vw, 1280px', true)}
-        </figure>
-        <div class="dinners-grid">
-          ${rest.map(photo => `
-            <figure class="dinners-photo">
-              ${buildPicture(photo, '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw')}
-            </figure>
-          `).join('')}
-        </div>
+    <section class="dgallery" aria-label="Photos from the Wintermute dinner">
+      <div class="wrap">
+        <ul class="dgallery__grid">
+          ${gallery.map(p => `<li class="dgallery__item">${photo(p, '(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw')}</li>`).join('')}
+        </ul>
       </div>
     </section>
 
-    ${buildContactSection()}
+    ${buildContactBand()}
   `;
+
+  initReveal(main);
+  initAnchors(main);
 }
 
 function initDinnersPage() {
   buildDinners();
+  initNavState();
   initContactForm();
-  initAnimations();
 }
 
 document.addEventListener('DOMContentLoaded', initDinnersPage);

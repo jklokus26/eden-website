@@ -1,667 +1,392 @@
-import '../styles/home.css';
-import { createTicker } from '../components/ticker.js';
-import { createDivider } from '../components/section-divider.js';
-import { initAnimations } from '../animations.js';
-import { buildContactSection, initContactForm } from '../components/contact-form.js';
+import '../styles/look-2026.css';
+import '../styles/home-2026.css';
+import { initContactForm } from '../components/contact-form.js';
+import {
+  ARROW, picture, textLink, buildContactBand, initReveal, initAnchors, initNavState,
+} from '../components/look-2026.js';
 import { lenis } from '../main.js';
 import {
-  heroContent,
-  missionContent,
-  youtubeVideoId,
-  newsHeading,
-  clientsHeading,
+  homeHero,
+  homeProof,
+  homeClientsLabel,
+  homeWhatWeDo,
+  homeDinners,
+  homeIndustries,
   teamHeading,
-  aboutMarqueeText,
 } from '../../data/site-content.js';
-import { homeNewsItems } from '../../data/news-items.js';
-import { clients } from '../../data/clients.js';
+import { clientStrip } from '../../data/clients.js';
 import { mediaLogos } from '../../data/media-logos.js';
 import { team } from '../../data/team.js';
 import { caseStudies } from '../../data/case-studies.js';
-import { services } from '../../data/services.js';
-import { coverageItems, OUTLET_LOGO_MAP } from '../../data/coverage.js';
 import { testimonials } from '../../data/testimonials.js';
 
-// Data files already have corrected local paths from the image-fixer agent.
-function resolveLogoPath(item) {
-  return item.logo;
+// Homepage, Oct 2026 look (DESIGN.md). Copy comes from data/site-content.js,
+// which holds Eden's "Website Flow (October 2026)" doc verbatim.
+
+const DINNER_DIR = '/assets/images/dinners';
+const HOME_DIR = '/assets/images/home';
+
+// Label over the outlet logos (ours; the doc has none).
+const PRESS_LABEL = 'Where our clients appear';
+
+// The homepage shows the eight best-known outlets in one still row. All of
+// Eden's outlet logos stay in data/media-logos.js.
+const PRESS_PICKS = [
+  'The Wall Street Journal', 'Bloomberg', 'Financial Times', 'The New York Times',
+  'Reuters', 'CNBC', 'Forbes', 'Fortune',
+];
+
+// Logo heights tuned by eye on this page so every logo carries the same
+// visual weight (heavy marks smaller, light or thin marks larger).
+const CLIENT_HEIGHTS = {
+  'Ondo Finance': 26, 'Wintermute': 19, 'Reed Smith': 22,
+  'Cohen & Company Capital Markets': 30, 'Alpaca': 25, 'LayerZero': 28,
+  'Grindr': 19, 'RoboStrategy': 15, 'Rox': 20, 'Jito Labs': 21,
+};
+const PRESS_HEIGHTS = {
+  'The Wall Street Journal': 15, 'Bloomberg': 20, 'Financial Times': 15,
+  'The New York Times': 21, 'Reuters': 24, 'CNBC': 21, 'Forbes': 22, 'Fortune': 17,
+};
+
+// Stock photos: CC0 / public domain from Wikimedia Commons, graded to one
+// warm, muted tone. Sources: Financial Services "Window with Doric columns of
+// the Neues Museum in Berlin" (CC0); Digital Assets "Polygonal Brown Facade"
+// by Mike Wilson (CC0); Frontier Technology NASA ISS photo iss075e0099858
+// (public domain); contact band "Sunset in New York City" by Joseph
+// Barrientos (CC0).
+const INDUSTRY_IMAGES = {
+  'Financial Services': { base: 'industry-financial-services', alt: 'Neoclassical stone facade with columns between tall windows' },
+  'Digital Assets': { base: 'industry-digital-assets', alt: 'Angular, faceted facade of a modern building in shadow' },
+  'Frontier Technology': { base: 'industry-frontier-technology', alt: 'City lights across the Midwest at night, seen from the International Space Station' },
+};
+
+// Where each case study photo keeps its subject in a 3:2 crop.
+const CASE_FOCUS = {
+  'ondo': '50% 40%',
+  'stellar-development-foundation': '50% 30%',
+  'grip-shipping': '50% 22%',
+};
+
+// ─── Helpers ──────────────────────────────────────────────────────────────
+
+function inkLogo({ name, logo, ratio }, height) {
+  return `<span class="ink-logo" role="img" aria-label="${name}" style="--src: url('${logo}'); --r: ${ratio}; --h: ${height}px"></span>`;
 }
 
-const LINKEDIN_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`;
-
-// ─── Metric counter helpers ──────────────────────────────────────────────────
-
-function parseMetric(str) {
-  const match = str.match(/^([+-]?)([0-9,]+)([%M]?)\s*(.*)/);
-  if (!match) return { prefix: '', value: 0, suffix: '', label: str };
-  return {
-    prefix: match[1],
-    value: parseInt(match[2].replace(/,/g, '')),
-    suffix: match[3],
-    label: match[4],
-  };
+function clientName(cs) {
+  return cs.title.replace(/^Case Study:\s*/i, '');
 }
 
-function animateValue(el, start, end, prefix, suffix, duration) {
-  const startTime = performance.now();
-
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.floor(start + (end - start) * eased);
-
-    el.textContent = prefix + current.toLocaleString() + suffix;
-
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    } else {
-      el.classList.add('counted');
-    }
-  }
-
-  requestAnimationFrame(update);
-}
-
-function animateCounters() {
-  const metrics = document.querySelectorAll('.featured-cs-metric');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const value = parseInt(el.dataset.value);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const numberEl = el.querySelector('.featured-cs-metric-number');
-
-        animateValue(numberEl, 0, value, prefix, suffix, 1800);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  metrics.forEach(m => observer.observe(m));
-
-  // Stats panel counters
-  const statsCounters = document.querySelectorAll('.stats-counter');
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const value = parseInt(el.dataset.value);
-        const suffix = el.dataset.suffix || '';
-        animateValue(el, 0, value, el.dataset.prefix || '', suffix, 1800);
-        statsObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  statsCounters.forEach(c => statsObserver.observe(c));
-}
-
-// ─── Section builders ────────────────────────────────────────────────────────
+// ─── Sections ─────────────────────────────────────────────────────────────
 
 function buildHero() {
-  const section = document.createElement('section');
-  section.id = 'hero';
-  section.className = 'hero';
-
-  const lines = heroContent.headline.split('\n');
-
-  /* Hero video removed per Ebony D2 feedback — files preserved in public/assets/video/ */
-  section.innerHTML = `
-    <div class="hero-content container">
-      <div class="hero-headline-wrap">
-        <h1 class="hero-headline">
-          <span class="hero-headline--line1">${heroContent.headline}</span>
-          <span class="hero-headline--line2 gradient-text">${heroContent.gradientText}</span>
-        </h1>
+  return `
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__text">
+        <p class="hero__eyebrow">${homeHero.eyebrow}</p>
+        <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
+        <p class="t-lead hero__body">${homeHero.body}</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
+          <a class="btn btn--secondary" href="${homeHero.secondaryCta.href}">${homeHero.secondaryCta.label}</a>
+        </div>
+        <p class="hero__tagline">${homeHero.tagline}</p>
       </div>
-      <p class="hero-subtitle">${heroContent.subtitle}</p>
-    </div>
+      <div class="hero__media">
+        ${picture({
+          dir: DINNER_DIR,
+          base: 'wintermute-dinner-long-table-flowers',
+          widths: [640, 1024, 1600],
+          sizes: '(max-width: 900px) 100vw, 50vw',
+          alt: 'A long dinner table set with white flowers and glassware at a private Eden dinner',
+          width: 1600,
+          height: 2240,
+          eager: true,
+        })}
+      </div>
+    </section>
   `;
-
-  // Append media ticker inside the hero (visible without scrolling)
-  section.appendChild(buildMediaTicker());
-
-  return section;
 }
 
-function buildMediaTicker() {
-  const section = document.createElement('div');
-  section.id = 'media-ticker';
-  section.className = 'media-ticker-section';
+function buildProof() {
+  const figures = homeProof.map(f => `
+    <li class="proof__figure">
+      <span class="proof__value">${f.value.toLocaleString('en-US')}${f.suffix}</span>
+      <span class="proof__label">${f.label}</span>
+    </li>
+  `).join('');
 
-  const half = Math.ceil(mediaLogos.length / 2);
-  const row1 = mediaLogos.slice(0, half);
-  const row2 = mediaLogos.slice(half);
+  const press = PRESS_PICKS
+    .map(name => mediaLogos.find(l => l.name === name))
+    .filter(Boolean)
+    .map(l => `<li class="press__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 20)}</li>`)
+    .join('');
 
-  const tickerWrap1 = document.createElement('div');
-  tickerWrap1.className = 'media-ticker-wrap';
-
-  const tickerWrap2 = document.createElement('div');
-  tickerWrap2.className = 'media-ticker-wrap media-ticker-wrap--row2';
-
-  section.appendChild(tickerWrap1);
-  section.appendChild(tickerWrap2);
-
-  requestAnimationFrame(() => {
-    // On mobile (<768px), skip inline displayHeight so CSS controls uniform sizing
-    const isMobile = window.innerWidth < 768;
-    const logoHtml = (l) => `<img src="${resolveLogoPath(l)}" alt="${l.alt}" class="media-logo" ${!isMobile && l.displayHeight ? `style="height:${l.displayHeight}px"` : ''} loading="lazy">`;
-
-    createTicker(
-      tickerWrap1,
-      row1.map(l => ({ html: logoHtml(l) })),
-      { direction: 'left', speed: 8, gap: '80px' }
-    );
-    createTicker(
-      tickerWrap2,
-      row2.map(l => ({ html: logoHtml(l) })),
-      { direction: 'right', speed: 8, gap: '80px' }
-    );
-  });
-
-  return section;
-}
-
-function buildMission() {
-  const section = document.createElement('section');
-  section.id = 'mission';
-  section.className = 'mission-section section-padding';
-
-  const secondaryHtml = Array.isArray(missionContent.secondaryText)
-    ? missionContent.secondaryText.map(p => `<p class="mission-secondary-text">${p}</p>`).join('')
-    : `<p class="mission-secondary-text">${missionContent.secondaryText}</p>`;
-
-  section.innerHTML = `
-    <div class="container">
-      ${createDivider(missionContent.sectionLabel)}
-      <div class="mission-body">
-        <h2 class="mission-main-text" data-animate="words">${missionContent.mainText}</h2>
-        ${secondaryHtml}
-        <a href="#clients" class="mission-cta">${missionContent.ctaText} <span class="mission-cta-arrow">→</span></a>
+  return `
+    <section class="proof" aria-labelledby="proof-title">
+      <div class="wrap">
+        <h2 id="proof-title" class="visually-hidden">Eden in numbers</h2>
+        <ul class="proof__figures">${figures}</ul>
+        <div class="press">
+          <h3 class="t-label press__label">${PRESS_LABEL}</h3>
+          <ul class="press__list">${press}</ul>
+        </div>
       </div>
-    </div>
+    </section>
   `;
-
-  return section;
-}
-
-function buildFeaturedCaseStudies() {
-  const section = document.createElement('section');
-  section.id = 'featured-case-studies';
-  section.className = 'featured-cs-section section-padding';
-
-  const featured = caseStudies.filter(cs => cs.featured).slice(0, 3);
-
-  const cards = featured.map(cs => {
-    const m = parseMetric(cs.metricHighlight || '');
-    return `
-      <div class="featured-cs-col">
-        <a href="/case-studies/${cs.slug}" class="featured-cs-card">
-          <div class="featured-cs-img-wrap">
-            <img src="${cs.heroImage}" alt="${cs.alt}" class="featured-cs-img" loading="lazy" onerror="this.style.display='none'">
-          </div>
-          <div class="featured-cs-body">
-            <div class="featured-cs-metric" data-value="${m.value}" data-prefix="${m.prefix}" data-suffix="${m.suffix}">
-              <span class="featured-cs-metric-number">${m.prefix}0${m.suffix}</span>
-              <span class="featured-cs-metric-label">${m.label}</span>
-            </div>
-            <h3 class="featured-cs-title">${cs.title.replace('Case study: ', '').replace('Case Study: ', '')}</h3>
-            <p class="featured-cs-desc">${cs.description}</p>
-            <span class="featured-cs-link">Read the full case study →</span>
-          </div>
-        </a>
-      </div>
-    `;
-  }).join('');
-
-  section.innerHTML = `
-    <div class="container">
-      ${createDivider('Case studies')}
-      <h2 class="featured-cs-headline" data-animate="words">Our Results</h2>
-      <div class="featured-cs-grid">
-        ${cards}
-      </div>
-      <div class="featured-cs-cta-wrap">
-        <a href="/results" class="featured-cs-cta">See All Campaigns →</a>
-      </div>
-    </div>
-  `;
-
-  return section;
 }
 
 function buildClients() {
-  const section = document.createElement('section');
-  section.id = 'clients';
-  section.className = 'clients-section section-padding';
-
-  const tickerWrap = document.createElement('div');
-  tickerWrap.className = 'clients-ticker-wrap';
-
-  section.innerHTML = `
-    <div class="container">
-      <h2 class="clients-headline">${clientsHeading}</h2>
-    </div>
-  `;
-  section.appendChild(tickerWrap);
-
-  requestAnimationFrame(() => {
-    createTicker(
-      tickerWrap,
-      clients.map(c => {
-        const logoClass = c.noInvert ? 'client-logo client-logo--original' : 'client-logo';
-        const logoHtml = `<img src="${resolveLogoPath(c)}" alt="${c.alt}" class="${logoClass}" style="height: ${c.displayHeight || 40}px" loading="lazy">`;
-        if (c.caseStudyUrl) {
-          return { html: `<a href="${c.caseStudyUrl}" class="client-logo-link">${logoHtml}</a>` };
-        }
-        return { html: logoHtml };
-      }),
-      { direction: 'right', speed: 30, gap: '64px' }
-    );
-  });
-
-  return section;
-}
-
-function buildYouTube() {
-  const section = document.createElement('section');
-  section.id = 'youtube';
-  section.className = 'youtube-section section-padding';
-
-  const stats = [
-    { value: 1793, suffix: '', label: 'TOP-TIER PLACEMENTS IN 2025' },
-    { value: 10, prefix: '$', suffix: 'B', label: 'CLIENT ECOSYSTEM VALUE' },
-    { value: 100, suffix: '+', label: 'GLOBAL OUTLETS' },
-  ];
-
-  const statsHtml = stats.map((s, i) => `
-    <div class="stats-panel-item">
-      <span class="stats-panel-number stats-counter" data-value="${s.value}" data-prefix="${s.prefix || ''}" data-suffix="${s.suffix}">${s.prefix || ''}0${s.suffix}</span>
-      <span class="stats-panel-label">${s.label}</span>
-    </div>
-    ${i < stats.length - 1 ? '<div class="stats-panel-divider"></div>' : ''}
-  `).join('');
-
-  section.innerHTML = `
-    <div class="container">
-      <div class="video-stats-grid" data-animate="fade">
-        <div class="youtube-embed-wrap">
-          <iframe
-            class="youtube-iframe"
-            src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0&modestbranding=1&autoplay=1&mute=1"
-            title="Eden Communications video"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; playsinline"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-        </div>
-        <div class="stats-panel">
-          <h3 class="stats-panel-heading">Performance by the Numbers</h3>
-          ${statsHtml}
-        </div>
-      </div>
-    </div>
-  `;
-
-  return section;
-}
-
-function buildServices() {
-  const section = document.createElement('section');
-  section.id = 'services';
-  section.className = 'services-section section-padding';
-
-  const cards = services.map((s, i) => `
-    <a href="/services#${s.anchorId}" class="service-card" id="${s.anchorId}">
-      <span class="service-card-number">0${i + 1}</span>
-      <h3 class="service-card-title">${s.title}</h3>
-      <p class="service-card-desc">${s.tagline}</p>
-      <span class="service-card-arrow">→</span>
-    </a>
-  `).join('');
-
-  section.innerHTML = `
-    <div class="container">
-      ${createDivider('Services')}
-      <h2 class="services-headline" data-animate="words">What We Do</h2>
-      <div class="services-grid">
-        ${cards}
-      </div>
-      <div class="section-cta-wrap">
-        <a href="/services" class="section-cta">Learn More About Our Services →</a>
-      </div>
-    </div>
-  `;
-
-  return section;
-}
-
-function buildCoverageCarousel() {
-  const section = document.createElement('section');
-  section.id = 'coverage';
-  section.className = 'coverage-section section-padding';
-
-  // Show most recent 20 items in the carousel
-  const recentItems = coverageItems.slice(0, 20);
-
-  const tiles = recentItems.map(item => {
-    const logo = OUTLET_LOGO_MAP[item.logoKey];
-    const logoHtml = logo
-      ? `<img src="${logo.src}" alt="${item.publication}" class="coverage-tile-logo-img" style="height:${logo.height}px" loading="lazy">`
-      : `<span class="coverage-tile-logo-text">${item.publication}</span>`;
-
-    const tag = item.externalUrl ? 'a' : 'div';
-    const linkAttrs = item.externalUrl
-      ? `href="${item.externalUrl}" target="_blank" rel="noopener noreferrer"`
-      : '';
-
-    const d = new Date(item.datePublished + 'T12:00:00');
-    const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-    return `
-      <${tag} class="coverage-tile" ${linkAttrs}>
-        <div class="coverage-tile-logo-wrap">
-          ${logoHtml}
-        </div>
-        <div class="coverage-tile-info">
-          <div class="coverage-tile-meta">
-            <span class="coverage-tile-date">${dateStr}</span>
-            <span class="coverage-tile-client">${item.client}</span>
-          </div>
-          <p class="coverage-tile-title">${item.title}</p>
-        </div>
-      </${tag}>
-    `;
+  const items = clientStrip.map(c => {
+    const logo = inkLogo(c, CLIENT_HEIGHTS[c.name] || Math.round(c.displayHeight * 0.85));
+    return c.caseStudyUrl
+      ? `<li class="clients__item"><a class="clients__link" href="${c.caseStudyUrl}" aria-label="${c.name} case study">${logo}</a></li>`
+      : `<li class="clients__item">${logo}</li>`;
   }).join('');
 
-  section.innerHTML = `
-    <div class="container">
-      ${createDivider(newsHeading.sectionLabel)}
-      <h2 class="coverage-headline" data-animate="words">${newsHeading.headline}</h2>
-    </div>
-    <div class="coverage-scroll-container">
-      ${tiles}
-    </div>
-    <div class="container">
-      <div class="coverage-cta-wrap">
-        <a href="/recent-work" class="coverage-cta">See More Recent Coverage →</a>
+  return `
+    <section class="clients" aria-labelledby="clients-title">
+      <div class="wrap">
+        <h2 id="clients-title" class="t-label clients__label">${homeClientsLabel}</h2>
+        <ul class="clients__grid">${items}</ul>
       </div>
-    </div>
+    </section>
   `;
-
-  return section;
 }
 
-function buildMarquee() {
-  const section = document.createElement('section');
-  section.id = 'marquee';
-  section.className = 'marquee-section';
-  section.setAttribute('aria-hidden', 'true');
-
-  const tickerWrap = document.createElement('div');
-  tickerWrap.className = 'marquee-ticker-wrap';
-  section.appendChild(tickerWrap);
-
-  const items = Array.from({ length: 8 }, () => ({
-    html: `<span class="marquee-text">${aboutMarqueeText}</span><span class="marquee-dot"></span>`,
-  }));
-
-  requestAnimationFrame(() => {
-    createTicker(tickerWrap, items, { direction: 'left', speed: 18, gap: '0px' });
-  });
-
-  return section;
-}
-
-function buildTeam() {
-  const section = document.createElement('section');
-  section.id = 'team';
-  section.className = 'team-section section-padding';
-
-  const cards = team.map((member, i) => `
-    <div class="team-card" data-index="${i}" style="cursor:pointer">
-      <div class="team-card-img-wrap" data-animate="fade">
-        <img
-          src="${member.photo}"
-          alt="${member.alt}"
-          class="team-card-img"
-          loading="lazy"
-          onerror="this.style.display='none';this.parentElement.classList.add('team-card-img-fallback');this.parentElement.setAttribute('data-initials','${member.name.split(' ').map(n=>n[0]).join('')}')"
-        >
-      </div>
-      <div class="team-card-body">
-        <p class="team-card-name">${member.name}</p>
-        <p class="team-card-role">${member.role}</p>
-        ${member.linkedin && member.linkedin.length > 0 ? `<a href="${member.linkedin}" class="team-card-linkedin" target="_blank" rel="noopener noreferrer" aria-label="${member.name} on LinkedIn" onclick="event.stopPropagation()">${LINKEDIN_ICON_SVG}</a>` : ''}
-      </div>
-    </div>
+function buildWhatWeDo() {
+  const pillars = homeWhatWeDo.pillars.map((p, i) => `
+    <li class="pillar" data-reveal style="--i: ${i}">
+      <span class="pillar__num">${p.number}</span>
+      <h3 class="t-h3 pillar__title">${p.title}</h3>
+      <p class="pillar__text">${p.text}</p>
+    </li>
   `).join('');
 
-  section.innerHTML = `
-    <div class="container">
-      ${createDivider(teamHeading.sectionLabel)}
-      <h2 class="team-headline" data-animate="words">${teamHeading.headline}</h2>
-      <div class="team-grid">
-        ${cards}
+  return `
+    <section class="what" aria-labelledby="what-title">
+      <div class="wrap">
+        <p class="t-label sec-label" data-reveal>${homeWhatWeDo.sectionLabel}</p>
+        <div class="what__head">
+          <h2 id="what-title" class="t-h2 what__title" data-reveal>${homeWhatWeDo.headline}</h2>
+          <p class="what__body" data-reveal style="--i: 1">${homeWhatWeDo.body}</p>
+        </div>
+        <ol class="pillars">${pillars}</ol>
       </div>
-      <div class="section-cta-wrap">
-        <a href="/about" class="section-cta">Meet the Full Team →</a>
-      </div>
-    </div>
+    </section>
   `;
+}
 
-  return section;
+function buildWork() {
+  const featured = caseStudies.filter(cs => cs.featured).slice(0, 3);
+  const cards = featured.map((cs, i) => `
+    <li class="case" data-reveal style="--i: ${i}">
+      <div class="case__media">
+        <img src="${cs.heroImage}" alt="" width="1200" height="800" loading="lazy" decoding="async"
+          style="object-position: ${CASE_FOCUS[cs.slug] || '50% 40%'}">
+      </div>
+      <p class="t-label case__client">${clientName(cs)}</p>
+      <h3 class="t-card case__title"><a class="case__link" href="/case-studies/${cs.slug}">${cs.subtitle}</a></h3>
+      <dl class="case__metrics">
+        ${(cs.metrics || []).slice(0, 3).map(m => `
+          <div class="case__metric"><dt>${m.label}</dt><dd>${m.number}</dd></div>
+        `).join('')}
+      </dl>
+      <span class="text-link case__more" aria-hidden="true"><span class="text-link__label">View case study</span>${ARROW}</span>
+    </li>
+  `).join('');
+
+  return `
+    <section class="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="work-title" class="t-label">Selected work</h2>
+          ${textLink('/results', 'View all work')}
+        </div>
+        <ul class="work__grid">${cards}</ul>
+      </div>
+    </section>
+  `;
 }
 
 function buildTestimonials() {
-  const section = document.createElement('section');
-  section.id = 'testimonials';
-  section.className = 'testimonials-section section-padding';
+  const quotes = testimonials.map((t, i) => `
+    <figure class="quote" data-reveal style="--i: ${i}">
+      <blockquote class="quote__text"><p>${t.quote}</p></blockquote>
+      <figcaption class="quote__by">
+        <span class="quote__name">${t.name}</span>
+        <span class="quote__role">${t.title}, ${t.company}</span>
+      </figcaption>
+    </figure>
+  `).join('');
 
-  const dots = testimonials.map((_, i) =>
-    `<button class="testimonial-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Go to testimonial ${i + 1}"></button>`
-  ).join('');
+  return `
+    <section class="quotes" aria-labelledby="quotes-title">
+      <div class="wrap">
+        <h2 id="quotes-title" class="visually-hidden">What clients say</h2>
+        <div class="quotes__grid">${quotes}</div>
+      </div>
+    </section>
+  `;
+}
 
-  section.innerHTML = `
-    <div class="container">
-      <div class="testimonials-wrap">
-        <div class="testimonials-slider">
-          ${testimonials.map((t, i) => `
-            <div class="testimonial-slide${i === 0 ? ' active' : ''}" data-index="${i}">
-              <blockquote class="testimonial-quote">"${t.quote}"</blockquote>
-              <div class="testimonial-author">
-                <span class="testimonial-name">${t.name}</span>
-                <span class="testimonial-title">${t.title}, ${t.company}</span>
-              </div>
-            </div>
-          `).join('')}
+function buildDinners() {
+  return `
+    <section class="dinners" aria-labelledby="dinners-title">
+      <div class="wrap dinners__grid">
+        <div class="dinners__text">
+          <p class="t-label" data-reveal>${homeDinners.sectionLabel}</p>
+          <h2 id="dinners-title" class="t-h2" data-reveal>${homeDinners.headline}</h2>
+          ${homeDinners.paragraphs.map((p, i) => `<p class="dinners__para" data-reveal style="--i: ${i + 1}">${p}</p>`).join('')}
+          <div data-reveal style="--i: 3">${textLink(homeDinners.cta.href, homeDinners.cta.label)}</div>
         </div>
-        <div class="testimonial-dots">${dots}</div>
+        <div class="dinners__photos">
+          ${picture({
+            dir: DINNER_DIR, base: 'wintermute-dinner-table-guests-wide', widths: [640, 1024, 1600],
+            sizes: '(max-width: 900px) 100vw, 50vw', width: 1600, height: 1143, className: 'dinners__photo dinners__photo--wide',
+            alt: 'Guests seated along a long candlelit table at a private Eden dinner',
+          })}
+          ${picture({
+            dir: DINNER_DIR, base: 'wintermute-dinner-room-table-set', widths: [640, 1024],
+            sizes: '(max-width: 900px) 50vw, 25vw', width: 1600, height: 2240, className: 'dinners__photo',
+            alt: 'Private dining room set for dinner under a crystal chandelier',
+          })}
+          ${picture({
+            dir: DINNER_DIR, base: 'wintermute-dinner-guests-conversation', widths: [640, 1024],
+            sizes: '(max-width: 900px) 50vw, 25vw', width: 1600, height: 2240, className: 'dinners__photo',
+            alt: 'Two guests in conversation before dinner',
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   `;
-
-  return section;
 }
 
-function buildContactForm() {
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = buildContactSection();
-  return wrapper.firstElementChild;
-}
+function buildIndustries() {
+  const items = homeIndustries.items.map((ind, i) => {
+    const img = INDUSTRY_IMAGES[ind.name];
+    return `
+      <li class="industry" data-reveal style="--i: ${i}">
+        ${img ? picture({
+          dir: HOME_DIR, base: img.base, widths: [640, 1024], sizes: '(max-width: 640px) 100vw, 33vw',
+          width: 1600, height: 800, alt: img.alt, className: 'industry__photo',
+        }) : ''}
+        <h3 class="t-h3 industry__name">${ind.name}</h3>
+        <ul class="industry__areas">${ind.areas.map(a => `<li>${a}</li>`).join('')}</ul>
+      </li>
+    `;
+  }).join('');
 
-// ─── Team Modal ──────────────────────────────────────────────────────────────
-
-function buildTeamModal() {
-  const overlay = document.createElement('div');
-  overlay.className = 'team-modal-overlay';
-  overlay.innerHTML = `
-    <div class="team-modal">
-      <button class="team-modal-close" aria-label="Close bio">&times;</button>
-      <div class="team-modal-photo">
-        <img src="" alt="" class="team-modal-img">
+  return `
+    <section class="industries" aria-labelledby="industries-title">
+      <div class="wrap">
+        <h2 id="industries-title" class="t-label sec-label">${homeIndustries.sectionLabel}</h2>
+        <ul class="industries__grid">${items}</ul>
       </div>
-      <div class="team-modal-info">
-        <h3 class="team-modal-name"></h3>
-        <p class="team-modal-role"></p>
-        <div class="team-modal-tags"></div>
-        <p class="team-modal-bio"></p>
-        <a href="" class="team-modal-linkedin" target="_blank" rel="noopener noreferrer" style="display:none">${LINKEDIN_ICON_SVG} <span>View LinkedIn Profile</span></a>
-      </div>
-    </div>
+    </section>
   `;
-  document.body.appendChild(overlay);
-  return overlay;
 }
 
-function openTeamModal(overlay, member) {
-  const modalImg = overlay.querySelector('.team-modal-img');
-  const modalPhoto = overlay.querySelector('.team-modal-photo');
-  modalImg.style.display = '';
-  modalPhoto.classList.remove('team-card-img-fallback');
-  modalPhoto.removeAttribute('data-initials');
-  modalImg.onerror = function() {
-    this.style.display = 'none';
-    modalPhoto.classList.add('team-card-img-fallback');
-    modalPhoto.setAttribute('data-initials', member.name.split(' ').map(n => n[0]).join(''));
-  };
-  modalImg.src = member.photo;
-  modalImg.alt = member.alt;
-  overlay.querySelector('.team-modal-name').textContent = member.name;
-  overlay.querySelector('.team-modal-role').textContent = member.role;
-  overlay.querySelector('.team-modal-bio').textContent = member.bioShort || member.bio || '';
+function buildTeam() {
+  const members = team.map((m, i) => `
+    <li class="member" data-reveal style="--i: ${i}">
+      <button class="member__button" type="button" data-index="${i}" aria-haspopup="dialog">
+        <span class="member__photo"><img src="${m.photo}" alt="" width="500" height="625" loading="lazy" decoding="async"></span>
+        <span class="member__info">
+          <span class="member__name">${m.name}</span>
+          <span class="member__role">${m.role}</span>
+          <span class="member__more">Read bio</span>
+        </span>
+      </button>
+    </li>
+  `).join('');
 
-  const tagsEl = overlay.querySelector('.team-modal-tags');
-  if (member.expertise && member.expertise.length) {
-    tagsEl.innerHTML = member.expertise.map(t => `<span class="team-tag">${t}</span>`).join('');
-    tagsEl.style.display = '';
-  } else {
-    tagsEl.style.display = 'none';
-  }
-
-  const linkedinEl = overlay.querySelector('.team-modal-linkedin');
-  if (member.linkedin) {
-    linkedinEl.href = member.linkedin;
-    linkedinEl.style.display = '';
-  } else {
-    linkedinEl.style.display = 'none';
-  }
-
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  return `
+    <section class="team" aria-labelledby="team-title">
+      <div class="wrap">
+        <div class="sec-head sec-head--ruled">
+          <h2 id="team-title" class="t-label">${teamHeading.sectionLabel}</h2>
+          ${textLink('/about', 'Meet the full team')}
+        </div>
+        <ul class="team__grid">${members}</ul>
+      </div>
+      <dialog class="bio-dialog" aria-labelledby="bio-name">
+        <div class="bio">
+          <div class="bio__photo"><img alt="" width="500" height="625"></div>
+          <div class="bio__body">
+            <h3 id="bio-name" class="t-h3 bio__name"></h3>
+            <p class="bio__role"></p>
+            <p class="bio__text"></p>
+            <a class="text-link bio__linkedin" href="#" target="_blank" rel="noopener noreferrer"><span class="text-link__label">LinkedIn</span>${ARROW}</a>
+          </div>
+          <button class="bio__close" type="button" aria-label="Close bio">Close</button>
+        </div>
+      </dialog>
+    </section>
+  `;
 }
 
-function closeTeamModal(overlay) {
-  overlay.classList.remove('active');
-  document.body.style.overflow = '';
-}
+// ─── Behaviour ────────────────────────────────────────────────────────────
 
-// ─── Testimonial rotation ────────────────────────────────────────────────────
+function initBios(root) {
+  const dialog = root.querySelector('.bio-dialog');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  let opener = null;
+  const photo = dialog.querySelector('.bio__photo img');
 
-function initTestimonialRotation() {
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const dots = document.querySelectorAll('.testimonial-dot');
-  if (!slides.length) return;
-
-  let current = 0;
-  const total = slides.length;
-
-  function showSlide(index) {
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-    current = index;
-  }
-
-  // Auto-rotate every 7 seconds
-  let interval = setInterval(() => {
-    showSlide((current + 1) % total);
-  }, 7000);
-
-  // Dot click navigation
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      clearInterval(interval);
-      showSlide(parseInt(dot.dataset.index, 10));
-      interval = setInterval(() => {
-        showSlide((current + 1) % total);
-      }, 7000);
+  root.querySelectorAll('.member__button').forEach(button => {
+    button.addEventListener('click', () => {
+      const m = team[Number(button.dataset.index)];
+      photo.src = m.photo;
+      photo.alt = m.alt || '';
+      dialog.querySelector('.bio__name').textContent = m.name;
+      dialog.querySelector('.bio__role').textContent = m.role;
+      dialog.querySelector('.bio__text').textContent = m.bio;
+      const linkedin = dialog.querySelector('.bio__linkedin');
+      linkedin.hidden = !m.linkedin;
+      if (m.linkedin) {
+        linkedin.href = m.linkedin;
+        linkedin.setAttribute('aria-label', `${m.name} on LinkedIn`);
+      }
+      opener = button;
+      if (lenis) lenis.stop();
+      dialog.showModal();
+      dialog.querySelector('.bio__close').focus();
     });
+  });
+
+  dialog.querySelector('.bio__close').addEventListener('click', () => dialog.close());
+  // A click on the backdrop lands on the dialog element itself.
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => {
+    if (lenis) lenis.start();
+    if (opener) opener.focus();
   });
 }
 
-// ─── Init ────────────────────────────────────────────────────────────────────
+// ─── Init ─────────────────────────────────────────────────────────────────
 
 function initHomepage() {
   const main = document.getElementById('home');
   if (!main) return;
 
-  const sections = [
+  main.insertAdjacentHTML('beforeend', [
     buildHero(),
-    buildMission(),
-    buildFeaturedCaseStudies(),
+    buildProof(),
     buildClients(),
-    buildYouTube(),
-    buildServices(),
-    buildCoverageCarousel(),
-    buildTeam(),
+    buildWhatWeDo(),
+    buildWork(),
     buildTestimonials(),
-    buildContactForm(),
-    buildMarquee(),
-  ];
+    buildDinners(),
+    buildIndustries(),
+    buildTeam(),
+    buildContactBand(),
+  ].join(''));
 
-  sections.forEach(s => main.appendChild(s));
-
-  // Wire Lenis smooth scroll for anchor CTAs
-  const scrollTargets = main.querySelectorAll('a[href="#clients"], a[href="#contact"]');
-  scrollTargets.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = link.getAttribute('href');
-      if (lenis) {
-        lenis.scrollTo(target, { offset: -80, duration: 1.2 });
-      }
-    });
-  });
-
-  // Wire up all GSAP scroll animations
-  initAnimations();
-
-  // Metric counter animation
-  animateCounters();
-
-  // Team bio modal
-  const modalOverlay = buildTeamModal();
-
-  main.querySelectorAll('.team-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const idx = parseInt(card.dataset.index, 10);
-      openTeamModal(modalOverlay, team[idx]);
-    });
-  });
-
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay || e.target.closest('.team-modal-close')) {
-      closeTeamModal(modalOverlay);
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-      closeTeamModal(modalOverlay);
-    }
-  });
-
-  // Testimonial auto-rotation
-  initTestimonialRotation();
-
-  // Contact form handling
+  initReveal(main);
+  initAnchors(main);
+  initNavState();
+  initBios(main);
   initContactForm();
 }
 

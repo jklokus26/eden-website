@@ -1,201 +1,195 @@
 ---
-version: alpha
+version: 2026.10
 name: Eden Communications
-description: Dark-mode editorial brand for a crypto and fintech PR agency. Gradient-accented, typographic, cinematic.
+description: Light, editorial, business-like. A strategic communications firm for financial services, digital assets and frontier tech. Warm paper, deep green-black ink, a light serif for headlines, a plain sans for everything else.
 colors:
-  primary: "#13ff99"
-  secondary: "#1ca4ff"
-  tertiary: "#951bff"
-  neutral: "#0a0a06"
-  hero-bg: "#020408"
-  surface: "#0a0a06"
-  on-surface: "#ffffff"
-  muted: "#9b9b9b"
-  blue-accent: "#19254e"
+  paper: "#F4F2EC"
+  paper-deep: "#ECE9E1"
+  ink: "#14201B"
+  ink-body: "#2E3632"
+  ink-muted: "#5C645F"
+  accent: "#0B3D2C"
+  accent-hover: "#14533D"
+  rule: "rgba(20, 32, 27, 0.14)"
+  rule-strong: "rgba(20, 32, 27, 0.28)"
+  control-border: "#858A86"
+  field: "#FBFAF7"
+  error: "#8A2A1D"
+  logo-ink: "#2E3632"
+  band-bg: "#1A211D"
+  on-dark-rule: "rgba(244, 242, 236, 0.5)"
+  on-dark: "#F4F2EC"
+  on-dark-muted: "rgba(244, 242, 236, 0.74)"
 typography:
-  h1:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 85.74px
-    fontWeight: 800
-    lineHeight: 1.05
-    letterSpacing: -0.02em
+  display:
+    fontFamily: Newsreader
+    fontSize: clamp(44px, 6vw, 88px)
+    fontWeight: 300
+    lineHeight: 1.02
+    letterSpacing: -0.025em
   h2:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 58.94px
-    fontWeight: 800
-    lineHeight: 1.1
+    fontFamily: Newsreader
+    fontSize: clamp(34px, 4.2vw, 58px)
+    fontWeight: 300
+    lineHeight: 1.06
     letterSpacing: -0.02em
   h3:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 42.86px
-    fontWeight: 700
+    fontFamily: Newsreader
+    fontSize: clamp(24px, 2.2vw, 30px)
+    fontWeight: 400
     lineHeight: 1.15
+    letterSpacing: -0.01em
+  card:
+    fontFamily: Newsreader
+    fontSize: clamp(20px, 1.6vw, 24px)
+    fontWeight: 400
+    lineHeight: 1.2
+  figure-sm:
+    fontFamily: Newsreader
+    fontSize: clamp(22px, 1.8vw, 28px)
+    fontWeight: 300
+    lineHeight: 1
+  quote:
+    fontFamily: Newsreader
+    fontSize: clamp(22px, 2vw, 30px)
+    fontWeight: 300
+    lineHeight: 1.38
+  figure:
+    fontFamily: Newsreader
+    fontSize: clamp(40px, 4.4vw, 64px)
+    fontWeight: 300
+    lineHeight: 1
     letterSpacing: -0.02em
-  body-lg:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 18.75px
-    fontWeight: 500
-    lineHeight: 1.5
-  body-md:
-    fontFamily: Plus Jakarta Sans
+  lead:
+    fontFamily: Geist
+    fontSize: clamp(17px, 1.3vw, 19px)
+    fontWeight: 400
+    lineHeight: 1.6
+  body:
+    fontFamily: Geist
     fontSize: 16px
-    fontWeight: 500
-    lineHeight: 1.5
-  body-sm:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 16.08px
+    fontWeight: 400
+    lineHeight: 1.6
+  small:
+    fontFamily: Geist
+    fontSize: 14px
     fontWeight: 400
     lineHeight: 1.5
-  label-caps:
-    fontFamily: Plus Jakarta Sans
+  label:
+    fontFamily: Geist
     fontSize: 12px
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: 0.08em
-  label-micro:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 9px
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: 0.06em
-spacing:
-  sp-1: 16px
-  sp-2: 32px
-  sp-3: 48px
-  sp-4: 56px
-  sp-5: 64px
-  sp-6: 64px
-  sp-7: 96px
-  sp-8: 80px
-  container-max: 1440px
-  nav-offset: 100px
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: 0.14em
 rounded:
   none: 0px
-  sm: 4px
-  md: 12px
-  card: 22.78px
-  full: 9999px
-components:
-  page:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.on-surface}"
-  hero:
-    backgroundColor: "{colors.hero-bg}"
-    textColor: "{colors.on-surface}"
-  caption:
-    textColor: "{colors.muted}"
-    typography: "{typography.body-sm}"
-  data-panel:
-    backgroundColor: "{colors.blue-accent}"
-    textColor: "{colors.on-surface}"
-  gradient-accent-a:
-    backgroundColor: "{colors.secondary}"
-    textColor: "{colors.neutral}"
-  gradient-accent-b:
-    backgroundColor: "{colors.tertiary}"
-    textColor: "{colors.on-surface}"
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.neutral}"
-    rounded: "{rounded.full}"
-    padding: 14px
-    typography: "{typography.label-caps}"
-  card:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.on-surface}"
-    rounded: "{rounded.card}"
-    padding: 32px
-  card-hover-border:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.primary}"
-  eyebrow:
-    textColor: "{colors.primary}"
-    typography: "{typography.label-caps}"
-  metric-number:
-    textColor: "{colors.on-surface}"
-    typography: "{typography.h2}"
-  quote-italic:
-    textColor: "{colors.on-surface}"
-    typography: "{typography.body-lg}"
+  button: 2px
+spacing:
+  gutter: clamp(20px, 4vw, 48px)
+  section: clamp(80px, 10vw, 136px)
+  band: clamp(48px, 6vw, 72px)
+  container: 1280px
 ---
 
 # Eden Communications — Design
 
+*Rewritten 2026-10-20 for the Oct 2026 revamp. Source: the homepage mockup Eden approved ("lighter and more like the mockup look", Ebony, 2026-10-20), cross-checked against Eden's own client deck (pale sage #F1F5F0, deep green #0B3D2C, mid green #1E6B4E). The older dark system is in git history.*
+
+**Transition note (remove at launch):** during the revamp the homepage runs this system through the `look-2026` class on `<body>`, written in the page's HTML (never added by script, so there's no flash of the old look). Other pages still use the old dark styles until they are carried over. Rules for this look are scoped under `.look-2026`, and the reverse leak is handled on purpose: the new styles override anything inherited from the old global CSS (body background, overflow, fonts), and shared scripts check the class or the reduced-motion setting (the page loader skips the new look, smooth scrolling turns off under reduced motion). Check the homepage and one unchanged inner page after every shared change.
+
 ## Overview
 
-Dark, editorial, and gradient-accented. Eden is a PR agency for crypto and fintech, and the site should read as serious journalism with a technical edge — not a SaaS landing page. The aesthetic is cinematic: a near-black background, high-contrast white typography at display weights, and a single animated three-stop gradient (purple → sky → mint) used sparingly for accents, hover states, and section dots. A subtle noise texture sits on top of everything to eliminate the flat digital feel.
-
-Typography carries most of the design. Headlines are set heavy (800) with tight negative letter-spacing. Body copy is medium weight for long-form readability. Metrics are displayed as display-scale numbers, never italicized.
-
-Motion is restrained but premium: blur-to-focus hero reveals, scroll-triggered opacity fades, and occasional card-tilt on hover. Nothing bounces, nothing pulses.
+Eden should read like a serious advisory firm, not an agency and not a tech product: calm, confident, and expensive in the quiet way. Think of a well-made annual report or a broadsheet's weekend section. Warm off-white paper, deep green-black ink, generous space, one light serif carrying the headlines, a plain sans carrying everything else. Real photography only (Eden's dinners and licensed architectural stock). Restraint is the design: if a detail doesn't help someone trust Eden faster, it goes.
 
 ## Colors
 
-The palette is one true black, one pure white, one muted grey for supporting copy, and a three-stop gradient for all accent work.
+Two paper tones, one ink family, one accent. Nothing else.
 
-- **Primary (mint #13ff99):** The functional accent — used for eyebrow labels, active link states, focus outlines, and the mint stop of the brand gradient.
-- **Secondary (sky #1ca4ff) / Tertiary (purple #951bff):** The other two gradient stops. They never appear as solid fills — only as part of the 3-stop gradient on text fills, dots, card borders (hover), and selection highlights.
-- **Neutral (#0a0a06):** The body and section background. Not pure black — warmed very slightly.
-- **Hero-bg (#020408):** A deeper near-black reserved exclusively for the hero section's video treatment.
-- **On-surface (#ffffff):** All headlines, body copy, and default UI text.
-- **Muted (#9b9b9b):** Secondary body copy, metadata, captions.
-- **Blue-accent (#19254e):** Used for technical/data contexts only.
-- **Border tokens:** All borders are low-opacity white (`rgba(255,255,255, 0.06/0.08/0.12)`). Never use a solid grey border.
+- **Paper (#F4F2EC):** the page. Warm bone, from the mockup.
+- **Paper-deep (#ECE9E1):** an alternate band to separate a few sections (proof numbers, testimonials, footer). Never more than one in a row.
+- **Ink (#14201B):** headlines, logos, rules at full strength. A green-black, close to Eden's deck green when dark.
+- **Ink-body (#2E3632):** running text.
+- **Ink-muted (#5C645F):** labels, captions, secondary lines. Passes WCAG AA on both paper tones.
+- **Accent (#0B3D2C):** Eden's deep green from their deck. Primary buttons, the focus ring, link underlines on hover. Small footprint only, never a large fill except the primary button.
+- **On-dark (#F4F2EC):** text on photographs (hero overlay is not used; the contact band is the one place text sits on a photo, behind a dark scrim).
+- **Rules:** hairlines in ink at 14% (`--rule`) or 28% (`--rule-strong`). Never a solid grey. A hairline that opens a section runs the width of the content, never edge to edge.
+- **Logo ink (#2E3632):** every client and press logo, one color.
+- **Field (#FBFAF7) and control border (#858A86, 3.1:1 on paper):** form inputs only. The border is as light as it can be while still marking the field clearly.
+- **Error (#8A2A1D):** form error text only, always with words, never color alone.
+
+No gradients, glows, neon, glass or drop shadows. Logos are always one ink color.
 
 ## Typography
 
-Plus Jakarta Sans, variable weight 400–800, loaded from Google Fonts. This is the only typeface in the system.
+Two families, two weights each, loaded from Google Fonts.
 
-- **Headlines (h1/h2/h3):** Weight 800 for h1/h2, 700 for h3. Letter-spacing always `-0.02em`. Sizes are fluid via `clamp()` so they scale cleanly from mobile to ultrawide.
-- **Body large (18.75px):** Used for lead paragraphs and quotes. Weight 500.
-- **Body small (16.08px):** Default body copy. Weight 400.
-- **Label-caps (12px):** Uppercase, letter-spacing 0.08em. Used for eyebrows above headlines and for section-divider labels.
-- **Label-micro (9px):** Uppercase, letter-spacing 0.06em. Used sparingly for tag chips and timestamps.
-
-Case-study body content uses standard bullet lists with a white-disc marker (`::marker` color `rgba(255,255,255,0.7)`). Never use custom arrow glyphs as list markers.
+- **Newsreader** (serif, optical sizes) for display, section headlines, card titles, large figures and pull quotes. Weight 300 for display and h2, 400 for h3. Always upright. Never italic in headings.
+- **Geist** (sans) for body, navigation, buttons, labels and forms. Weights 400 and 500 only.
+- **Labels:** Geist 500, 12px (0.75rem), uppercase, 0.14em tracking, ink-muted. Used sparingly: one above a section at most, never as numbered chapter tags beside a heading.
+- **Figures:** Newsreader 300 with lining, tabular numerals. Numbers are written exactly as Eden supplies them.
+- **Measure:** body lines stay under about 65 characters (`max-width: 36rem` on paragraphs).
+- Headline letter-spacing is negative (-0.01 to -0.025em). Body is neutral. Labels are wide.
+- **Rendering:** load Newsreader with its optical-size axis (`opsz`) and set `font-optical-sizing: auto`, so large headlines get the display cut and small text the text cut. Weight 300 and the tight tracking are starting values: check them at real sizes on a real screen. Sizes in rem so browser zoom and text resizing work.
 
 ## Layout
 
-- **Container:** `max-width: 1440px`, auto-margin, horizontal padding `--sp-3` (48px) at desktop, collapsing through `--sp-2` (32px) at 768px and `--sp-1` (16px) at 480px.
-- **Section padding:** The `.section-padding` utility is `var(--sp-6) var(--sp-3)` (64px vertical, 48px horizontal). It collapses at 768px and 480px breakpoints. **Never combine `.section-padding` with custom padding overrides on the same element** — the shorthand and longhand fight each other unpredictably.
-- **Breakpoints:** 480px, 768px, 1024px.
-- **Grid gaps:** Flex columns use the lobotomized owl pattern (`> * + * { margin-top: Xpx }`) instead of `gap`, to defeat GSAP's inline-style interference on animated grids.
-- **Scroll offset:** Section anchors use `scroll-margin-top: 100px` so the fixed nav doesn't cover them.
+- **Container:** max 1280px, gutter `clamp(20px, 4vw, 48px)`.
+- **Section rhythm:** major sections get `clamp(80px, 10vw, 136px)` of vertical padding. Compact bands (the proof numbers, the logo rows, the footer) get `clamp(48px, 6vw, 72px)`, as in the mockup, so the page doesn't become a run of identical blocks. Sections are separated by space and hairlines, not boxes.
+- **Hero:** two halves. Text on the left inside the container's left edge, vertically centered; one photograph on the right running to the viewport's right edge and from just under the nav to the bottom of the hero (about 88% of the viewport height, capped at 820px). The headline wraps naturally at its real length. Below 900px it stacks: text first, then the photo at 4:3 across the full width. The photo keeps its subject in view with `object-position` set per image.
+- **Grid:** 12 columns on desktop. Statement sections run headline on the left (7 columns) and supporting text on the right (4 columns, offset 1). Three-up rows (pillars, case studies, industries) use equal columns divided by hairlines.
+- **Breakpoints:** 640px, 900px, 1200px. Rows choose their own tablet layout (three-up rows can go to two plus one, logo grids to 3 then 2 columns); everything is one column below 640px.
+- **Images:** square corners, fixed aspect ratios so nothing shifts while loading. Case study and industry images are shallow landscape crops (about 2.4:1 and 2:1), as in the mockup.
+- **Anchors:** `scroll-margin-top: 96px` so the fixed nav never covers a heading.
 
 ## Elevation & Depth
 
-Depth is achieved through **tonal contrast and noise**, not shadows. The base background is `#0a0a06` with a fixed 3% SVG turbulence noise overlay blending at `mix-blend-mode: overlay`. Cards sit on `rgba(255, 255, 255, 0.03)` with low-opacity borders and gain a 1.5px gradient-border ring on hover. There are no drop shadows anywhere in the system.
+Flat. Depth comes from photography, paper tone shifts and hairlines. No shadows, no cards floating on cards.
 
 ## Shapes
 
-- **Standard card radius:** `22.78px`. This oddly specific value is the brand's signature corner and appears on all content cards, case-study tiles, and coverage tiles.
-- **Small radius:** 4px for inline chips and pills (rare).
-- **Pill radius (`9999px`):** CTAs and tag chips.
-
-**Gradient-border rule:** The gradient-border-on-hover pattern uses a `::before` pseudo-element with `inset: -1.5px` and `mask-composite: exclude`. Any parent of a gradient-bordered element **must not set `overflow: hidden`** — it clips the ring. Image wrappers inside the card handle their own image clipping separately.
+- Buttons: 2px radius. Rectangular, not pills.
+- Images, sections and dividers: square.
+- The only round shapes are focus-ring corners (follow the element) and the circular LinkedIn icon hit area.
 
 ## Components
 
-- **Primary CTA (pill):** Mint fill, near-black text, full pill radius, label-caps typography. One per section maximum.
-- **Card (content, case study, coverage tile):** 22.78px radius, 3% white fill, 1px low-opacity white border, gradient-border ring on hover, subtle `transform: translateY(-2px)` on hover.
-- **Eyebrow label:** Mint text, 12px, uppercase, 0.08em tracking, appears above h2 section headings.
-- **Metric number:** H2-scale, weight 800, white — **never italicized, never given a gradient fill, never colored mint**.
-- **Testimonial quote:** Italic is allowed here and only here. Body-lg size, white.
-- **Section divider:** Horizontal hairline border + gradient dot + uppercase label.
-- **Media ticker:** Horizontal auto-scrolling row of client logos at bottom of hero.
+- **Nav:** Eden logo left (ink), page links center (Geist 14px, ink-body, ink on hover and when active), "Talk to Eden" primary button right. Paper background; a hairline appears under it once the page scrolls. Mobile: logo + menu button, full-screen paper overlay.
+- **Primary button:** accent fill, paper text, Geist 500 14px, 2px radius, 14px 22px padding, arrow glyph after the label. Hover: accent-hover. Active: 1px press. Focus: 2px accent ring offset 3px.
+- **Inverse button (on photographs):** paper fill, ink text, same shape. Its focus ring is two-tone (a paper ring with an ink outline) so it shows on any part of a photo.
+- **Focus:** every link, button, field and logo link shows a visible focus ring on keyboard focus, instantly (not animated).
+- **Secondary button:** transparent, 1px rule-strong border, ink text. Hover: border turns ink.
+- **Text link:** ink with a 1px underline in rule-strong under the words only, never the arrow; the underline turns accent on hover. At least 44px tall for touch.
+- **Button sizes:** 48px tall with 13px 22px padding everywhere, except the nav button, which is a compact 44px.
+- **Hero:** a short sentence-case line above the headline (the doc's eyebrow, muted, not uppercase), the headline, the paragraph, two buttons, then Eden's tagline as a quiet line under a hairline so visitors see who Eden serves.
+- **Proof figures:** three figures in a row, each with a label under it, no dividers. On phones they become rows: number left, label right.
+- **Press row:** the eight best-known outlets in one still row spread across the content width, labelled "Where our clients appear". All of Eden's outlet logos stay in the data file.
+- **Logo rows:** each logo is drawn in logo-ink through a CSS mask, with its proportions from the data files and a height tuned by eye so heavy and light marks carry the same weight. Client logos sit centered in a still 5-column grid, as in the mockup. Nothing scrolls.
+- **Three-up rows** (pillars, case studies, industries, team) share one 3-column grid with a 64px gap (32px under 1100px), so their columns line up down the page. Text rows (pillars) get a hairline above each column; image rows don't need one, and nothing gets vertical dividers.
+- **Pillars and industries:** small numeral or photo, serif title, short sans list.
+- **Case study cards:** image (3:2, focal point set per photo, muted to sit with the page), client label, card-size serif title, three small figures, "View case study". No card box. The whole card is the link; its title underline appears on hover only. The rows of the three cards line up (CSS subgrid).
+- **Quotes:** Newsreader 300 at the quote size, opening mark hung outside the text edge, name and title in Geist below a short hairline. No quote-mark ornaments larger than the text.
+- **Team:** 4:5 portraits in one black-and-white grade (so new headshots always match), on the three-column grid; on phones a list with a small portrait left, name in serif, role in sans. The bio opens in a native dialog: focus moves into it, stays inside it, Escape and the close button shut it, and focus returns to the card that opened it. The mobile menu follows the same focus rules.
+- **Contact band:** a dark photograph with a flat dark scrim, headline and inverse button left, a short stacked word list right, then the form on paper below it. Check text contrast against the scrimmed photo at every crop, including the translucent on-dark text.
+- **Form:** labels above fields; name, email and company in one row, message across the full width; 52px fields with a 1px control border; accent focus ring; the submit button carries the arrow; errors in text (not color alone). The form section has id `contact`, so every "Talk to Eden" lands on it.
+
+## Motion
+
+Quiet and short. It should never be the thing someone remembers.
+
+- **Reveal:** content blocks fade in and rise 12px over 500ms with `cubic-bezier(0.16, 1, 0.3, 1)` when they enter the viewport, staggered 80ms within a group. Once only.
+- **Hover:** color and border changes over 150-200ms. The only hover movement is a 3px arrow nudge, on mouse devices only. No scale on cards, no tilt, no parallax.
+- **Reduced motion:** with `prefers-reduced-motion: reduce`, nothing moves: reveals show immediately, the marquee becomes a static wrap, smooth scrolling is off.
+- Animate `transform` and `opacity` only.
 
 ## Do's and Don'ts
 
-- Do use the brand gradient sparingly — one or two elements per viewport max (eyebrow, divider dot, or hover ring). Never fill large surfaces with it.
-- Do write metric numbers in upright weight-800 white. Never italic.
-- Do use Plus Jakarta Sans exclusively. No secondary typeface.
-- Do keep letter-spacing negative (-0.02em) on display headlines, neutral or slightly positive on body, positive and wide (0.06–0.08em) on label-caps.
-- Do render body text on the base surface `#0a0a06` with `#ffffff` or `#9b9b9b` text to stay above WCAG AA.
-- Don't use Schibsted Grotesk, Inter, or any typeface other than Plus Jakarta Sans. (An older reference in `CLAUDE.md` mentioned these — it is stale; this file is authoritative.)
-- Don't use pure black (`#000000`) or pure Tailwind-style greys. The palette is specific.
-- Don't add drop shadows. Depth comes from tonal contrast and noise.
-- Don't give metric numbers italic, color, or decoration.
-- Don't wrap a gradient-bordered element in a parent with `overflow: hidden` — the border gets clipped.
-- Don't combine the `.section-padding` utility with explicit `padding-top` / `padding-bottom` overrides on the same node.
-- Don't use arrow glyphs or custom icons as list markers inside case-study body content.
-- Don't add a second accent color (red, yellow, orange). Everything off-palette should instead use the existing gradient or muted grey.
+- Do keep copy exactly as Eden supplies it. Numbers too.
+- Do use real photographs only, in one warm, slightly desaturated grade.
+- Do let space do the separating. Hairlines before boxes, boxes almost never.
+- Do keep every logo one ink color and optically balanced.
+- Don't use italic headings, gradients, glows, drop shadows, pills or rounded cards.
+- Don't add a third typeface or a second accent color.
+- Don't use stock clichés (handshakes, laptops, coins, circuit boards) or AI-generated images.
+- Don't use numbered chapter labels beside headlines, or icon rows in circles.
+- Don't animate layout properties, and don't animate anything that the reader didn't scroll to.
+- Don't change these values as a side effect of another task. Change them on purpose, then update this file.

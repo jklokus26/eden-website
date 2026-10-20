@@ -79,6 +79,9 @@ export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="curre
 export const homeHero = {
   eyebrow: 'A modern communications firm for companies who don’t believe in PR',
   headline: 'Reputation is the first advantage.',
+  // The doc's "SEO/Tagline", shown as a quiet line in the hero so visitors
+  // see who Eden serves (also the page title and description).
+  tagline: 'Strategic communications for financial services, digital assets and frontier tech',
   body: 'Eden helps ambitious companies become trusted market leaders. We build your point of view, make you visible in the rooms that matter, and build relationships that open doors to customers, capital and opportunity.',
   primaryCta: { label: 'View our work', href: '/results' },
   secondaryCta: { label: 'Talk to Eden', href: '#contact' },
