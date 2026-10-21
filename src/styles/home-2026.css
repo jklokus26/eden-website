@@ -189,6 +189,7 @@
 
 .look-2026 .proof__title {
   margin-bottom: var(--s-6);
+  text-wrap: balance;
 }
 
 .look-2026 .proof__figures {
@@ -506,7 +507,7 @@
 }
 
 .look-2026 .case__title {
-  text-wrap: pretty;
+  text-wrap: balance;
 }
 
 .look-2026 .case__link {

@@ -242,7 +242,7 @@ function buildTestimonials() {
       <blockquote class="quote__text"><p>${t.quote}</p></blockquote>
       <figcaption class="quote__by">
         <span class="quote__name">${t.name}</span>
-        <span class="quote__role">${t.title}, ${t.company.replace(/ (\S+)$/, '&nbsp;$1')}</span>
+        <span class="quote__role">${t.title}, ${t.company.replace(/ /g, '&nbsp;')}</span>
       </figcaption>
     </figure>
   `).join('');

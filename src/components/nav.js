@@ -33,6 +33,10 @@ function handleNavClick(e, href) {
       if (lenis) lenis.stop();
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       heading.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      // Move keyboard focus to the section too. Wait a frame: from the mobile
+      // menu, the page is still inert until the menu's own click handler closes it.
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      requestAnimationFrame(() => target.focus({ preventScroll: true }));
       if (lenis) setTimeout(() => lenis.start(), 1500);
     }
   }

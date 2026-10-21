@@ -6,10 +6,16 @@ import { homeContactBand } from '../../data/site-content.js';
 
 export const ARROW = '<span class="arrow" aria-hidden="true">→</span>';
 
-export function picture({ dir, base, widths, sizes, alt, width, height, eager = false, className = '', fallback = 1024 }) {
+export function picture({ dir, base, widths, sizes, alt, width, height, eager = false, className = '', fallback = 1024, narrow = null }) {
   const srcset = widths.map(w => `${dir}/${base}-${w}.webp ${w}w`).join(', ');
+  // narrow: a differently cropped file for small screens, e.g. a tall crop for
+  // a band that stacks and grows taller than it is wide.
+  const narrowSource = narrow
+    ? `<source media="${narrow.media}" type="image/webp" srcset="${narrow.widths.map(w => `${dir}/${narrow.base}-${w}.webp ${w}w`).join(', ')}" sizes="${narrow.sizes}">`
+    : '';
   return `
     <picture class="${className}">
+      ${narrowSource}
       <source type="image/webp" srcset="${srcset}" sizes="${sizes}">
       <img src="${dir}/${base}-${fallback}.jpg" alt="${alt}" width="${width}" height="${height}"
         loading="${eager ? 'eager' : 'lazy'}" decoding="async"${eager ? ' fetchpriority="high"' : ''}>
@@ -32,6 +38,7 @@ export function buildContactBand() {
         ${picture({
           dir: '/assets/images/home', base: 'contact-nyc-skyline', widths: [1024, 1600, 2400], sizes: '100vw',
           width: 2400, height: 996, alt: '', fallback: 1600,
+          narrow: { media: '(max-width: 900px)', base: 'contact-nyc-skyline-portrait', widths: [750, 1200], sizes: '(max-width: 540px) 540px, 100vw' },
         })}
       </div>
       <div class="wrap band__inner">
@@ -63,6 +70,13 @@ export function initReveal(root) {
   items.forEach(el => io.observe(el));
 }
 
+// Keyboard and screen-reader users land where the page scrolled to, so the
+// next Tab goes into that section instead of back to where they started.
+export function focusSection(target) {
+  if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
+}
+
 export function initAnchors(root) {
   root.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -75,6 +89,7 @@ export function initAnchors(root) {
       } else {
         target.scrollIntoView({ block: 'start' });
       }
+      focusSection(target);
       history.replaceState(null, '', link.getAttribute('href'));
     });
   });

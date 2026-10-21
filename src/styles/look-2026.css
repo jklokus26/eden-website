@@ -262,6 +262,13 @@ html:has(> body.look-2026) {
   outline-offset: 3px;
 }
 
+/* Sections focused by script after an in-page jump: no ring around the
+   whole section; the next Tab shows the ring on the first control. */
+.look-2026 [tabindex="-1"]:focus,
+.look-2026 [tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 .look-2026 .on-dark a:focus-visible,
 .look-2026 .on-dark button:focus-visible {
   outline: 2px solid var(--paper);
@@ -790,6 +797,11 @@ html:has(> body.look-2026) {
 
   .look-2026 .band__words {
     margin-top: var(--s-6);
+  }
+
+  /* The tall crop (Empire State Building centred) */
+  .look-2026 .band__media img {
+    object-position: 50% 65%;
   }
 }
 
