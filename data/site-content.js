@@ -88,7 +88,7 @@ export const homeHero = {
 // Numbers shown in the proof band (value is animated, label shown as written)
 export const homeProof = [
   { value: 1793, suffix: '', label: 'Top-tier placements in 2025' },
-  { value: 558, suffix: '', label: 'Tier 1' },
+  { value: 558, suffix: '', label: 'Tier 1 placements' }, // doc: "558 TIER 1"; "placements" added at Joe's direction (2026-10-21)
   { value: 100, suffix: '+', label: 'Global outlets' },
 ];
 
@@ -101,8 +101,13 @@ export const homeWhatWeDo = {
   body: 'We make complex, regulated and high-stakes companies impossible to ignore. Traditional PR agencies wait for orders and pray for coverage. Not Eden. We serve as a core component of your growth and go-to-market strategy, bringing ideas, opportunities and increasing your influence.',
   pillars: [
     { number: '01', title: 'Position', text: 'Strategy, corporate narrative, executive positioning and issues counsel' },
-    { number: '02', title: 'Build market visibility', text: 'Earned media, thought leadership, market positioning, community building and AI/search visibility' },
-    { number: '03', title: 'Open the right doors', text: 'Private dinners, strategic introductions, investor and stakeholder engagement, conferences' },
+    // 02 and 03 trimmed so all three sit on two lines from 1024 px up (Joe,
+    // 2026-10-21): 02 drops "market positioning" (it repeated pillar 01), 03
+    // drops "and stakeholder". Doc wording: "Earned media, thought leadership, market
+    // positioning, community building and AI/search visibility" / "Private
+    // dinners, strategic introductions, investor and stakeholder engagement, conferences".
+    { number: '02', title: 'Build market visibility', text: 'Earned media, thought leadership, community building, AI/search visibility' },
+    { number: '03', title: 'Open the right doors', text: 'Private dinners, strategic introductions, investor engagement, conferences' },
   ],
 };
 

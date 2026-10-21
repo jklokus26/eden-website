@@ -278,11 +278,13 @@ function buildDinners() {
             alt: 'Guests seated along a long candlelit table at a private Eden dinner',
           })}
           ${picture({
-            // A guest, not the empty table: the set table read as the wide
-            // photo's table without people (Joe, 2026-10-21).
-            dir: DINNER_DIR, base: 'wintermute-dinner-guest-at-table', widths: [640, 1024],
-            sizes: '(max-width: 900px) 50vw, 25vw', width: 1600, height: 2240, className: 'dinners__photo',
-            alt: 'A guest listening during dinner',
+            // A guest, not the empty table (it read as the wide photo's table
+            // without people), and not Ebony, who is already in the next photo:
+            // her in two of three read too founder-focused (Joe, 2026-10-21).
+            // A closer crop of guest-smiling so she, not the heads in front, leads.
+            dir: DINNER_DIR, base: 'wintermute-dinner-guest-smiling-close', widths: [640, 1024],
+            sizes: '(max-width: 900px) 50vw, 25vw', width: 1024, height: 1434, className: 'dinners__photo',
+            alt: 'A guest smiling across the table at dinner',
           })}
           ${picture({
             dir: DINNER_DIR, base: 'wintermute-dinner-guests-conversation', widths: [640, 1024],
