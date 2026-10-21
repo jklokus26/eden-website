@@ -38,7 +38,7 @@ export function buildContactBand() {
         <div class="band__copy">
           <h2 id="band-title" class="t-h2 band__title">${homeContactBand.headline}</h2>
           <p class="band__body">${homeContactBand.body}</p>
-          <p class="band__alt">Or email <a class="band__email" href="mailto:hello@edencommunications.com">hello@edencommunications.com</a></p>
+          <p class="band__alt"><a class="band__email" href="mailto:hello@edencommunications.com">hello@edencommunications.com</a></p>
           <ul class="band__words">${homeContactBand.words.map(w => `<li>${w}</li>`).join('')}</ul>
         </div>
         <div class="band__panel">

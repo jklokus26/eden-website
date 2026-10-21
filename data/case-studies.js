@@ -292,7 +292,7 @@ export const caseStudies = [
     metrics: [
       { number: '4,050%', label: 'Coverage Increase' },
       { number: '20+', label: 'Media Placements' },
-      { number: '135%', label: 'Share of Voice Growth' },
+      { number: '135%', label: 'Increase in Share of Voice' },
     ],
     featured: true,
     industryTag: 'Logistics & eCommerce',

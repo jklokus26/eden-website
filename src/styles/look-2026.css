@@ -23,9 +23,6 @@
   --band-bg: #1A211D;
   --scrim: linear-gradient(90deg, rgba(14, 19, 16, 0.86) 0%, rgba(14, 19, 16, 0.62) 50%, rgba(14, 19, 16, 0.48) 100%);
   --photo-grade: saturate(0.82) sepia(0.06);
-  /* TV and stage frames carry loud studio blues; they get a deeper mute so
-     they sit with the dinner and architecture photos. */
-  --photo-grade-muted: saturate(0.5) sepia(0.12);
 
   --font-display: 'Newsreader', 'Iowan Old Style', 'Times New Roman', serif;
   --font-sans: 'Geist', 'Helvetica Neue', Arial, sans-serif;
@@ -693,10 +690,6 @@ html:has(> body.look-2026) {
 .look-2026 .band__body {
   max-width: 30rem;
   margin: var(--s-5) 0 var(--s-4);
-  color: var(--on-dark-muted);
-}
-
-.look-2026 .band__alt {
   color: var(--on-dark-muted);
 }
 

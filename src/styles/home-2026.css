@@ -489,7 +489,7 @@
 }
 
 .look-2026 .case__media {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--paper-deep);
 }
@@ -498,7 +498,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: var(--photo-grade-muted);
+  filter: var(--photo-grade);
 }
 
 .look-2026 .case__client {
@@ -528,22 +528,27 @@
   text-decoration-color: var(--rule-strong);
 }
 
+/* Figures sit as rows (figure left, label right) so every label stays on
+   one line at every width. The figure column scales with the figure size
+   (3.4em fits "4,050%"); a longer figure widens its own row. */
 .look-2026 .case__metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s-4);
   align-self: start;
   margin-top: var(--s-5);
+  border-bottom: 1px solid var(--rule);
 }
 
 .look-2026 .case__metric {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: var(--s-1);
+  display: grid;
+  grid-template-columns: minmax(calc(var(--t-figure-sm) * 3.4), max-content) minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: var(--s-3);
+  padding-block: var(--s-3);
+  border-top: 1px solid var(--rule);
 }
 
 .look-2026 .case__metric dd {
+  grid-column: 1;
+  grid-row: 1;
   font-family: var(--font-display);
   font-size: var(--t-figure-sm);
   font-weight: 300;
@@ -554,6 +559,8 @@
 }
 
 .look-2026 .case__metric dt {
+  grid-column: 2;
+  grid-row: 1;
   font-size: var(--t-small);
   line-height: 1.35;
   color: var(--ink-muted);
@@ -567,26 +574,6 @@
 
 .look-2026 .case:hover .case__more .text-link__label {
   text-decoration-color: var(--accent);
-}
-
-/* Laptop widths: columns are too narrow for three figures side by side,
-   so they stack as rows (figure left, label right), like the phone proof band. */
-@media (min-width: 901px) and (max-width: 1279px) {
-  .look-2026 .case__metrics {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s-2);
-  }
-
-  .look-2026 .case__metric {
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: flex-start;
-    gap: var(--s-3);
-  }
-
-  .look-2026 .case__metric dd {
-    flex: 0 0 5.5rem;
-  }
 }
 
 @media (max-width: 900px) {

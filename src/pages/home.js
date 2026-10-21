@@ -69,13 +69,17 @@ const INDUSTRY_IMAGES = {
   'Frontier Technology': { base: 'industry-frontier-technology', alt: 'City lights across the Midwest at night, seen from the International Space Station' },
 };
 
-// Homepage crops of each case study photo: 3:2, cut inside the broadcast
-// frame so no channel logo or news bar is sliced. Shown in color with the
-// deeper --photo-grade-muted, which tames the studio blues.
+// Homepage crops of each case study photo: 16:9, cut inside the broadcast
+// frame so no channel logo or news bar is sliced, and wide enough to stay
+// sharp on retina screens. Ondo: Andrew Ross Sorkin and the Ondo guest from
+// the Squawk Box frame Eden already uses (ondo-cnbc-squawk-box.jpg, the only
+// copy found; resized up with Lanczos). Stellar: the full-size CNBC still of
+// the same Dixon photo Eden uses (image.cnbcfm.com 107399355-0410_Dixon_ISO,
+// 1920x1080). Grip: Eden's full-size team photo from its Webflow CDN.
 const CASE_IMAGES = {
-  'ondo': { base: 'case-ondo', width: 618, height: 412 },
-  'stellar-development-foundation': { base: 'case-stellar', width: 392, height: 261 },
-  'grip-shipping': { base: 'case-grip', width: 826, height: 551 },
+  'ondo': { base: 'case-ondo', width: 1200, height: 675 },
+  'stellar-development-foundation': { base: 'case-stellar', width: 1060, height: 596 },
+  'grip-shipping': { base: 'case-grip', width: 1177, height: 662 },
 };
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
