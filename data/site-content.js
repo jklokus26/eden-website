@@ -66,8 +66,9 @@ export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="curre
 // Copy from Eden's "Website Flow (October 2026)" doc, verbatim. The homepage
 // builders switch to these exports in the design pass. Testimonials and
 // outlet logos stay on the homepage (Alkida, 2026-10-20). The homepage team
-// section is off for Preview 2 at Joe's direction (2026-10-20 evening), though
-// Alkida asked to keep it the same day; the team stays on the About page. The manifesto section comes off the homepage ("Manifesto
+// section is off at Joe's direction (2026-10-20 evening, confirmed 2026-10-21
+// "for now"), though Alkida asked to keep it; Eden is told when the preview
+// goes out. The team stays on the About page. The manifesto section comes off the homepage ("Manifesto
 // can go for now", Ebony, 2026-10-20), but keep missionContent so it can
 // come back. Other older exports nothing uses after the switch (heroContent, ...)
 // get removed then.

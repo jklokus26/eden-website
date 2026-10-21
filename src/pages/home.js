@@ -57,15 +57,16 @@ const PRESS_HEIGHTS = {
 
 // Stock photos, all in color and graded to one warm tone. Financial Services:
 // "Golden hour illuminates classical architecture with columns" by Nhan Hoang
-// (https://unsplash.com/photos/aKioE8ayPZs); Digital Assets: "Contemporary
-// building facade reflecting golden light at sunset" by Vincent Y
-// (https://unsplash.com/photos/-Cr-DYZoWvk); both Unsplash License, free for
-// commercial use. Frontier Technology: NASA ISS photo iss075e0099858 (public
-// domain, Wikimedia Commons); contact band: "Sunset in New York City" by
-// Joseph Barrientos (CC0, Wikimedia Commons).
+// (https://unsplash.com/photos/aKioE8ayPZs), cut below the sculpted frieze;
+// Digital Assets: "Screen showing bitcoin trading chart" by Nick Chong
+// (https://unsplash.com/photos/N__BnvQ_w18), cut to the candles and the
+// BTCUSD tag so the dated 2020 price stays out of frame; both Unsplash
+// License, free for commercial use. Frontier Technology: NASA ISS photo
+// iss075e0099858 (public domain, Wikimedia Commons), brightened; contact band:
+// "Sunset in New York City" by Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
-  'Financial Services': { base: 'industry-financial-services', alt: 'Classical columns and a carved frieze lit by golden evening sun' },
-  'Digital Assets': { base: 'industry-digital-assets', alt: 'Glass bands of a modern cantilevered building reflecting sunset light' },
+  'Financial Services': { base: 'industry-financial-services', alt: 'Classical columns under a stone cornice, lit by golden evening sun' },
+  'Digital Assets': { base: 'industry-digital-assets', alt: 'A bitcoin-to-dollar candlestick chart on a trading screen' },
   'Frontier Technology': { base: 'industry-frontier-technology', alt: 'City lights across the Midwest at night, seen from the International Space Station' },
 };
 
@@ -211,6 +212,13 @@ function buildWork() {
   `;
   }).join('');
 
+  // The press row closes the section: the case results, then where clients ran.
+  const press = PRESS_PICKS
+    .map(name => mediaLogos.find(l => l.name === name))
+    .filter(Boolean)
+    .map(l => `<li class="press__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 20)}</li>`)
+    .join('');
+
   return `
     <section class="work" aria-labelledby="work-title">
       <div class="wrap">
@@ -219,6 +227,10 @@ function buildWork() {
           ${textLink('/results', 'View all work')}
         </div>
         <ul class="work__grid">${cards}</ul>
+        <div class="press">
+          <h3 class="t-label press__label">${PRESS_LABEL}</h3>
+          <ul class="press__list">${press}</ul>
+        </div>
       </div>
     </section>
   `;
@@ -235,21 +247,11 @@ function buildTestimonials() {
     </figure>
   `).join('');
 
-  const press = PRESS_PICKS
-    .map(name => mediaLogos.find(l => l.name === name))
-    .filter(Boolean)
-    .map(l => `<li class="press__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 20)}</li>`)
-    .join('');
-
   return `
     <section class="quotes" aria-labelledby="quotes-title">
       <div class="wrap">
         <h2 id="quotes-title" class="visually-hidden">What clients say</h2>
         <div class="quotes__grid">${quotes}</div>
-        <div class="press">
-          <h2 class="t-label press__label">${PRESS_LABEL}</h2>
-          <ul class="press__list">${press}</ul>
-        </div>
       </div>
     </section>
   `;
