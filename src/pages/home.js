@@ -60,9 +60,11 @@ const PRESS_HEIGHTS = {
 // (https://unsplash.com/photos/aKioE8ayPZs), cut below the sculpted frieze;
 // Digital Assets: "Screen showing bitcoin trading chart" by Nick Chong
 // (https://unsplash.com/photos/N__BnvQ_w18), cut to the candles and the
-// BTCUSD tag so the dated 2020 price stays out of frame; both Unsplash
+// BTCUSD tag so the dated 2020 price stays out of frame, saturation and
+// contrast lifted (Joe, 2026-10-21: it read faded); both Unsplash
 // License, free for commercial use. Frontier Technology: NASA ISS photo
-// iss075e0099858 (public domain, Wikimedia Commons), brightened; contact band:
+// iss075e0099858 (public domain, Wikimedia Commons), brightened twice (Joe,
+// 2026-10-21); contact band:
 // "Sunset in New York City" by Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
   'Financial Services': { base: 'industry-financial-services', alt: 'Classical columns under a stone cornice, lit by golden evening sun' },
@@ -72,9 +74,11 @@ const INDUSTRY_IMAGES = {
 
 // Homepage crops of each case study photo: 16:9, cut inside the broadcast
 // frame so no channel logo or news bar is sliced, and wide enough to stay
-// sharp on retina screens. Ondo: Andrew Ross Sorkin and the Ondo guest from
-// the Squawk Box frame Eden already uses (ondo-cnbc-squawk-box.jpg, the only
-// copy found; resized up with Lanczos). Stellar: the full-size CNBC still of
+// sharp on retina screens. Ondo: a 50/50 split rebuilt from the Squawk Box
+// frame Eden already uses (ondo-cnbc-squawk-box.jpg, the only copy found):
+// Andrew Ross Sorkin left, the Ondo guest right, each box cropped so both heads
+// are the same size (Joe, 2026-10-21), resized up with Lanczos. Real frame, no
+// generated faces. Stellar: the full-size CNBC still of
 // the same Dixon photo Eden uses (image.cnbcfm.com 107399355-0410_Dixon_ISO,
 // 1920x1080). Grip: Eden's full-size team photo from its Webflow CDN.
 const CASE_IMAGES = {
@@ -201,7 +205,7 @@ function buildWork() {
         ` : `<img src="${cs.heroImage}" alt="" width="1200" height="800" loading="lazy" decoding="async">`}
       </div>
       <p class="t-label case__client">${clientName(cs)}</p>
-      <h3 class="t-card case__title"><a class="case__link" href="/case-studies/${cs.slug}">${cs.subtitle}</a></h3>
+      <h3 class="t-card case__title"><a class="case__link" href="/case-studies/${cs.slug}">${cs.cardTitle || cs.subtitle}</a></h3>
       <dl class="case__metrics">
         ${(cs.metrics || []).slice(0, 3).map(m => `
           <div class="case__metric"><dt>${m.label}</dt><dd>${m.number}</dd></div>
@@ -274,9 +278,11 @@ function buildDinners() {
             alt: 'Guests seated along a long candlelit table at a private Eden dinner',
           })}
           ${picture({
-            dir: DINNER_DIR, base: 'wintermute-dinner-room-table-set', widths: [640, 1024],
+            // A guest, not the empty table: the set table read as the wide
+            // photo's table without people (Joe, 2026-10-21).
+            dir: DINNER_DIR, base: 'wintermute-dinner-guest-at-table', widths: [640, 1024],
             sizes: '(max-width: 900px) 50vw, 25vw', width: 1600, height: 2240, className: 'dinners__photo',
-            alt: 'Private dining room set for dinner under a crystal chandelier',
+            alt: 'A guest listening during dinner',
           })}
           ${picture({
             dir: DINNER_DIR, base: 'wintermute-dinner-guests-conversation', widths: [640, 1024],
