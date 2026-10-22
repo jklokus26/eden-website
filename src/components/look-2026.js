@@ -96,9 +96,16 @@ export function initFilms(root) {
     const video = film.querySelector('video');
     const toggle = film.querySelector('.film__toggle');
     if (!video || !toggle) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     const saveData = Boolean(navigator.connection && navigator.connection.saveData);
-    let held = reduce || saveData;
+    let held = reduce.matches || saveData;
+    // Reduced motion switched on mid-visit pauses the film until the visitor
+    // presses play.
+    reduce.addEventListener('change', () => {
+      if (!reduce.matches) return;
+      held = true;
+      video.pause();
+    });
 
     const load = () => {
       if (video.getAttribute('src')) return;

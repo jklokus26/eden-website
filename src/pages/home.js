@@ -23,7 +23,6 @@ import { team } from '../../data/team.js';
 // Homepage, Oct 2026 look (DESIGN.md). Copy comes from data/site-content.js,
 // which holds Eden's "Website Flow (October 2026)" doc verbatim.
 
-const DINNER_DIR = '/assets/images/dinners';
 const HOME_DIR = '/assets/images/home';
 
 // Hero photo until Ebony's video arrives (the frame takes a video as is):
@@ -292,7 +291,7 @@ function buildWork() {
               <svg class="marquee__icon marquee__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
             </button>
           </div>
-          <div class="marquee marquee--press">
+          <div class="marquee marquee--press" data-speed="28">
             <ul class="marquee__track">${press}</ul>
             <ul class="marquee__track" aria-hidden="true">${press}</ul>
           </div>
@@ -397,7 +396,7 @@ function buildTeam() {
         </div>
         <ul class="team__list">${members}</ul>
       </div>
-      <dialog class="bio-dialog" aria-labelledby="bio-name">
+      <dialog class="bio-dialog" aria-labelledby="bio-name" data-lenis-prevent>
         <div class="bio">
           <div class="bio__photo"><img alt="" width="500" height="625"></div>
           <div class="bio__body">
@@ -417,8 +416,10 @@ function buildTeam() {
 
 // The logo strips scroll on their own; each button stops and restarts its
 // strip (moving content needs a pause control). Its label stays fixed and
-// aria-pressed says whether it's paused; the icon swaps to play. Reduced
-// motion shows the strips still.
+// aria-pressed says whether it's paused; the icon swaps to play. A strip also
+// rests while it's off screen or the tab is hidden. A strip with data-speed
+// (px per second) gets its loop time from its own width, so it moves at that
+// speed at every screen size. Reduced motion shows the strips still.
 function initMarquee(root) {
   root.querySelectorAll('[data-marquee]').forEach(box => {
     const toggle = box.querySelector('.marquee__toggle');
@@ -428,6 +429,23 @@ function initMarquee(root) {
       const paused = marquee.classList.toggle('is-paused');
       toggle.setAttribute('aria-pressed', String(paused));
     });
+
+    const speed = Number(marquee.dataset.speed);
+    const track = marquee.querySelector('.marquee__track');
+    if (speed && track && 'ResizeObserver' in window) {
+      new ResizeObserver(() => {
+        marquee.style.setProperty('--marquee-dur', `${Math.round(track.offsetWidth / speed)}s`);
+      }).observe(track);
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        marquee.classList.toggle('is-offscreen', !entry.isIntersecting);
+      }).observe(marquee);
+    }
+  });
+  document.addEventListener('visibilitychange', () => {
+    root.querySelectorAll('.marquee').forEach(m => m.classList.toggle('is-hidden-tab', document.hidden));
   });
 }
 
@@ -522,6 +540,8 @@ function initPillars(root) {
 
   if (stopped) toggle.setAttribute('aria-pressed', 'true');
   desktop.addEventListener('change', schedule);
+  // Reduced motion switched on mid-visit stops the stepping for good.
+  reduce.addEventListener('change', () => { if (reduce.matches) stop(); });
   if (!('IntersectionObserver' in window)) return;
   new IntersectionObserver(([entry]) => {
     inView = entry.isIntersecting;
