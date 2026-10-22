@@ -84,14 +84,17 @@ const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 // (https://unsplash.com/photos/N__BnvQ_w18), cut to the candles and the
 // BTCUSD tag so the dated 2020 price stays out of frame, saturation and
 // contrast lifted (Joe, 2026-10-21: it read faded); both Unsplash
-// License, free for commercial use. Frontier Technology: NASA ISS photo
-// iss075e0099858 (public domain, Wikimedia Commons), brightened twice (Joe,
-// 2026-10-21); contact band:
+// License, free for commercial use. Frontier Technology: RoboStrategy, an
+// Eden client, ringing the Nasdaq closing bell with a humanoid robot (Oct 13,
+// 2026), supplied by Alkida in Eden's shared folder on 2026-10-22
+// ("RoboStrategy_Bell.png", Gabby's idea in Alkida's Oct 21 Loom). Eden's
+// only copy is 774x422, so the 3:2 crop (633 px) is resized up with Lanczos
+// to 1024; ask Eden for the full-size original before launch. Contact band:
 // "Sunset in New York City" by Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
   'Financial Services': { base: 'industry-financial-services', alt: 'Classical columns under a stone cornice, lit by golden evening sun' },
   'Digital Assets': { base: 'industry-digital-assets', alt: 'A bitcoin-to-dollar candlestick chart on a trading screen' },
-  'Frontier Technology': { base: 'industry-frontier-technology', alt: 'City lights across the Midwest at night, seen from the International Space Station' },
+  'Frontier Technology': { base: 'industry-frontier-robostrategy-bell', alt: 'A humanoid robot ringing the Nasdaq closing bell as the RoboStrategy team cheers' },
 };
 
 // Homepage crops of each case study photo: 16:9, cut inside the broadcast
