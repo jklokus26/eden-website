@@ -126,16 +126,17 @@
    rgba(3, 5, 15, 0.7), rgba(5, 10, 30, 0.15)), laid left to right, then a
    fade to the page color at the bottom. The darkest stop holds across the
    text column so the stonework stays behind the words, not through them.
-   Each stop sits about 12 points lighter than the live site's so "New York
+   Each stop sits about 6 points lighter than the live site's so "New York
    Stock Exchange" reads on the facade (Joe, 2026-10-22: "lighten that the
-   black overlay like another 10, 15%"). */
+   black overlay like another 10, 15%", then "slightly darker... maybe a
+   5-10%"). */
 .look-2026 .hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
     linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
-    linear-gradient(90deg, rgba(2, 4, 8, 0.8) 0%, rgba(2, 4, 8, 0.8) 30%, rgba(3, 5, 15, 0.58) 56%, rgba(5, 10, 30, 0.04) 100%);
+    linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 30%, rgba(3, 5, 15, 0.65) 56%, rgba(5, 10, 30, 0.1) 100%);
 }
 
 /* Light theme: the same photo, the paper washing over it instead of the
@@ -144,9 +145,9 @@
    bottom so the hero runs into the page. */
 .look-2026.theme-light .hero__bg::after {
   background:
-    linear-gradient(to bottom, color-mix(in srgb, var(--paper) 78%, transparent) 0, transparent 150px),
-    linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
-    linear-gradient(90deg, var(--paper) 0%, var(--paper) 28%, color-mix(in srgb, var(--paper) 84%, transparent) 44%, color-mix(in srgb, var(--paper) 30%, transparent) 64%, transparent 84%);
+    linear-gradient(to bottom, color-mix(in srgb, var(--paper) 62%, transparent) 0, transparent 120px),
+    linear-gradient(to bottom, transparent 74%, var(--paper) 100%),
+    linear-gradient(90deg, var(--paper) 0%, var(--paper) 32%, color-mix(in srgb, var(--paper) 88%, transparent) 44%, color-mix(in srgb, var(--paper) 20%, transparent) 53%, transparent 62%);
 }
 
 .look-2026 .hero--cinema .hero__inner {
@@ -176,14 +177,14 @@
   .look-2026 .hero__bg::after {
     background:
       linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
-      linear-gradient(90deg, rgba(2, 4, 8, 0.8) 0%, rgba(2, 4, 8, 0.8) 24%, rgba(3, 5, 15, 0.58) 46%, rgba(5, 10, 30, 0.04) 100%);
+      linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 24%, rgba(3, 5, 15, 0.65) 46%, rgba(5, 10, 30, 0.1) 100%);
   }
 
   .look-2026.theme-light .hero__bg::after {
     background:
-      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 78%, transparent) 0, transparent 150px),
-      linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
-      linear-gradient(90deg, var(--paper) 0%, var(--paper) 24%, color-mix(in srgb, var(--paper) 84%, transparent) 40%, color-mix(in srgb, var(--paper) 30%, transparent) 58%, transparent 78%);
+      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 62%, transparent) 0, transparent 120px),
+      linear-gradient(to bottom, transparent 74%, var(--paper) 100%),
+      linear-gradient(90deg, var(--paper) 0%, var(--paper) 28%, color-mix(in srgb, var(--paper) 86%, transparent) 40%, color-mix(in srgb, var(--paper) 20%, transparent) 50%, transparent 59%);
   }
 }
 
@@ -282,7 +283,7 @@
      below), so it starts just above the headline at any screen height. */
   .look-2026 .hero__bg::after {
     background:
-      linear-gradient(to bottom, rgba(3, 5, 15, 0.58) 0, rgba(5, 10, 30, 0.04) 150px),
+      linear-gradient(to bottom, rgba(3, 5, 15, 0.65) 0, rgba(5, 10, 30, 0.1) 150px),
       linear-gradient(to bottom, transparent 85%, var(--paper) 100%);
   }
 
@@ -299,14 +300,14 @@
     left: 50%;
     width: 100vw;
     transform: translateX(-50%);
-    background: linear-gradient(to bottom, transparent 0, rgba(3, 5, 15, 0.58) 48px, rgba(2, 4, 8, 0.8) 160px);
+    background: linear-gradient(to bottom, transparent 0, rgba(3, 5, 15, 0.65) 48px, rgba(2, 4, 8, 0.86) 160px);
     pointer-events: none;
   }
 
   /* Light theme: the same, in paper. */
   .look-2026.theme-light .hero__bg::after {
     background:
-      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 72%, transparent) 0, transparent 140px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 60%, transparent) 0, transparent 120px),
       linear-gradient(to bottom, transparent 85%, var(--paper) 100%);
   }
 

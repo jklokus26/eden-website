@@ -86,10 +86,12 @@ const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 // match the frontier technology ringing the bell one"), graded to one warm
 // tone. No public bell or broadcast photo exists for a Financial Services or
 // Digital Assets client, so these are the clients' own event photos; Eden to
-// confirm use with each client before launch. Financial Services: the Ondo
-// Summit, "Wall Street 2.0", the room under a tokenized-stock ticker (Ondo's
-// summit site, https://summit.ondo.finance, "summit-photo-7", 1780x1040, cut
-// to 3:2). Digital Assets: a speaker on the Stellar Development Foundation's
+// confirm use with each client before launch. Financial Services: a panel of
+// three in suits on the Ondo Summit stage (Ondo's summit site,
+// https://summit.ondo.finance, "summit-photo-8", 1352x1040, cut to 3:2),
+// chosen over the summit's crowded reception so it doesn't read like the
+// Stellar stage beside it (Joe, 2026-10-22: the two looked "a little bit too
+// similar, like undistinguishable"). Digital Assets: a speaker on the Stellar Development Foundation's
 // conference stage (stellar.org/events, Meridian block, 4000x2667). Frontier
 // Technology: RoboStrategy, an
 // Eden client, ringing the Nasdaq closing bell with a humanoid robot (Oct 13,
@@ -99,7 +101,7 @@ const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 // to 1024; ask Eden for the full-size original before launch. Contact band:
 // "Sunset in New York City" by Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
-  'Financial Services': { base: 'industry-financial-services-ondo-summit', alt: 'Guests at the Ondo Summit under a tokenized-stock ticker and a "Wall Street 2.0" banner' },
+  'Financial Services': { base: 'industry-financial-services-ondo-panel', alt: 'Three panelists in suits in conversation on the Ondo Summit stage' },
   'Digital Assets': { base: 'industry-digital-assets-stellar', alt: 'A speaker on the Stellar conference stage in front of a wall of event photos' },
   'Frontier Technology': { base: 'industry-frontier-robostrategy-bell', alt: 'A humanoid robot ringing the Nasdaq closing bell as the RoboStrategy team cheers' },
 };
