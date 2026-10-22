@@ -43,7 +43,7 @@ function buildResults(results) {
       <div class="wrap dresults__layout">
         ${sidePhoto(RESULTS_PHOTO, 'dresults__photo')}
         <div class="dresults__body">
-          <h2 id="results-title" class="t-label dresults__label">${results.heading}</h2>
+          <h2 id="results-title" class="t-label t-label--dot dresults__label">${results.heading}</h2>
           <div class="dresults__grid">
             ${results.dinners.map((d, i) => `
               <article class="dresult" data-reveal style="--i: ${i}">
@@ -91,7 +91,7 @@ function buildDinners() {
     <section class="dhero" aria-labelledby="dinners-title">
       <div class="wrap dhero__grid">
         <div class="dhero__head">
-          <p class="t-label">${dinnersPage.sectionLabel}</p>
+          <p class="t-label t-label--dot">${dinnersPage.sectionLabel}</p>
           <h1 id="dinners-title" class="t-h2 dhero__title">${dinnersPage.headline}</h1>
         </div>
         <div class="dhero__copy">

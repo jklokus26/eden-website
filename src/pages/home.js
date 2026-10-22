@@ -229,7 +229,7 @@ function buildWhatWeDo() {
   return `
     <section class="what" aria-labelledby="what-title">
       <div class="wrap">
-        <p class="t-label sec-label" data-reveal>${homeWhatWeDo.sectionLabel}</p>
+        <p class="t-label t-label--dot sec-label" data-reveal>${homeWhatWeDo.sectionLabel}</p>
         <div class="what__head">
           <h2 id="what-title" class="t-h2 what__title" data-reveal>${homeWhatWeDo.headline}</h2>
           <p class="what__body" data-reveal style="--i: 1">${homeWhatWeDo.body}</p>
@@ -286,7 +286,7 @@ function buildWork() {
     <section class="work" aria-labelledby="work-title">
       <div class="wrap">
         <div class="sec-head">
-          <h2 id="work-title" class="t-label">Selected work</h2>
+          <h2 id="work-title" class="t-label t-label--dot">Selected work</h2>
           ${textLink('/results', 'View all work')}
         </div>
         <ul class="work__grid">${cards}</ul>
@@ -338,7 +338,7 @@ function buildDinners() {
       <div class="wrap">
         <div class="dinners__head">
           <div class="dinners__intro">
-            <p class="t-label" data-reveal>${homeDinners.sectionLabel}</p>
+            <p class="t-label t-label--dot" data-reveal>${homeDinners.sectionLabel}</p>
             <h2 id="dinners-title" class="t-h2" data-reveal>${homeDinners.headline}</h2>
           </div>
           <div class="dinners__copy">
@@ -370,19 +370,26 @@ function buildIndustries() {
   return `
     <section class="industries" aria-labelledby="industries-title">
       <div class="wrap">
-        <h2 id="industries-title" class="t-label sec-label">${homeIndustries.sectionLabel}</h2>
+        <h2 id="industries-title" class="t-label t-label--dot sec-label">${homeIndustries.sectionLabel}</h2>
         <ul class="industries__grid">${items}</ul>
       </div>
     </section>
   `;
 }
 
-// Back on the homepage at Alkida's request (Loom, 2026-10-21). Same portrait
-// crop and color grade for everyone; Alkida and Joseph join when their
-// headshots arrive. Each card opens the bio in a dialog.
+// Back on the homepage at Alkida's request (Loom, 2026-10-21), as a carousel
+// (call, 2026-10-22: "the carousel that then leads to like everyone's bio...
+// it doesn't really look good when it's displayed stagnantly"). About two and
+// a half portraits show at a time so it slides even with three people; it
+// swipes, scrolls sideways and steps with the arrows (initTeamCarousel). Each
+// card opens that person's bio. Alkida and Joseph join when their headshots
+// arrive.
+const ARROW_LEFT = '<span aria-hidden="true">←</span>';
+const ARROW_RIGHT = '<span aria-hidden="true">→</span>';
+
 function buildTeam() {
   const members = team.map((m, i) => `
-    <li class="member" data-reveal style="--i: ${i}">
+    <li class="member">
       <button class="member__button" type="button" data-index="${i}" aria-haspopup="dialog">
         <span class="member__photo"><img src="${m.photo}" alt="" width="500" height="625" loading="lazy" decoding="async"></span>
         <span class="member__info">
@@ -399,9 +406,15 @@ function buildTeam() {
       <div class="wrap team__grid">
         <div class="team__head">
           <h2 id="team-title" class="t-h2" data-reveal>${teamHeading.headline}</h2>
-          <div data-reveal style="--i: 1">${textLink('/about', 'Meet the full team')}</div>
+          <div class="team__links" data-reveal style="--i: 1">
+            ${textLink('/about', 'Meet the full team')}
+            <div class="team__arrows">
+              <button class="team__arrow" type="button" data-step="-1" aria-controls="team-track" aria-label="Previous people">${ARROW_LEFT}</button>
+              <button class="team__arrow" type="button" data-step="1" aria-controls="team-track" aria-label="Next people">${ARROW_RIGHT}</button>
+            </div>
+          </div>
         </div>
-        <ul class="team__list">${members}</ul>
+        <ul class="team__list" id="team-track" aria-label="Team" data-lenis-prevent-wheel data-reveal style="--i: 1">${members}</ul>
       </div>
       <dialog class="bio-dialog" aria-labelledby="bio-name" data-lenis-prevent>
         <div class="bio">
@@ -556,6 +569,36 @@ function initPillars(root) {
   }, { threshold: 0.35 }).observe(section);
 }
 
+// Team carousel: the arrows step one portrait at a time and switch off at
+// either end; with nothing to scroll (wide screens, few people) they hide.
+// Swipe and sideways scrolling are the browser's own, snapping to a portrait.
+function initTeamCarousel(root) {
+  const track = root.querySelector('.team__list');
+  const arrows = [...root.querySelectorAll('.team__arrow')];
+  const box = root.querySelector('.team__arrows');
+  if (!track || arrows.length !== 2) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const step = () => {
+    const card = track.querySelector('.member');
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+  };
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    box.hidden = max <= 2;
+    arrows[0].disabled = track.scrollLeft <= 2;
+    arrows[1].disabled = track.scrollLeft >= max - 2;
+  };
+
+  arrows.forEach(btn => btn.addEventListener('click', () => {
+    track.scrollBy({ left: Number(btn.dataset.step) * step(), behavior: reduce.matches ? 'auto' : 'smooth' });
+  }));
+  track.addEventListener('scroll', update, { passive: true });
+  if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
+  update();
+}
+
 function initBios(root) {
   const dialog = root.querySelector('.bio-dialog');
   if (!dialog || typeof dialog.showModal !== 'function') return;
@@ -619,6 +662,7 @@ function initHomepage() {
   initCountUp(main);
   initPillars(main);
   initFilms(main);
+  initTeamCarousel(main);
   initBios(main);
   initContactForm();
 }

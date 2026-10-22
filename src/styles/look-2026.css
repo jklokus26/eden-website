@@ -1,27 +1,48 @@
 /* Eden 2026 look: tokens, base type, buttons and the shared chrome (nav,
    footer, contact band and form) for pages that carry body.look-2026.
    The system is described in DESIGN.md. Everything here is scoped to
-   .look-2026 so pages still on the old dark look are untouched. */
+   .look-2026 so pages still on the old look are untouched.
+
+   Colors: the live site's palette, exactly (Alkida, with Ebony, 2026-10-22:
+   "stick to the same color palette that we have on the current website"
+   until Eden settles brand colors). Values come from the live site's code
+   (deliverables/eden/website-clone/src/styles: global.css, nav.css,
+   contact-form.css, home.css) and its DESIGN.md; where the two disagree,
+   the live code wins (Joe, 2026-10-22). No color here is new. */
 
 .look-2026 {
-  --paper: #F4F2EC;
-  --paper-deep: #ECE9E1;
-  --ink: #14201B;
-  --ink-body: #2E3632;
-  --ink-muted: #5C645F;
-  --accent: #0B3D2C;
-  --accent-hover: #14533D;
-  --rule: rgba(20, 32, 27, 0.14);
-  --rule-strong: rgba(20, 32, 27, 0.28);
-  --control-border: #858A86;
-  --field: #FBFAF7;
-  --error: #8A2A1D;
-  --logo-ink: #2E3632;
-  --on-dark: #F4F2EC;
-  --on-dark-muted: rgba(244, 242, 236, 0.74);
-  --on-dark-rule: rgba(244, 242, 236, 0.5);
-  --band-bg: #1A211D;
-  --scrim: linear-gradient(90deg, rgba(14, 19, 16, 0.81) 0%, rgba(14, 19, 16, 0.57) 50%, rgba(14, 19, 16, 0.43) 100%);
+  --paper: #0a0a06;                         /* live --bg */
+  --paper-deep: rgba(255, 255, 255, 0.03);  /* live card fill */
+  --ink: #ffffff;                           /* live --text */
+  --ink-body: rgba(255, 255, 255, 0.88);    /* live hero subtitle */
+  --ink-muted: #9b9b9b;                     /* live --accent-grey */
+  --accent: #13ff99;                        /* live mint: focus, link hover, active states */
+  --btn-bg: #ffffff;                        /* live .nav-cta and form submit */
+  --btn-ink: #0a0a06;
+  --btn-bg-hover: #f0f0f0;
+  --rule: rgba(255, 255, 255, 0.08);        /* live --border-subtle */
+  --rule-strong: rgba(255, 255, 255, 0.12); /* live --border-medium */
+  --link-rule: rgba(255, 255, 255, 0.3);
+  --control-border: rgba(255, 255, 255, 0.12);
+  --field: rgba(255, 255, 255, 0.04);       /* live form fields */
+  --error: #ff6b6b;                         /* live form error */
+  --logo-ink: #ffffff;
+  --on-dark: #ffffff;
+  --on-dark-muted: rgba(255, 255, 255, 0.7);
+  --on-dark-rule: rgba(255, 255, 255, 0.3);
+  --band-bg: rgba(255, 255, 255, 0.03);
+  --selection: #951bff;                     /* live ::selection */
+  --nav-scrolled-bg: rgba(18, 19, 31, 0.85);
+  /* The brand gradient: purple, sky, mint (live global.css). */
+  --gradient: linear-gradient(135deg, #951bff, #1ca4ff, #13ff99);
+  --gradient-text: linear-gradient(45deg, #951bff, #1ca4ff 50%, #13ff99);
+  /* The live numbers panel: a faint wash of the three with a purple edge. */
+  --numbers-wash: linear-gradient(160deg, rgba(149, 27, 255, 0.04) 0%, rgba(28, 164, 255, 0.02) 40%, rgba(19, 255, 153, 0.04) 100%);
+  --numbers-edge: rgba(149, 27, 255, 0.12);
+  /* Over photos: the live hero overlay's near-black. */
+  --scrim: linear-gradient(90deg, rgba(3, 5, 15, 0.81) 0%, rgba(3, 5, 15, 0.57) 50%, rgba(3, 5, 15, 0.43) 100%);
+  --disc: rgba(10, 10, 6, 0.55);
+  --disc-hover: rgba(10, 10, 6, 0.78);
   --photo-grade: saturate(0.82) sepia(0.06);
 
   --font-display: 'Newsreader', 'Iowan Old Style', 'Times New Roman', serif;
@@ -70,13 +91,13 @@
 
 /* Same value as --paper: the token lives on body, so html can't read it. */
 html:has(> body.look-2026) {
-  background: #F4F2EC;
+  background: #0a0a06;
   overflow-x: clip;
 }
 
 .look-2026 ::selection {
-  background: var(--accent);
-  color: var(--paper);
+  background: var(--selection);
+  color: var(--ink);
 }
 
 .look-2026 [id] {
@@ -164,6 +185,24 @@ html:has(> body.look-2026) {
   max-width: 34rem;
 }
 
+/* Section labels open with the live site's gradient dot (its divider
+   label: white text after a purple, sky and mint dot). */
+.look-2026 .t-label--dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+}
+
+.look-2026 .t-label--dot::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient);
+}
+
 /* ─── Buttons and links ─────────────────────────────────────────────── */
 
 .look-2026 .btn {
@@ -191,18 +230,18 @@ html:has(> body.look-2026) {
 }
 
 .look-2026 .btn--primary {
-  background: var(--accent);
-  color: var(--paper);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
 }
 
 .look-2026 .btn--primary:hover {
-  background: var(--accent-hover);
+  background: var(--btn-bg-hover);
 }
 
 .look-2026 .btn--secondary {
   background: transparent;
   color: var(--ink);
-  border-color: var(--rule-strong);
+  border-color: var(--link-rule);
 }
 
 .look-2026 .btn--secondary:hover {
@@ -236,7 +275,7 @@ html:has(> body.look-2026) {
 
 .look-2026 .text-link__label {
   text-decoration: underline;
-  text-decoration-color: var(--rule-strong);
+  text-decoration-color: var(--link-rule);
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
   transition: text-decoration-color var(--dur-ui) var(--ease-out);
@@ -326,9 +365,9 @@ html:has(> body.look-2026) {
 }
 
 .look-2026 #nav.nav--scrolled {
-  background: var(--paper);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: var(--nav-scrolled-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--rule);
 }
 
@@ -379,8 +418,8 @@ html:has(> body.look-2026) {
   font-size: var(--t-small);
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--paper);
-  background: var(--accent);
+  color: var(--btn-ink);
+  background: var(--btn-bg);
   border-radius: 2px;
   transition: background-color var(--dur-ui) var(--ease-out);
 }
@@ -393,7 +432,7 @@ html:has(> body.look-2026) {
 .look-2026 .nav-cta:hover,
 .look-2026 .nav-mobile-cta:hover {
   transform: none;
-  background: var(--accent-hover);
+  background: var(--btn-bg-hover);
 }
 
 .look-2026 .nav-hamburger span {
@@ -428,6 +467,8 @@ html:has(> body.look-2026) {
 
 .look-2026.nav-open #nav.nav--scrolled {
   background: var(--paper);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 @media (max-width: 768px) {
@@ -610,8 +651,8 @@ html:has(> body.look-2026) {
   font-size: var(--t-small);
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: var(--paper);
-  background: var(--accent);
+  color: var(--btn-ink);
+  background: var(--btn-bg);
   border-radius: 2px;
   transition: background-color var(--dur-ui) var(--ease-out);
 }
@@ -625,7 +666,7 @@ html:has(> body.look-2026) {
 }
 
 .look-2026 .contact-submit:hover {
-  background: var(--accent-hover);
+  background: var(--btn-bg-hover);
   transform: none;
 }
 
@@ -723,12 +764,12 @@ html:has(> body.look-2026) {
   height: 44px;
   border-radius: 50%;
   color: var(--on-dark);
-  background: rgba(14, 19, 16, 0.55);
+  background: var(--disc);
   transition: background-color var(--dur-ui) var(--ease-out);
 }
 
 .look-2026 .film__toggle:hover {
-  background: rgba(14, 19, 16, 0.78);
+  background: var(--disc-hover);
 }
 
 .look-2026 .film__toggle:focus-visible {
@@ -856,11 +897,13 @@ html:has(> body.look-2026) {
   color: var(--on-dark-muted);
 }
 
-/* The form on a flat paper panel: no border, no shadow. */
+/* The form on a flat panel of the page color with a hairline edge, no
+   shadow. */
 .look-2026 .band__panel {
   grid-column: 7 / 13;
   color: var(--ink-body);
   background: var(--paper);
+  border: 1px solid var(--rule);
 }
 
 .look-2026 .band__panel .contact-section.section-padding {
@@ -949,6 +992,6 @@ html:has(> body.look-2026) {
    strong across it. */
 @media (max-width: 640px) {
   .look-2026 .band {
-    --scrim: linear-gradient(180deg, rgba(14, 19, 16, 0.79) 0%, rgba(14, 19, 16, 0.67) 100%);
+    --scrim: linear-gradient(180deg, rgba(3, 5, 15, 0.79) 0%, rgba(3, 5, 15, 0.67) 100%);
   }
 }

@@ -1,25 +1,33 @@
 ---
 version: 2026.10
 name: Eden Communications
-description: Light, editorial, business-like. A strategic communications firm for financial services, digital assets and frontier tech. Warm paper, deep green-black ink, a light serif for headlines, a plain sans for everything else.
+description: Dark, editorial, business-like. A strategic communications firm for financial services, digital assets and frontier tech. The live site's palette (near-black, white, grey, a purple-sky-mint gradient used sparingly), a light serif for headlines, a plain sans for everything else.
 colors:
-  paper: "#F4F2EC"
-  paper-deep: "#ECE9E1"
-  ink: "#14201B"
-  ink-body: "#2E3632"
-  ink-muted: "#5C645F"
-  accent: "#0B3D2C"
-  accent-hover: "#14533D"
-  rule: "rgba(20, 32, 27, 0.14)"
-  rule-strong: "rgba(20, 32, 27, 0.28)"
-  control-border: "#858A86"
-  field: "#FBFAF7"
-  error: "#8A2A1D"
-  logo-ink: "#2E3632"
-  band-bg: "#1A211D"
-  on-dark-rule: "rgba(244, 242, 236, 0.5)"
-  on-dark: "#F4F2EC"
-  on-dark-muted: "rgba(244, 242, 236, 0.74)"
+  paper: "#0a0a06"
+  paper-deep: "rgba(255, 255, 255, 0.03)"
+  ink: "#ffffff"
+  ink-body: "rgba(255, 255, 255, 0.88)"
+  ink-muted: "#9b9b9b"
+  accent: "#13ff99"
+  btn-bg: "#ffffff"
+  btn-ink: "#0a0a06"
+  btn-bg-hover: "#f0f0f0"
+  rule: "rgba(255, 255, 255, 0.08)"
+  rule-strong: "rgba(255, 255, 255, 0.12)"
+  link-rule: "rgba(255, 255, 255, 0.3)"
+  control-border: "rgba(255, 255, 255, 0.12)"
+  field: "rgba(255, 255, 255, 0.04)"
+  error: "#ff6b6b"
+  logo-ink: "#ffffff"
+  band-bg: "rgba(255, 255, 255, 0.03)"
+  selection: "#951bff"
+  gradient-purple: "#951bff"
+  gradient-sky: "#1ca4ff"
+  gradient-mint: "#13ff99"
+  nav-scrolled-bg: "rgba(18, 19, 31, 0.85)"
+  on-dark: "#ffffff"
+  on-dark-muted: "rgba(255, 255, 255, 0.7)"
+  on-dark-rule: "rgba(255, 255, 255, 0.3)"
 typography:
   display:
     fontFamily: Newsreader
@@ -93,31 +101,34 @@ spacing:
 
 # Eden Communications — Design
 
-*Rewritten 2026-10-20 for the Oct 2026 revamp. Source: the homepage mockup Eden approved ("lighter and more like the mockup look", Ebony, 2026-10-20), cross-checked against Eden's own client deck (pale sage #F1F5F0, deep green #0B3D2C, mid green #1E6B4E). The older dark system is in git history.*
+*Colors changed 2026-10-22 to the live site's palette (see Colors). Layout, type and motion as below. Rewritten 2026-10-20 for the Oct 2026 revamp. Source: the homepage mockup Eden approved ("lighter and more like the mockup look", Ebony, 2026-10-20), cross-checked against Eden's own client deck (pale sage #F1F5F0, deep green #0B3D2C, mid green #1E6B4E). The older dark system is in git history.*
 
 **Transition note (remove at launch):** during the revamp the homepage runs this system through the `look-2026` class on `<body>`, written in the page's HTML (never added by script, so there's no flash of the old look). Other pages still use the old dark styles until they are carried over. Rules for this look are scoped under `.look-2026`, and the reverse leak is handled on purpose: the new styles override anything inherited from the old global CSS (body background, overflow, fonts), and shared scripts check the class or the reduced-motion setting (the page loader skips the new look, smooth scrolling turns off under reduced motion). Check the homepage and one unchanged inner page after every shared change.
 
 ## Overview
 
-Eden should read like a serious advisory firm, not an agency and not a tech product: calm, confident, and expensive in the quiet way. Think of a well-made annual report or a broadsheet's weekend section. Warm off-white paper, deep green-black ink, generous space, one light serif carrying the headlines, a plain sans carrying everything else. Real photography only (Eden's dinners and licensed architectural stock). Restraint is the design: if a detail doesn't help someone trust Eden faster, it goes.
+Eden should read like a serious advisory firm, not an agency and not a tech product: calm, confident, and expensive in the quiet way. Think of a well-made annual report or a broadsheet's weekend section, printed dark. The live site's near-black and white with its brand gradient used sparingly, generous space, one light serif carrying the headlines, a plain sans carrying everything else. Real photography only (Eden's dinners and licensed architectural stock). Restraint is the design: if a detail doesn't help someone trust Eden faster, it goes.
 
 ## Colors
 
-Two paper tones, one ink family, one accent. Nothing else.
+**The live site's palette, exactly** (Alkida, with Ebony agreeing, on the Oct 22 call: "let's stick to the same color palette that we have on the current website" until Eden settles brand colors; this replaces Ebony's Oct 20 "lighter" request). Every value comes from the live site's code (`deliverables/eden/website-clone/src/styles`) or its DESIGN.md; where those two disagree, the live code wins (Joe, 2026-10-22). Don't add or invent a color. When Eden settles a brand palette, it replaces this section.
 
-- **Paper (#F4F2EC):** the page. Warm bone, from the mockup.
-- **Paper-deep (#ECE9E1):** an alternate band to separate a few sections (proof numbers, testimonials, footer). Never more than one in a row.
-- **Ink (#14201B):** headlines, logos, rules at full strength. A green-black, close to Eden's deck green when dark.
-- **Ink-body (#2E3632):** running text.
-- **Ink-muted (#5C645F):** labels, captions, secondary lines. Passes WCAG AA on both paper tones.
-- **Accent (#0B3D2C):** Eden's deep green from their deck. Primary buttons, the focus ring, link underlines on hover. Small footprint only, never a large fill except the primary button.
-- **On-dark (#F4F2EC):** text on the two dark bands: the dinners band (flat band-bg #1A211D, where the recap film plays) and the contact band, the one place text sits on a photo, behind a dark scrim. The page stays light overall; these are the only dark sections.
-- **Rules:** hairlines in ink at 14% (`--rule`) or 28% (`--rule-strong`). Never a solid grey. A hairline that opens a section runs the width of the content, never edge to edge.
-- **Logo ink (#2E3632):** every client and press logo, one color.
-- **Field (#FBFAF7) and control border (#858A86, 3.1:1 on paper):** form inputs only. The border is as light as it can be while still marking the field clearly.
-- **Error (#8A2A1D):** form error text only, always with words, never color alone.
+- **Paper (#0a0a06):** the page, the live `--bg`. Panels (the form, the bio dialog) use it too, with a hairline edge.
+- **Paper-deep (white at 3%):** the live card fill, used for alternate bands (testimonials, the dinners band) and image placeholders.
+- **Ink (#ffffff):** headlines, labels that open a section, logos, strong text.
+- **Ink-body (white at 88%):** running text (the live hero subtitle).
+- **Ink-muted (#9b9b9b):** secondary lines, captions, the muted half of the hero deck (the live `--accent-grey`).
+- **Accent, mint (#13ff99):** focus rings, link hover underlines, field focus borders, active states (the pillar number) and the case-study figures, as the live case cards show them. Never a large fill.
+- **Buttons:** white fill (#ffffff), near-black text (#0a0a06), hover #f0f0f0, as the live "Get in Touch" and form button. (The live DESIGN.md says mint; the live code is white, and the code wins.)
+- **Brand gradient:** purple #951bff, sky #1ca4ff, mint #13ff99. Sparingly, as the live site uses it: the hero's "who don't believe in PR" as gradient text (like the live "Credibility compounds.", static here), the dot before each section label, and the pillar timing line. Never a large fill, never on figures.
+- **Numbers band:** the live numbers panel's faint wash of the three gradient colors (2-4%) with a purple edge at 12%.
+- **Selection:** purple #951bff with white text (live).
+- **Rules:** white at 8% (`--rule`) or 12% (`--rule-strong`), the live border tokens; text underlines at 30% (`--link-rule`).
+- **Nav once scrolled:** the live frosted bar, rgba(18, 19, 31, 0.85) with a 12px blur.
+- **Form fields:** white at 4% fill, white at 12% border, mint on focus; error text #ff6b6b (all live).
+- **Over photos:** the scrim uses the live hero overlay's near-black, rgba(3, 5, 15, …); round controls on photos and video sit on a near-black disc.
 
-No gradients, glows, neon, glass or drop shadows. Logos are always one ink color.
+No glows, neon, glass or drop shadows. Logos are always one color (white).
 
 ## Typography
 
@@ -125,7 +136,7 @@ Two families, two weights each, loaded from Google Fonts.
 
 - **Newsreader** (serif, optical sizes) for display, section headlines, card titles, large figures and pull quotes. Weight 300 for display and h2, 400 for h3. Always upright. Never italic in headings.
 - **Geist** (sans) for body, navigation, buttons, labels and forms. Weights 400 and 500 only.
-- **Labels:** Geist 500, 12px (0.75rem), uppercase, 0.14em tracking, ink-muted. Used sparingly: one above a section at most, never as numbered chapter tags beside a heading.
+- **Labels:** Geist 500, 12px (0.75rem), uppercase, 0.14em tracking, ink-muted. The label that opens a section is ink (white) after an 8px brand-gradient dot, the live site's section-divider label (`.t-label--dot`). Used sparingly: one above a section at most, never as numbered chapter tags beside a heading.
 - **Figures:** Newsreader 300 with lining, tabular numerals. Numbers are written exactly as Eden supplies them.
 - **Measure:** body lines stay under about 65 characters (`max-width: 36rem` on paragraphs).
 - Headline letter-spacing is negative (-0.01 to -0.025em). Body is neutral. Labels are wide.
@@ -153,15 +164,15 @@ Flat. Depth comes from photography, paper tone shifts and hairlines. No shadows,
 
 ## Components
 
-- **Nav:** Eden logo left (ink), page links center (Geist 14px, ink-body, ink on hover and when active), "Talk to Eden" primary button right. Paper background; a hairline appears under it once the page scrolls. Mobile: logo + menu button, full-screen paper overlay.
-- **Primary button:** accent fill, paper text, Geist 500 14px, 2px radius, 14px 22px padding, arrow glyph after the label. Hover: accent-hover. Active: 1px press. Focus: 2px accent ring offset 3px.
+- **Nav:** Eden logo left (ink), page links center (Geist 14px, ink-body, ink on hover and when active), "Talk to Eden" primary button right. Page-color background; once the page scrolls, the live frosted bar with a hairline under it. Mobile: logo + menu button, full-screen paper overlay.
+- **Primary button:** white fill, near-black text, Geist 500 14px, 2px radius, 14px 22px padding, arrow glyph after the label. Hover: #f0f0f0. Active: 1px press. Focus: 2px mint ring offset 3px.
 - **Links on photographs:** paper text with a paper underline. Their focus ring is two-tone (a paper ring with an ink outline) so it shows on any part of a photo.
 - **Focus:** every link, button, field and logo link shows a visible focus ring on keyboard focus, instantly (not animated).
-- **Secondary button:** transparent, 1px rule-strong border, ink text. Hover: border turns ink.
-- **Text link:** ink with a 1px underline in rule-strong under the words only, never the arrow; the underline turns accent on hover. At least 44px tall for touch.
+- **Secondary button:** transparent, 1px link-rule border, ink text. Hover: border turns ink.
+- **Text link:** ink with a 1px underline in link-rule under the words only, never the arrow; the underline turns accent on hover. At least 44px tall for touch.
 - **Button sizes:** 48px tall with 13px 22px padding everywhere, except the nav button, which is a compact 44px.
-- **Hero:** the headline "Reputation is capital." (Alkida, 2026-10-21); Eden's positioning line as a Newsreader 300 deck at about 38px, "A modern communications firm for companies" in ink-muted and "who don't believe in PR" on its own line in full ink (Alkida's Loom: the line is a competitive advantage, "make it a bit bolder"). Emphasis by tone only: no accent color, no underline, which read as a link. Then the paragraph, the primary button and "Talk to Eden" as a text link. Nothing else, and no text on the photo.
-- **Proof band:** Eden's tagline as its label, then three figures in a row divided by vertical hairlines, each with a label under it, then a hairline and one strip of the ten client logos (Ebony on the Oct 9 call: the numbers "with a scrolling logo strip of companies beneath"). On phones the figures become rows: number left, label right.
+- **Hero:** the headline "Reputation is capital." (Alkida, 2026-10-21); Eden's positioning line as a Newsreader 300 deck at about 38px, "A modern communications firm for companies" in ink-muted and "who don't believe in PR" on its own line in the brand gradient (Alkida's Loom: the line is a competitive advantage, "make it a bit bolder"; the gradient is how the live site marks its own key line). No underline, which read as a link. Then the paragraph, the primary button and "Talk to Eden" as a text link. Nothing else, and no text on the photo.
+- **Proof band:** on the live numbers-panel wash, between two purple-edged hairlines. Eden's tagline as its label, then three figures in a row divided by vertical hairlines, each with a label under it, then a hairline and one strip of the ten client logos (Ebony on the Oct 9 call: the numbers "with a scrolling logo strip of companies beneath"). On phones the figures become rows: number left, label right.
 - **One logo row per place, never two in a row.** The client strip lives in the proof band; the press strip closes the Selected work section, under the case cards (Joe, 2026-10-21: outlets back up the case results). Joe, 2026-10-20: back-to-back press and client rows read as chaotic.
 - **Client strip:** one line that scrolls slowly (60s per loop), edges faded into the band, paused on hover and by a small pause/play icon button beside the label (moving content needs a pause control; its label stays "Pause the logo strip" with `aria-pressed`). Logos aren't links while they move. Reduced motion: the strip stands still in two rows of five (two columns on phones).
 - **Press strip:** all 23 outlets, best-known first, as a second moving strip labelled "Where our clients appear" under the case cards behind a hairline (Alkida's Loom, 2026-10-21: "a little bigger and dynamic"). Logos about 1.5x the client strip's size, a little slower (28px per second, its loop time worked out from its own width so the speed holds at every screen size) and drifting right while the client strip drifts left, so the two never read as one. Both strips rest while off screen or in a hidden tab. Same pause button and reduced-motion rules as the client strip (a still grid). Heights tuned so every mark carries the same weight.
@@ -171,12 +182,12 @@ Flat. Depth comes from photography, paper tone shifts and hairlines. No shadows,
 - **Industries:** photo, serif title, short sans list. They sit right under the client quotes (Alkida, 2026-10-21: the repositioning is the point of the rebrand). Frontier Technology gets RoboStrategy's Nasdaq bell photo when Eden sends it.
 - **Case study cards:** image (16:9, cropped inside any broadcast frame with every person whole, in color with the shared `--photo-grade`), client label, card-size serif title, three figures as rows (figure left, label right, hairline between rows) so every label sits on one line, "View case study". No card box. The whole card is the link; its title underline appears on hover only. The rows of the three cards line up (CSS subgrid).
 - **Quotes:** Newsreader 300 at the quote size, opening mark hung outside the text edge, name and title in Geist below a short hairline. No quote-mark ornaments larger than the text.
-- **Team:** back on the homepage (Alkida's Loom, 2026-10-21), between the dinners band and the contact band. "The team" and a "Meet the full team" link in columns 1-3, the portraits in a three-up row in columns 4-12: 4:5, color, the shared photo grade, name, title, "Read bio". Each card opens the bio in a native dialog with focus kept inside it and returned to the opener. Phones: one row per person with a 112px portrait. Alkida and Joseph join when their headshots arrive (then five cards, which will need a layout check). The mobile menu follows the same focus rules.
+- **Team:** a carousel on the homepage (call, 2026-10-22: a carousel "that then leads to like everyone's bio and more information"; a static row "doesn't really look good"), between the dinners band and the contact band. Desktop: "The team", "Meet the full team" and two round arrow buttons in columns 1-3; the carousel in columns 4-12 shows about two and a half 4:5 portraits, so it slides even with three people (Joe, 2026-10-22, accepting slightly softer photos from the 500 px headshots). Tablets: heading row on top, 2.3 portraits. Phones: 1.35 portraits, swipe only. Native sideways scrolling with snap; the arrows step one portrait and switch off at either end, and hide when nothing scrolls. Each card (color portrait in the shared grade, name, title, "Read bio") opens the bio in a native dialog with focus kept inside it and returned to the card. Alkida and Joseph join when their headshots arrive. The mobile menu follows the same focus rules.
 - **Dinners band (homepage):** flat band-bg, on-dark text: label and headline in columns 1-6, the doc's two paragraphs and "See our dinners" in columns 8-12, then the Wintermute recap film across the content width (16:9, 4:3 on phones).
 - **Dinner film:** Eden's 21-second recap, silent, no grade. A still from it is the poster at every size; the film loads only as it nears the screen (720p on phones and with data saver, 1080p elsewhere), plays muted on a loop while a quarter of it is on screen, and fades in over the poster once playing. A round pause/play button sits bottom right; a pause by the visitor holds. Reduced motion and data saver start on the poster with a play button. If autoplay is refused (iPhone Low Power Mode), the button shows play.
 - **Dinners page:** headline and copy, the film as the lead, then the numbers beside a tall photo of the room and the quote beside a photo of guests talking. No gallery (Alkida, 2026-10-21: "a little bit more scattered throughout the page").
-- **Contact band:** a dark, warm-graded skyline photograph with a flat dark scrim. Columns 1-5: headline, body, the bare email address as a link (no "Or email" lead-in), and the word list in one line under a hairline (hidden on phones). Columns 7-12: the form on a flat paper panel, which takes the place of the doc's "Talk to Eden" button. The band carries id `contact`, so every "Talk to Eden" lands on headline and form together. Stacked below 900px. Check text contrast against the scrimmed photo at every crop, including the translucent on-dark text. Inside the panel the normal accent focus ring applies.
-- **Form:** labels above fields; name and email side by side, then company and the message across the full width; 52px fields with a 1px control border; accent focus ring; the submit button carries the arrow; errors in text (not color alone). The form section inside the band has id `contact-form`.
+- **Contact band:** a warm-graded skyline photograph under the live near-black scrim. Columns 1-5: headline, body, the bare email address as a link (no "Or email" lead-in), and the word list in one line under a hairline (hidden on phones). Columns 7-12: the form on a flat page-color panel with a hairline edge, which takes the place of the doc's "Talk to Eden" button. The band carries id `contact`, so every "Talk to Eden" lands on headline and form together. Stacked below 900px. Check text contrast against the scrimmed photo at every crop, including the translucent on-dark text. Inside the panel the normal accent focus ring applies.
+- **Form:** labels above fields; name and email side by side, then company and the message across the full width; 52px fields at white 4% with a white 12% border; mint focus border and ring; the submit button carries the arrow; errors in text (not color alone). The form section inside the band has id `contact-form`.
 
 ## Motion
 
@@ -195,8 +206,8 @@ Calm, but the page should feel alive (Alkida, 2026-10-21: "more dynamic and visu
 - Do use real photographs only, all in color, in one warm, slightly desaturated grade (`--photo-grade`), TV frames included. A heavier mute reads as faded. No black-and-white photos: they read as a different site.
 - Do let space do the separating. Hairlines before boxes, boxes almost never.
 - Do keep every logo one ink color and optically balanced.
-- Don't use italic headings, gradients, glows, drop shadows, pills or rounded cards.
-- Don't add a third typeface or a second accent color.
+- Don't use italic headings, glows, drop shadows, pills or rounded cards. The brand gradient only where Colors allows it.
+- Don't add a third typeface or any color the live site doesn't use.
 - Don't use stock clichés (handshakes, laptops, coins, circuit boards) or AI-generated images.
 - Don't use a photo in the hero that doesn't say what Eden does. A detail shot (a place setting, a glass) reads as a restaurant. The hero shows the world Eden works in (New York's financial district) until Eden's own video replaces it.
 - Don't use numbered chapter labels beside headlines, or icon rows in circles.
