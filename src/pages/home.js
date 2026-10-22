@@ -25,14 +25,15 @@ import { team } from '../../data/team.js';
 
 const HOME_DIR = '/assets/images/home';
 
-// Hero photo until Ebony's video arrives (the frame takes a video as is):
-// the New York Stock Exchange facade, by Maxim Klimashin on Unsplash
+// Hero background until Ebony's updated sizzle reel arrives (the call,
+// 2026-10-22: "that would be like the landing background video"): the New
+// York Stock Exchange facade, by Maxim Klimashin on Unsplash
 // (https://unsplash.com/photos/1QSXCd0LHVs, Unsplash License, free for
-// commercial use, no attribution required). A 3:2 band of the pediment, the
-// lettering and the column tops, the shape a video will have.
+// commercial use, no attribution required). A wide crop of the pediment and
+// columns for screens over 900px, a tall one for phones.
 const HERO_IMAGE = {
-  base: 'hero-nyse-wide',
-  alt: 'The sculpted pediment and columns of the New York Stock Exchange on Wall Street',
+  base: 'hero-cinema',
+  tall: 'hero-cinema-tall',
 };
 
 // Label over the outlet logos (ours; the doc has none).
@@ -124,35 +125,34 @@ function clientName(cs) {
 
 // ─── Sections ─────────────────────────────────────────────────────────────
 
-// Editorial hero: the headline alone across the full width, then under a
-// hairline Eden's line as a serif deck (the words Alkida highlighted in full
-// ink, the rest muted), the paragraph and the calls to action on the left,
-// the photo on the right.
+// Cinematic hero, like the live site's: the photo (later Ebony's video) runs
+// edge to edge behind a dark overlay, and the headline, Eden's line, the
+// paragraph and the buttons sit over it at the bottom left.
 function buildHero() {
   return `
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
+    <section class="hero hero--cinema" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true">
+        ${picture({
+          dir: HOME_DIR,
+          base: HERO_IMAGE.base,
+          widths: [1280, 1920, 2600],
+          sizes: '100vw',
+          alt: '',
+          width: 2600,
+          height: 1625,
+          eager: true,
+          fallback: 1600,
+          narrow: { media: '(max-width: 900px)', base: HERO_IMAGE.tall, widths: [750, 1200], sizes: '100vw' },
+        })}
+      </div>
+      <div class="wrap hero__inner">
         <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
-        <div class="hero__grid">
-          <div class="hero__text">
-            <p class="hero__deck">${homeHero.positioning.lead} <strong class="hero__emphasis">${homeHero.positioning.emphasis}</strong></p>
-            <p class="hero__body">${homeHero.body}</p>
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
-              ${textLink(homeHero.secondaryCta.href, homeHero.secondaryCta.label)}
-            </div>
-          </div>
-          <div class="hero__media">
-            ${picture({
-              dir: HOME_DIR,
-              base: HERO_IMAGE.base,
-              widths: [640, 1024, 1600, 2400],
-              sizes: '(max-width: 900px) 100vw, (max-width: 1280px) 52vw, 680px',
-              alt: HERO_IMAGE.alt,
-              width: 2400,
-              height: 1600,
-              eager: true,
-            })}
+        <div class="hero__text">
+          <p class="hero__deck">${homeHero.positioning.lead} <strong class="hero__emphasis">${homeHero.positioning.emphasis}</strong></p>
+          <p class="hero__body">${homeHero.body}</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
+            ${textLink(homeHero.secondaryCta.href, homeHero.secondaryCta.label)}
           </div>
         </div>
       </div>

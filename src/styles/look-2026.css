@@ -366,6 +366,16 @@ html:has(> body.look-2026) {
   transition: border-color var(--dur-ui) var(--ease-out);
 }
 
+/* Over the full-bleed hero the bar starts clear, then turns into the live
+   frosted bar once the page scrolls. */
+.look-2026:has(.hero__bg) #nav:not(.nav--scrolled) {
+  background: transparent;
+}
+
+.look-2026.nav-open:has(.hero__bg) #nav {
+  background: var(--paper);
+}
+
 .look-2026 #nav.nav--scrolled {
   background: var(--nav-scrolled-bg);
   backdrop-filter: blur(12px);

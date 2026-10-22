@@ -49,42 +49,78 @@
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 
-/* Editorial: the headline alone on one line across the content width, a
-   hairline, then the deck, paragraph and calls to action (columns 1-5)
-   beside a 3:2 photo (columns 7-12) that a video can replace as is. Padding
-   is heavier below than above, so the hero sits into the page. */
+/* Cinematic, like the live site: the photo runs edge to edge under the nav,
+   behind the live hero overlay's near-black (dark on the left where the text
+   sits, lighter on the right where the facade shows), fading into the page
+   at the bottom. The text sits at the bottom left in columns 1-7. The frame
+   takes Ebony's sizzle reel as the background video when it arrives. */
 .look-2026 .hero {
-  padding: calc(var(--nav-h) + clamp(32px, 5vw, 72px)) 0 clamp(56px, 7vw, 104px);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(620px, 94svh, 1000px);
+  padding: calc(var(--nav-h) + 48px) 0 clamp(56px, 7vw, 104px);
+}
+
+.look-2026 .hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.look-2026 .hero__bg picture,
+.look-2026 .hero__bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.look-2026 .hero__bg img {
+  object-fit: cover;
+  object-position: 75% 35%;
+  filter: var(--photo-grade);
+}
+
+/* Overlay stops copied from the live hero (rgba(2, 4, 8, 0.92),
+   rgba(3, 5, 15, 0.7), rgba(5, 10, 30, 0.15)), laid left to right, then a
+   fade to the page color at the bottom. */
+.look-2026 .hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, transparent 55%, var(--paper) 100%),
+    linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 45%, rgba(5, 10, 30, 0.15) 100%);
+}
+
+.look-2026 .hero__inner {
+  width: 100%;
 }
 
 .look-2026 .hero__title {
-  max-width: none;
-  font-size: clamp(3rem, 0.6rem + 8.6vw, 8.5rem);
-  line-height: 0.98;
+  max-width: 9ch;
+  margin-bottom: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(3.25rem, 1.2rem + 6.4vw, 7.5rem);
+  line-height: 0.96;
   letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-
-.look-2026 .hero__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--s-5);
-  align-items: start;
-  margin-top: clamp(28px, 3.4vw, 48px);
-  padding-top: clamp(24px, 2.6vw, 36px);
-  border-top: 1px solid var(--rule-strong);
 }
 
 .look-2026 .hero__text {
-  grid-column: 1 / 6;
+  max-width: 36rem;
+  padding-top: clamp(24px, 2.6vw, 32px);
+  border-top: 1px solid var(--on-dark-rule);
 }
 
-/* Eden's line, in the headline's serif: the lead muted, the words Alkida
-   highlighted in full ink. Emphasis by tone, never a link-like underline. */
+/* Eden's line, in the headline's serif: the lead in grey, the words Alkida
+   highlighted on their own line in full white. Emphasis by tone only. */
 .look-2026 .hero__deck {
   max-width: 26ch;
   font-family: var(--font-display);
-  font-size: clamp(1.625rem, 1.15rem + 1.2vw, 2.375rem);
+  font-size: clamp(1.5rem, 1.1rem + 1.1vw, 2.25rem);
   font-weight: 300;
   line-height: 1.16;
   letter-spacing: -0.015em;
@@ -92,8 +128,6 @@
   text-wrap: balance;
 }
 
-/* The highlighted words start their own line in full white against the
-   grey lead. (The brand gradient here read as too loud: Joe, 2026-10-22.) */
 .look-2026 .hero__emphasis {
   display: block;
   font-weight: inherit;
@@ -101,7 +135,7 @@
 }
 
 .look-2026 .hero__body {
-  max-width: 30rem;
+  max-width: 32rem;
   margin: var(--s-5) 0 var(--s-6);
   color: var(--ink-body);
 }
@@ -113,33 +147,17 @@
   gap: var(--s-3) var(--s-6);
 }
 
-.look-2026 .hero__media {
-  grid-column: 7 / 13;
-  position: relative;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  background: var(--band-bg);
-}
-
-.look-2026 .hero__media picture,
-.look-2026 .hero__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.look-2026 .hero__media img {
-  object-fit: cover;
-  object-position: var(--hero-focus, 50% 50%);
-  filter: var(--photo-grade);
-}
-
-/* Short laptop screens: a tighter top so the buttons stay in the first
+/* Short laptop screens: a smaller headline so the buttons stay in the first
    screen. */
-@media (min-width: 901px) and (max-height: 780px) {
+@media (min-width: 901px) and (max-height: 820px) {
   .look-2026 .hero {
-    padding-top: calc(var(--nav-h) + 24px);
+    min-height: 100svh;
+    padding-bottom: 48px;
+  }
+
+  .look-2026 .hero__title {
+    font-size: clamp(3rem, 0.6rem + 5.4vw, 5.75rem);
+    margin-bottom: var(--s-5);
   }
 
   .look-2026 .hero__body {
@@ -147,23 +165,19 @@
   }
 }
 
-/* Below 900px the headline takes two lines and everything stacks: deck,
-   paragraph, buttons, then the photo. */
+/* Phones and tablets: the tall crop, darker toward the bottom where the text
+   sits. */
 @media (max-width: 900px) {
-  .look-2026 .hero__title {
-    white-space: normal;
-    max-width: 11ch;
-    font-size: clamp(3rem, 1.4rem + 7vw, 5.5rem);
+  .look-2026 .hero {
+    min-height: 100svh;
   }
 
-  .look-2026 .hero__text,
-  .look-2026 .hero__media {
-    grid-column: 1 / -1;
+  .look-2026 .hero__bg img {
+    object-position: 50% 20%;
   }
 
-  .look-2026 .hero__media {
-    margin-top: var(--s-7);
-    aspect-ratio: 4 / 3;
+  .look-2026 .hero__bg::after {
+    background: linear-gradient(to bottom, rgba(5, 10, 30, 0.15) 0%, rgba(3, 5, 15, 0.7) 38%, rgba(2, 4, 8, 0.92) 62%, var(--paper) 100%);
   }
 }
 
