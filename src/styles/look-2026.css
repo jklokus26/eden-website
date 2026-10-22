@@ -35,7 +35,6 @@
   --nav-scrolled-bg: rgba(18, 19, 31, 0.85);
   /* The brand gradient: purple, sky, mint (live global.css). */
   --gradient: linear-gradient(135deg, #951bff, #1ca4ff, #13ff99);
-  --gradient-text: linear-gradient(45deg, #951bff, #1ca4ff 50%, #13ff99);
   /* The live numbers panel: a faint wash of the three with a purple edge. */
   --numbers-wash: linear-gradient(160deg, rgba(149, 27, 255, 0.04) 0%, rgba(28, 164, 255, 0.02) 40%, rgba(19, 255, 153, 0.04) 100%);
   --numbers-edge: rgba(149, 27, 255, 0.12);

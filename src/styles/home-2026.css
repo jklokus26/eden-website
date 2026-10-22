@@ -92,17 +92,12 @@
   text-wrap: balance;
 }
 
-/* The highlighted words start their own line in the brand gradient, the
-   way the live site sets "Credibility compounds." (static here). */
+/* The highlighted words start their own line in full white against the
+   grey lead. (The brand gradient here read as too loud: Joe, 2026-10-22.) */
 .look-2026 .hero__emphasis {
   display: block;
-  width: fit-content;
   font-weight: inherit;
   color: var(--ink);
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .look-2026 .hero__body {
