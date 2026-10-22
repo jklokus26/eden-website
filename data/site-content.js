@@ -77,10 +77,10 @@ export const homeHero = {
   // powerful" (doc: "Reputation is the first advantage."), set in the site's
   // sentence case.
   headline: 'Reputation is capital.',
-  // The doc's line above the headline, now a bold line under it with its last
-  // words emphasised (Alkida's Loom: "highlight it a little better... a
-  // competitive advantage... make it a bit bolder").
-  positioning: { lead: 'A modern communications firm for companies who', emphasis: 'don’t believe in PR' },
+  // The doc's line above the headline, now a large serif line under it, the
+  // words Alkida highlighted in full ink (Loom: "highlight it a little
+  // better... a competitive advantage... make it a bit bolder").
+  positioning: { lead: 'A modern communications firm for companies', emphasis: 'who don’t believe in PR' },
   // The doc's "SEO/Tagline": the label over the numbers band right under the
   // hero, so visitors see who Eden serves (also the page title and
   // description).

@@ -28,10 +28,11 @@ const HOME_DIR = '/assets/images/home';
 // Hero photo until Ebony's video arrives (the frame takes a video as is):
 // the New York Stock Exchange facade, by Maxim Klimashin on Unsplash
 // (https://unsplash.com/photos/1QSXCd0LHVs, Unsplash License, free for
-// commercial use, no attribution required). Cropped to 4:5.
+// commercial use, no attribution required). A 3:2 band of the pediment, the
+// lettering and the column tops, the shape a video will have.
 const HERO_IMAGE = {
-  base: 'hero-financial-district',
-  alt: 'The columns and sculpted pediment of the New York Stock Exchange on Wall Street',
+  base: 'hero-nyse-wide',
+  alt: 'The sculpted pediment and columns of the New York Stock Exchange on Wall Street',
 };
 
 // Label over the outlet logos (ours; the doc has none).
@@ -120,30 +121,36 @@ function clientName(cs) {
 
 // ─── Sections ─────────────────────────────────────────────────────────────
 
+// Editorial hero: the headline alone across the full width, then under a
+// hairline Eden's line as a serif deck (the words Alkida highlighted in full
+// ink, the rest muted), the paragraph and the calls to action on the left,
+// the photo on the right.
 function buildHero() {
   return `
     <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero__grid">
-        <div class="hero__text">
-          <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
-          <p class="hero__positioning">${homeHero.positioning.lead} <em class="hero__emphasis">${homeHero.positioning.emphasis}</em></p>
-          <p class="t-lead hero__body">${homeHero.body}</p>
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
-            <a class="btn btn--secondary" href="${homeHero.secondaryCta.href}">${homeHero.secondaryCta.label}</a>
+      <div class="wrap">
+        <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
+        <div class="hero__grid">
+          <div class="hero__text">
+            <p class="hero__deck">${homeHero.positioning.lead} <strong class="hero__emphasis">${homeHero.positioning.emphasis}</strong></p>
+            <p class="hero__body">${homeHero.body}</p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
+              ${textLink(homeHero.secondaryCta.href, homeHero.secondaryCta.label)}
+            </div>
           </div>
-        </div>
-        <div class="hero__media">
-          ${picture({
-            dir: HOME_DIR,
-            base: HERO_IMAGE.base,
-            widths: [640, 1024, 1600],
-            sizes: '(max-width: 900px) 100vw, 46vw',
-            alt: HERO_IMAGE.alt,
-            width: 1600,
-            height: 2000,
-            eager: true,
-          })}
+          <div class="hero__media">
+            ${picture({
+              dir: HOME_DIR,
+              base: HERO_IMAGE.base,
+              widths: [640, 1024, 1600, 2400],
+              sizes: '(max-width: 900px) 100vw, (max-width: 1280px) 52vw, 680px',
+              alt: HERO_IMAGE.alt,
+              width: 2400,
+              height: 1600,
+              eager: true,
+            })}
+          </div>
         </div>
       </div>
     </section>
