@@ -118,21 +118,35 @@
 
 .look-2026 .hero__bg img {
   object-fit: cover;
-  object-position: 75% 35%;
+  object-position: 70% 40%;
   filter: var(--photo-grade);
 }
 
 /* Overlay stops copied from the live hero (rgba(2, 4, 8, 0.92),
    rgba(3, 5, 15, 0.7), rgba(5, 10, 30, 0.15)), laid left to right, then a
    fade to the page color at the bottom. The darkest stop holds across the
-   text column so the stonework stays behind the words, not through them. */
+   text column so the stonework stays behind the words, not through them.
+   Each stop sits about 12 points lighter than the live site's so "New York
+   Stock Exchange" reads on the facade (Joe, 2026-10-22: "lighten that the
+   black overlay like another 10, 15%"). */
 .look-2026 .hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, transparent 55%, var(--paper) 100%),
-    linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(2, 4, 8, 0.92) 32%, rgba(3, 5, 15, 0.7) 58%, rgba(5, 10, 30, 0.15) 100%);
+    linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
+    linear-gradient(90deg, rgba(2, 4, 8, 0.8) 0%, rgba(2, 4, 8, 0.8) 30%, rgba(3, 5, 15, 0.58) 56%, rgba(5, 10, 30, 0.04) 100%);
+}
+
+/* Light theme: the same photo, the paper washing over it instead of the
+   dark. Solid paper under the text, the facade coming through to the right,
+   a light veil along the top for the nav, and the paper again at the
+   bottom so the hero runs into the page. */
+.look-2026.theme-light .hero__bg::after {
+  background:
+    linear-gradient(to bottom, color-mix(in srgb, var(--paper) 78%, transparent) 0, transparent 150px),
+    linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
+    linear-gradient(90deg, var(--paper) 0%, var(--paper) 28%, color-mix(in srgb, var(--paper) 84%, transparent) 44%, color-mix(in srgb, var(--paper) 30%, transparent) 64%, transparent 84%);
 }
 
 .look-2026 .hero--cinema .hero__inner {
@@ -234,13 +248,13 @@
   }
 
   .look-2026 .hero__bg img {
-    object-position: 50% 20%;
+    object-position: 50% 0%;
   }
 
   .look-2026 .hero__bg::after {
     /* Dark at the very top too, so the nav and menu icon read over the
        stonework. */
-    background: linear-gradient(to bottom, rgba(3, 5, 15, 0.7) 0, rgba(5, 10, 30, 0.15) 160px, rgba(3, 5, 15, 0.7) 38%, rgba(2, 4, 8, 0.92) 62%, var(--paper) 100%);
+    background: linear-gradient(to bottom, rgba(3, 5, 15, 0.58) 0, rgba(5, 10, 30, 0.04) 150px, rgba(5, 10, 30, 0.04) 30%, rgba(3, 5, 15, 0.58) 42%, rgba(2, 4, 8, 0.8) 60%, var(--paper) 100%);
   }
 
   /* Short phones and phones held sideways: the text fills most of the
@@ -249,6 +263,18 @@
   @media (max-height: 760px) {
     .look-2026 .hero__bg::after {
       background: linear-gradient(to bottom, rgba(3, 5, 15, 0.7) 0, rgba(2, 4, 8, 0.92) 55%, var(--paper) 100%);
+    }
+  }
+
+  /* Light theme on phones: the facade at the top, melting into solid paper
+     before the headline. */
+  .look-2026.theme-light .hero__bg::after {
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--paper) 72%, transparent) 0, transparent 140px, transparent 28%, color-mix(in srgb, var(--paper) 86%, transparent) 40%, var(--paper) 50%);
+  }
+
+  @media (max-height: 760px) {
+    .look-2026.theme-light .hero__bg::after {
+      background: linear-gradient(to bottom, color-mix(in srgb, var(--paper) 72%, transparent) 0, color-mix(in srgb, var(--paper) 60%, transparent) 10%, var(--paper) 30%);
     }
   }
 

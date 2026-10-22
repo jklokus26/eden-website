@@ -81,14 +81,17 @@ const PRESS_HEIGHTS = {
 // commercial use. Open the right doors: Eden's own Wintermute dinner photo.
 const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 
-// Stock photos, all in color and graded to one warm tone. Financial Services:
-// "Golden hour illuminates classical architecture with columns" by Nhan Hoang
-// (https://unsplash.com/photos/aKioE8ayPZs), cut below the sculpted frieze;
-// Digital Assets: "Screen showing bitcoin trading chart" by Nick Chong
-// (https://unsplash.com/photos/N__BnvQ_w18), cut to the candles and the
-// BTCUSD tag so the dated 2020 price stays out of frame, saturation and
-// contrast lifted (Joe, 2026-10-21: it read faded); both Unsplash
-// License, free for commercial use. Frontier Technology: RoboStrategy, an
+// Eden clients' own moments, not stock (Alkida's Loom: "These images can
+// also be a little bit more interesting"; Joe, 2026-10-22: photos "that try to
+// match the frontier technology ringing the bell one"), graded to one warm
+// tone. No public bell or broadcast photo exists for a Financial Services or
+// Digital Assets client, so these are the clients' own event photos; Eden to
+// confirm use with each client before launch. Financial Services: the Ondo
+// Summit, "Wall Street 2.0", the room under a tokenized-stock ticker (Ondo's
+// summit site, https://summit.ondo.finance, "summit-photo-7", 1780x1040, cut
+// to 3:2). Digital Assets: a speaker on the Stellar Development Foundation's
+// conference stage (stellar.org/events, Meridian block, 4000x2667). Frontier
+// Technology: RoboStrategy, an
 // Eden client, ringing the Nasdaq closing bell with a humanoid robot (Oct 13,
 // 2026), supplied by Alkida in Eden's shared folder on 2026-10-22
 // ("RoboStrategy_Bell.png", Gabby's idea in Alkida's Oct 21 Loom). Eden's
@@ -96,8 +99,8 @@ const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 // to 1024; ask Eden for the full-size original before launch. Contact band:
 // "Sunset in New York City" by Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
-  'Financial Services': { base: 'industry-financial-services', alt: 'Classical columns under a stone cornice, lit by golden evening sun' },
-  'Digital Assets': { base: 'industry-digital-assets', alt: 'A bitcoin-to-dollar candlestick chart on a trading screen' },
+  'Financial Services': { base: 'industry-financial-services-ondo-summit', alt: 'Guests at the Ondo Summit under a tokenized-stock ticker and a "Wall Street 2.0" banner' },
+  'Digital Assets': { base: 'industry-digital-assets-stellar', alt: 'A speaker on the Stellar conference stage in front of a wall of event photos' },
   'Frontier Technology': { base: 'industry-frontier-robostrategy-bell', alt: 'A humanoid robot ringing the Nasdaq closing bell as the RoboStrategy team cheers' },
 };
 
@@ -128,11 +131,13 @@ function clientName(cs) {
 
 // ─── Sections ─────────────────────────────────────────────────────────────
 
-// One hero per theme while Eden chooses between dark and light (Joe,
-// 2026-10-22). Dark: cinematic, like the live site's, with the photo (later
-// Ebony's video) edge to edge behind a dark overlay and the text at the
-// bottom left. Light: editorial, the headline across the page above the
-// text and a framed photo. Eden's line is one solid color in both (Joe,
+// The cinematic hero, like the live site's: the photo (later Ebony's video)
+// edge to edge, the text at the bottom left; in the dark theme behind a dark
+// overlay, in the light theme fading into the paper (Joe, 2026-10-22: "I like
+// how you have the background image for the dark version... something like
+// that, but in light"). The editorial hero (headline across the page above
+// the text and a framed photo) stays behind a build flag while Joe compares
+// the two light versions (vite.config.js). Eden's line is one solid color in both (Joe,
 // 2026-10-22: the muted half "blends in too well with the background"),
 // with the words Alkida highlighted starting their own line.
 function heroText() {
@@ -147,7 +152,7 @@ function heroText() {
 }
 
 function buildHero() {
-  if (document.body.classList.contains('theme-light')) {
+  if (document.body.classList.contains('hero-editorial')) {
     return `
       <section class="hero hero--editorial" aria-labelledby="hero-title">
         <div class="wrap">

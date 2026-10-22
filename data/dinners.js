@@ -47,6 +47,10 @@ export const dinnersPage = {
 // `focus` (optional) is where a gallery tile centers its crop, for photos
 // whose middle would cut a chandelier or a face.
 export const dinnerPhotos = [
+  // From the "Media Dinner Pics" folder Eden added on 2026-10-22 (Alkida:
+  // "There's some more media dinner pics in the folder as well"): folder 3,
+  // IMG_4695, May 7 2025. Phone photo, lifted a touch for the dark foreground.
+  { base: 'eden-dinner-skyline-table', width: 1600, height: 1200, focus: '38% 50%', alt: 'Guests in conversation around a curved table at a private Eden dinner, the city lit up below the windows at dusk' },
   { base: 'wintermute-dinner-table-guests-wide', width: 1600, height: 1143, alt: 'Guests seated along a long candlelit table at a private Eden dinner for Wintermute' },
   { base: 'wintermute-dinner-room-table-set', width: 1600, height: 2240, focus: '62% 50%', alt: 'Private dining room set for dinner, with white flowers along the table under a crystal chandelier' },
   { base: 'wintermute-dinner-guests-conversation', width: 1600, height: 2240, alt: 'Two guests in conversation before dinner' },

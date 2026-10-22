@@ -16,7 +16,7 @@ const IMG_DIR = '/assets/images/dinners';
 // really like the images over here as like a gallery... a little bit more
 // scattered throughout the page"). The rest of the dinner photos stay in
 // data/dinners.js and public/assets/images/dinners.
-const RESULTS_PHOTO = 'wintermute-dinner-room-table-set';
+const RESULTS_PHOTO = 'eden-dinner-skyline-table';
 const QUOTE_PHOTO = 'wintermute-dinner-guests-table-talk';
 
 function findPhoto(base) {
@@ -33,7 +33,10 @@ function photo(p, sizes, eager = false) {
 function sidePhoto(base, className) {
   const p = findPhoto(base);
   if (!p) return '';
-  return `<div class="${className}" data-reveal${p.focus ? ` style="--focus: ${p.focus}"` : ''}>${photo(p, '(max-width: 900px) 100vw, 33vw')}</div>`;
+  // A landscape photo in the portrait frame is cut to its height, so it
+  // shows wider than the column: ask for the larger file.
+  const sizes = p.width > p.height ? '(max-width: 900px) 100vw, 56vw' : '(max-width: 900px) 100vw, 33vw';
+  return `<div class="${className}" data-reveal${p.focus ? ` style="--focus: ${p.focus}"` : ''}>${photo(p, sizes)}</div>`;
 }
 
 function buildResults(results) {
