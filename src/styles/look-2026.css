@@ -8,7 +8,15 @@
    until Eden settles brand colors). Values come from the live site's code
    (deliverables/eden/website-clone/src/styles: global.css, nav.css,
    contact-form.css, home.css) and its DESIGN.md; where the two disagree,
-   the live code wins (Joe, 2026-10-22). No color here is new. */
+   the live code wins (Joe, 2026-10-22). No color here is new. The live
+   site's purple-sky-mint gradient is not used: Joe, 2026-10-22, it reads
+   "a little corny, a little childish... rather than professional and
+   buttoned up."
+
+   Two themes while Eden chooses (Joe, 2026-10-22, asking Ebony and Alkida
+   dark or light): dark is the default; body.theme-light (set at build time,
+   VITE_THEME=light, see vite.config.js) swaps in the earlier light palette.
+   Delete the theme Eden doesn't pick. */
 
 .look-2026 {
   --paper: #0a0a06;                         /* live --bg */
@@ -32,15 +40,15 @@
   --on-dark-rule: rgba(255, 255, 255, 0.3);
   --band-bg: rgba(255, 255, 255, 0.03);
   --selection: #951bff;                     /* live ::selection */
+  --selection-ink: #ffffff;
+  --label-strong: #ffffff;                  /* the label that opens a section */
+  --figure: #ffffff;                        /* case-study figures */
   --nav-scrolled-bg: rgba(18, 19, 31, 0.85);
-  /* The brand gradient: purple, sky, mint (live global.css). */
-  --gradient: linear-gradient(135deg, #951bff, #1ca4ff, #13ff99);
-  /* The live numbers panel: a faint wash of the three with a purple edge. */
-  --numbers-wash: linear-gradient(160deg, rgba(149, 27, 255, 0.04) 0%, rgba(28, 164, 255, 0.02) 40%, rgba(19, 255, 153, 0.04) 100%);
-  --numbers-edge: rgba(149, 27, 255, 0.12);
+  --nav-blur: blur(12px);
   /* Over photos: stops copied exactly from the live hero overlay
      (home.css .hero overlay). */
   --scrim: linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 50%, rgba(2, 4, 10, 0.5) 100%);
+  --scrim-tall: linear-gradient(180deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 100%);
   /* Round controls on photos and video: the live frosted nav color, and the
      overlay's darkest stop on hover. */
   --disc: rgba(18, 19, 31, 0.85);
@@ -91,6 +99,45 @@
   overflow-x: clip;
 }
 
+/* The earlier light palette (warm paper, green-black ink, Eden's deck
+   green), for the light preview. */
+.look-2026.theme-light {
+  --paper: #F4F2EC;
+  --paper-deep: #ECE9E1;
+  --ink: #14201B;
+  --ink-body: #2E3632;
+  --ink-muted: #5C645F;
+  --accent: #0B3D2C;
+  --btn-bg: #0B3D2C;
+  --btn-ink: #F4F2EC;
+  --btn-bg-hover: #14533D;
+  --rule: rgba(20, 32, 27, 0.14);
+  --rule-strong: rgba(20, 32, 27, 0.28);
+  --link-rule: rgba(20, 32, 27, 0.28);
+  --control-border: #858A86;
+  --field: #FBFAF7;
+  --error: #8A2A1D;
+  --logo-ink: #2E3632;
+  --on-dark: #F4F2EC;
+  --on-dark-muted: rgba(244, 242, 236, 0.74);
+  --on-dark-rule: rgba(244, 242, 236, 0.5);
+  --band-bg: #1A211D;
+  --selection: #0B3D2C;
+  --selection-ink: #F4F2EC;
+  --label-strong: #5C645F;
+  --figure: #14201B;
+  --nav-scrolled-bg: #F4F2EC;
+  --nav-blur: none;
+  --scrim: linear-gradient(90deg, rgba(14, 19, 16, 0.81) 0%, rgba(14, 19, 16, 0.57) 50%, rgba(14, 19, 16, 0.43) 100%);
+  --scrim-tall: linear-gradient(180deg, rgba(14, 19, 16, 0.79) 0%, rgba(14, 19, 16, 0.67) 100%);
+  --disc: rgba(14, 19, 16, 0.55);
+  --disc-hover: rgba(14, 19, 16, 0.78);
+}
+
+html:has(> body.look-2026.theme-light) {
+  background: #F4F2EC;
+}
+
 /* Same value as --paper: the token lives on body, so html can't read it. */
 html:has(> body.look-2026) {
   background: #0a0a06;
@@ -99,7 +146,7 @@ html:has(> body.look-2026) {
 
 .look-2026 ::selection {
   background: var(--selection);
-  color: var(--ink);
+  color: var(--selection-ink);
 }
 
 .look-2026 [id] {
@@ -187,22 +234,9 @@ html:has(> body.look-2026) {
   max-width: 34rem;
 }
 
-/* Section labels open with the live site's gradient dot (its divider
-   label: white text after a purple, sky and mint dot). */
+/* The label that opens a section reads a step stronger than the others. */
 .look-2026 .t-label--dot {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--ink);
-}
-
-.look-2026 .t-label--dot::before {
-  content: '';
-  flex: none;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gradient);
+  color: var(--label-strong);
 }
 
 /* ─── Buttons and links ─────────────────────────────────────────────── */
@@ -378,8 +412,8 @@ html:has(> body.look-2026) {
 
 .look-2026 #nav.nav--scrolled {
   background: var(--nav-scrolled-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: var(--nav-blur);
+  -webkit-backdrop-filter: var(--nav-blur);
   border-bottom-color: var(--rule);
 }
 
@@ -1004,6 +1038,6 @@ html:has(> body.look-2026) {
    strong across it. */
 @media (max-width: 640px) {
   .look-2026 .band {
-    --scrim: linear-gradient(180deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 100%);
+    --scrim: var(--scrim-tall);
   }
 }

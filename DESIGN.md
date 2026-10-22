@@ -111,6 +111,9 @@ Eden should read like a serious advisory firm, not an agency and not a tech prod
 
 ## Colors
 
+**Two themes while Eden chooses (Joe, 2026-10-22, asking Ebony and Alkida dark or light).** Dark (below) is the default. A build with `VITE_THEME=light` (Vercel: `vercel deploy --build-env VITE_THEME=light`) marks the new-look pages `body.theme-light`, which swaps in the earlier light palette (paper #F4F2EC, ink #14201B, Eden's deck green #0B3D2C for buttons; the `.look-2026.theme-light` block in `look-2026.css`), the light share image and the editorial hero. Delete the theme Eden doesn't pick, the plugin in `vite.config.js` and the unused hero.
+
+
 **The live site's palette, exactly** (Alkida, with Ebony agreeing, on the Oct 22 call: "let's stick to the same color palette that we have on the current website" until Eden settles brand colors; this replaces Ebony's Oct 20 "lighter" request). Every value comes from the live site's code (`deliverables/eden/website-clone/src/styles`) or its DESIGN.md; where those two disagree, the live code wins (Joe, 2026-10-22). Don't add or invent a color. When Eden settles a brand palette, it replaces this section.
 
 - **Paper (#0a0a06):** the page, the live `--bg`. Panels (the form, the bio dialog) use it too, with a hairline edge.
@@ -118,10 +121,10 @@ Eden should read like a serious advisory firm, not an agency and not a tech prod
 - **Ink (#ffffff):** headlines, labels that open a section, logos, strong text.
 - **Ink-body (white at 88%):** running text (the live hero subtitle).
 - **Ink-muted (#9b9b9b):** secondary lines, captions, the muted half of the hero deck (the live `--accent-grey`).
-- **Accent, mint (#13ff99):** focus rings, link hover underlines, field focus borders, active states (the pillar number) and the case-study figures, as the live case cards show them. Never a large fill.
+- **Accent, mint (#13ff99):** focus rings, link hover underlines and field focus borders only. Never a fill, never on figures or labels.
 - **Buttons:** white fill (#ffffff), near-black text (#0a0a06), hover #f0f0f0, as the live "Get in Touch" and form button. (The live DESIGN.md says mint; the live code is white, and the code wins.)
-- **Brand gradient:** purple #951bff, sky #1ca4ff, mint #13ff99. Sparingly, as the live site uses it: the dot before each section label and the pillar timing line. Never on text (Joe, 2026-10-22: gradient text on the hero line read as "too intense and not classy"). Never a large fill, never on figures.
-- **Numbers band:** the live numbers panel's faint wash of the three gradient colors (2-4%) with a purple edge at 12%.
+- **No gradient.** The live site's purple-sky-mint gradient is not used anywhere (Joe, 2026-10-22: it reads "a little corny, a little childish... rather than professional and buttoned up", and Eden likely wants to avoid it). The only gradients are photo overlays.
+- **Numbers band:** the 3% white band between two hairlines. Figures white, labels grey.
 - **Selection:** purple #951bff with white text (live).
 - **Rules:** white at 8% (`--rule`) or 12% (`--rule-strong`), the live border tokens; text underlines at 30% (`--link-rule`).
 - **Nav once scrolled:** the live frosted bar, rgba(18, 19, 31, 0.85) with a 12px blur.
@@ -136,7 +139,7 @@ Two families, two weights each, loaded from Google Fonts.
 
 - **Newsreader** (serif, optical sizes) for display, section headlines, card titles, large figures and pull quotes. Weight 300 for display and h2, 400 for h3. Always upright. Never italic in headings.
 - **Geist** (sans) for body, navigation, buttons, labels and forms. Weights 400 and 500 only.
-- **Labels:** Geist 500, 12px (0.75rem), uppercase, 0.14em tracking, ink-muted. The label that opens a section is ink (white) after an 8px brand-gradient dot, the live site's section-divider label (`.t-label--dot`). Used sparingly: one above a section at most, never as numbered chapter tags beside a heading.
+- **Labels:** Geist 500, 12px (0.75rem), uppercase, 0.14em tracking, ink-muted. The label that opens a section is a step stronger (white on dark, `.t-label--dot`); the rest are grey. Used sparingly: one above a section at most, never as numbered chapter tags beside a heading.
 - **Figures:** Newsreader 300 with lining, tabular numerals. Numbers are written exactly as Eden supplies them.
 - **Measure:** body lines stay under about 65 characters (`max-width: 36rem` on paragraphs).
 - Headline letter-spacing is negative (-0.01 to -0.025em). Body is neutral. Labels are wide.
@@ -146,6 +149,7 @@ Two families, two weights each, loaded from Google Fonts.
 
 - **Container:** max 1280px, gutter `clamp(20px, 4vw, 48px)`.
 - **Section rhythm:** major sections get `clamp(80px, 10vw, 136px)` of vertical padding. Compact bands (the proof numbers, the logo rows, the footer) get `clamp(48px, 6vw, 72px)`, as in the mockup, so the page doesn't become a run of identical blocks. Sections are separated by space and hairlines, not boxes.
+- **Hero, light theme (editorial):** the headline alone on one line across the content width, a hairline, then the deck, paragraph and buttons in columns 1-5 beside a framed 3:2 photo of the NYSE pediment in columns 7-12.
 - **Hero (cinematic, like the live site):** the NYSE photo (later Ebony's sizzle reel, the "landing background video") runs edge to edge under a clear nav, behind the live hero overlay's near-black laid left to right (dark where the text sits, lighter over the facade) and fading into the page at the bottom. The headline in two lines (up to 120px), a hairline, then the deck, paragraph and buttons, all at the bottom left in about 36rem. The hero fills about the first screen (94svh, 620-1000px); on short laptop screens the headline shrinks so the buttons stay in the first screen. Phones use a tall crop, darker toward the bottom where the text sits. The nav is clear over the hero and turns into the live frosted bar once the page scrolls. (Joe, 2026-10-22, on the framed editorial hero in dark: "not crazy about this landing section".) Text contrast over the photo is checked at every width: the grey lead is the weakest, 4.1:1, as large text.
 - **Grid:** 12 columns on desktop. Statement sections run headline on the left (7 columns) and supporting text on the right (4 columns, offset 1). Three-up rows (case studies, industries) use equal columns.
 - **Breakpoints:** 640px, 900px, 1200px. Rows choose their own tablet layout (three-up rows can go to two plus one, logo grids to 3 then 2 columns); everything is one column below 640px.

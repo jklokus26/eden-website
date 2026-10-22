@@ -13,8 +13,30 @@ const shareImageOrigin = {
   transformIndexHtml: (html) => html.replaceAll('%SHARE_ORIGIN%', shareOrigin),
 };
 
+// Two themes while Eden chooses (Joe, 2026-10-22): dark by default; a build
+// with VITE_THEME=light marks the new-look pages body.theme-light, points the
+// share image at the light one and preloads the light hero's photo instead.
+// Remove once Eden picks.
+const LIGHT = process.env.VITE_THEME === 'light';
+const DARK_HERO_PRELOAD = /\s*<link rel="preload" as="image"[^>]*hero-cinema[^>]*>/g;
+const LIGHT_HERO_PRELOAD = '\n  <link rel="preload" as="image" fetchpriority="high" href="/assets/images/home/hero-nyse-wide-1024.webp" imagesrcset="/assets/images/home/hero-nyse-wide-640.webp 640w, /assets/images/home/hero-nyse-wide-1024.webp 1024w, /assets/images/home/hero-nyse-wide-1600.webp 1600w, /assets/images/home/hero-nyse-wide-2400.webp 2400w" imagesizes="(max-width: 900px) 100vw, (max-width: 1280px) 52vw, 680px">';
+const theme = {
+  name: 'theme',
+  transformIndexHtml: (html) => {
+    if (!LIGHT || !html.includes('<body class="look-2026"')) return html;
+    let out = html
+      .replace('<body class="look-2026"', '<body class="look-2026 theme-light"')
+      .replaceAll('/assets/images/og/eden-og-1200x630.jpg', '/assets/images/og/eden-og-light-1200x630.jpg');
+    if (DARK_HERO_PRELOAD.test(out)) {
+      out = out.replace(DARK_HERO_PRELOAD, '');
+      out = out.replace('</head>', `${LIGHT_HERO_PRELOAD}\n</head>`);
+    }
+    return out;
+  },
+};
+
 export default defineConfig({
-  plugins: [shareImageOrigin],
+  plugins: [shareImageOrigin, theme],
   build: {
     rollupOptions: {
       input: {
