@@ -132,10 +132,12 @@ function clientName(cs) {
 // 2026-10-22). Dark: cinematic, like the live site's, with the photo (later
 // Ebony's video) edge to edge behind a dark overlay and the text at the
 // bottom left. Light: editorial, the headline across the page above the
-// text and a framed photo.
+// text and a framed photo. Eden's line is one solid color in both (Joe,
+// 2026-10-22: the muted half "blends in too well with the background"),
+// with the words Alkida highlighted starting their own line.
 function heroText() {
   return `
-    <p class="hero__deck">${homeHero.positioning.lead} <strong class="hero__emphasis">${homeHero.positioning.emphasis}</strong></p>
+    <p class="hero__deck">${homeHero.positioning.lead} <span class="hero__emphasis">${homeHero.positioning.emphasis}</span></p>
     <p class="hero__body">${homeHero.body}</p>
     <div class="hero__actions">
       <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
@@ -537,7 +539,9 @@ function initPillars(root) {
   const toggle = section.querySelector('.pillars__toggle');
   if (!items.length || photos.length !== items.length) return;
 
-  const STEP = 6000;
+  // 4s a step (Joe, 2026-10-22: 6s "seemed to move a little bit too slow").
+  // The fill line reads the same value.
+  const STEP = 4000;
   const desktop = window.matchMedia('(min-width: 901px)');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   let active = 0;
@@ -582,6 +586,7 @@ function initPillars(root) {
     schedule();
   });
 
+  section.style.setProperty('--pillar-step', `${STEP}ms`);
   if (stopped) toggle.setAttribute('aria-pressed', 'true');
   desktop.addEventListener('change', schedule);
   // Reduced motion switched on mid-visit stops the stepping for good.

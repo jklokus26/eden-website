@@ -52,27 +52,31 @@
 /* Two layouts, one per theme while Eden chooses: the cinematic hero for the
    dark theme, the editorial one for the light theme. They share the type. */
 
-/* Eden's line, in the headline's serif: the lead muted, the words Alkida
-   highlighted on their own line in full ink. Emphasis by tone only (no
-   gradient, no underline). */
+/* Three steps, each set apart by face, size and weight: the serif headline,
+   Eden's line in the sans at medium weight and full ink (Alkida: "highlight
+   it a little better... make it a bit bolder"), then the paragraph in body
+   ink. One color per line, so nothing sinks into the photo (Joe,
+   2026-10-22). The words Alkida highlighted start their own line. */
 .look-2026 .hero__deck {
-  max-width: 26ch;
-  font-family: var(--font-display);
-  font-weight: 300;
-  line-height: 1.16;
-  letter-spacing: -0.015em;
-  color: var(--ink-muted);
+  max-width: 30em;
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 1.02rem + 0.55vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.012em;
+  color: var(--ink);
   text-wrap: balance;
 }
 
 .look-2026 .hero__emphasis {
   display: block;
-  font-weight: inherit;
-  color: var(--ink);
 }
 
 .look-2026 .hero__body {
+  max-width: 31rem;
+  margin: var(--s-5) 0 var(--s-6);
   color: var(--ink-body);
+  text-wrap: pretty;
 }
 
 .look-2026 .hero__actions {
@@ -120,14 +124,15 @@
 
 /* Overlay stops copied from the live hero (rgba(2, 4, 8, 0.92),
    rgba(3, 5, 15, 0.7), rgba(5, 10, 30, 0.15)), laid left to right, then a
-   fade to the page color at the bottom. */
+   fade to the page color at the bottom. The darkest stop holds across the
+   text column so the stonework stays behind the words, not through them. */
 .look-2026 .hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
     linear-gradient(to bottom, transparent 55%, var(--paper) 100%),
-    linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 45%, rgba(5, 10, 30, 0.15) 100%);
+    linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(2, 4, 8, 0.92) 32%, rgba(3, 5, 15, 0.7) 58%, rgba(5, 10, 30, 0.15) 100%);
 }
 
 .look-2026 .hero--cinema .hero__inner {
@@ -136,7 +141,7 @@
 
 .look-2026 .hero--cinema .hero__title {
   max-width: 9ch;
-  margin-bottom: clamp(28px, 3.4vw, 44px);
+  margin-bottom: clamp(20px, 2.2vw, 32px);
   font-size: clamp(3.25rem, 1.2rem + 6.4vw, 7.5rem);
   line-height: 0.96;
   letter-spacing: -0.03em;
@@ -144,17 +149,6 @@
 
 .look-2026 .hero--cinema .hero__text {
   max-width: 36rem;
-  padding-top: clamp(24px, 2.6vw, 32px);
-  border-top: 1px solid var(--on-dark-rule);
-}
-
-.look-2026 .hero--cinema .hero__deck {
-  font-size: clamp(1.5rem, 1.1rem + 1.1vw, 2.25rem);
-}
-
-.look-2026 .hero--cinema .hero__body {
-  max-width: 32rem;
-  margin: var(--s-5) 0 var(--s-6);
 }
 
 /* Editorial (light): the headline alone on one line across the content
@@ -183,16 +177,7 @@
 }
 
 .look-2026 .hero--editorial .hero__text {
-  grid-column: 1 / 6;
-}
-
-.look-2026 .hero--editorial .hero__deck {
-  font-size: clamp(1.625rem, 1.15rem + 1.2vw, 2.375rem);
-}
-
-.look-2026 .hero--editorial .hero__body {
-  max-width: 30rem;
-  margin: var(--s-5) 0 var(--s-6);
+  grid-column: 1 / 7;
 }
 
 .look-2026 .hero__media {
@@ -229,7 +214,7 @@
     margin-bottom: var(--s-5);
   }
 
-  .look-2026 .hero--cinema .hero__body {
+  .look-2026 .hero__body {
     margin: var(--s-4) 0 var(--s-5);
   }
 }
@@ -237,10 +222,6 @@
 @media (min-width: 901px) and (max-height: 780px) {
   .look-2026 .hero--editorial {
     padding-top: calc(var(--nav-h) + 24px);
-  }
-
-  .look-2026 .hero--editorial .hero__body {
-    margin: var(--s-4) 0 var(--s-5);
   }
 }
 
@@ -280,8 +261,7 @@
 }
 
 @media (max-width: 640px) {
-  .look-2026 .hero--cinema .hero__body,
-  .look-2026 .hero--editorial .hero__body {
+  .look-2026 .hero__body {
     margin: var(--s-4) 0 var(--s-5);
   }
 }
@@ -549,7 +529,7 @@
 }
 
 .look-2026 .is-cycling .pillar.is-active .pillar__progress {
-  animation: pillar-fill 6000ms linear forwards;
+  animation: pillar-fill var(--pillar-step, 4000ms) linear forwards;
 }
 
 @keyframes pillar-fill {
