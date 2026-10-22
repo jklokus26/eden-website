@@ -206,14 +206,19 @@
     margin-bottom: var(--s-7);
   }
 
-  /* The wide crop keeps the whole chandelier over the table. */
+  /* The skyline dinner: the table and the lit windows. */
   .look-2026 .dresults__photo img {
-    object-position: 62% 22%;
+    object-position: 50% 55%;
   }
 
   .look-2026 .dquote-band__photo {
     aspect-ratio: 3 / 2;
     margin-top: var(--s-7);
+  }
+
+  /* The wide crop of the two guests keeps their heads in frame. */
+  .look-2026 .dquote-band__photo img {
+    object-position: 50% 20%;
   }
 }
 

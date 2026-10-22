@@ -165,6 +165,28 @@
   max-width: 36rem;
 }
 
+/* Smaller laptops: the photo is cut to the screen's height, so the
+   inscription sits further left; a narrower column keeps "STOCK" clear of
+   the paragraph. */
+@media (min-width: 901px) and (max-width: 1279px) {
+  .look-2026 .hero--cinema .hero__text {
+    max-width: 25rem;
+  }
+
+  .look-2026 .hero__bg::after {
+    background:
+      linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
+      linear-gradient(90deg, rgba(2, 4, 8, 0.8) 0%, rgba(2, 4, 8, 0.8) 24%, rgba(3, 5, 15, 0.58) 46%, rgba(5, 10, 30, 0.04) 100%);
+  }
+
+  .look-2026.theme-light .hero__bg::after {
+    background:
+      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 78%, transparent) 0, transparent 150px),
+      linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
+      linear-gradient(90deg, var(--paper) 0%, var(--paper) 24%, color-mix(in srgb, var(--paper) 84%, transparent) 40%, color-mix(in srgb, var(--paper) 30%, transparent) 58%, transparent 78%);
+  }
+}
+
 /* Editorial (light): the headline alone on one line across the content
    width, a hairline, then the deck, paragraph and buttons (columns 1-5)
    beside a 3:2 photo (columns 7-12). */
@@ -243,39 +265,53 @@
    where the text sits. Editorial: the headline takes two lines and
    everything stacks, the photo last. */
 @media (max-width: 900px) {
+  /* Room for the facade and its "STOCK EXCHANGE" above the headline, short
+     phones included (the hero then runs past the first screen). */
   .look-2026 .hero--cinema {
     min-height: 100svh;
+    padding-top: calc(var(--nav-h) + 270px);
+    overflow: clip;
   }
 
   .look-2026 .hero__bg img {
     object-position: 50% 0%;
   }
 
+  /* On the photo only the nav's shade at the top and the page color at the
+     very bottom; the dark behind the words travels with them (::before
+     below), so it starts just above the headline at any screen height. */
   .look-2026 .hero__bg::after {
-    /* Dark at the very top too, so the nav and menu icon read over the
-       stonework. */
-    background: linear-gradient(to bottom, rgba(3, 5, 15, 0.58) 0, rgba(5, 10, 30, 0.04) 150px, rgba(5, 10, 30, 0.04) 30%, rgba(3, 5, 15, 0.58) 42%, rgba(2, 4, 8, 0.8) 60%, var(--paper) 100%);
+    background:
+      linear-gradient(to bottom, rgba(3, 5, 15, 0.58) 0, rgba(5, 10, 30, 0.04) 150px),
+      linear-gradient(to bottom, transparent 85%, var(--paper) 100%);
   }
 
-  /* Short phones and phones held sideways: the text fills most of the
-     screen and the headline rises into the bright stonework, so the dark
-     starts at the top. */
-  @media (max-height: 760px) {
-    .look-2026 .hero__bg::after {
-      background: linear-gradient(to bottom, rgba(3, 5, 15, 0.7) 0, rgba(2, 4, 8, 0.92) 55%, var(--paper) 100%);
-    }
+  .look-2026 .hero--cinema .hero__inner {
+    position: relative;
   }
 
-  /* Light theme on phones: the facade at the top, melting into solid paper
-     before the headline. */
+  .look-2026 .hero--cinema .hero__inner::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -48px;
+    bottom: -100vh;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent 0, rgba(3, 5, 15, 0.58) 48px, rgba(2, 4, 8, 0.8) 160px);
+    pointer-events: none;
+  }
+
+  /* Light theme: the same, in paper. */
   .look-2026.theme-light .hero__bg::after {
-    background: linear-gradient(to bottom, color-mix(in srgb, var(--paper) 72%, transparent) 0, transparent 140px, transparent 28%, color-mix(in srgb, var(--paper) 86%, transparent) 40%, var(--paper) 50%);
+    background:
+      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 72%, transparent) 0, transparent 140px),
+      linear-gradient(to bottom, transparent 85%, var(--paper) 100%);
   }
 
-  @media (max-height: 760px) {
-    .look-2026.theme-light .hero__bg::after {
-      background: linear-gradient(to bottom, color-mix(in srgb, var(--paper) 72%, transparent) 0, color-mix(in srgb, var(--paper) 60%, transparent) 10%, var(--paper) 30%);
-    }
+  .look-2026.theme-light .hero--cinema .hero__inner::before {
+    background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--paper) 86%, transparent) 48px, var(--paper) 130px);
   }
 
   .look-2026 .hero--editorial .hero__title {
@@ -1408,6 +1444,6 @@
   }
 
   .look-2026 .bio__photo img {
-    object-position: 50% 25%;
+    object-position: 50% 0%;
   }
 }

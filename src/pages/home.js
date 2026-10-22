@@ -175,7 +175,7 @@ function buildHero() {
     <section class="hero hero--cinema" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
         ${picture({
-          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920, 2600], sizes: '100vw',
+          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920, 2600, 3600], sizes: '100vw',
           alt: '', width: 2600, height: 1625, eager: true, fallback: 1600,
           narrow: { media: '(max-width: 900px)', base: HERO_IMAGE.tall, widths: [750, 1200], sizes: '100vw' },
         })}
