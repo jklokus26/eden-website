@@ -243,6 +243,15 @@
     background: linear-gradient(to bottom, rgba(3, 5, 15, 0.7) 0, rgba(5, 10, 30, 0.15) 160px, rgba(3, 5, 15, 0.7) 38%, rgba(2, 4, 8, 0.92) 62%, var(--paper) 100%);
   }
 
+  /* Short phones and phones held sideways: the text fills most of the
+     screen and the headline rises into the bright stonework, so the dark
+     starts at the top. */
+  @media (max-height: 760px) {
+    .look-2026 .hero__bg::after {
+      background: linear-gradient(to bottom, rgba(3, 5, 15, 0.7) 0, rgba(2, 4, 8, 0.92) 55%, var(--paper) 100%);
+    }
+  }
+
   .look-2026 .hero--editorial .hero__title {
     white-space: normal;
     max-width: 11ch;
