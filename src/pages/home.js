@@ -2,8 +2,9 @@ import '../styles/look-2026.css';
 import '../styles/home-2026.css';
 import { initContactForm } from '../components/contact-form.js';
 import {
-  ARROW, picture, textLink, buildContactBand, initReveal, initAnchors, initNavState,
+  ARROW, picture, textLink, buildContactBand, dinnerFilm, initFilms, initReveal, initAnchors, initNavState,
 } from '../components/look-2026.js';
+import { lenis } from '../main.js';
 import {
   homeHero,
   homeProof,
@@ -11,11 +12,13 @@ import {
   homeWhatWeDo,
   homeDinners,
   homeIndustries,
+  teamHeading,
 } from '../../data/site-content.js';
 import { clientStrip } from '../../data/clients.js';
 import { mediaLogos } from '../../data/media-logos.js';
 import { caseStudies } from '../../data/case-studies.js';
 import { testimonials } from '../../data/testimonials.js';
+import { team } from '../../data/team.js';
 
 // Homepage, Oct 2026 look (DESIGN.md). Copy comes from data/site-content.js,
 // which holds Eden's "Website Flow (October 2026)" doc verbatim.
@@ -35,12 +38,16 @@ const HERO_IMAGE = {
 // Label over the outlet logos (ours; the doc has none).
 const PRESS_LABEL = 'Where our clients appear';
 
-// The outlet row sits with the client quotes, away from the client logos,
-// so no two logo rows meet. It shows the eight best-known outlets; all of
-// Eden's outlet logos stay in data/media-logos.js.
-const PRESS_PICKS = [
+// The outlet logos run as a moving strip under the case studies, bigger than
+// the client strip and drifting the other way, so the two never read as one
+// (Alkida's Loom, 2026-10-21: "a little bigger and dynamic... move around the
+// screen"). Best-known outlets first; every outlet in data/media-logos.js runs.
+const PRESS_ORDER = [
   'The Wall Street Journal', 'Bloomberg', 'Financial Times', 'The New York Times',
-  'Reuters', 'CNBC', 'Forbes', 'Fortune',
+  'Reuters', 'CNBC', 'Forbes', 'Fortune', 'Axios', 'Business Insider', 'CoinDesk',
+  'Fox Business', 'Yahoo Finance', 'The Block', 'The Washington Post', 'CNN',
+  'USA Today', 'Blockworks', 'Bloomberg Law', 'CoinTelegraph', 'Inc.',
+  'New York Post', 'Cheddar News',
 ];
 
 // Logo heights tuned by eye on this page so every logo carries the same
@@ -50,10 +57,25 @@ const CLIENT_HEIGHTS = {
   'Cohen & Company Capital Markets': 30, 'Alpaca': 25, 'LayerZero': 28,
   'Grindr': 19, 'RoboStrategy': 15, 'Rox': 20, 'Jito Labs': 21,
 };
+// Outlet heights, tuned by eye on the strip so every mark carries the same
+// weight (wide wordmarks shorter, compact marks taller).
 const PRESS_HEIGHTS = {
-  'The Wall Street Journal': 13, 'Bloomberg': 23, 'Financial Times': 13,
-  'The New York Times': 17, 'Reuters': 22, 'CNBC': 16, 'Forbes': 18, 'Fortune': 15,
+  'The Wall Street Journal': 21, 'Bloomberg': 34, 'Financial Times': 21,
+  'The New York Times': 26, 'Reuters': 33, 'CNBC': 25, 'Forbes': 29, 'Fortune': 23,
+  'Axios': 28, 'Business Insider': 32, 'CoinDesk': 30, 'Fox Business': 35,
+  'Yahoo Finance': 24, 'The Block': 22, 'The Washington Post': 25, 'CNN': 30,
+  'USA Today': 22, 'Blockworks': 28, 'Bloomberg Law': 25, 'CoinTelegraph': 30,
+  'Inc.': 26, 'New York Post': 20, 'Cheddar News': 30,
 };
+
+// What we do: one photo per pillar. Desktop shows them one at a time beside
+// the list (the tall crop); phones show each above its pillar (the wide crop).
+// Position: "Lectern on stage" by Wesley Tingey
+// (https://unsplash.com/photos/bWRX_obQAl8); Build market visibility: a
+// broadcast camera filming an interview, by Sam McGhee
+// (https://unsplash.com/photos/KieCLNzKoBo), both Unsplash License, free for
+// commercial use. Open the right doors: Eden's own Wintermute dinner photo.
+const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 
 // Stock photos, all in color and graded to one warm tone. Financial Services:
 // "Golden hour illuminates classical architecture with columns" by Nhan Hoang
@@ -104,8 +126,8 @@ function buildHero() {
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero__grid">
         <div class="hero__text">
-          <p class="t-label hero__eyebrow">${homeHero.eyebrow}</p>
           <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
+          <p class="hero__positioning">${homeHero.positioning.lead} <em class="hero__emphasis">${homeHero.positioning.emphasis}</em></p>
           <p class="t-lead hero__body">${homeHero.body}</p>
           <div class="hero__actions">
             <a class="btn btn--primary" href="${homeHero.primaryCta.href}">${homeHero.primaryCta.label} ${ARROW}</a>
@@ -133,12 +155,17 @@ function buildHero() {
 // Oct 9 call: "the performance numbers up across the top, with a scrolling
 // logo strip of companies beneath").
 function buildProof() {
-  const figures = homeProof.map(f => `
-    <li class="proof__figure">
-      <span class="proof__value">${f.value.toLocaleString('en-US')}${f.suffix}</span>
+  // The visible number counts up (initCountUp); screen readers get the final
+  // figure once, from the hidden copy.
+  const figures = homeProof.map((f, i) => {
+    const final = `${f.value.toLocaleString('en-US')}${f.suffix}`;
+    return `
+    <li class="proof__figure" style="--i: ${i}">
+      <span class="proof__value"><span class="proof__count" aria-hidden="true" data-count="${f.value}" data-suffix="${f.suffix}">${final}</span><span class="visually-hidden">${final}</span></span>
       <span class="proof__label">${f.label}</span>
     </li>
-  `).join('');
+  `;
+  }).join('');
 
   const logos = clientStrip
     .map(c => `<li class="marquee__item">${inkLogo(c, CLIENT_HEIGHTS[c.name] || Math.round(c.displayHeight * 0.85))}</li>`)
@@ -149,7 +176,7 @@ function buildProof() {
       <div class="wrap">
         <h2 id="proof-title" class="t-label proof__title">${homeHero.tagline}</h2>
         <ul class="proof__figures">${figures}</ul>
-        <div class="clients">
+        <div class="clients" data-marquee>
           <div class="clients__head">
             <h2 class="t-label">${homeClientsLabel}</h2>
             <button class="marquee__toggle" type="button" aria-pressed="false" aria-label="Pause the logo strip">
@@ -167,14 +194,31 @@ function buildProof() {
   `;
 }
 
+function pillarPhoto(i, { wide = false, className = '', sizes }) {
+  return picture({
+    dir: HOME_DIR, base: `${PILLAR_IMAGES[i]}${wide ? '-wide' : ''}`, widths: [640, 1024, 1600], sizes,
+    width: 1600, height: wide ? 1067 : 2000, alt: '', className,
+  });
+}
+
+// The pillars as a list beside one large photo. On desktop the photo follows
+// the pillar under the pointer and otherwise steps through all three, with a
+// line filling along the active pillar to show the timing (initPillars).
+// Phones get each photo above its pillar and no stepping.
 function buildWhatWeDo() {
   const pillars = homeWhatWeDo.pillars.map((p, i) => `
-    <li class="pillar" data-reveal style="--i: ${i}">
+    <li class="pillar${i === 0 ? ' is-active' : ''}" data-reveal style="--i: ${i}">
+      <span class="pillar__rule" aria-hidden="true"><span class="pillar__progress"></span></span>
+      ${pillarPhoto(i, { wide: true, className: 'pillar__photo', sizes: '(max-width: 900px) 100vw, 1px' })}
       <span class="pillar__num">${p.number}</span>
       <h3 class="t-h3 pillar__title">${p.title}</h3>
       <p class="pillar__text">${p.text}</p>
     </li>
   `).join('');
+
+  const stage = PILLAR_IMAGES.map((_, i) => pillarPhoto(i, {
+    className: `pillars__img${i === 0 ? ' is-active' : ''}`, sizes: '(max-width: 900px) 1px, 46vw',
+  })).join('');
 
   return `
     <section class="what" aria-labelledby="what-title">
@@ -184,7 +228,16 @@ function buildWhatWeDo() {
           <h2 id="what-title" class="t-h2 what__title" data-reveal>${homeWhatWeDo.headline}</h2>
           <p class="what__body" data-reveal style="--i: 1">${homeWhatWeDo.body}</p>
         </div>
-        <ol class="pillars">${pillars}</ol>
+        <div class="what__pillars">
+          <ol class="pillars">${pillars}</ol>
+          <div class="pillars__stage" data-reveal style="--i: 1">
+            <div class="pillars__media" aria-hidden="true">${stage}</div>
+            <button class="marquee__toggle pillars__toggle" type="button" aria-pressed="false" aria-label="Pause the rotating photos">
+              <svg class="marquee__icon marquee__icon--pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="2.5" height="10"/><rect x="8.5" y="2" width="2.5" height="10"/></svg>
+              <svg class="marquee__icon marquee__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   `;
@@ -216,11 +269,11 @@ function buildWork() {
   `;
   }).join('');
 
-  // The press row closes the section: the case results, then where clients ran.
-  const press = PRESS_PICKS
+  // The outlet strip closes the section: the case results, then where clients ran.
+  const press = PRESS_ORDER
     .map(name => mediaLogos.find(l => l.name === name))
     .filter(Boolean)
-    .map(l => `<li class="press__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 20)}</li>`)
+    .map(l => `<li class="marquee__item">${inkLogo(l, PRESS_HEIGHTS[l.name] || 26)}</li>`)
     .join('');
 
   return `
@@ -231,9 +284,18 @@ function buildWork() {
           ${textLink('/results', 'View all work')}
         </div>
         <ul class="work__grid">${cards}</ul>
-        <div class="press">
-          <h3 class="t-label press__label">${PRESS_LABEL}</h3>
-          <ul class="press__list">${press}</ul>
+        <div class="press" data-marquee>
+          <div class="press__head">
+            <h3 class="t-label">${PRESS_LABEL}</h3>
+            <button class="marquee__toggle" type="button" aria-pressed="false" aria-label="Pause the outlet logos">
+              <svg class="marquee__icon marquee__icon--pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="2.5" height="10"/><rect x="8.5" y="2" width="2.5" height="10"/></svg>
+              <svg class="marquee__icon marquee__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
+            </button>
+          </div>
+          <div class="marquee marquee--press">
+            <ul class="marquee__track">${press}</ul>
+            <ul class="marquee__track" aria-hidden="true">${press}</ul>
+          </div>
         </div>
       </div>
     </section>
@@ -261,37 +323,24 @@ function buildTestimonials() {
   `;
 }
 
+// The dinner recap film takes the place of the photo grid (Alkida's Loom,
+// 2026-10-21: "we could maybe even actually insert a video of the dinner
+// here"), on a dark band so it plays like a screening.
 function buildDinners() {
   return `
-    <section class="dinners" aria-labelledby="dinners-title">
-      <div class="wrap dinners__grid">
-        <div class="dinners__text">
-          <p class="t-label" data-reveal>${homeDinners.sectionLabel}</p>
-          <h2 id="dinners-title" class="t-h2" data-reveal>${homeDinners.headline}</h2>
-          ${homeDinners.paragraphs.map((p, i) => `<p class="dinners__para" data-reveal style="--i: ${i + 1}">${p}</p>`).join('')}
-          <div data-reveal style="--i: 3">${textLink(homeDinners.cta.href, homeDinners.cta.label)}</div>
+    <section class="dinners on-dark" aria-labelledby="dinners-title">
+      <div class="wrap">
+        <div class="dinners__head">
+          <div class="dinners__intro">
+            <p class="t-label" data-reveal>${homeDinners.sectionLabel}</p>
+            <h2 id="dinners-title" class="t-h2" data-reveal>${homeDinners.headline}</h2>
+          </div>
+          <div class="dinners__copy">
+            ${homeDinners.paragraphs.map((p, i) => `<p class="dinners__para" data-reveal style="--i: ${i + 1}">${p}</p>`).join('')}
+            <div data-reveal style="--i: 3">${textLink(homeDinners.cta.href, homeDinners.cta.label)}</div>
+          </div>
         </div>
-        <div class="dinners__photos">
-          ${picture({
-            dir: DINNER_DIR, base: 'wintermute-dinner-table-guests-wide', widths: [640, 1024, 1600],
-            sizes: '(max-width: 900px) 100vw, 50vw', width: 1600, height: 1143, className: 'dinners__photo dinners__photo--wide',
-            alt: 'Guests seated along a long candlelit table at a private Eden dinner',
-          })}
-          ${picture({
-            // A guest, not the empty table (it read as the wide photo's table
-            // without people), and not Ebony, who is already in the next photo:
-            // her in two of three read too founder-focused (Joe, 2026-10-21).
-            // A closer crop of guest-smiling so she, not the heads in front, leads.
-            dir: DINNER_DIR, base: 'wintermute-dinner-guest-smiling-close', widths: [640, 1024],
-            sizes: '(max-width: 900px) 50vw, 25vw', width: 1024, height: 1434, className: 'dinners__photo',
-            alt: 'A guest smiling across the table at dinner',
-          })}
-          ${picture({
-            dir: DINNER_DIR, base: 'wintermute-dinner-guests-conversation', widths: [640, 1024],
-            sizes: '(max-width: 900px) 50vw, 25vw', width: 1600, height: 2240, className: 'dinners__photo',
-            alt: 'Two guests in conversation before dinner',
-          })}
-        </div>
+        <div data-reveal>${dinnerFilm()}</div>
       </div>
     </section>
   `;
@@ -322,19 +371,197 @@ function buildIndustries() {
   `;
 }
 
+// Back on the homepage at Alkida's request (Loom, 2026-10-21). Same portrait
+// crop and color grade for everyone; Alkida and Joseph join when their
+// headshots arrive. Each card opens the bio in a dialog.
+function buildTeam() {
+  const members = team.map((m, i) => `
+    <li class="member" data-reveal style="--i: ${i}">
+      <button class="member__button" type="button" data-index="${i}" aria-haspopup="dialog">
+        <span class="member__photo"><img src="${m.photo}" alt="" width="500" height="625" loading="lazy" decoding="async"></span>
+        <span class="member__info">
+          <span class="member__name">${m.name}</span>
+          <span class="member__role">${m.role}</span>
+          <span class="member__more">Read bio</span>
+        </span>
+      </button>
+    </li>
+  `).join('');
+
+  return `
+    <section class="team" aria-labelledby="team-title">
+      <div class="wrap team__grid">
+        <div class="team__head">
+          <h2 id="team-title" class="t-h2" data-reveal>${teamHeading.headline}</h2>
+          <div data-reveal style="--i: 1">${textLink('/about', 'Meet the full team')}</div>
+        </div>
+        <ul class="team__list">${members}</ul>
+      </div>
+      <dialog class="bio-dialog" aria-labelledby="bio-name">
+        <div class="bio">
+          <div class="bio__photo"><img alt="" width="500" height="625"></div>
+          <div class="bio__body">
+            <h3 id="bio-name" class="t-h3 bio__name"></h3>
+            <p class="bio__role"></p>
+            <p class="bio__text"></p>
+            <a class="text-link bio__linkedin" href="#" target="_blank" rel="noopener noreferrer"><span class="text-link__label">LinkedIn</span>${ARROW}</a>
+          </div>
+          <button class="bio__close" type="button" aria-label="Close bio">Close</button>
+        </div>
+      </dialog>
+    </section>
+  `;
+}
+
 // ─── Behaviour ────────────────────────────────────────────────────────────
 
-// The client strip scrolls on its own; the button stops and restarts it
-// (moving content needs a pause control). Its label stays "Pause the logo
-// strip" and aria-pressed says whether it's paused; the icon swaps to play.
-// Reduced motion shows the strip still.
+// The logo strips scroll on their own; each button stops and restarts its
+// strip (moving content needs a pause control). Its label stays fixed and
+// aria-pressed says whether it's paused; the icon swaps to play. Reduced
+// motion shows the strips still.
 function initMarquee(root) {
-  const toggle = root.querySelector('.marquee__toggle');
-  const marquee = root.querySelector('.marquee');
-  if (!toggle || !marquee) return;
+  root.querySelectorAll('[data-marquee]').forEach(box => {
+    const toggle = box.querySelector('.marquee__toggle');
+    const marquee = box.querySelector('.marquee');
+    if (!toggle || !marquee) return;
+    toggle.addEventListener('click', () => {
+      const paused = marquee.classList.toggle('is-paused');
+      toggle.setAttribute('aria-pressed', String(paused));
+    });
+  });
+}
+
+// Each figure counts up from zero the first time it scrolls into view, easing
+// out so it settles on the real number. Reduced motion shows the numbers as is.
+function initCountUp(root) {
+  const counts = root.querySelectorAll('[data-count]');
+  if (!counts.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const DURATION = 1600;
+  const ease = t => 1 - Math.pow(1 - t, 4);
+  const show = (el, n) => { el.textContent = `${n.toLocaleString('en-US')}${el.dataset.suffix}`; };
+  const run = (el, delay) => {
+    const target = Number(el.dataset.count);
+    let start = null;
+    const step = (now) => {
+      if (start === null) start = now + delay;
+      const t = Math.min(1, Math.max(0, (now - start) / DURATION));
+      show(el, Math.round(target * ease(t)));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  counts.forEach(el => show(el, 0));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      const i = [...counts].indexOf(entry.target);
+      run(entry.target, i * 120);
+    });
+  }, { threshold: 0.5 });
+  counts.forEach(el => io.observe(el));
+}
+
+// What we do: on desktop the large photo shows the active pillar. Pointing at
+// a pillar shows its photo and stops the stepping; otherwise it steps every
+// few seconds while the section is on screen. The button pauses and resumes
+// the stepping. Phones and reduced motion: no stepping.
+function initPillars(root) {
+  const section = root.querySelector('.what__pillars');
+  if (!section) return;
+  const items = [...section.querySelectorAll('.pillar')];
+  const photos = [...section.querySelectorAll('.pillars__img')];
+  const toggle = section.querySelector('.pillars__toggle');
+  if (!items.length || photos.length !== items.length) return;
+
+  const STEP = 6000;
+  const desktop = window.matchMedia('(min-width: 901px)');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let active = 0;
+  let timer = null;
+  let inView = false;
+  let stopped = reduce.matches;
+
+  const show = (i) => {
+    active = i;
+    items.forEach((el, k) => el.classList.toggle('is-active', k === i));
+    photos.forEach((el, k) => el.classList.toggle('is-active', k === i));
+  };
+
+  const schedule = () => {
+    clearTimeout(timer);
+    const cycling = !stopped && inView && desktop.matches;
+    // Restart the fill line from empty on every step.
+    section.classList.remove('is-cycling');
+    if (!cycling) return;
+    void section.offsetWidth;
+    section.classList.add('is-cycling');
+    timer = setTimeout(() => { show((active + 1) % items.length); schedule(); }, STEP);
+  };
+
+  const stop = () => {
+    stopped = true;
+    toggle.setAttribute('aria-pressed', 'true');
+    schedule();
+  };
+
+  items.forEach((el, i) => {
+    el.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse' || !desktop.matches) return;
+      show(i);
+      if (!stopped) stop();
+    });
+  });
+
   toggle.addEventListener('click', () => {
-    const paused = marquee.classList.toggle('is-paused');
-    toggle.setAttribute('aria-pressed', String(paused));
+    stopped = !stopped;
+    toggle.setAttribute('aria-pressed', String(stopped));
+    schedule();
+  });
+
+  if (stopped) toggle.setAttribute('aria-pressed', 'true');
+  desktop.addEventListener('change', schedule);
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    schedule();
+  }, { threshold: 0.35 }).observe(section);
+}
+
+function initBios(root) {
+  const dialog = root.querySelector('.bio-dialog');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  let opener = null;
+  const photo = dialog.querySelector('.bio__photo img');
+
+  root.querySelectorAll('.member__button').forEach(button => {
+    button.addEventListener('click', () => {
+      const m = team[Number(button.dataset.index)];
+      photo.src = m.photo;
+      photo.alt = m.alt || '';
+      dialog.querySelector('.bio__name').textContent = m.name;
+      dialog.querySelector('.bio__role').textContent = m.role;
+      dialog.querySelector('.bio__text').textContent = m.bio;
+      const linkedin = dialog.querySelector('.bio__linkedin');
+      linkedin.hidden = !m.linkedin;
+      if (m.linkedin) {
+        linkedin.href = m.linkedin;
+        linkedin.setAttribute('aria-label', `${m.name} on LinkedIn`);
+      }
+      opener = button;
+      if (lenis) lenis.stop();
+      dialog.showModal();
+      dialog.querySelector('.bio__close').focus();
+    });
+  });
+
+  dialog.querySelector('.bio__close').addEventListener('click', () => dialog.close());
+  // A click on the backdrop lands on the dialog element itself.
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => {
+    if (lenis) lenis.start();
+    if (opener) opener.focus();
   });
 }
 
@@ -350,8 +577,11 @@ function initHomepage() {
     buildWhatWeDo(),
     buildWork(),
     buildTestimonials(),
-    buildDinners(),
+    // Industries sit right under the client quotes: the repositioning is the
+    // point of the rebrand (Alkida's Loom, 2026-10-21).
     buildIndustries(),
+    buildDinners(),
+    buildTeam(),
     buildContactBand(),
   ].join(''));
 
@@ -359,6 +589,10 @@ function initHomepage() {
   initAnchors(main);
   initNavState();
   initMarquee(main);
+  initCountUp(main);
+  initPillars(main);
+  initFilms(main);
+  initBios(main);
   initContactForm();
 }
 

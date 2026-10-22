@@ -63,19 +63,24 @@ export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="curre
 </svg>`;
 
 // ─── Oct 2026 homepage revamp ───────────────────────────────────────────
-// Copy from Eden's "Website Flow (October 2026)" doc, verbatim. The homepage
-// builders switch to these exports in the design pass. Testimonials and
-// outlet logos stay on the homepage (Alkida, 2026-10-20). The homepage team
-// section is off at Joe's direction (2026-10-20 evening, confirmed 2026-10-21
-// "for now"), though Alkida asked to keep it; Eden is told when the preview
-// goes out. The team stays on the About page. The manifesto section comes off the homepage ("Manifesto
+// Copy from Eden's "Website Flow (October 2026)" doc, verbatim unless a note
+// says otherwise. Testimonials and outlet logos stay on the homepage (Alkida,
+// 2026-10-20). The homepage team section is back (Alkida's Loom, 2026-10-21:
+// "We also need a portion for the team"); Alkida and Joseph join it when their
+// headshots arrive. The manifesto section comes off the homepage ("Manifesto
 // can go for now", Ebony, 2026-10-20), but keep missionContent so it can
 // come back. Other older exports nothing uses after the switch (heroContent, ...)
 // get removed then.
 
 export const homeHero = {
-  eyebrow: 'A modern communications firm for companies who don’t believe in PR',
-  headline: 'Reputation is the first advantage.',
+  // Alkida, 2026-10-21: "I think the line 'Reputation is Capital' is more
+  // powerful" (doc: "Reputation is the first advantage."), set in the site's
+  // sentence case.
+  headline: 'Reputation is capital.',
+  // The doc's line above the headline, now a bold line under it with its last
+  // words emphasised (Alkida's Loom: "highlight it a little better... a
+  // competitive advantage... make it a bit bolder").
+  positioning: { lead: 'A modern communications firm for companies who', emphasis: 'don’t believe in PR' },
   // The doc's "SEO/Tagline": the label over the numbers band right under the
   // hero, so visitors see who Eden serves (also the page title and
   // description).
@@ -85,7 +90,8 @@ export const homeHero = {
   secondaryCta: { label: 'Talk to Eden', href: '#contact' },
 };
 
-// Numbers shown in the proof band (value is animated, label shown as written)
+// Numbers shown in the proof band (each counts up from zero when it scrolls
+// into view; label shown as written)
 export const homeProof = [
   { value: 1793, suffix: '', label: 'Top-tier placements in 2025' },
   { value: 558, suffix: '', label: 'Tier 1 placements' }, // doc: "558 TIER 1"; "placements" added at Joe's direction (2026-10-21)
@@ -119,6 +125,10 @@ export const homeDinners = {
     'We bring together founders, investors, creators, journalists and industry leaders around a shared idea to create the kind of conversations and relationships that make a meaningful difference to your business.',
   ],
   cta: { label: 'See our dinners', href: '/dinners' },
+};
+
+export const teamHeading = {
+  headline: 'The team',
 };
 
 export const homeIndustries = {

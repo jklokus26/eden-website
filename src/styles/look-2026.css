@@ -642,6 +642,134 @@ html:has(> body.look-2026) {
   color: var(--ink);
 }
 
+/* ─── Dialog (team bios) ────────────────────────────────────────────── */
+
+.look-2026 .bio-dialog {
+  width: min(880px, calc(100vw - 2 * var(--gutter)));
+  max-height: calc(100dvh - 2 * var(--gutter));
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink-body);
+  overflow: auto;
+}
+
+.look-2026 .bio-dialog::backdrop {
+  background: var(--scrim);
+}
+
+.look-2026 .bio-dialog[open] {
+  animation: bio-in 220ms var(--ease-out);
+}
+
+@keyframes bio-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .look-2026 .bio-dialog[open] {
+    animation: none;
+  }
+}
+
+/* ─── Dinner film (homepage band and dinners page) ──────────────────── */
+
+.look-2026 .film {
+  margin: 0;
+}
+
+.look-2026 .film__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--band-bg);
+}
+
+.look-2026 .film__poster,
+.look-2026 .film__poster img,
+.look-2026 .film__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.look-2026 .film__poster img,
+.look-2026 .film__video {
+  object-fit: cover;
+}
+
+/* The film fades in over its poster once it's actually playing. */
+.look-2026 .film__video {
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out);
+}
+
+.look-2026 .film.is-playing .film__video {
+  opacity: 1;
+}
+
+.look-2026 .film__toggle {
+  position: absolute;
+  right: var(--s-4);
+  bottom: var(--s-4);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--on-dark);
+  background: rgba(14, 19, 16, 0.55);
+  transition: background-color var(--dur-ui) var(--ease-out);
+}
+
+.look-2026 .film__toggle:hover {
+  background: rgba(14, 19, 16, 0.78);
+}
+
+.look-2026 .film__toggle:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--ink);
+}
+
+.look-2026 .film__icon {
+  grid-area: 1 / 1;
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.look-2026 .film__icon--play,
+.look-2026 .film__toggle[aria-pressed='true'] .film__icon--pause {
+  display: none;
+}
+
+.look-2026 .film__toggle[aria-pressed='true'] .film__icon--play {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .look-2026 .film__frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .look-2026 .film__toggle {
+    right: var(--s-3);
+    bottom: var(--s-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .look-2026 .film__video {
+    transition: none;
+  }
+}
+
 /* ─── Contact band (with the form) ──────────────────────────────────── */
 
 .look-2026 .band {

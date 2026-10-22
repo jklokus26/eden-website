@@ -42,26 +42,6 @@
   margin-top: var(--s-3);
 }
 
-.look-2026 .dhero__lead {
-  aspect-ratio: 21 / 9;
-  overflow: hidden;
-  background: var(--paper-deep);
-}
-
-.look-2026 .dhero__lead picture {
-  width: 100%;
-  height: 100%;
-}
-
-.look-2026 .dhero__lead img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* A wide frame set low, so it starts below the chandeliers. */
-  object-position: 50% 80%;
-  filter: var(--photo-grade);
-}
-
 @media (max-width: 900px) {
   .look-2026 .dhero__head,
   .look-2026 .dhero__copy {
@@ -70,10 +50,6 @@
 
   .look-2026 .dhero__copy {
     margin-top: var(--s-6);
-  }
-
-  .look-2026 .dhero__lead {
-    aspect-ratio: 4 / 3;
   }
 }
 
@@ -84,15 +60,52 @@
   padding: var(--section) 0;
 }
 
+/* A tall photo of the room on the left, the two dinners' numbers stacked
+   on the right. */
+.look-2026 .dresults__layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: center;
+}
+
+.look-2026 .dresults__photo {
+  grid-column: 1 / 6;
+}
+
+.look-2026 .dresults__body {
+  grid-column: 7 / 13;
+}
+
 .look-2026 .dresults__label {
-  margin-bottom: var(--s-7);
+  margin-bottom: var(--s-6);
 }
 
 .look-2026 .dresults__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--s-8);
   row-gap: var(--s-7);
+}
+
+.look-2026 .dresults__photo,
+.look-2026 .dquote-band__photo {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.look-2026 .dresults__photo picture,
+.look-2026 .dresults__photo img,
+.look-2026 .dquote-band__photo picture,
+.look-2026 .dquote-band__photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.look-2026 .dresults__photo img,
+.look-2026 .dquote-band__photo img {
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  filter: var(--photo-grade);
 }
 
 .look-2026 .dresult {
@@ -134,9 +147,25 @@
   color: var(--ink-body);
 }
 
+/* The quote on the left, a photo of guests talking on the right. */
+.look-2026 .dquote-band {
+  padding: var(--section) 0;
+}
+
+.look-2026 .dquote-band__layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: center;
+}
+
+.look-2026 .dquote-band__photo {
+  grid-column: 9 / 13;
+}
+
 .look-2026 .dquote {
-  margin: clamp(56px, 7vw, 96px) 0 0;
-  max-width: 52rem;
+  grid-column: 1 / 8;
+  margin: 0;
 }
 
 .look-2026 .dquote p {
@@ -165,45 +194,32 @@
 }
 
 @media (max-width: 900px) {
-  .look-2026 .dresults__grid {
-    grid-template-columns: minmax(0, 1fr);
+  .look-2026 .dresults__photo,
+  .look-2026 .dresults__body,
+  .look-2026 .dquote,
+  .look-2026 .dquote-band__photo {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .dresults__photo {
+    aspect-ratio: 3 / 2;
+    margin-bottom: var(--s-7);
+  }
+
+  /* The wide crop keeps the whole chandelier over the table. */
+  .look-2026 .dresults__photo img {
+    object-position: 62% 22%;
+  }
+
+  .look-2026 .dquote-band__photo {
+    aspect-ratio: 3 / 2;
+    margin-top: var(--s-7);
   }
 }
 
-/* ─── Gallery ───────────────────────────────────────────────────────── */
-
-.look-2026 .dgallery {
-  padding: var(--section) 0;
-}
-
-/* Eight photos in an even 4 by 2 grid (2 by 4 below 900px), all 4:5. */
-.look-2026 .dgallery__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-3);
-  list-style: none;
-}
-
-.look-2026 .dgallery__item {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--paper-deep);
-}
-
-.look-2026 .dgallery__item picture,
-.look-2026 .dgallery__item img {
-  width: 100%;
-  height: 100%;
-}
-
-.look-2026 .dgallery__item img {
-  object-fit: cover;
-  object-position: var(--focus, 50% 50%);
-  filter: var(--photo-grade);
-}
-
-@media (max-width: 900px) {
-  .look-2026 .dgallery__grid {
+@media (min-width: 641px) and (max-width: 900px) {
+  .look-2026 .dresults__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s-6);
   }
 }

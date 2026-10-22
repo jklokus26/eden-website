@@ -56,6 +56,95 @@ export function buildContactBand() {
   `;
 }
 
+// The Wintermute dinner recap (Eden's film, 21 s, silent), shown on the
+// homepage dinners band and the dinners page. The poster is a still from the
+// film at every size; the film itself loads only when it nears the screen,
+// in 720p on phones and 1080p elsewhere, and plays muted on a loop while on
+// screen (initFilms).
+const FILM = {
+  small: '/assets/video/wintermute-dinner-recap-720.mp4',
+  large: '/assets/video/wintermute-dinner-recap-1080.mp4',
+};
+
+export function dinnerFilm() {
+  return `
+    <figure class="film" data-film>
+      <div class="film__frame">
+        ${picture({
+          dir: '/assets/images/dinners', base: 'wintermute-dinner-recap-poster', widths: [768, 1280, 1920],
+          sizes: '(max-width: 1280px) 100vw, 1184px', alt: '', width: 1920, height: 1080, fallback: 1280,
+          className: 'film__poster',
+        })}
+        <video class="film__video" muted playsinline loop preload="none" disablepictureinpicture aria-hidden="true"></video>
+        <button class="film__toggle" type="button" aria-pressed="true" aria-label="Pause the dinner film" hidden>
+          <svg class="film__icon film__icon--pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="2.5" height="10"/><rect x="8.5" y="2" width="2.5" height="10"/></svg>
+          <svg class="film__icon film__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
+        </button>
+      </div>
+      <figcaption class="visually-hidden">Highlights from the private dinner Eden hosted for Wintermute</figcaption>
+    </figure>
+  `;
+}
+
+// Plays while at least a quarter of the film is on screen and pauses when it
+// leaves. The button pauses and resumes it, and a pause by the visitor holds
+// until they press play. Reduced motion and data saver start paused on the
+// poster. If the browser refuses to autoplay (iPhone Low Power Mode), the
+// button shows play.
+export function initFilms(root) {
+  root.querySelectorAll('[data-film]').forEach(film => {
+    const video = film.querySelector('video');
+    const toggle = film.querySelector('.film__toggle');
+    if (!video || !toggle) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+    let held = reduce || saveData;
+
+    const load = () => {
+      if (video.getAttribute('src')) return;
+      video.src = window.matchMedia('(max-width: 900px)').matches || saveData ? FILM.small : FILM.large;
+      video.preload = 'auto';
+    };
+    const play = () => {
+      load();
+      const attempt = video.play();
+      if (attempt) attempt.catch(() => toggle.setAttribute('aria-pressed', 'true'));
+    };
+
+    video.addEventListener('playing', () => {
+      film.classList.add('is-playing');
+      toggle.setAttribute('aria-pressed', 'false');
+    });
+    video.addEventListener('pause', () => toggle.setAttribute('aria-pressed', 'true'));
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      if (video.paused) {
+        held = false;
+        play();
+      } else {
+        held = true;
+        video.pause();
+      }
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      if (!held) play();
+      return;
+    }
+    // Start fetching a little before the film arrives so it's ready to play.
+    const near = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || held) return;
+      load();
+      near.disconnect();
+    }, { rootMargin: '400px 0px' });
+    near.observe(film);
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !held) play();
+      else if (!entry.isIntersecting && !video.paused) video.pause();
+    }, { threshold: 0.25 }).observe(film);
+  });
+}
+
 export function initReveal(root) {
   const items = root.querySelectorAll('[data-reveal]');
   if (!('IntersectionObserver' in window)) return;
