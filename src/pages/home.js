@@ -594,6 +594,15 @@ function initTeamCarousel(root) {
   arrows.forEach(btn => btn.addEventListener('click', () => {
     track.scrollBy({ left: Number(btn.dataset.step) * step(), behavior: reduce.matches ? 'auto' : 'smooth' });
   }));
+  // A card that takes keyboard focus slides fully into view.
+  track.addEventListener('focusin', (e) => {
+    const card = e.target.closest('.member');
+    if (!card) return;
+    const c = card.getBoundingClientRect();
+    const t = track.getBoundingClientRect();
+    const shift = c.left < t.left ? c.left - t.left : c.right > t.right ? c.right - t.right : 0;
+    if (shift) track.scrollBy({ left: shift, behavior: reduce.matches ? 'auto' : 'smooth' });
+  });
   track.addEventListener('scroll', update, { passive: true });
   if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
   update();

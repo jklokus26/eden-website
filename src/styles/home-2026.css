@@ -1114,6 +1114,12 @@
   color: inherit;
 }
 
+/* The track clips anything outside it, so the card's focus ring sits just
+   inside its edge. */
+.look-2026 .member__button:focus-visible {
+  outline-offset: -2px;
+}
+
 .look-2026 .member__photo {
   display: block;
   width: 100%;

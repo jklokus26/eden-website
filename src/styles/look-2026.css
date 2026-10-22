@@ -39,10 +39,13 @@
   /* The live numbers panel: a faint wash of the three with a purple edge. */
   --numbers-wash: linear-gradient(160deg, rgba(149, 27, 255, 0.04) 0%, rgba(28, 164, 255, 0.02) 40%, rgba(19, 255, 153, 0.04) 100%);
   --numbers-edge: rgba(149, 27, 255, 0.12);
-  /* Over photos: the live hero overlay's near-black. */
-  --scrim: linear-gradient(90deg, rgba(3, 5, 15, 0.81) 0%, rgba(3, 5, 15, 0.57) 50%, rgba(3, 5, 15, 0.43) 100%);
-  --disc: rgba(10, 10, 6, 0.55);
-  --disc-hover: rgba(10, 10, 6, 0.78);
+  /* Over photos: stops copied exactly from the live hero overlay
+     (home.css .hero overlay). */
+  --scrim: linear-gradient(90deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 50%, rgba(2, 4, 10, 0.5) 100%);
+  /* Round controls on photos and video: the live frosted nav color, and the
+     overlay's darkest stop on hover. */
+  --disc: rgba(18, 19, 31, 0.85);
+  --disc-hover: rgba(2, 4, 8, 0.92);
   --photo-grade: saturate(0.82) sepia(0.06);
 
   --font-display: 'Newsreader', 'Iowan Old Style', 'Times New Roman', serif;
@@ -188,7 +191,7 @@ html:has(> body.look-2026) {
 /* Section labels open with the live site's gradient dot (its divider
    label: white text after a purple, sky and mint dot). */
 .look-2026 .t-label--dot {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
   color: var(--ink);
@@ -992,6 +995,6 @@ html:has(> body.look-2026) {
    strong across it. */
 @media (max-width: 640px) {
   .look-2026 .band {
-    --scrim: linear-gradient(180deg, rgba(3, 5, 15, 0.79) 0%, rgba(3, 5, 15, 0.67) 100%);
+    --scrim: linear-gradient(180deg, rgba(2, 4, 8, 0.92) 0%, rgba(3, 5, 15, 0.7) 100%);
   }
 }

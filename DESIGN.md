@@ -126,7 +126,7 @@ Eden should read like a serious advisory firm, not an agency and not a tech prod
 - **Rules:** white at 8% (`--rule`) or 12% (`--rule-strong`), the live border tokens; text underlines at 30% (`--link-rule`).
 - **Nav once scrolled:** the live frosted bar, rgba(18, 19, 31, 0.85) with a 12px blur.
 - **Form fields:** white at 4% fill, white at 12% border, mint on focus; error text #ff6b6b (all live).
-- **Over photos:** the scrim uses the live hero overlay's near-black, rgba(3, 5, 15, …); round controls on photos and video sit on a near-black disc.
+- **Over photos:** the scrim uses stops copied from the live hero overlay (rgba(2, 4, 8, 0.92), rgba(3, 5, 15, 0.7), rgba(2, 4, 10, 0.5)); round controls on photos and video sit on the live frosted-nav color, rgba(18, 19, 31, 0.85).
 
 No glows, neon, glass or drop shadows. Logos are always one color (white).
 
