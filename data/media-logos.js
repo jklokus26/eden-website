@@ -195,3 +195,15 @@ export const mediaLogos = [
     displayHeight: 28,
   },
 ];
+
+// Display height (px) for each logo in the homepage press strip, tuned by
+// eye so heavy and light marks carry the same weight. Recent Work draws the
+// same logos at a fixed fraction of these heights.
+export const PRESS_HEIGHTS = {
+  'The Wall Street Journal': 21, 'Bloomberg': 34, 'Financial Times': 21,
+  'The New York Times': 26, 'Reuters': 33, 'CNBC': 25, 'Forbes': 29, 'Fortune': 23,
+  'Axios': 28, 'Business Insider': 32, 'CoinDesk': 30, 'Fox Business': 35,
+  'Yahoo Finance': 24, 'The Block': 22, 'The Washington Post': 25, 'CNN': 30,
+  'USA Today': 22, 'Blockworks': 28, 'Bloomberg Law': 25, 'CoinTelegraph': 30,
+  'Inc.': 26, 'New York Post': 20, 'Cheddar News': 30,
+};

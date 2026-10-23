@@ -15,7 +15,7 @@ import {
   teamHeading,
 } from '../../data/site-content.js';
 import { clientStrip } from '../../data/clients.js';
-import { mediaLogos } from '../../data/media-logos.js';
+import { mediaLogos, PRESS_HEIGHTS } from '../../data/media-logos.js';
 import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
 import { testimonials } from '../../data/testimonials.js';
 import { team } from '../../data/team.js';
@@ -60,16 +60,8 @@ const CLIENT_HEIGHTS = {
   'Cohen & Company Capital Markets': 30, 'Alpaca': 25, 'LayerZero': 28,
   'Grindr': 19, 'RoboStrategy': 15, 'Rox': 20, 'Jito Labs': 21,
 };
-// Outlet heights, tuned by eye on the strip so every mark carries the same
-// weight (wide wordmarks shorter, compact marks taller).
-const PRESS_HEIGHTS = {
-  'The Wall Street Journal': 21, 'Bloomberg': 34, 'Financial Times': 21,
-  'The New York Times': 26, 'Reuters': 33, 'CNBC': 25, 'Forbes': 29, 'Fortune': 23,
-  'Axios': 28, 'Business Insider': 32, 'CoinDesk': 30, 'Fox Business': 35,
-  'Yahoo Finance': 24, 'The Block': 22, 'The Washington Post': 25, 'CNN': 30,
-  'USA Today': 22, 'Blockworks': 28, 'Bloomberg Law': 25, 'CoinTelegraph': 30,
-  'Inc.': 26, 'New York Post': 20, 'Cheddar News': 30,
-};
+// Outlet heights for the press strip: PRESS_HEIGHTS in data/media-logos.js
+// (shared with Recent Work).
 
 // What we do: one photo per pillar. Desktop shows them one at a time beside
 // the list (the tall crop); phones show each above its pillar (the wide crop).

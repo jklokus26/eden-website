@@ -1,7 +1,7 @@
 import '../styles/look-2026.css';
 import '../styles/recent-work-2026.css';
-import { coverageItems, OUTLET_LOGO_MAP } from '../../data/coverage.js';
-import { mediaLogos } from '../../data/media-logos.js';
+import { coverageItems } from '../../data/coverage.js';
+import { mediaLogos, PRESS_HEIGHTS } from '../../data/media-logos.js';
 import { initContactForm } from '../components/contact-form.js';
 import {
   ARROW, pageHead, buildContactBand, focusSection, initReveal, initAnchors, initNavState,
@@ -13,24 +13,35 @@ import {
 
 const ITEMS_PER_PAGE = 15;
 
-// Each logo's proportions, from the press logo list (data/media-logos.js),
-// so the ink mask draws it at the right width.
-const LOGO_RATIOS = Object.fromEntries(mediaLogos.map(l => [l.logo, l.ratio]));
+// Each outlet's logo from the press logo list (data/media-logos.js), the
+// same files and proportions as the homepage strip.
+const OUTLET_NAMES = {
+  'coindesk': 'CoinDesk', 'bloomberg': 'Bloomberg', 'fortune': 'Fortune', 'cnbc': 'CNBC',
+  'yahoo-finance': 'Yahoo Finance', 'the-block': 'The Block', 'wsj': 'The Wall Street Journal',
+  'financial-times': 'Financial Times', 'forbes': 'Forbes', 'reuters': 'Reuters',
+  'new-york-times': 'The New York Times', 'bloomberg-law': 'Bloomberg Law',
+};
+const LOGOS = Object.fromEntries(mediaLogos.map(l => [l.name, l]));
+
+// Logos sit at a fixed fraction of the strip's tuned heights, so every mark
+// carries the same weight here too (Joe, 2026-10-23: Law360, Law.com and
+// Reuters looked "extremely small compared to the CNBC logo").
+const LOGO_SCALE = 0.72;
 
 function formatDate(isoDate) {
   const d = new Date(isoDate + 'T12:00:00');
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-// The outlet's logo drawn in ink, at the height tuned for it in
-// OUTLET_LOGO_MAP; otherwise its name as a label.
+// The outlet's logo drawn in ink; an outlet without a logo file shows its
+// name as a wordmark of the same size and weight.
 function buildOutlet(item) {
-  const logo = OUTLET_LOGO_MAP[item.logoKey];
-  const ratio = logo && LOGO_RATIOS[logo.src];
-  if (ratio) {
-    return `<span class="rows__outlet rw__logo-cell"><span class="ink-logo rw__logo" role="img" aria-label="${item.publication}" style="--src: url('${logo.src}'); --r: ${ratio}; --h: ${logo.height}px"></span></span>`;
+  const logo = LOGOS[OUTLET_NAMES[item.logoKey]];
+  if (logo) {
+    const h = Math.round((PRESS_HEIGHTS[logo.name] || 26) * LOGO_SCALE);
+    return `<span class="rows__outlet rw__logo-cell"><span class="ink-logo rw__logo" role="img" aria-label="${item.publication}" style="--src: url('${logo.logo}'); --r: ${logo.ratio}; --h: ${h}px"></span></span>`;
   }
-  return `<span class="t-label rows__outlet">${item.publication}</span>`;
+  return `<span class="rows__outlet rw__logo-cell"><span class="rw__wordmark">${item.publication}</span></span>`;
 }
 
 // One row. Rows without a URL are not links. reveal: only the first rows

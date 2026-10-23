@@ -56,10 +56,21 @@
   min-height: calc(var(--t-card) * 1.2);
 }
 
-/* As today: no logo wider than 170px, so long wordmarks carry the same
-   weight as compact ones. */
+/* Long wordmarks (WSJ, FT) keep their tuned height; only the column
+   width limits them. */
 .look-2026 .rw__logo {
-  max-width: min(170px, 100%);
+  max-width: 100%;
+}
+
+/* Outlets without a logo file: the name set like a wordmark, about the
+   height and weight of the logos around it. */
+.look-2026 .rw__wordmark {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
 .look-2026 .rw__summary {

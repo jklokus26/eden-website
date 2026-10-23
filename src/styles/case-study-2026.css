@@ -9,8 +9,9 @@
 
 /* ─── Opening ───────────────────────────────────────────────────────── */
 
-/* Label, client and deck on the left, the case photo on the right.
-   Stacked below 900px, the photo under the words. */
+/* Label, client and deck on the left, the case photo on the right, both
+   starting at the top so the label sits where every inner page's label
+   sits. Stacked below 900px, the photo under the words. */
 .look-2026 .cs-head {
   padding: calc(var(--nav-h) + clamp(48px, 7vw, 96px)) 0 clamp(48px, 6vw, 80px);
 }
@@ -19,7 +20,7 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
-  align-items: center;
+  align-items: start;
 }
 
 .look-2026 .cs-head__copy {
