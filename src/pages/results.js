@@ -31,6 +31,22 @@ function buildResults() {
     `;
   }).join('');
 
+  // Silvia's client story lives at /silvia, not under /case-studies (Pomp,
+  // through Alkida, 2026-10-23), so its card is added here by hand.
+  const silviaCard = `
+      <a href="/silvia" class="cs-card cs-card--regular">
+        <div class="cs-card-img-wrap">
+          <img src="/assets/images/silvia-card.jpg" alt="The Silvia logo" class="cs-card-img" loading="lazy">
+          <div class="cs-card-overlay"></div>
+        </div>
+        <div class="cs-card-body">
+          <h2 class="cs-card-title">Silvia</h2>
+          <p class="cs-card-subtitle">Bringing a personal AI CFO into the media conversation</p>
+          <span class="cs-card-cta">View client story <span class="cs-card-arrow">→</span></span>
+        </div>
+      </a>
+    `;
+
   main.innerHTML = `
     <section class="gallery-hero section-padding">
       <div class="container">
@@ -42,6 +58,7 @@ function buildResults() {
       <div class="container">
         <div class="cs-grid">
           ${cards}
+          ${silviaCard}
         </div>
       </div>
     </section>

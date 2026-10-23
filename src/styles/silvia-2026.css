@@ -1,5 +1,50 @@
-/* Silvia coverage page, Oct 2026 look. Tokens, chrome and the contact band
-   live in look-2026.css; the system is described in DESIGN.md. */
+/* Silvia client story, Oct 2026 look. Tokens, chrome and the contact band
+   live in look-2026.css; the system is described in DESIGN.md. Structure
+   follows the Version 1 brief from Pomp's team (2026-10-23). */
+
+.look-2026 #silvia img {
+  display: block;
+}
+
+/* Links inside running copy: the same quiet underline as text links. */
+.look-2026 #silvia p a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--link-rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--dur-ui) var(--ease-out);
+}
+
+.look-2026 #silvia p a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* A flat panel with a hairline edge, used for the Silvia brand panel, the
+   sidebar and the product panel. */
+.look-2026 .spanel {
+  background: var(--paper-deep);
+  border: 1px solid var(--rule-strong);
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.look-2026 .spanel__logo {
+  width: min(100%, 240px);
+  height: auto;
+}
+
+.look-2026 .spanel__logo--side {
+  width: min(100%, 150px);
+  margin: var(--s-5) 0;
+}
+
+.look-2026 .spanel__text {
+  font-family: var(--font-display);
+  font-size: var(--t-card);
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: var(--s-5);
+}
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 
@@ -11,46 +56,293 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
-  align-items: end;
-}
-
-.look-2026 .shero__head {
-  grid-column: 1 / 8;
-}
-
-.look-2026 .shero__title {
-  max-width: 14ch;
-  margin-top: var(--s-5);
+  align-items: center;
 }
 
 .look-2026 .shero__copy {
-  grid-column: 9 / 13;
+  grid-column: 1 / 7;
 }
 
-.look-2026 .shero__copy p {
-  margin-bottom: var(--s-5);
+.look-2026 .shero__title {
+  margin-top: var(--s-5);
+}
+
+.look-2026 .shero__line {
+  margin-top: var(--s-5);
+  max-width: 24ch;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.look-2026 .shero__body {
+  margin: var(--s-4) 0 var(--s-6);
+  max-width: 34rem;
+  color: var(--ink-body);
+}
+
+/* The Silvia mark centred on its panel, the product line under it. */
+.look-2026 .shero__panel {
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: clamp(48px, 6vw, 88px);
+}
+
+.look-2026 .shero__panel .spanel__logo {
+  margin-bottom: var(--s-6);
+}
+
+.look-2026 .spanel__line {
+  font-family: var(--font-display);
+  font-size: var(--t-card);
+  color: var(--ink);
+}
+
+.look-2026 .spanel__sub {
+  margin: var(--s-1) 0 var(--s-3);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+@media (max-width: 900px) {
+  .look-2026 .shero__copy,
+  .look-2026 .shero__panel {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .shero__panel {
+    margin-top: var(--s-7);
+  }
+}
+
+/* ─── Client facts ──────────────────────────────────────────────────── */
+
+.look-2026 .sfacts__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-block: 1px solid var(--rule-strong);
+}
+
+.look-2026 .sfacts__item {
+  padding: var(--s-5) var(--s-5) var(--s-5) 0;
+}
+
+.look-2026 .sfacts__item + .sfacts__item {
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--rule);
+}
+
+.look-2026 .sfacts dd {
+  margin: var(--s-2) 0 0;
+  color: var(--ink);
+}
+
+.look-2026 .sfacts .text-link {
+  min-height: 0;
+  font-size: var(--t-body);
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .look-2026 .sfacts__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .look-2026 .sfacts__item:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .look-2026 .sfacts__item:nth-child(n + 3) {
+    border-top: 1px solid var(--rule);
+  }
+}
+
+/* Phones: one fact per row, label left and value right, so "Visit
+   silvia.com" never breaks over two lines. */
+@media (max-width: 540px) {
+  .look-2026 .sfacts__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .look-2026 .sfacts__list .sfacts__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--s-4);
+    padding: var(--s-4) 0;
+    border-left: 0;
+  }
+
+  .look-2026 .sfacts__list .sfacts__item + .sfacts__item {
+    border-top: 1px solid var(--rule);
+  }
+
+  .look-2026 .sfacts dd {
+    margin: 0;
+    text-align: right;
+    text-wrap: balance;
+  }
+
+  .look-2026 .sfacts__item:last-child dd {
+    flex: none;
+  }
+
+  .look-2026 .sfacts .text-link__label {
+    white-space: nowrap;
+  }
+}
+
+/* ─── Story and sidebar ─────────────────────────────────────────────── */
+
+.look-2026 .sstory {
+  padding: var(--section) 0;
+}
+
+.look-2026 .sstory__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: start;
+}
+
+.look-2026 .sstory__body {
+  grid-column: 1 / 8;
+}
+
+.look-2026 .sstory__meta {
+  display: flex;
+  gap: var(--s-8);
+  margin: 0 0 var(--s-7);
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+.look-2026 .sstory__meta dd {
+  margin: var(--s-2) 0 0;
+  color: var(--ink);
+}
+
+.look-2026 .sstory__body h2 {
+  margin: var(--s-7) 0 var(--s-4);
+}
+
+.look-2026 .sstory__body h2:first-of-type {
+  margin-top: 0;
+}
+
+.look-2026 .sstory__body p {
+  max-width: 40rem;
+  margin-bottom: var(--s-4);
+  font-size: var(--t-lead);
+  line-height: 1.7;
+  color: var(--ink-body);
+}
+
+.look-2026 .sstory__aside {
+  grid-column: 9 / 13;
+  position: sticky;
+  top: calc(var(--nav-h) + var(--s-4));
+  display: grid;
+  gap: var(--s-4);
+}
+
+.look-2026 .spanel__facts {
+  margin: 0 0 var(--s-6);
+}
+
+.look-2026 .spanel__facts div {
+  padding: var(--s-3) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.look-2026 .spanel__facts dd {
+  margin: var(--s-1) 0 0;
+  color: var(--ink);
+}
+
+.look-2026 .spanel--eden .spanel__text {
+  margin-bottom: var(--s-2);
+}
+
+@media (max-width: 900px) {
+  .look-2026 .sstory__body,
+  .look-2026 .sstory__aside {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .sstory__aside {
+    position: static;
+    margin-top: var(--s-7);
+  }
+}
+
+/* ─── The communications opportunity ────────────────────────────────── */
+
+.look-2026 .sopp {
+  background: var(--band-bg);
+  border-block: 1px solid var(--rule);
+  padding: var(--section) 0;
+}
+
+.look-2026 .sopp__title,
+.look-2026 .scov__title,
+.look-2026 .sproduct__title {
+  max-width: 18ch;
+  margin: var(--s-5) 0 var(--s-8);
+}
+
+.look-2026 .sopp__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--s-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.look-2026 .sopp__item {
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule-strong);
+}
+
+.look-2026 .sopp__num {
+  display: block;
+  margin-bottom: var(--s-4);
+  font-size: var(--t-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.look-2026 .sopp__item h3 {
+  margin-bottom: var(--s-3);
+}
+
+.look-2026 .sopp__item p {
   color: var(--ink-body);
 }
 
 @media (max-width: 900px) {
-  .look-2026 .shero__head,
-  .look-2026 .shero__copy {
-    grid-column: 1 / -1;
-  }
-
-  .look-2026 .shero__copy {
-    margin-top: var(--s-6);
+  .look-2026 .sopp__list {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-7);
   }
 }
 
-/* ─── Coverage list ─────────────────────────────────────────────────── */
+/* ─── Coverage ──────────────────────────────────────────────────────── */
 
 .look-2026 .scov {
-  padding: 0 0 var(--section);
+  padding: var(--section) 0;
 }
 
-.look-2026 .scov__label {
-  margin-bottom: var(--s-5);
+.look-2026 .scov__title {
+  margin-bottom: var(--s-7);
 }
 
 .look-2026 .scov__list {
@@ -110,6 +402,12 @@
   }
 }
 
+.look-2026 .scov__note {
+  margin-top: var(--s-4);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
 /* Phones and tablets: outlet and date on top, the headline under them. */
 @media (max-width: 900px) {
   .look-2026 .scov__link {
@@ -135,4 +433,186 @@
   .look-2026 .scov__link .arrow {
     display: none;
   }
+}
+
+/* ─── Meet the product ──────────────────────────────────────────────── */
+
+.look-2026 .sproduct {
+  padding: var(--section) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.look-2026 .sproduct__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: center;
+}
+
+.look-2026 .sproduct__panel {
+  grid-column: 1 / 6;
+  margin: 0;
+}
+
+.look-2026 .sproduct__questions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.look-2026 .sproduct__questions li {
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-size: var(--t-card);
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.look-2026 .sproduct__caption {
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+.look-2026 .sproduct__copy {
+  grid-column: 7 / 13;
+}
+
+.look-2026 .sproduct__title {
+  margin-bottom: var(--s-6);
+}
+
+.look-2026 .sproduct__copy p {
+  margin-bottom: var(--s-4);
+  color: var(--ink-body);
+}
+
+.look-2026 .sproduct__links {
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 900px) {
+  .look-2026 .sproduct__panel,
+  .look-2026 .sproduct__copy {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .sproduct__copy {
+    grid-row: 1;
+    margin-bottom: var(--s-7);
+  }
+}
+
+/* ─── FAQ ───────────────────────────────────────────────────────────── */
+
+.look-2026 .sfaq {
+  padding: var(--section) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.look-2026 .sfaq__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: start;
+}
+
+.look-2026 .sfaq__head {
+  grid-column: 1 / 5;
+}
+
+.look-2026 .sfaq__head h2 {
+  margin-top: var(--s-5);
+}
+
+.look-2026 .sfaq__list {
+  grid-column: 6 / 13;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.look-2026 .sfaq__item {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.look-2026 .sfaq__item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-5);
+  padding: var(--s-5) 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.look-2026 .sfaq__item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A plus that turns to a cross when the answer is open. */
+.look-2026 .sfaq__item summary::after {
+  content: '+';
+  flex: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink-muted);
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.look-2026 .sfaq__item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.look-2026 .sfaq__item summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.look-2026 .sfaq__item p {
+  max-width: 40rem;
+  padding-bottom: var(--s-5);
+  color: var(--ink-body);
+}
+
+@media (max-width: 900px) {
+  .look-2026 .sfaq__head,
+  .look-2026 .sfaq__list {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .sfaq__list {
+    margin-top: var(--s-7);
+  }
+}
+
+/* ─── Closing Silvia call to action ─────────────────────────────────── */
+
+.look-2026 .scta {
+  padding: var(--section) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.look-2026 .scta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.look-2026 .scta h2 {
+  margin: var(--s-5) 0 var(--s-4);
+}
+
+.look-2026 .scta__body {
+  max-width: 34rem;
+  margin-bottom: var(--s-6);
+  color: var(--ink-body);
+}
+
+.look-2026 .scta__note {
+  margin-top: var(--s-6);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
 }
