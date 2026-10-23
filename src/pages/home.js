@@ -81,17 +81,18 @@ const PRESS_HEIGHTS = {
 // commercial use. Open the right doors: Eden's own Wintermute dinner photo.
 const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 
-// Eden clients' own moments, not stock (Alkida's Loom: "These images can
+// Real moments, a client's where Eden has one (Alkida's Loom: "These images can
 // also be a little bit more interesting"; Joe, 2026-10-22: photos "that try to
 // match the frontier technology ringing the bell one"), graded to one warm
 // tone. No public bell or broadcast photo exists for a Financial Services or
-// Digital Assets client, so these are the clients' own event photos; Eden to
-// confirm use with each client before launch. Financial Services: a panel of
-// three in suits on the Ondo Summit stage (Ondo's summit site,
-// https://summit.ondo.finance, "summit-photo-8", 1352x1040, cut to 3:2),
-// chosen over the summit's crowded reception so it doesn't read like the
-// Stellar stage beside it (Joe, 2026-10-22: the two looked "a little bit too
-// similar, like undistinguishable"). Digital Assets: a speaker on the Stellar Development Foundation's
+// Digital Assets client. Financial Services: the NYSE trading floor, a
+// public-domain photo by Carol M. Highsmith (Library of Congress,
+// LCCN2011634218, via Wikimedia Commons, 2388x1598, lifted slightly), until
+// Eden sends a moment from one of its own finance clients. It replaced an
+// Ondo Summit panel because Ondo is a digital assets company (Joe,
+// 2026-10-23: "if anything, is even closer to digital assets"). Digital
+// Assets: the client's own event photo, Eden to confirm use before launch: a
+// speaker on the Stellar Development Foundation's
 // conference stage (stellar.org/events, Meridian block, 4000x2667). Frontier
 // Technology: RoboStrategy, an
 // Eden client, ringing the Nasdaq closing bell with a humanoid robot (Oct 13,
@@ -101,7 +102,7 @@ const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
 // to 1024; ask Eden for the full-size original before launch. Contact band:
 // "Sunset in New York City" by Joseph Barrientos (CC0, Wikimedia Commons).
 const INDUSTRY_IMAGES = {
-  'Financial Services': { base: 'industry-financial-services-ondo-panel', alt: 'Three panelists in suits in conversation on the Ondo Summit stage' },
+  'Financial Services': { base: 'industry-financial-services-nyse-floor', alt: 'Traders at work on the New York Stock Exchange trading floor under an NYSE banner' },
   'Digital Assets': { base: 'industry-digital-assets-stellar', alt: 'A speaker on the Stellar conference stage in front of a wall of event photos' },
   'Frontier Technology': { base: 'industry-frontier-robostrategy-bell', alt: 'A humanoid robot ringing the Nasdaq closing bell as the RoboStrategy team cheers' },
 };

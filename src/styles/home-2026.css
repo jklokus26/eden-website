@@ -140,14 +140,17 @@
 }
 
 /* Light theme: the same photo, the paper washing over it instead of the
-   dark. Solid paper under the text, the facade coming through to the right,
-   a light veil along the top for the nav, and the paper again at the
-   bottom so the hero runs into the page. */
+   dark, shaped like the dark overlay: nearly solid at the left edge, the
+   photo faint under the text, then thinning smoothly across the facade with
+   no hard edge (Joe, 2026-10-23: "can we have it fade?... close to solid
+   white by like the very left side of the screen"). The text keeps 5.8:1 or
+   better. A light veil runs along the top for the nav, and the paper again
+   at the bottom so the hero runs into the page. */
 .look-2026.theme-light .hero__bg::after {
   background:
     linear-gradient(to bottom, color-mix(in srgb, var(--paper) 62%, transparent) 0, transparent 120px),
     linear-gradient(to bottom, transparent 74%, var(--paper) 100%),
-    linear-gradient(90deg, var(--paper) 0%, var(--paper) 32%, color-mix(in srgb, var(--paper) 88%, transparent) 44%, color-mix(in srgb, var(--paper) 20%, transparent) 53%, transparent 62%);
+    linear-gradient(90deg, color-mix(in srgb, var(--paper) 96%, transparent) 0%, color-mix(in srgb, var(--paper) 92%, transparent) 22%, color-mix(in srgb, var(--paper) 86%, transparent) 34%, color-mix(in srgb, var(--paper) 77%, transparent) 41%, color-mix(in srgb, var(--paper) 62%, transparent) 46%, color-mix(in srgb, var(--paper) 44%, transparent) 50%, color-mix(in srgb, var(--paper) 30%, transparent) 55%, color-mix(in srgb, var(--paper) 19%, transparent) 61%, color-mix(in srgb, var(--paper) 11%, transparent) 70%, color-mix(in srgb, var(--paper) 5%, transparent) 82%, color-mix(in srgb, var(--paper) 2%, transparent) 100%);
 }
 
 .look-2026 .hero--cinema .hero__inner {
@@ -184,7 +187,7 @@
     background:
       linear-gradient(to bottom, color-mix(in srgb, var(--paper) 62%, transparent) 0, transparent 120px),
       linear-gradient(to bottom, transparent 74%, var(--paper) 100%),
-      linear-gradient(90deg, var(--paper) 0%, var(--paper) 28%, color-mix(in srgb, var(--paper) 86%, transparent) 40%, color-mix(in srgb, var(--paper) 20%, transparent) 50%, transparent 59%);
+      linear-gradient(90deg, color-mix(in srgb, var(--paper) 96%, transparent) 0%, color-mix(in srgb, var(--paper) 92%, transparent) 18%, color-mix(in srgb, var(--paper) 86%, transparent) 30%, color-mix(in srgb, var(--paper) 77%, transparent) 37%, color-mix(in srgb, var(--paper) 62%, transparent) 42%, color-mix(in srgb, var(--paper) 44%, transparent) 46%, color-mix(in srgb, var(--paper) 30%, transparent) 51%, color-mix(in srgb, var(--paper) 19%, transparent) 57%, color-mix(in srgb, var(--paper) 11%, transparent) 66%, color-mix(in srgb, var(--paper) 5%, transparent) 79%, color-mix(in srgb, var(--paper) 2%, transparent) 100%);
   }
 }
 
