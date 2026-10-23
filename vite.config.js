@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import { crawlerFallbacks } from './build/crawler-fallbacks.js';
 
 // Share images (og:image, twitter:image) need an absolute URL. Production uses
 // the live domain; a Vercel preview build points at its own deployment so the
@@ -14,7 +15,7 @@ const shareImageOrigin = {
 };
 
 export default defineConfig({
-  plugins: [shareImageOrigin],
+  plugins: [shareImageOrigin, crawlerFallbacks],
   build: {
     rollupOptions: {
       input: {

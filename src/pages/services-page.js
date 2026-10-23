@@ -1,19 +1,15 @@
 import '../styles/look-2026.css';
 import '../styles/services-2026.css';
-import { services, servicesFaq } from '../../data/services.js';
+import { servicesIntro as INTRO, services, servicesFaq } from '../../data/services.js';
 import { homeWhatWeDo } from '../../data/site-content.js';
 import { initContactForm } from '../components/contact-form.js';
 import {
   pageHead, buildContactBand, initReveal, initAnchors, initNavState,
 } from '../components/look-2026.js';
 
-// Services page, Oct 2026 look (DESIGN.md). The intro is Eden's copy from the
-// old page, verbatim; practice areas and questions come from data/services.js.
-
-const INTRO = [
-  'Your stakeholders don’t live in one place. Your investors read Bloomberg. Your developers follow crypto Twitter. And the deal that changes your trajectory might close over dinner, not over email.',
-  'Eden operates across every surface where credibility is built and deals get done. Our three practice areas are designed to reinforce each other, because credibility compounds only when every surface is working.',
-];
+// Services page, Oct 2026 look (DESIGN.md). The intro (servicesIntro), the
+// practice areas and the questions are Eden's copy, verbatim, from
+// data/services.js.
 
 // Each practice area delivers one of the homepage's three pillars, so it
 // carries that pillar's number and words as its label.

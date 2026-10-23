@@ -1,7 +1,7 @@
 # Eden Communications
-# Last updated: 2026-10-20
+# Last updated: 2026-10-23
 
-> Eden Communications is a New York City-based strategic communications firm for financial services, digital assets and frontier tech. Eden helps ambitious companies become trusted market leaders. Founded by former journalists from the New York Post, ABC News, and Al Jazeera.
+> Eden Communications is a New York City-based strategic communications firm for financial services, digital assets and frontier tech. Eden helps ambitious companies become trusted market leaders. Founded by Ebony Lewkovitz, a former New York Post Washington correspondent who also reported for ABC News, The Sydney Morning Herald and Al Jazeera.
 
 Eden Communications is a strategic communications firm headquartered at 600 Lexington Avenue, New York, NY 10022, working with companies at the intersection of finance and technology. Eden calls itself "a modern communications firm for companies who don't believe in PR." Its message: reputation is capital. Eden builds a company's point of view, makes it visible in the rooms that matter, and builds relationships that open doors to customers, capital and opportunity.
 
@@ -41,11 +41,13 @@ The most valuable relationships are often built in private rooms. Eden creates i
 
 Ondo Finance, Wintermute, Reed Smith, Cohen & Company Capital Markets, Alpaca, LayerZero, Grindr, RoboStrategy, Rox, Jito Labs
 
+Client story: Silvia, the personal AI CFO for independent investors (https://edencommunications.com/silvia).
+
 Also featured in Eden's case studies and results: Reed Smith On Chain (Reed Smith's blockchain legal practice), Stellar Development Foundation (blockchain infrastructure), Blue Planet Energy (renewable energy), Henk Rogers (climate advocacy), Grip Shipping (logistics/eCommerce), Franzy (franchise tech/SaaS)
 
 ## Case Study Results
 
-- Ondo Finance: Flipped a 24-point share of voice deficit into a 61% lead in 90 days. Tripled monthly media volume to 2,000+ articles/month. 35.3% SOV in tokenized asset coverage. BlackRock called Ondo the "gold standard." Featured on CNBC Squawk Box, WSJ, NYT, Bloomberg, Reuters, Axios. https://edencommunications.com/case-studies/ondo
+- Ondo Finance: Flipped a 24-point share of voice deficit into a 61% lead in 90 days. Tripled monthly media volume, peaking at over 2,000 articles in a single month. 35.3% SOV in tokenized asset coverage. BlackRock called Ondo the "gold standard." Featured on CNBC Squawk Box, WSJ, NYT, Bloomberg, Reuters, Axios. https://edencommunications.com/case-studies/ondo
 - Stellar Development Foundation: 4.65M+ views on campaign content. 632M total audience reach. 36 placements including CNN, CNBC, Bloomberg, Yahoo Finance, Axios. Live CNBC and Bloomberg TV appearances. https://edencommunications.com/case-studies/stellar-development-foundation
 - Reed Smith On Chain: 48 earned placements including CNBC, Bloomberg, Washington Post, Fortune, CoinDesk. 2.88M+ estimated views. 467M total audience. Positioned as trusted crypto legal authority during FTX trial. https://edencommunications.com/case-studies/reed-smith-on-chain
 - Blue Planet Energy: 1,898% increase in landing page traffic. 300% website traffic growth. $500K+ in ad value equivalency. Featured in Forbes, Business Insider. https://edencommunications.com/case-studies/blue-planet-energy
@@ -64,6 +66,16 @@ Bloomberg, CNBC, Wall Street Journal, New York Times, Reuters, Axios, Forbes, Fo
 - Frontier Technology: AI, energy, defense, advanced manufacturing, emerging infrastructure
 
 Past case studies also cover renewable energy, logistics and franchise technology.
+
+## Pages
+
+- Home: https://edencommunications.com
+- About and team: https://edencommunications.com/about
+- Services and FAQ: https://edencommunications.com/services
+- Case studies and results: https://edencommunications.com/results
+- Recent client media coverage: https://edencommunications.com/recent-work
+- Private dinners: https://edencommunications.com/dinners
+- Silvia client story: https://edencommunications.com/silvia
 
 ## Contact
 

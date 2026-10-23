@@ -69,3 +69,10 @@ export const servicesFaq = [
     answer: 'By having something a larger team can\u2019t buy: trust. Reporters take our calls because our founder and team come from newsrooms and have spent years being genuinely useful to journalists \u2014 not just pitching them. We\u2019ve built relationships across the media ecosystem that compound over time, and those relationships produce results that a bench of fifty junior associates never will. We also run lean by using technology for the work that doesn\u2019t require human judgment \u2014 media monitoring, competitive tracking, research \u2014 so our senior team spends their time on the things that actually drive outcomes: crafting narratives, building journalist relationships, and creating the rooms where business gets done. Every person on our team has 10+ years of experience, and the people you meet in the pitch are the people who do the work.',
   },
 ];
+
+// Services page intro, Eden's copy verbatim. The page and its crawler fallback
+// (build/crawler-fallbacks.js) both read it.
+export const servicesIntro = [
+  'Your stakeholders don’t live in one place. Your investors read Bloomberg. Your developers follow crypto Twitter. And the deal that changes your trajectory might close over dinner, not over email.',
+  'Eden operates across every surface where credibility is built and deals get done. Our three practice areas are designed to reinforce each other, because credibility compounds only when every surface is working.',
+];

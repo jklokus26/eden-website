@@ -159,3 +159,13 @@ export const homeContactBand = {
   body: 'If you’re entering a bigger market, raising your profile or defining a new category, we’d like to hear what you’re building.',
   words: ['People', 'Ideas', 'Markets', 'Opportunity'],
 };
+
+// About page story, Eden's copy verbatim. The page and its crawler fallback
+// (vite.config.js) both read it.
+export const aboutStory = [
+  'Eden is a strategic communications firm for companies at the frontier of finance and technology. We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.',
+  'We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases, and report metrics that don’t connect to business outcomes. The “go direct” movement got a lot right — but a founder with a massive following and no institutional credibility will lose the enterprise deal.',
+  'We’re building something different. A firm run by operators who use every edge available — technology, newsroom instincts, and a network we’ve spent years building — to move faster and hit harder than shops ten times our size.',
+  'We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.',
+  'We don’t do awareness. We build credibility.',
+];

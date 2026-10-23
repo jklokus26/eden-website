@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /assets/video/
-Disallow: /assets/icons/
 
 # AI crawlers - explicitly allowed
 User-agent: GPTBot

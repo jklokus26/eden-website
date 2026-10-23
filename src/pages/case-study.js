@@ -64,9 +64,9 @@ function buildCaseStudy() {
     return;
   }
 
-  // Update page title dynamically
+  // Each page's own <title> ("<Client> Case Study | Eden Communications")
+  // stays as written in its HTML, which is what search engines show.
   const cleanTitle = clientName(cs);
-  document.title = `${cleanTitle} | Eden Communications`;
 
   // Related case studies
   const related = (cs.relatedCaseStudies || [])

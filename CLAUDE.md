@@ -52,6 +52,7 @@ Only do this if explicitly requested. New pages require:
 4. Registration in `vite.config.js`
 5. Entry in `public/sitemap.xml`
 6. Navigation link in `navLinks` (`data/site-content.js`), which the nav and footer both read
+7. If the page draws its content with JavaScript, its full-text fallback for crawlers that don't run JavaScript (most AI search crawlers) in `build/crawler-fallbacks.js`, generated from the same data file
 
 ## Design Reference
 
@@ -73,6 +74,7 @@ These files control site structure and behavior. They can all be modified when t
 | `src/components/look-2026.js` | Shared pieces: page opening, case cards, team portraits and bio dialog, contact band, fade-up reveal |
 | `src/styles/*.css` | Layout, spacing, responsive breakpoints (one file per page/component) |
 | `src/components/` | Nav, footer, contact form, shared page pieces |
+| `build/crawler-fallbacks.js` | At build time, writes each JavaScript-drawn page's full text into its `<noscript>` so AI crawlers can read it |
 | `src/pages/` | Page-specific rendering logic (one file per page) |
 | `src/main.js` | Page routing — determines which page renderer to load |
 | `public/assets/video/` | Hero background video (WebM + MP4 with baked color grading) |
