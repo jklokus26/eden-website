@@ -58,6 +58,7 @@ export default defineConfig({
         results: resolve(__dirname, 'results/index.html'),
         recentWork: resolve(__dirname, 'recent-work/index.html'),
         dinners: resolve(__dirname, 'dinners/index.html'),
+        silvia: resolve(__dirname, 'silvia/index.html'),
       }
     }
   }

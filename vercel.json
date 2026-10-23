@@ -10,7 +10,8 @@
     { "source": "/services", "destination": "/services/index.html" },
     { "source": "/results", "destination": "/results/index.html" },
     { "source": "/recent-work", "destination": "/recent-work/index.html" },
-    { "source": "/dinners", "destination": "/dinners/index.html" }
+    { "source": "/dinners", "destination": "/dinners/index.html" },
+    { "source": "/silvia", "destination": "/silvia/index.html" }
   ],
   "headers": [
     {
