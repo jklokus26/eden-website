@@ -534,6 +534,28 @@
   color: var(--ink-muted);
 }
 
+/* The title links to its practice area on the Services page and the whole
+   pillar is the link (as on the case cards); the underline shows on hover. */
+.look-2026 .pillar__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color var(--dur-ui) var(--ease-out);
+}
+
+.look-2026 .pillar__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.look-2026 .pillar:hover .pillar__link,
+.look-2026 .pillar__link:focus-visible {
+  text-decoration-color: var(--link-rule);
+}
+
 .look-2026 .pillar.is-active .pillar__title {
   opacity: 1;
 }

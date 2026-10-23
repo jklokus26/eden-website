@@ -2,10 +2,11 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/case-studies", "destination": "/results", "statusCode": 308 }
+    { "source": "/case-studies", "destination": "/results", "statusCode": 308 },
+    { "source": "/news", "destination": "/recent-work", "statusCode": 308 },
+    { "source": "/news/:path*", "destination": "/recent-work", "statusCode": 308 }
   ],
   "rewrites": [
-    { "source": "/news", "destination": "/news/index.html" },
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/services", "destination": "/services/index.html" },
     { "source": "/results", "destination": "/results/index.html" },

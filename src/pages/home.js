@@ -17,6 +17,7 @@ import {
 import { clientStrip } from '../../data/clients.js';
 import { mediaLogos, PRESS_HEIGHTS } from '../../data/media-logos.js';
 import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
+import { services } from '../../data/services.js';
 import { testimonials } from '../../data/testimonials.js';
 import { team } from '../../data/team.js';
 
@@ -210,13 +211,16 @@ function pillarPhoto(i, { wide = false, className = '', sizes }) {
 // the pillar under the pointer and otherwise steps through all three, with a
 // line filling along the active pillar to show the timing (initPillars).
 // Phones get each photo above its pillar and no stepping.
+// Each pillar links to the practice area on the Services page that delivers
+// it (01 Position -> #strategic-counsel, 02 -> #earned-media, 03 ->
+// #executive-visibility); the whole pillar is the link, as on the case cards.
 function buildWhatWeDo() {
   const pillars = homeWhatWeDo.pillars.map((p, i) => `
     <li class="pillar${i === 0 ? ' is-active' : ''}" data-reveal style="--i: ${i}">
       <span class="pillar__rule" aria-hidden="true"><span class="pillar__progress"></span></span>
       ${pillarPhoto(i, { wide: true, className: 'pillar__photo', sizes: '(max-width: 900px) 100vw, 1px' })}
       <span class="pillar__num">${p.number}</span>
-      <h3 class="t-h3 pillar__title">${p.title}</h3>
+      <h3 class="t-h3 pillar__title"><a class="pillar__link" href="/services#${services[i].anchorId}">${p.title}</a></h3>
       <p class="pillar__text">${p.text}</p>
     </li>
   `).join('');
@@ -511,6 +515,12 @@ function initPillars(root) {
   items.forEach((el, i) => {
     el.addEventListener('pointerenter', (e) => {
       if (e.pointerType !== 'mouse' || !desktop.matches) return;
+      show(i);
+      if (!stopped) stop();
+    });
+    // Tabbing to a pillar's link shows its photo, as pointing at it does.
+    el.addEventListener('focusin', () => {
+      if (!desktop.matches) return;
       show(i);
       if (!stopped) stop();
     });

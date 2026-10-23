@@ -52,11 +52,6 @@ export const navLinks = [
 
 export const caseStudiesPageHeadline = 'Campaigns that create market leaders.';
 
-export const newsPageContent = {
-  headline: "Our clients' wins",
-  subtitle: 'You know the drill ;)',
-};
-
 export const edenLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="currentWidth" height="currentHeight" viewBox="0 0 105 40" fill="none">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M48 -3.05176e-05H43V14.2012C43 15.0345 42.0204 15.525 41.2916 15.1211C39.4273 14.0881 37.2823 13.5 35 13.5C27.8203 13.5 22 19.3203 22 26.5C22 33.6797 27.8203 39.5 35 39.5C37.2986 39.5 39.4578 38.9034 41.3313 37.8567C43.1018 36.8675 45.0023 36 47.0304 36H48V-3.05176e-05ZM43 26.5C43 22.0817 39.4183 18.5 35 18.5C30.5817 18.5 27 22.0817 27 26.5C27 30.9182 30.5817 34.5 35 34.5C39.4183 34.5 43 30.9182 43 26.5Z" fill="currentColor"/>
   <path d="M0 9.49997H20.5V14.5H6.5C5.94771 14.5 5.5 14.9477 5.5 15.5V20.5C5.5 21.0522 5.94771 21.5 6.5 21.5H18.5V26.5H6.5C5.94771 26.5 5.5 26.9477 5.5 27.5V33C5.5 33.5522 5.94771 34 6.5 34H20.5V39H0V9.49997Z" fill="currentColor"/>

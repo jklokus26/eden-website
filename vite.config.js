@@ -27,7 +27,6 @@ export default defineConfig({
         ondo: resolve(__dirname, 'case-studies/ondo.html'),
         bluePlanet: resolve(__dirname, 'case-studies/blue-planet-energy.html'),
         henkRogers: resolve(__dirname, 'case-studies/henk-rogers.html'),
-        news: resolve(__dirname, 'news/index.html'),
         about: resolve(__dirname, 'about/index.html'),
         services: resolve(__dirname, 'services/index.html'),
         results: resolve(__dirname, 'results/index.html'),

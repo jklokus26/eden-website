@@ -26,7 +26,6 @@ These files contain all site content. Editing them is the primary way to update 
 | `data/case-studies.js` | Case study content, metrics, quotes, images |
 | `data/clients.js` | Client logos on homepage carousel |
 | `data/coverage.js` | Press coverage items (homepage + results page) |
-| `data/news-items.js` | News page articles and screenshots |
 | `data/testimonials.js` | Client testimonials |
 | `data/media-logos.js` | Media outlet logos (homepage press strip, Recent Work) |
 
