@@ -40,7 +40,6 @@ export function initFooter() {
       ${document.body.classList.contains('look-2026') ? `
       <nav class="footer-nav" aria-label="Footer">
         ${navLinks.map(l => `<a href="${l.href}" class="footer-link">${l.label}</a>`).join('')}
-        <a href="/dinners" class="footer-link">Private Dinners</a>
       </nav>` : ''}
     </div>
   `;

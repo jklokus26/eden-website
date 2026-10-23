@@ -1,12 +1,54 @@
-import '../styles/case-study.css';
-import { caseStudies, HERO_IMAGE_MAP } from '../../data/case-studies.js';
-import { createDivider } from '../components/section-divider.js';
-import { initAnimations } from '../animations.js';
+import '../styles/look-2026.css';
+import '../styles/case-study-2026.css';
+import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
+import { initContactForm } from '../components/contact-form.js';
+import {
+  ARROW, caseCard, buildContactBand, initReveal, initAnchors, initNavState,
+} from '../components/look-2026.js';
+
+// One case study, Oct 2026 look (DESIGN.md): the opening with the case
+// photo, the story beside a sticky "By the numbers" sidebar, three more
+// case cards, then the contact band. Copy comes from data/case-studies.js.
 
 function getSlugFromPath() {
   // Path: /case-studies/grip-shipping (or .html in dev)
   const parts = window.location.pathname.replace(/\.html$/, '').split('/');
   return parts[parts.length - 1];
+}
+
+function clientName(cs) {
+  return cs.title.replace(/^Case [Ss]tudy:\s*/i, '');
+}
+
+function casePhoto(cs) {
+  const image = CASE_CARD_IMAGES[cs.slug];
+  if (!image) return '';
+  return `
+    <div class="cs-head__media" data-reveal>
+      <picture>
+        ${image.webp ? `<source type="image/webp" srcset="${image.webp}">` : ''}
+        <img src="${image.src}" alt="${cs.alt}" width="${image.width}" height="${image.height}"
+          loading="eager" decoding="async" fetchpriority="high">
+      </picture>
+    </div>
+  `;
+}
+
+function sidebarFigures(metrics) {
+  if (!metrics || !metrics.length) return '';
+  return `
+    <div class="cs-figures">
+      <h2 class="t-label t-label--dot">By the numbers</h2>
+      <dl class="cs-figures__list">
+        ${metrics.map(m => `
+          <div class="cs-figure">
+            <dt>${m.label}</dt>
+            <dd>${m.number}</dd>
+          </div>
+        `).join('')}
+      </dl>
+    </div>
+  `;
 }
 
 function buildCaseStudy() {
@@ -18,15 +60,13 @@ function buildCaseStudy() {
   const cs = caseStudies.find(c => c.slug === slug);
 
   if (!cs) {
-    main.innerHTML = `<div class="container" style="padding-top:120px"><p>Case study not found.</p></div>`;
+    main.innerHTML = `<section class="page-head"><div class="wrap"><p>Case study not found.</p></div></section>`;
     return;
   }
 
   // Update page title dynamically
-  const cleanTitle = cs.title.replace(/^Case [Ss]tudy:\s*/i, '');
+  const cleanTitle = clientName(cs);
   document.title = `${cleanTitle} | Eden Communications`;
-
-  const heroImg = HERO_IMAGE_MAP[cs.slug] || cs.heroImage;
 
   // Related case studies
   const related = (cs.relatedCaseStudies || [])
@@ -34,110 +74,89 @@ function buildCaseStudy() {
     .filter(Boolean)
     .slice(0, 3);
 
-  const relatedCards = related.map(rel => {
-    const relImg = HERO_IMAGE_MAP[rel.slug] || rel.heroImage;
-    return `
-      <a href="/case-studies/${rel.slug}" class="related-card">
-        <div class="related-card-img-wrap">
-          <img src="${relImg}" alt="${rel.alt}" class="related-card-img" loading="lazy">
-        </div>
-        <p class="related-card-title">${rel.title}</p>
-      </a>
-    `;
-  }).join('');
+  const relatedCards = related.map((rel, i) => caseCard({
+    href: `/case-studies/${rel.slug}`,
+    client: clientName(rel),
+    title: rel.subtitle,
+    image: CASE_CARD_IMAGES[rel.slug],
+    alt: rel.alt,
+    metrics: rel.metrics || [],
+    i,
+  })).join('');
 
-  const sidebarMetricsHtml = (cs.metrics && cs.metrics.length) ? (() => {
-    const items = cs.metrics.map((m, i) => {
-      const divider = i < cs.metrics.length - 1
-        ? `<div class="sidebar-metric-divider"></div>`
-        : '';
-      return `
-        <div class="sidebar-metric-item">
-          <span class="sidebar-metric-number">${m.number}</span>
-          <span class="sidebar-metric-label">${m.label}</span>
-        </div>
-        ${divider}
-      `;
-    }).join('');
-    return `
-      <div class="sidebar-metrics">
-        <h3 class="sidebar-metrics-heading">BY THE NUMBERS</h3>
-        ${items}
-      </div>
-    `;
-  })() : '';
+  // The story's section headings come in as h3; under the page's h1 they
+  // are the next level down, so they become h2 (same words).
+  const story = cs.bodyHtml.replace(/<(\/?)h3>/g, '<$1h2>');
 
   main.innerHTML = `
-    <section class="cs-detail-hero">
-      <div class="cs-detail-hero-img-wrap">
-        <img
-          src="${heroImg}"
-          alt="${cs.alt}"
-          class="cs-detail-hero-img"
-          loading="eager"
-        >
-        <div class="cs-detail-hero-overlay"></div>
-      </div>
-      <div class="cs-detail-hero-content container">
-        <h1 class="cs-detail-title" data-animate="words">${cleanTitle}</h1>
-        <p class="cs-detail-subtitle">${cs.subtitle}</p>
+    <section class="cs-head" aria-labelledby="cs-title">
+      <div class="wrap cs-head__grid">
+        <div class="cs-head__copy">
+          <p class="t-label t-label--dot">Case Study</p>
+          <h1 id="cs-title" class="t-h2 cs-head__title">${cleanTitle}</h1>
+          <p class="cs-head__deck">${cs.subtitle}</p>
+        </div>
+        ${casePhoto(cs)}
       </div>
     </section>
 
-
-    <section class="cs-detail-body section-padding">
-      <div class="container">
-        <div class="cs-detail-layout">
-          <article class="cs-detail-article">
-            <div class="cs-detail-meta">
-              <div class="cs-detail-meta-item">
-                <span class="cs-detail-meta-label">Service</span>
-                <span class="cs-detail-meta-value">${cs.service}</span>
-              </div>
-              <div class="cs-detail-meta-item">
-                <span class="cs-detail-meta-label">Industry</span>
-                <span class="cs-detail-meta-value">${cs.industries}</span>
-              </div>
+    <section class="cs-body">
+      <div class="wrap cs-body__grid">
+        <article class="cs-story">
+          <dl class="cs-meta">
+            <div class="cs-meta__item">
+              <dt class="t-label">Service</dt>
+              <dd>${cs.service}</dd>
             </div>
-            <div class="cs-detail-content">
-              ${cs.bodyHtml}
+            <div class="cs-meta__item">
+              <dt class="t-label">Industry</dt>
+              <dd>${cs.industries}</dd>
             </div>
-          </article>
+          </dl>
+          <div class="cs-prose">
+            ${story}
+          </div>
+        </article>
 
-          <aside class="cs-detail-sidebar">
-            ${sidebarMetricsHtml}
-
-            <div class="sidebar-cta">
-              <p class="sidebar-cta-text">Ready to build institutional credibility?</p>
-              <a href="mailto:hello@edencommunications.com" class="sidebar-cta-btn">Get in touch</a>
-            </div>
-          </aside>
-        </div>
+        <aside class="cs-aside">
+          ${sidebarFigures(cs.metrics)}
+          <div class="cs-cta">
+            <p class="cs-cta__text">Ready to build institutional credibility?</p>
+            <a class="btn btn--primary" href="#contact">Get in touch ${ARROW}</a>
+          </div>
+        </aside>
       </div>
     </section>
 
     ${related.length ? `
-      <section class="cs-related section-padding">
-        <div class="container">
-          ${createDivider('More Case Studies')}
-          <div class="related-grid">
-            ${relatedCards}
-          </div>
+      <section class="cs-more" aria-labelledby="more-title">
+        <div class="wrap">
+          <h2 id="more-title" class="t-label t-label--dot cs-more__label">More Case Studies</h2>
+          <ul class="case-grid">${relatedCards}</ul>
         </div>
       </section>
     ` : ''}
 
     ${cs.isLast ? `
-      <section class="cs-end-message section-padding">
-        <div class="container">
-          <p class="cs-end-text">${cs.lastMessage}</p>
-          <a href="/case-studies" class="cs-end-link">← Back to all case studies</a>
+      <section class="cs-end">
+        <div class="wrap cs-end__inner" data-reveal>
+          <p class="t-card cs-end__text">${cs.lastMessage}</p>
+          <a class="text-link cs-end__link" href="/results"><span class="arrow" aria-hidden="true">←</span><span class="text-link__label">Back to all case studies</span></a>
         </div>
       </section>
     ` : ''}
+
+    ${buildContactBand()}
   `;
 
-  initAnimations();
+  initReveal(main);
+  initAnchors(main);
 }
 
-document.addEventListener('DOMContentLoaded', buildCaseStudy);
+function initCaseStudyPage() {
+  buildCaseStudy();
+  initNavState();
+  initContactForm();
+}
+
+document.addEventListener('DOMContentLoaded', initCaseStudyPage);

@@ -1,0 +1,12 @@
+/* Our Results page, Oct 2026 look. Tokens, the page opening, the case
+   cards and the contact band live in look-2026.css; the system is
+   described in DESIGN.md. */
+
+.look-2026 .results {
+  padding: 0 0 var(--section);
+}
+
+.look-2026 .results .case-grid {
+  padding-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid var(--rule);
+}

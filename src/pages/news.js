@@ -1,8 +1,15 @@
-import '../styles/gallery.css';
+import '../styles/look-2026.css';
+import '../styles/news-2026.css';
 import { newsPageItems } from '../../data/news-items.js';
 import { newsPageContent } from '../../data/site-content.js';
-import { createDivider } from '../components/section-divider.js';
-import { initAnimations } from '../animations.js';
+import { initContactForm } from '../components/contact-form.js';
+import {
+  ARROW, pageHead, buildContactBand, initReveal, initAnchors, initNavState,
+} from '../components/look-2026.js';
+
+// News (coverage) page, Oct 2026 look (DESIGN.md): each item as a row with
+// its thumbnail at left. Copy comes from data/news-items.js and
+// data/site-content.js.
 
 // Map data thumbnail paths to actual downloaded files
 const NEWS_IMAGE_MAP = {
@@ -17,60 +24,58 @@ function resolveNewsImage(item) {
   return NEWS_IMAGE_MAP[item.thumbnail] || item.thumbnail;
 }
 
+// The title is the link and its hit area covers the whole row, as on the
+// case cards. An item whose url is '#' has nowhere to go: no link, and its
+// "Read more" is marked disabled.
+function buildItem(item, i) {
+  const live = item.url && item.url !== '#';
+  const title = live
+    ? `<a class="news__link" href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</a>`
+    : item.title;
+  const more = live
+    ? `<span class="text-link news__more" aria-hidden="true"><span class="text-link__label">Read more</span>${ARROW}</span>`
+    : `<span class="text-link news__more news__more--off" role="link" aria-disabled="true"><span class="text-link__label">Read more</span>${ARROW}</span>`;
+  return `
+    <li class="news__item" data-reveal>
+      <div class="news__media">
+        <img src="${resolveNewsImage(item)}" alt="${item.alt}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" onerror="this.style.display='none'">
+      </div>
+      <div class="news__body">
+        ${item.date ? `<p class="news__date">${item.date}</p>` : ''}
+        <h2 class="t-h3 news__title">${title}</h2>
+        ${item.description ? `<p class="news__desc">${item.description}</p>` : ''}
+        ${more}
+      </div>
+    </li>
+  `;
+}
+
 function buildNewsPage() {
   const main = document.getElementById('news');
   if (!main) return;
 
-  const cards = newsPageItems.map(item => {
-    const img = resolveNewsImage(item);
-    return `
-      <a
-        href="${item.url}"
-        class="news-page-card"
-        target="_blank"
-        rel="noopener noreferrer"
-        ${item.url === '#' ? 'aria-disabled="true"' : ''}
-      >
-        <div class="news-page-card-img-wrap">
-          <img
-            src="${img}"
-            alt="${item.alt}"
-            class="news-page-card-img"
-            loading="lazy"
-            onerror="this.parentElement.style.background='var(--bg-section)'; this.style.display='none'"
-          >
-        </div>
-        <div class="news-page-card-body">
-          ${item.date ? `<span class="news-page-card-date">${item.date}</span>` : ''}
-          <p class="news-page-card-title">${item.title}</p>
-          ${item.description ? `<p class="news-page-card-desc">${item.description}</p>` : ''}
-          <span class="news-page-card-link">Read more →</span>
-        </div>
-      </a>
-    `;
-  }).join('');
-
   main.innerHTML = `
-    <section class="news-page-hero section-padding">
-      <div class="container">
-        ${createDivider('Coverage')}
-        <h1 class="news-page-headline">${newsPageContent.headline}</h1>
-        <p class="news-page-subtitle">${newsPageContent.subtitle}</p>
+    ${pageHead({ label: 'Coverage', title: newsPageContent.headline, lead: newsPageContent.subtitle, id: 'news-title' })}
+
+    <section class="news">
+      <div class="wrap">
+        <ul class="news__list">
+          ${newsPageItems.map(buildItem).join('')}
+        </ul>
       </div>
     </section>
-    <section class="news-page-grid section-padding">
-      <div class="container">
-        <div class="news-page-list">
-          ${cards}
-        </div>
-      </div>
-    </section>
+
+    ${buildContactBand()}
   `;
+
+  initReveal(main);
+  initAnchors(main);
 }
 
 function initNewsPage() {
   buildNewsPage();
-  initAnimations();
+  initNavState();
+  initContactForm();
 }
 
 document.addEventListener('DOMContentLoaded', initNewsPage);

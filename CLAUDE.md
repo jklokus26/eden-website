@@ -28,7 +28,7 @@ These files contain all site content. Editing them is the primary way to update 
 | `data/coverage.js` | Press coverage items (homepage + results page) |
 | `data/news-items.js` | News page articles and screenshots |
 | `data/testimonials.js` | Client testimonials |
-| `data/media-logos.js` | Media outlet logos in the ticker |
+| `data/media-logos.js` | Media outlet logos (homepage press strip, Recent Work) |
 
 To update text, swap a photo, add a team member, or change a testimonial — edit the relevant data file above. Follow the exact format of existing entries.
 
@@ -51,16 +51,17 @@ Only do this if explicitly requested. New pages require:
 3. A route in `src/main.js`
 4. Registration in `vite.config.js`
 5. Entry in `public/sitemap.xml`
-6. Navigation link in `src/components/nav.js`
+6. Navigation link in `navLinks` (`data/site-content.js`), which the nav and footer both read
 
 ## Design Reference
 
 These are the current brand and design values. You can change any of them if the user asks — just don't change them as a side effect of another task.
 
-- **Dark theme:** Background #020408, accent color #c8ff00 (yellow-green)
-- **Typography:** Schibsted Grotesk (headings), Inter (body) via Google Fonts
-- **Animations:** Blur-to-focus hero entrance, scroll-triggered reveals, parallax, card tilt on hover
-- **Mobile breakpoints:** 480px, 768px, 1024px
+- **Look:** the Oct 2026 look on every page, recorded in `DESIGN.md` (read it before any visual change). Every page's `<body>` carries `class="look-2026"`; shared styles and pieces live once in `src/styles/look-2026.css` and `src/components/look-2026.js`.
+- **Colors:** the live palette: near-black #0a0a06, white text, grey #9b9b9b, mint #13ff99 only for focus and hover. No other colors.
+- **Typography:** Newsreader (headings, light weight) and Geist (everything else) via Google Fonts.
+- **Animations:** a gentle fade-up as sections scroll into view, smooth scrolling, slow logo strips with pause buttons; nothing moves for people who turn motion off.
+- **Mobile breakpoints:** 640px, 900px (menu button, stacked layouts), 1024px
 - **Hero video:** Color grading is baked into the video files (not CSS filters) for performance
 
 ## Architecture Reference
@@ -69,9 +70,9 @@ These files control site structure and behavior. They can all be modified when t
 
 | File/Directory | What It Controls |
 |---------------|-----------------|
-| `src/animations.js` | Hero animation, scroll triggers, parallax, card tilt |
+| `src/components/look-2026.js` | Shared pieces: page opening, case cards, team portraits and bio dialog, contact band, fade-up reveal |
 | `src/styles/*.css` | Layout, spacing, responsive breakpoints (one file per page/component) |
-| `src/components/` | Nav, footer, contact form, section dividers, ticker, loader |
+| `src/components/` | Nav, footer, contact form, shared page pieces |
 | `src/pages/` | Page-specific rendering logic (one file per page) |
 | `src/main.js` | Page routing — determines which page renderer to load |
 | `public/assets/video/` | Hero background video (WebM + MP4 with baked color grading) |

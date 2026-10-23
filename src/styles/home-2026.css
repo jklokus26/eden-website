@@ -49,9 +49,6 @@
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 
-/* Two layouts, one per theme while Eden chooses: the cinematic hero for the
-   dark theme, the editorial one for the light theme. They share the type. */
-
 /* Three steps, each set apart by face, size and weight: the serif headline,
    Eden's line in the sans at medium weight and full ink (Alkida: "highlight
    it a little better... make it a bit bolder"), then the paragraph in body
@@ -139,20 +136,6 @@
     linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 30%, rgba(3, 5, 15, 0.65) 56%, rgba(5, 10, 30, 0.1) 100%);
 }
 
-/* Light theme: the same photo, the paper washing over it instead of the
-   dark, shaped like the dark overlay: nearly solid at the left edge, the
-   photo faint under the text, then thinning smoothly across the facade with
-   no hard edge (Joe, 2026-10-23: "can we have it fade?... close to solid
-   white by like the very left side of the screen"). The text keeps 5.8:1 or
-   better. A light veil runs along the top for the nav, and the paper again
-   at the bottom so the hero runs into the page. */
-.look-2026.theme-light .hero__bg::after {
-  background:
-    linear-gradient(to bottom, color-mix(in srgb, var(--paper) 62%, transparent) 0, transparent 120px),
-    linear-gradient(to bottom, transparent 74%, var(--paper) 100%),
-    linear-gradient(90deg, color-mix(in srgb, var(--paper) 96%, transparent) 0%, color-mix(in srgb, var(--paper) 92%, transparent) 22%, color-mix(in srgb, var(--paper) 86%, transparent) 34%, color-mix(in srgb, var(--paper) 77%, transparent) 41%, color-mix(in srgb, var(--paper) 62%, transparent) 46%, color-mix(in srgb, var(--paper) 44%, transparent) 50%, color-mix(in srgb, var(--paper) 30%, transparent) 55%, color-mix(in srgb, var(--paper) 19%, transparent) 61%, color-mix(in srgb, var(--paper) 11%, transparent) 70%, color-mix(in srgb, var(--paper) 5%, transparent) 82%, color-mix(in srgb, var(--paper) 2%, transparent) 100%);
-}
-
 .look-2026 .hero--cinema .hero__inner {
   width: 100%;
 }
@@ -182,64 +165,6 @@
       linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
       linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 24%, rgba(3, 5, 15, 0.65) 46%, rgba(5, 10, 30, 0.1) 100%);
   }
-
-  .look-2026.theme-light .hero__bg::after {
-    background:
-      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 62%, transparent) 0, transparent 120px),
-      linear-gradient(to bottom, transparent 74%, var(--paper) 100%),
-      linear-gradient(90deg, color-mix(in srgb, var(--paper) 96%, transparent) 0%, color-mix(in srgb, var(--paper) 92%, transparent) 18%, color-mix(in srgb, var(--paper) 86%, transparent) 30%, color-mix(in srgb, var(--paper) 77%, transparent) 37%, color-mix(in srgb, var(--paper) 62%, transparent) 42%, color-mix(in srgb, var(--paper) 44%, transparent) 46%, color-mix(in srgb, var(--paper) 30%, transparent) 51%, color-mix(in srgb, var(--paper) 19%, transparent) 57%, color-mix(in srgb, var(--paper) 11%, transparent) 66%, color-mix(in srgb, var(--paper) 5%, transparent) 79%, color-mix(in srgb, var(--paper) 2%, transparent) 100%);
-  }
-}
-
-/* Editorial (light): the headline alone on one line across the content
-   width, a hairline, then the deck, paragraph and buttons (columns 1-5)
-   beside a 3:2 photo (columns 7-12). */
-.look-2026 .hero--editorial {
-  padding: calc(var(--nav-h) + clamp(32px, 5vw, 72px)) 0 clamp(56px, 7vw, 104px);
-}
-
-.look-2026 .hero--editorial .hero__title {
-  max-width: none;
-  font-size: clamp(3rem, 0.6rem + 8.6vw, 8.5rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-
-.look-2026 .hero__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--s-5);
-  align-items: start;
-  margin-top: clamp(28px, 3.4vw, 48px);
-  padding-top: clamp(24px, 2.6vw, 36px);
-  border-top: 1px solid var(--rule-strong);
-}
-
-.look-2026 .hero--editorial .hero__text {
-  grid-column: 1 / 7;
-}
-
-.look-2026 .hero__media {
-  grid-column: 7 / 13;
-  position: relative;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  background: var(--band-bg);
-}
-
-.look-2026 .hero__media picture,
-.look-2026 .hero__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.look-2026 .hero__media img {
-  object-fit: cover;
-  object-position: var(--hero-focus, 50% 50%);
-  filter: var(--photo-grade);
 }
 
 /* Short laptop screens: keep the buttons in the first screen. */
@@ -259,15 +184,8 @@
   }
 }
 
-@media (min-width: 901px) and (max-height: 780px) {
-  .look-2026 .hero--editorial {
-    padding-top: calc(var(--nav-h) + 24px);
-  }
-}
-
-/* Phones and tablets. Cinematic: the tall crop, darker toward the bottom
-   where the text sits. Editorial: the headline takes two lines and
-   everything stacks, the photo last. */
+/* Phones and tablets: the tall crop, darker toward the bottom where the
+   text sits. */
 @media (max-width: 900px) {
   /* Room for the facade and its "STOCK EXCHANGE" above the headline, short
      phones included (the hero then runs past the first screen). */
@@ -307,32 +225,7 @@
     pointer-events: none;
   }
 
-  /* Light theme: the same, in paper. */
-  .look-2026.theme-light .hero__bg::after {
-    background:
-      linear-gradient(to bottom, color-mix(in srgb, var(--paper) 60%, transparent) 0, transparent 120px),
-      linear-gradient(to bottom, transparent 85%, var(--paper) 100%);
-  }
 
-  .look-2026.theme-light .hero--cinema .hero__inner::before {
-    background: linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--paper) 86%, transparent) 48px, var(--paper) 130px);
-  }
-
-  .look-2026 .hero--editorial .hero__title {
-    white-space: normal;
-    max-width: 11ch;
-    font-size: clamp(3rem, 1.4rem + 7vw, 5.5rem);
-  }
-
-  .look-2026 .hero--editorial .hero__text,
-  .look-2026 .hero__media {
-    grid-column: 1 / -1;
-  }
-
-  .look-2026 .hero__media {
-    margin-top: var(--s-7);
-    aspect-ratio: 4 / 3;
-  }
 }
 
 @media (max-width: 640px) {
@@ -838,127 +731,29 @@
   grid-auto-rows: auto;
 }
 
-/* Each card spans five rows of the shared grid (subgrid) so images, names,
-   titles, figures and links line up across the three cards. */
-.look-2026 .case {
-  position: relative;
-  display: grid;
-  grid-row: span 5;
-  grid-template-rows: subgrid;
-  row-gap: 0;
-}
-
-.look-2026 .case__media {
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: var(--paper-deep);
-}
-
-.look-2026 .case__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: var(--photo-grade);
-}
-
-.look-2026 .case__client {
-  margin: var(--s-5) 0 var(--s-2);
-}
-
-.look-2026 .case__title {
-  text-wrap: balance;
-}
-
-.look-2026 .case__link {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color var(--dur-ui) var(--ease-out);
-}
-
-.look-2026 .case__link::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-}
-
-.look-2026 .case:hover .case__link {
-  text-decoration-color: var(--link-rule);
-}
-
-/* Figures sit as rows (figure left, label right) so every label stays on
-   one line at every width. The figure column scales with the figure size
-   (3.4em fits "4,050%"); a longer figure widens its own row. */
-.look-2026 .case__metrics {
-  align-self: start;
-  margin-top: var(--s-5);
-  border-bottom: 1px solid var(--rule);
-}
-
-.look-2026 .case__metric {
-  display: grid;
-  grid-template-columns: minmax(calc(var(--t-figure-sm) * 3.4), max-content) minmax(0, 1fr);
-  align-items: baseline;
-  column-gap: var(--s-3);
-  padding-block: var(--s-3);
-  border-top: 1px solid var(--rule);
-}
-
-.look-2026 .case__metric dd {
-  grid-column: 1;
-  grid-row: 1;
-  font-family: var(--font-display);
-  font-size: var(--t-figure-sm);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  font-variant-numeric: lining-nums;
-  color: var(--figure);
-}
-
-.look-2026 .case__metric dt {
-  grid-column: 2;
-  grid-row: 1;
-  font-size: var(--t-small);
-  line-height: 1.35;
-  color: var(--ink-muted);
-}
-
-.look-2026 .case__more {
-  align-self: end;
-  justify-self: start;
-  margin-top: var(--s-4);
-}
-
-.look-2026 .case:hover .case__more .text-link__label {
-  text-decoration-color: var(--accent);
-}
-
 @media (max-width: 900px) {
   .look-2026 .work__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .look-2026 .case {
+  .look-2026 .work__grid .case {
     grid-row: auto;
     grid-template-rows: none;
     display: flex;
     flex-direction: column;
   }
 
-  .look-2026 .case + .case {
+  .look-2026 .work__grid .case + .case {
     margin-top: var(--s-7);
     padding-top: var(--s-7);
     border-top: 1px solid var(--rule);
   }
 
-  .look-2026 .case__metrics {
+  .look-2026 .work__grid .case__metrics {
     align-self: stretch;
   }
 
-  .look-2026 .case__more {
+  .look-2026 .work__grid .case__more {
     align-self: flex-start;
   }
 }
@@ -1268,73 +1063,6 @@
   }
 }
 
-.look-2026 .member__button {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  text-align: left;
-  color: inherit;
-}
-
-/* The track clips anything outside it, so the card's focus ring sits just
-   inside its edge. */
-.look-2026 .member__button:focus-visible {
-  outline-offset: -2px;
-}
-
-.look-2026 .member__photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--paper-deep);
-}
-
-.look-2026 .member__photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
-  filter: var(--photo-grade);
-}
-
-.look-2026 .member__info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.look-2026 .member__name {
-  margin-top: var(--s-4);
-  font-family: var(--font-display);
-  font-size: var(--t-card);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--ink);
-}
-
-.look-2026 .member__role {
-  font-size: var(--t-small);
-  color: var(--ink-muted);
-}
-
-.look-2026 .member__more {
-  margin-top: var(--s-3);
-  font-size: var(--t-small);
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--link-rule);
-  text-underline-offset: 5px;
-  transition: text-decoration-color var(--dur-ui) var(--ease-out);
-}
-
-.look-2026 .member__button:hover .member__more {
-  text-decoration-color: var(--accent);
-}
-
 /* Tablets and phones: heading row on top, the carousel across the full
    width. */
 @media (max-width: 900px) {
@@ -1385,69 +1113,5 @@
 
   .look-2026 .member {
     flex-basis: calc((100% - 0.85 * var(--s-4)) / 1.35);
-  }
-}
-
-/* Bio dialog content */
-.look-2026 .bio {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-}
-
-.look-2026 .bio__photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: var(--photo-grade);
-}
-
-.look-2026 .bio__body {
-  padding: clamp(28px, 4vw, 48px);
-  padding-top: clamp(56px, 6vw, 72px);
-}
-
-.look-2026 .bio__role {
-  margin: var(--s-2) 0 var(--s-5);
-  font-size: var(--t-small);
-  color: var(--ink-muted);
-}
-
-.look-2026 .bio__text {
-  color: var(--ink-body);
-}
-
-.look-2026 .bio__linkedin {
-  margin-top: var(--s-4);
-}
-
-.look-2026 .bio__close {
-  position: absolute;
-  top: var(--s-3);
-  right: var(--s-3);
-  min-height: 44px;
-  padding: 0 var(--s-3);
-  font-size: var(--t-small);
-  font-weight: 500;
-  color: var(--ink);
-  background: var(--paper);
-  text-decoration: underline;
-  text-decoration-color: var(--link-rule);
-  text-underline-offset: 5px;
-}
-
-@media (max-width: 640px) {
-  .look-2026 .bio {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .look-2026 .bio__photo {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-  }
-
-  .look-2026 .bio__photo img {
-    object-position: 50% 0%;
   }
 }

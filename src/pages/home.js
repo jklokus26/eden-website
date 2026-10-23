@@ -3,8 +3,8 @@ import '../styles/home-2026.css';
 import { initContactForm } from '../components/contact-form.js';
 import {
   ARROW, picture, textLink, buildContactBand, dinnerFilm, initFilms, initReveal, initAnchors, initNavState,
+  caseCard, memberCard, bioDialog, initBios,
 } from '../components/look-2026.js';
-import { lenis } from '../main.js';
 import {
   homeHero,
   homeProof,
@@ -16,7 +16,7 @@ import {
 } from '../../data/site-content.js';
 import { clientStrip } from '../../data/clients.js';
 import { mediaLogos } from '../../data/media-logos.js';
-import { caseStudies } from '../../data/case-studies.js';
+import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
 import { testimonials } from '../../data/testimonials.js';
 import { team } from '../../data/team.js';
 
@@ -35,7 +35,6 @@ const HOME_DIR = '/assets/images/home';
 const HERO_IMAGE = {
   base: 'hero-cinema',
   tall: 'hero-cinema-tall',
-  framed: 'hero-nyse-wide',
   alt: 'The sculpted pediment and columns of the New York Stock Exchange on Wall Street',
 };
 
@@ -115,12 +114,9 @@ const INDUSTRY_IMAGES = {
 // are the same size (Joe, 2026-10-21), resized up with Lanczos. Real frame, no
 // generated faces. Stellar: the full-size CNBC still of
 // the same Dixon photo Eden uses (image.cnbcfm.com 107399355-0410_Dixon_ISO,
-// 1920x1080). Grip: Eden's full-size team photo from its Webflow CDN.
-const CASE_IMAGES = {
-  'ondo': { base: 'case-ondo', width: 1200, height: 675 },
-  'stellar-development-foundation': { base: 'case-stellar', width: 1060, height: 596 },
-  'grip-shipping': { base: 'case-grip', width: 1177, height: 662 },
-};
+// 1920x1080). Grip: Eden's full-size team photo from its Webflow CDN. The
+// files are listed in CASE_CARD_IMAGES (data/case-studies.js), shared with
+// Our Results and the case study pages.
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
@@ -135,14 +131,10 @@ function clientName(cs) {
 // ─── Sections ─────────────────────────────────────────────────────────────
 
 // The cinematic hero, like the live site's: the photo (later Ebony's video)
-// edge to edge, the text at the bottom left; in the dark theme behind a dark
-// overlay, in the light theme fading into the paper (Joe, 2026-10-22: "I like
-// how you have the background image for the dark version... something like
-// that, but in light"). The editorial hero (headline across the page above
-// the text and a framed photo) stays behind a build flag while Joe compares
-// the two light versions (vite.config.js). Eden's line is one solid color in both (Joe,
-// 2026-10-22: the muted half "blends in too well with the background"),
-// with the words Alkida highlighted starting their own line.
+// edge to edge behind a dark overlay, the text at the bottom left. Eden's
+// line is one solid color (Joe, 2026-10-22: the muted half "blends in too
+// well with the background"), with the words Alkida highlighted starting
+// their own line.
 function heroText() {
   return `
     <p class="hero__deck">${homeHero.positioning.lead} <span class="hero__emphasis">${homeHero.positioning.emphasis}</span></p>
@@ -155,25 +147,6 @@ function heroText() {
 }
 
 function buildHero() {
-  if (document.body.classList.contains('hero-editorial')) {
-    return `
-      <section class="hero hero--editorial" aria-labelledby="hero-title">
-        <div class="wrap">
-          <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
-          <div class="hero__grid">
-            <div class="hero__text">${heroText()}</div>
-            <div class="hero__media">
-              ${picture({
-                dir: HOME_DIR, base: HERO_IMAGE.framed, widths: [640, 1024, 1600, 2400],
-                sizes: '(max-width: 900px) 100vw, (max-width: 1280px) 52vw, 680px',
-                alt: HERO_IMAGE.alt, width: 2400, height: 1600, eager: true,
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-    `;
-  }
   return `
     <section class="hero hero--cinema" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
@@ -285,29 +258,14 @@ function buildWhatWeDo() {
 
 function buildWork() {
   const featured = caseStudies.filter(cs => cs.featured).slice(0, 3);
-  const cards = featured.map((cs, i) => {
-    const caseImg = CASE_IMAGES[cs.slug];
-    return `
-    <li class="case" data-reveal style="--i: ${i}">
-      <div class="case__media">
-        ${caseImg ? `
-          <picture>
-            <source type="image/webp" srcset="${HOME_DIR}/${caseImg.base}.webp">
-            <img src="${HOME_DIR}/${caseImg.base}.jpg" alt="" width="${caseImg.width}" height="${caseImg.height}" loading="lazy" decoding="async">
-          </picture>
-        ` : `<img src="${cs.heroImage}" alt="" width="1200" height="800" loading="lazy" decoding="async">`}
-      </div>
-      <p class="t-label case__client">${clientName(cs)}</p>
-      <h3 class="t-card case__title"><a class="case__link" href="/case-studies/${cs.slug}">${cs.cardTitle || cs.subtitle}</a></h3>
-      <dl class="case__metrics">
-        ${(cs.metrics || []).slice(0, 3).map(m => `
-          <div class="case__metric"><dt>${m.label}</dt><dd>${m.number}</dd></div>
-        `).join('')}
-      </dl>
-      <span class="text-link case__more" aria-hidden="true"><span class="text-link__label">View case study</span>${ARROW}</span>
-    </li>
-  `;
-  }).join('');
+  const cards = featured.map((cs, i) => caseCard({
+    href: `/case-studies/${cs.slug}`,
+    client: clientName(cs),
+    title: cs.cardTitle || cs.subtitle,
+    image: CASE_CARD_IMAGES[cs.slug],
+    metrics: cs.metrics || [],
+    i,
+  })).join('');
 
   // The outlet strip closes the section: the case results, then where clients ran.
   const press = PRESS_ORDER
@@ -422,18 +380,7 @@ const ARROW_LEFT = '<span aria-hidden="true">←</span>';
 const ARROW_RIGHT = '<span aria-hidden="true">→</span>';
 
 function buildTeam() {
-  const members = team.map((m, i) => `
-    <li class="member">
-      <button class="member__button" type="button" data-index="${i}" aria-haspopup="dialog">
-        <span class="member__photo"><img src="${m.photo}" alt="" width="500" height="625" loading="lazy" decoding="async"></span>
-        <span class="member__info">
-          <span class="member__name">${m.name}</span>
-          <span class="member__role">${m.role}</span>
-          <span class="member__more">Read bio</span>
-        </span>
-      </button>
-    </li>
-  `).join('');
+  const members = team.map(memberCard).join('');
 
   return `
     <section class="team" aria-labelledby="team-title">
@@ -450,18 +397,7 @@ function buildTeam() {
         </div>
         <ul class="team__list" id="team-track" aria-label="Team" data-lenis-prevent-wheel data-reveal style="--i: 1">${members}</ul>
       </div>
-      <dialog class="bio-dialog" aria-labelledby="bio-name" data-lenis-prevent>
-        <div class="bio">
-          <div class="bio__photo"><img alt="" width="500" height="625"></div>
-          <div class="bio__body">
-            <h3 id="bio-name" class="t-h3 bio__name"></h3>
-            <p class="bio__role"></p>
-            <p class="bio__text"></p>
-            <a class="text-link bio__linkedin" href="#" target="_blank" rel="noopener noreferrer"><span class="text-link__label">LinkedIn</span>${ARROW}</a>
-          </div>
-          <button class="bio__close" type="button" aria-label="Close bio">Close</button>
-        </div>
-      </dialog>
+      ${bioDialog()}
     </section>
   `;
 }
@@ -645,42 +581,6 @@ function initTeamCarousel(root) {
   update();
 }
 
-function initBios(root) {
-  const dialog = root.querySelector('.bio-dialog');
-  if (!dialog || typeof dialog.showModal !== 'function') return;
-  let opener = null;
-  const photo = dialog.querySelector('.bio__photo img');
-
-  root.querySelectorAll('.member__button').forEach(button => {
-    button.addEventListener('click', () => {
-      const m = team[Number(button.dataset.index)];
-      photo.src = m.photo;
-      photo.alt = m.alt || '';
-      dialog.querySelector('.bio__name').textContent = m.name;
-      dialog.querySelector('.bio__role').textContent = m.role;
-      dialog.querySelector('.bio__text').textContent = m.bio;
-      const linkedin = dialog.querySelector('.bio__linkedin');
-      linkedin.hidden = !m.linkedin;
-      if (m.linkedin) {
-        linkedin.href = m.linkedin;
-        linkedin.setAttribute('aria-label', `${m.name} on LinkedIn`);
-      }
-      opener = button;
-      if (lenis) lenis.stop();
-      dialog.showModal();
-      dialog.querySelector('.bio__close').focus();
-    });
-  });
-
-  dialog.querySelector('.bio__close').addEventListener('click', () => dialog.close());
-  // A click on the backdrop lands on the dialog element itself.
-  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-  dialog.addEventListener('close', () => {
-    if (lenis) lenis.start();
-    if (opener) opener.focus();
-  });
-}
-
 // ─── Init ─────────────────────────────────────────────────────────────────
 
 function initHomepage() {
@@ -709,7 +609,7 @@ function initHomepage() {
   initPillars(main);
   initFilms(main);
   initTeamCarousel(main);
-  initBios(main);
+  initBios(main, team);
   initContactForm();
 }
 

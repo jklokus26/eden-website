@@ -46,6 +46,8 @@ export const navLinks = [
   { label: 'Services', href: '/services' },
   { label: 'Our Results', href: '/results' },
   { label: 'Recent Work', href: '/recent-work' },
+  // Added with the site-wide rollout (build plan step 4: "plus a nav link").
+  { label: 'Private Dinners', href: '/dinners' },
 ];
 
 export const caseStudiesPageHeadline = 'Campaigns that create market leaders.';

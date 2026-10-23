@@ -8,6 +8,20 @@ export const HERO_IMAGE_MAP = {
   'henk-rogers': '/assets/images/henk-rogers-how-i-built-this.jpg',
 };
 
+// Card photos (16:9) for the case cards on the homepage, Our Results and
+// under each case study. Ondo, Stellar and Grip use the homepage crops cut
+// inside the broadcast frame (see src/pages/home.js); the rest are already
+// 16:9 and cropped by the card. Larger originals are still owed by Eden.
+export const CASE_CARD_IMAGES = {
+  'ondo': { src: '/assets/images/home/case-ondo.jpg', webp: '/assets/images/home/case-ondo.webp', width: 1200, height: 675 },
+  'stellar-development-foundation': { src: '/assets/images/home/case-stellar.jpg', webp: '/assets/images/home/case-stellar.webp', width: 1060, height: 596 },
+  'grip-shipping': { src: '/assets/images/home/case-grip.jpg', webp: '/assets/images/home/case-grip.webp', width: 1177, height: 662 },
+  'reed-smith-on-chain': { src: '/assets/images/stellar-screenshot.webp', width: 1266, height: 705 },
+  'blue-planet-energy': { src: '/assets/images/blue-planet-energy-team.jpg', width: 1000, height: 562 },
+  'franzy': { src: '/assets/images/franzy-fox-business.jpg', width: 1000, height: 562 },
+  'henk-rogers': { src: '/assets/images/henk-rogers-how-i-built-this.jpg', width: 1200, height: 675 },
+};
+
 export const caseStudies = [
   {
     slug: 'ondo',

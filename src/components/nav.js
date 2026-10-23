@@ -134,7 +134,7 @@ export function initNav() {
   });
 
   // The menu only exists on narrow layouts; widening the window closes it.
-  window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+  window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => {
     if (e.matches && overlay.classList.contains('open')) setMenu(false);
   });
 

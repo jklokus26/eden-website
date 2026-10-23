@@ -1,0 +1,225 @@
+/* About page, Oct 2026 look. Tokens, chrome, the page opening, portraits,
+   the bio dialog and the contact band live in look-2026.css; the system is
+   described in DESIGN.md. */
+
+.look-2026 #about img {
+  display: block;
+}
+
+/* ─── Our story ─────────────────────────────────────────────────────── */
+
+/* One reading column, set in from the headline like a feature's text. */
+.look-2026 .astory {
+  padding-bottom: var(--section);
+}
+
+.look-2026 .astory__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+}
+
+.look-2026 .astory__body {
+  grid-column: 5 / 13;
+  max-width: 40rem;
+}
+
+.look-2026 .astory__body p {
+  font-size: var(--t-lead);
+  line-height: 1.7;
+  color: var(--ink-body);
+  text-wrap: pretty;
+}
+
+.look-2026 .astory__body p + p {
+  margin-top: var(--s-5);
+}
+
+/* The closing line, a step larger, under a hairline. */
+.look-2026 .astory__body .astory__close {
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule-strong);
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .look-2026 .astory__body {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ─── Our team ──────────────────────────────────────────────────────── */
+
+.look-2026 .ateam {
+  padding-bottom: var(--section);
+}
+
+.look-2026 .ateam__title {
+  margin-bottom: clamp(40px, 5vw, 64px);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule);
+}
+
+/* Three across on laptops, two on tablets. Each card spans five rows of the
+   grid (subgrid) so photos, names, roles, expertise and bios line up across
+   a row, however many people there are. The grid has no row gap (a subgrid
+   would spread it inside each card); a margin on each new row of people
+   sets the rows apart instead. */
+.look-2026 .ateam__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--s-6);
+  list-style: none;
+}
+
+.look-2026 .amember {
+  display: grid;
+  grid-row: span 5;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+}
+
+.look-2026 .amember:nth-child(n + 4) {
+  margin-top: var(--s-8);
+}
+
+.look-2026 .amember__name {
+  margin-top: var(--s-5);
+  text-wrap: balance;
+}
+
+.look-2026 .amember__role {
+  margin-top: var(--s-1);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+/* Expertise as quiet labels in one run, a dot between them. */
+.look-2026 .amember__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: var(--s-1) var(--s-2);
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+  list-style: none;
+}
+
+.look-2026 .amember__tags li:not(:last-child)::after {
+  content: '·';
+  margin-left: var(--s-2);
+}
+
+.look-2026 .amember__bio {
+  margin-top: var(--s-4);
+  color: var(--ink-body);
+  text-wrap: pretty;
+}
+
+.look-2026 .amember__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--s-5);
+  margin-top: var(--s-2);
+}
+
+/* "Read full bio" is the shared bio opener (.member__button), set as a
+   text link here rather than as a whole card. */
+.look-2026 #about .amember__more {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  min-height: 44px;
+  font-size: var(--t-small);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.look-2026 #about .amember__more:hover .text-link__label {
+  text-decoration-color: var(--accent);
+}
+
+.look-2026 #about .amember__more:focus-visible {
+  outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .look-2026 .ateam__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .look-2026 .amember:nth-child(n + 3) {
+    margin-top: var(--s-8);
+  }
+}
+
+/* Phones: one person per row, the portrait beside name, role and
+   expertise, the bio under both. Hairlines set the people apart. */
+@media (max-width: 640px) {
+  .look-2026 .ateam__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .look-2026 .amember {
+    grid-row: auto;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto auto auto 1fr auto;
+    column-gap: var(--s-4);
+  }
+
+  .look-2026 .amember + .amember {
+    margin-top: var(--s-7);
+    padding-top: var(--s-7);
+    border-top: 1px solid var(--rule);
+  }
+
+  .look-2026 .amember__photo {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    align-self: start;
+  }
+
+  .look-2026 .amember__name,
+  .look-2026 .amember__role,
+  .look-2026 .amember__tags {
+    grid-column: 2;
+  }
+
+  .look-2026 .amember__name {
+    grid-row: 1;
+    margin-top: 0;
+  }
+
+  .look-2026 .amember__role {
+    grid-row: 2;
+  }
+
+  /* One expertise per line in the narrow column, so none breaks in two
+     beside a dot. */
+  .look-2026 .amember__tags {
+    grid-row: 3;
+    flex-direction: column;
+    gap: var(--s-2);
+    margin-top: var(--s-3);
+  }
+
+  .look-2026 .amember__tags li:not(:last-child)::after {
+    content: none;
+  }
+
+  .look-2026 .amember__text {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    margin-top: var(--s-2);
+  }
+}

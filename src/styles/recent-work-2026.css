@@ -1,0 +1,110 @@
+/* Recent Work, Oct 2026 look. Tokens, chrome, the link rows and the contact
+   band live in look-2026.css; the system is described in DESIGN.md. */
+
+.look-2026 .rw {
+  padding-bottom: var(--section);
+}
+
+/* ─── Client filter ─────────────────────────────────────────────────── */
+
+/* Quiet text buttons; the selected one in ink and underlined. */
+.look-2026 .rw__filters {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--s-5);
+  margin-bottom: var(--s-6);
+}
+
+.look-2026 .rw__filter {
+  min-height: 44px;
+  font-size: var(--t-small);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: color var(--dur-ui) var(--ease-out),
+              text-decoration-color var(--dur-ui) var(--ease-out);
+}
+
+.look-2026 .rw__filter:hover,
+.look-2026 .rw__filter[aria-pressed="true"] {
+  color: var(--ink);
+}
+
+.look-2026 .rw__filter[aria-pressed="true"] {
+  text-decoration-color: var(--ink);
+}
+
+/* ─── Coverage rows ─────────────────────────────────────────────────── */
+
+/* The shared link rows, with the summary under the headline and the date
+   and client together in the third column. The arrow column keeps its
+   width on the row without a link, so every row's columns line up. */
+.look-2026 .rw__list .rows__link {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 7fr) minmax(0, 2fr) 1em;
+}
+
+/* A logo has no baseline: centre it on the headline's first line. */
+.look-2026 .rw__logo-cell {
+  display: flex;
+  align-items: center;
+  align-self: start;
+  min-height: calc(var(--t-card) * 1.2);
+}
+
+/* As today: no logo wider than 170px, so long wordmarks carry the same
+   weight as compact ones. */
+.look-2026 .rw__logo {
+  max-width: min(170px, 100%);
+}
+
+.look-2026 .rw__summary {
+  max-width: 40rem;
+  margin-top: var(--s-2);
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+.look-2026 .rw__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+/* The one row without a link: no hover underline. */
+.look-2026 .rw__static:hover .rows__headline {
+  text-decoration-color: transparent;
+}
+
+.look-2026 .rw__more {
+  margin-top: var(--s-7);
+}
+
+/* Phones and tablets: outlet left and date with client right, then the
+   headline and the summary across the row. */
+@media (max-width: 900px) {
+  .look-2026 .rw__list .rows__link {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .look-2026 .rw__text {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .look-2026 .rw__meta {
+    grid-column: 2;
+    grid-row: 1;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .look-2026 .rw__logo-cell {
+    align-self: center;
+    min-height: 0;
+  }
+}

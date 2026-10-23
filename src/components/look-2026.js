@@ -27,6 +27,120 @@ export function textLink(href, label, extra = '') {
   return `<a class="text-link" href="${href}"${extra}><span class="text-link__label">${label}</span>${ARROW}</a>`;
 }
 
+// The opening of an inner page: the label, the headline and an optional
+// short intro beside it, on the same spacing as the dinners page.
+export function pageHead({ label, title, lead = '', id = 'page-title' }) {
+  return `
+    <section class="page-head" aria-labelledby="${id}">
+      <div class="wrap page-head__grid">
+        <div class="page-head__title">
+          <p class="t-label t-label--dot">${label}</p>
+          <h1 id="${id}" class="t-h2">${title}</h1>
+        </div>
+        ${lead ? `<div class="page-head__lead">${[].concat(lead).map(p => `<p>${p}</p>`).join('')}</div>` : ''}
+      </div>
+    </section>
+  `;
+}
+
+// A case card: 16:9 photo, client, title, up to three figures and "View case
+// study". The whole card is the link. Used on the homepage, Our Results and
+// under each case study, inside a list (.work__grid or .case-grid).
+export function caseCard({ href, client, title, image, alt = '', metrics = [], note = '', more = 'View case study', heading = 'h3', i = 0 }) {
+  const media = image
+    ? `<picture>
+        ${image.webp ? `<source type="image/webp" srcset="${image.webp}">` : ''}
+        <img src="${image.src}" alt="${alt}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async">
+      </picture>`
+    : '';
+  const facts = metrics.length
+    ? `<dl class="case__metrics">
+        ${metrics.slice(0, 3).map(m => `<div class="case__metric"><dt>${m.label}</dt><dd>${m.number}</dd></div>`).join('')}
+      </dl>`
+    : `<p class="case__note">${note}</p>`;
+  return `
+    <li class="case" data-reveal style="--i: ${i % 3}">
+      <div class="case__media">${media}</div>
+      <p class="t-label case__client">${client}</p>
+      <${heading} class="t-card case__title"><a class="case__link" href="${href}">${title}</a></${heading}>
+      ${facts}
+      <span class="text-link case__more" aria-hidden="true"><span class="text-link__label">${more}</span>${ARROW}</span>
+    </li>
+  `;
+}
+
+// A team portrait that opens the bio dialog (initBios). Used in the homepage
+// carousel and the About grid.
+export function memberCard(m, i) {
+  return `
+    <li class="member">
+      <button class="member__button" type="button" data-index="${i}" aria-haspopup="dialog">
+        <span class="member__photo"><img src="${m.photo}" alt="" width="500" height="625" loading="lazy" decoding="async"></span>
+        <span class="member__info">
+          <span class="member__name">${m.name}</span>
+          <span class="member__role">${m.role}</span>
+          <span class="member__more">Read bio</span>
+        </span>
+      </button>
+    </li>
+  `;
+}
+
+export function bioDialog() {
+  return `
+    <dialog class="bio-dialog" aria-labelledby="bio-name" data-lenis-prevent>
+      <div class="bio">
+        <div class="bio__photo"><img alt="" width="500" height="625"></div>
+        <div class="bio__body">
+          <h3 id="bio-name" class="t-h3 bio__name"></h3>
+          <p class="bio__role"></p>
+          <p class="bio__text"></p>
+          <a class="text-link bio__linkedin" href="#" target="_blank" rel="noopener noreferrer"><span class="text-link__label">LinkedIn</span>${ARROW}</a>
+        </div>
+        <button class="bio__close" type="button" aria-label="Close bio">Close</button>
+      </div>
+    </dialog>
+  `;
+}
+
+// Each portrait opens the bio dialog with that person's full bio; closing it
+// returns focus to the portrait.
+export function initBios(root, team) {
+  const dialog = root.querySelector('.bio-dialog');
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  let opener = null;
+  const photo = dialog.querySelector('.bio__photo img');
+
+  root.querySelectorAll('.member__button').forEach(button => {
+    button.addEventListener('click', () => {
+      const m = team[Number(button.dataset.index)];
+      photo.src = m.photo;
+      photo.alt = m.alt || '';
+      dialog.querySelector('.bio__name').textContent = m.name;
+      dialog.querySelector('.bio__role').textContent = m.role;
+      dialog.querySelector('.bio__text').textContent = m.bio;
+      const linkedin = dialog.querySelector('.bio__linkedin');
+      linkedin.hidden = !m.linkedin;
+      if (m.linkedin) {
+        linkedin.href = m.linkedin;
+        linkedin.setAttribute('aria-label', `${m.name} on LinkedIn`);
+      }
+      opener = button;
+      if (lenis) lenis.stop();
+      dialog.showModal();
+      dialog.querySelector('.bio__close').focus();
+    });
+  });
+
+  dialog.querySelector('.bio__close').addEventListener('click', () => dialog.close());
+  // A click on the backdrop lands on the dialog element itself.
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => {
+    if (lenis) lenis.start();
+    if (opener) opener.focus();
+  });
+}
+
 // The dark skyline band that closes a page, with the contact form on a paper
 // panel inside it (the form takes the place of the band's button). The band
 // carries id="contact" so every "Talk to Eden" lands on headline and form
@@ -179,7 +293,7 @@ export function initAnchors(root) {
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      if (lenis) {
+      if (lenis && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const nav = document.getElementById('nav');
         lenis.scrollTo(target, { offset: -((nav && nav.offsetHeight) || 72) - 16, duration: 1.1 });
       } else {

@@ -201,7 +201,9 @@ body.nav-open #nav.nav--scrolled {
 }
 
 /* ─── Responsive ─────────────────────────────── */
-@media (max-width: 768px) {
+/* The menu button takes over below 900px: with Private Dinners in the menu
+   the five links and the button no longer fit beside the logo. */
+@media (max-width: 900px) {
   .nav-links,
   .nav-right {
     display: none;

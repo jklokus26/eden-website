@@ -247,10 +247,17 @@
 
 .look-2026 .sstory__aside {
   grid-column: 9 / 13;
-  position: sticky;
-  top: calc(var(--nav-h) + var(--s-4));
   display: grid;
   gap: var(--s-4);
+}
+
+/* The sidebar stays in view only where both panels fit under the nav;
+   on shorter laptop screens it scrolls with the story. */
+@media (min-height: 860px) {
+  .look-2026 .sstory__aside {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--s-4));
+  }
 }
 
 .look-2026 .spanel__facts {
@@ -345,94 +352,10 @@
   margin-bottom: var(--s-7);
 }
 
-.look-2026 .scov__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid var(--rule-strong);
-}
-
-.look-2026 .scov__item {
-  border-top: 1px solid var(--rule-strong);
-}
-
-/* Outlet, headline and date on one row; the whole row is the link. */
-.look-2026 .scov__link {
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 7fr) minmax(0, 2fr) auto;
-  column-gap: var(--s-5);
-  align-items: baseline;
-  padding: var(--s-5) 0;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.look-2026 .scov__outlet {
-  color: var(--ink);
-}
-
-.look-2026 .scov__headline {
-  text-wrap: pretty;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
-  transition: text-decoration-color var(--dur-ui) var(--ease-out);
-}
-
-.look-2026 .scov__date {
-  font-size: var(--t-small);
-  color: var(--ink-muted);
-  white-space: nowrap;
-}
-
-.look-2026 .scov__link .arrow {
-  color: var(--ink-muted);
-}
-
-.look-2026 .scov__link:hover .scov__headline,
-.look-2026 .scov__link:focus-visible .scov__headline {
-  text-decoration-color: var(--link-rule);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .look-2026 .scov__link:hover .arrow {
-    transform: translateX(3px);
-    color: var(--ink);
-  }
-}
-
 .look-2026 .scov__note {
   margin-top: var(--s-4);
   font-size: var(--t-small);
   color: var(--ink-muted);
-}
-
-/* Phones and tablets: outlet and date on top, the headline under them. */
-@media (max-width: 900px) {
-  .look-2026 .scov__link {
-    grid-template-columns: minmax(0, 1fr) auto;
-    row-gap: var(--s-2);
-  }
-
-  .look-2026 .scov__outlet {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .look-2026 .scov__date {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .look-2026 .scov__headline {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-
-  .look-2026 .scov__link .arrow {
-    display: none;
-  }
 }
 
 /* ─── Meet the product ──────────────────────────────────────────────── */
@@ -525,56 +448,12 @@
   grid-column: 1 / 5;
 }
 
-.look-2026 .sfaq__head h2 {
-  margin-top: var(--s-5);
-}
-
 .look-2026 .sfaq__list {
   grid-column: 6 / 13;
-  border-bottom: 1px solid var(--rule-strong);
 }
 
-.look-2026 .sfaq__item {
-  border-top: 1px solid var(--rule-strong);
-}
-
-.look-2026 .sfaq__item summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--s-5);
-  padding: var(--s-5) 0;
-  cursor: pointer;
-  list-style: none;
-}
-
-.look-2026 .sfaq__item summary::-webkit-details-marker {
-  display: none;
-}
-
-/* A plus that turns to a cross when the answer is open. */
-.look-2026 .sfaq__item summary::after {
-  content: '+';
-  flex: none;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--ink-muted);
-  transition: transform var(--dur-ui) var(--ease-out);
-}
-
-.look-2026 .sfaq__item[open] summary::after {
-  transform: rotate(45deg);
-}
-
-.look-2026 .sfaq__item summary:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-
-.look-2026 .sfaq__item p {
-  max-width: 40rem;
-  padding-bottom: var(--s-5);
-  color: var(--ink-body);
+.look-2026 .sfaq__head h2 {
+  margin-top: var(--s-5);
 }
 
 @media (max-width: 900px) {

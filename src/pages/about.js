@@ -1,86 +1,95 @@
-import '../styles/gallery.css';
-import '../styles/about.css';
+import '../styles/look-2026.css';
+import '../styles/about-2026.css';
 import { team } from '../../data/team.js';
-import { createDivider } from '../components/section-divider.js';
-import { initAnimations } from '../animations.js';
-import { buildContactSection, initContactForm } from '../components/contact-form.js';
+import { initContactForm } from '../components/contact-form.js';
+import {
+  pageHead, textLink, bioDialog, initBios, buildContactBand, initReveal, initAnchors, initNavState,
+} from '../components/look-2026.js';
 
-const LINKEDIN_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`;
+// About page, Oct 2026 look (DESIGN.md). The story is Eden's copy from the
+// old page, verbatim; the team comes from data/team.js.
 
-function buildAbout() {
-  const main = document.getElementById('about');
-  if (!main) return;
+const STORY = [
+  'Eden is a strategic communications firm for companies at the frontier of finance and technology. We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.',
+  'We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases, and report metrics that don’t connect to business outcomes. The “go direct” movement got a lot right — but a founder with a massive following and no institutional credibility will lose the enterprise deal.',
+  'We’re building something different. A firm run by operators who use every edge available — technology, newsroom instincts, and a network we’ve spent years building — to move faster and hit harder than shops ten times our size.',
+  'We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.',
+  'We don’t do awareness. We build credibility.',
+];
 
-  const teamCards = team.map(member => {
-    const initials = member.name.split(' ').map(n => n[0]).join('');
-    const tags = (member.expertise || []).map(t =>
-      `<span class="about-team-tag">${t}</span>`
-    ).join('');
-
-    return `
-      <div class="about-team-card">
-        <div class="about-team-photo-wrap">
-          <img
-            src="${member.photo}"
-            alt="${member.alt}"
-            class="about-team-photo"
-            loading="lazy"
-            onerror="this.style.display='none';this.parentElement.classList.add('team-card-img-fallback');this.parentElement.setAttribute('data-initials','${initials}')"
-          >
-        </div>
-        <div class="about-team-info">
-          <h3 class="about-team-name">${member.name}</h3>
-          <p class="about-team-role">${member.role}</p>
-          ${tags ? `<div class="about-team-tags">${tags}</div>` : ''}
-          <p class="about-team-bio">${member.bioShort || member.bio}</p>
-          ${member.linkedin ? `<a href="${member.linkedin}" class="about-team-linkedin" target="_blank" rel="noopener noreferrer" aria-label="${member.name} on LinkedIn">${LINKEDIN_ICON_SVG} <span>LinkedIn</span></a>` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  main.innerHTML = `
-    <section class="gallery-hero section-padding">
-      <div class="container">
-        ${createDivider('About Us')}
-        <h1 class="gallery-headline" data-animate="words">Our Story</h1>
-      </div>
-    </section>
-
-    <section class="about-story section-padding">
-      <div class="container">
-        <div class="about-story-grid">
-          <div class="about-story-text">
-            <div class="about-story-body">
-              <p>Eden is a strategic communications firm for companies at the frontier of finance and technology. We were built by operators, not agency people. Our founder came from the New York Post and ABC. Our team includes former leads from Meta, Google, Mastercard, Deloitte, and OKX.</p>
-              <p>We started Eden because the old model is broken and the new one is incomplete. Traditional agencies charge bloated retainers, issue anemic press releases, and report metrics that don\u2019t connect to business outcomes. The \u201Cgo direct\u201D movement got a lot right \u2014 but a founder with a massive following and no institutional credibility will lose the enterprise deal.</p>
-              <p>We\u2019re building something different. A firm run by operators who use every edge available \u2014 technology, newsroom instincts, and a network we\u2019ve spent years building \u2014 to move faster and hit harder than shops ten times our size.</p>
-              <p>We work with institutional-grade companies including Ondo Finance, Stellar Development Foundation, Reed Smith, Wintermute Trading, and Cohen & Company Capital Markets, representing $10 billion in tokenized assets, trading volume, and capital markets value.</p>
-              <p>We don\u2019t do awareness. We build credibility.</p>
-            </div>
-          </div>
+// The story in one reading column; its last line closes it a size larger.
+function buildStory() {
+  const closing = STORY[STORY.length - 1];
+  return `
+    <section class="astory">
+      <div class="wrap astory__grid">
+        <div class="astory__body" data-reveal>
+          ${STORY.slice(0, -1).map(p => `<p>${p}</p>`).join('')}
+          <p class="astory__close">${closing}</p>
         </div>
       </div>
     </section>
+  `;
+}
 
-    <section class="about-team section-padding">
-      <div class="container">
-        ${createDivider('Our Team')}
-        <h2 class="about-section-heading" data-animate="words">Our Team</h2>
-        <div class="about-team-grid">
-          ${teamCards}
+// A portrait card with everything the old card showed (photo, name, role,
+// expertise, short bio, LinkedIn) plus "Read full bio", which opens the
+// shared bio dialog. On laptops and tablets the cards share rows (subgrid)
+// so names, expertise and bios line up whatever the number of people.
+function memberTile(m, i) {
+  const tags = (m.expertise || []).map(t => `<li>${t}</li>`).join('');
+  const linkedin = m.linkedin
+    ? textLink(m.linkedin, 'LinkedIn', ` target="_blank" rel="noopener noreferrer" aria-label="${m.name} on LinkedIn"`)
+    : '';
+  return `
+    <li class="amember" data-reveal style="--i: ${i % 3}">
+      <div class="member__photo amember__photo">
+        <img src="${m.photo}" alt="${m.alt}" width="500" height="625" loading="lazy" decoding="async">
+      </div>
+      <h3 id="member-${i}-name" class="t-card amember__name">${m.name}</h3>
+      <p class="amember__role">${m.role}</p>
+      ${tags ? `<ul class="t-label amember__tags">${tags}</ul>` : '<span aria-hidden="true"></span>' /* keeps the card's rows in step */}
+      <div class="amember__text">
+        <p class="amember__bio">${m.bioShort || m.bio}</p>
+        <div class="amember__links">
+          <button class="member__button amember__more" type="button" data-index="${i}" aria-haspopup="dialog" aria-describedby="member-${i}-name"><span class="text-link__label">Read full bio</span></button>
+          ${linkedin}
         </div>
       </div>
-    </section>
+    </li>
+  `;
+}
 
-    ${buildContactSection()}
+function buildTeam() {
+  return `
+    <section class="ateam" aria-labelledby="team-title">
+      <div class="wrap">
+        <h2 id="team-title" class="t-h2 ateam__title" data-reveal>Our Team</h2>
+        <ul class="ateam__grid">
+          ${team.map(memberTile).join('')}
+        </ul>
+      </div>
+      ${bioDialog()}
+    </section>
   `;
 }
 
 function initAboutPage() {
-  buildAbout();
+  const main = document.getElementById('about');
+  if (!main) return;
+
+  main.innerHTML = `
+    ${pageHead({ label: 'About Us', title: 'Our Story' })}
+    ${buildStory()}
+    ${buildTeam()}
+    ${buildContactBand()}
+  `;
+
+  initReveal(main);
+  initAnchors(main);
+  initNavState();
+  initBios(main, team);
   initContactForm();
-  initAnimations();
 }
 
 document.addEventListener('DOMContentLoaded', initAboutPage);
