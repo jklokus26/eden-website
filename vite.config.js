@@ -24,7 +24,7 @@ export default defineConfig({
         franzy: resolve(__dirname, 'case-studies/franzy.html'),
         stellar: resolve(__dirname, 'case-studies/stellar-development-foundation.html'),
         reedSmith: resolve(__dirname, 'case-studies/reed-smith-on-chain.html'),
-        ondo: resolve(__dirname, 'case-studies/ondo.html'),
+        // ondo: on hold since 2026-10-26, see data/case-studies-on-hold.js.
         bluePlanet: resolve(__dirname, 'case-studies/blue-planet-energy.html'),
         henkRogers: resolve(__dirname, 'case-studies/henk-rogers.html'),
         about: resolve(__dirname, 'about/index.html'),

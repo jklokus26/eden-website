@@ -4,7 +4,7 @@
 // At build time this writes each page's complete content into the <noscript>
 // inside its <main>, from the same data files the page renders, so the two
 // never drift apart. People with JavaScript never see it.
-import { caseStudies } from '../data/case-studies.js';
+import { caseStudies, relatedFor } from '../data/case-studies.js';
 import { coverageItems } from '../data/coverage.js';
 import { dinnersPage } from '../data/dinners.js';
 import { team } from '../data/team.js';
@@ -24,9 +24,7 @@ function metricsList(metrics = []) {
 }
 
 function caseStudy(cs) {
-  const related = (cs.relatedCaseStudies || [])
-    .map(slug => caseStudies.find(c => c.slug === slug))
-    .filter(Boolean);
+  const related = relatedFor(cs);
   return `
       <article>
         <p>Case Study</p>

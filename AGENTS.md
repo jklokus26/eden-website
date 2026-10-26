@@ -43,6 +43,10 @@ This is a multi-file change. Follow these steps in order:
 4. Add a URL rewrite in `vercel.json` if the URL needs clean routing
 5. Add the URL to `public/sitemap.xml`
 
+## Taking a Case Study Down (and Back Up)
+
+Move its entry from `data/case-studies.js` to `data/case-studies-on-hold.js` (nothing imports that file, so its text never ships): the homepage, Our Results, every "More Case Studies" row and the crawler text then skip it, and related picks top up from the rest. Also remove its input from `vite.config.js`, add a temporary (307) redirect to `/results` in `vercel.json`, and take it out of `public/sitemap.xml`, `public/llms.txt` and the homepage `<noscript>`. Reverse each step to restore. Ondo has been on hold this way since 2026-10-26.
+
 ## Adding a New Page
 
 Only do this if explicitly requested. New pages require:

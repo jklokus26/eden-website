@@ -1,6 +1,6 @@
 import '../styles/look-2026.css';
 import '../styles/case-study-2026.css';
-import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
+import { caseStudies, CASE_CARD_IMAGES, relatedFor } from '../../data/case-studies.js';
 import { initContactForm } from '../components/contact-form.js';
 import {
   ARROW, caseCard, buildContactBand, initReveal, initAnchors, initNavState,
@@ -69,10 +69,7 @@ function buildCaseStudy() {
   const cleanTitle = clientName(cs);
 
   // Related case studies
-  const related = (cs.relatedCaseStudies || [])
-    .map(relSlug => caseStudies.find(c => c.slug === relSlug))
-    .filter(Boolean)
-    .slice(0, 3);
+  const related = relatedFor(cs);
 
   const relatedCards = related.map((rel, i) => caseCard({
     href: `/case-studies/${rel.slug}`,

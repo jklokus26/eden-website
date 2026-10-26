@@ -3,6 +3,7 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/case-studies", "destination": "/results", "statusCode": 308 },
+    { "source": "/case-studies/ondo", "destination": "/results", "statusCode": 307 },
     { "source": "/news", "destination": "/recent-work", "statusCode": 308 },
     { "source": "/news/:path*", "destination": "/recent-work", "statusCode": 308 }
   ],
