@@ -5,8 +5,6 @@ const EDEN_LOGO_SVG_SMALL = `<svg viewBox="0 0 105 40" fill="none" xmlns="http:/
   <path d="M86.5287 13.9846C88.1051 13.3345 89.7943 13 91.5 13C93.2057 13 94.8949 13.3345 96.4713 13.9846C98.0478 14.6348 99.4809 15.588 100.689 16.7904C101.896 17.9929 102.855 19.421 103.509 20.9935C104.163 22.566 104.5 24.2518 104.5 25.9545V39H99.5V25.9545C99.5 24.9114 99.2937 23.8783 98.8925 22.914C98.4913 21.9497 97.903 21.0728 97.1607 20.3336C96.4183 19.5945 95.5364 19.0076 94.565 18.6069C93.5936 18.2063 92.5521 18 91.5 18C90.4479 18 89.4064 18.2063 88.435 18.6069C87.4636 19.0076 86.5817 19.5945 85.8393 20.3336C85.0969 21.0728 84.5087 21.9497 84.1075 22.914C83.7063 23.8783 83.5 24.9114 83.5 25.9545V39L78.5 39L78.5 25.9545C78.5 24.2518 78.8368 22.566 79.491 20.9935C80.1452 19.421 81.1038 17.9929 82.3115 16.7904C83.5191 15.588 84.9522 14.6348 86.5287 13.9846Z" fill="currentColor"/>
 </svg>`;
 
-const INSTAGRAM_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`;
-
 const LINKEDIN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`;
 
 import { navLinks } from '../../data/site-content.js';
@@ -31,7 +29,6 @@ export function initFooter() {
         </div>
         <div class="footer-col footer-col--right">
           <div class="footer-socials">
-            <a href="https://www.instagram.com/edencomms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on Instagram">${INSTAGRAM_SVG}</a>
             <a href="https://www.linkedin.com/company/eden-comms" class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Eden Communications on LinkedIn">${LINKEDIN_SVG}</a>
           </div>
           <span class="footer-copy">&copy; 2026 Eden Communications</span>
