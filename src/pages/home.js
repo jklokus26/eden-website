@@ -260,8 +260,9 @@ function buildWork() {
     image: CASE_CARD_IMAGES[cs.slug],
     metrics: cs.metrics || [],
   }));
-  // Silvia's card sits second, in Grip's old place (Alkida, 2026-10-27).
-  featured.splice(1, 0, silviaStory);
+  // Silvia's card takes the second spot, Grip's, once it has figures (see
+  // silviaStory in data/case-studies.js).
+  if (silviaStory.metrics?.length) featured.splice(1, 1, silviaStory);
   const cards = featured.slice(0, 3).map((card, i) => caseCard({ ...card, i })).join('');
 
   // The outlet strip closes the section: the case results, then where clients ran.
