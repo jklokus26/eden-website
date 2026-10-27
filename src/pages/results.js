@@ -1,6 +1,6 @@
 import '../styles/look-2026.css';
 import '../styles/results-2026.css';
-import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
+import { caseStudies, CASE_CARD_IMAGES, silviaStory } from '../../data/case-studies.js';
 import { caseStudiesPageHeadline } from '../../data/site-content.js';
 import { initContactForm } from '../components/contact-form.js';
 import {
@@ -29,19 +29,9 @@ function buildResults() {
     i,
   })).join('');
 
-  // Silvia's client story lives at /silvia, not under /case-studies (Pomp,
-  // through Alkida, 2026-10-23), so its card is added here by hand. It has
-  // no figures, so the figures' place stays empty.
-  const silviaCard = caseCard({
-    href: '/silvia',
-    client: 'Silvia',
-    title: 'Bringing a personal AI CFO into the media conversation',
-    image: { src: '/assets/images/silvia-card.jpg', width: 1600, height: 900 },
-    alt: 'The Silvia logo',
-    more: 'View client story',
-    heading: 'h2',
-    i: caseStudies.length,
-  });
+  // Silvia's client story is at /silvia, so its card comes last (see
+  // silviaStory in data/case-studies.js).
+  const silviaCard = caseCard({ ...silviaStory, heading: 'h2', i: caseStudies.length });
 
   main.innerHTML = `
     ${pageHead({ label: 'Our Results', title: caseStudiesPageHeadline, id: 'results-title' })}

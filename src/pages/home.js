@@ -16,7 +16,7 @@ import {
 } from '../../data/site-content.js';
 import { clientStrip } from '../../data/clients.js';
 import { mediaLogos, PRESS_HEIGHTS } from '../../data/media-logos.js';
-import { caseStudies, CASE_CARD_IMAGES } from '../../data/case-studies.js';
+import { caseStudies, CASE_CARD_IMAGES, silviaStory } from '../../data/case-studies.js';
 import { services } from '../../data/services.js';
 import { testimonials } from '../../data/testimonials.js';
 import { team } from '../../data/team.js';
@@ -253,15 +253,16 @@ function buildWhatWeDo() {
 }
 
 function buildWork() {
-  const featured = caseStudies.filter(cs => cs.featured).slice(0, 3);
-  const cards = featured.map((cs, i) => caseCard({
+  const featured = caseStudies.filter(cs => cs.featured).map(cs => ({
     href: `/case-studies/${cs.slug}`,
     client: clientName(cs),
     title: cs.cardTitle || cs.subtitle,
     image: CASE_CARD_IMAGES[cs.slug],
     metrics: cs.metrics || [],
-    i,
-  })).join('');
+  }));
+  // Silvia's card sits second, in Grip's old place (Alkida, 2026-10-27).
+  featured.splice(1, 0, silviaStory);
+  const cards = featured.slice(0, 3).map((card, i) => caseCard({ ...card, i })).join('');
 
   // The outlet strip closes the section: the case results, then where clients ran.
   const press = PRESS_ORDER

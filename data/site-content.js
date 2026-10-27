@@ -107,10 +107,11 @@ export const homeWhatWeDo = {
     { number: '01', title: 'Position', text: 'Strategy, corporate narrative, executive positioning and issues counsel' },
     // 02 and 03 trimmed so all three sit on two lines from 1024 px up (Joe,
     // 2026-10-21): 02 drops "market positioning" (it repeated pillar 01), 03
-    // drops "and stakeholder". Doc wording: "Earned media, thought leadership, market
+    // drops "and stakeholder". 02 also drops "AI/search visibility" (Alkida,
+    // 2026-10-27: Eden doesn't offer it). Doc wording: "Earned media, thought leadership, market
     // positioning, community building and AI/search visibility" / "Private
     // dinners, strategic introductions, investor and stakeholder engagement, conferences".
-    { number: '02', title: 'Build market visibility', text: 'Earned media, thought leadership, community building, AI/search visibility' },
+    { number: '02', title: 'Build market visibility', text: 'Earned media, thought leadership, community building' },
     { number: '03', title: 'Open the right doors', text: 'Private dinners, strategic introductions, investor engagement, conferences' },
   ],
 };

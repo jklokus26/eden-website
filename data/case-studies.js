@@ -22,6 +22,19 @@ export const CASE_CARD_IMAGES = {
   'henk-rogers': { src: '/assets/images/henk-rogers-how-i-built-this.jpg', width: 1200, height: 675 },
 };
 
+// Silvia's client story lives at /silvia, not under /case-studies (Pomp,
+// through Alkida, 2026-10-23), so its card is described here for the
+// homepage and Our Results. It has no figures yet, so the figures' place
+// stays empty.
+export const silviaStory = {
+  href: '/silvia',
+  client: 'Silvia',
+  title: 'Bringing a personal AI CFO into the media conversation',
+  image: { src: '/assets/images/silvia-card.jpg', width: 1600, height: 900 },
+  alt: 'The Silvia logo',
+  more: 'View client story',
+};
+
 export const caseStudies = [
   {
     slug: 'reed-smith-on-chain',
@@ -269,7 +282,8 @@ export const caseStudies = [
       { number: '20+', label: 'Media Placements' },
       { number: '135%', label: 'Increase in Share of Voice' },
     ],
-    featured: true,
+    // Off the homepage since 2026-10-27: Silvia's card took its place (Alkida).
+    featured: false,
     industryTag: 'Logistics & eCommerce',
     relatedCaseStudies: ['ondo', 'blue-planet-energy', 'franzy'],
   },
