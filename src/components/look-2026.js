@@ -170,14 +170,15 @@ export function buildContactBand() {
   `;
 }
 
-// The Wintermute dinner recap (Eden's film, 21 s, silent), shown on the
-// homepage dinners band and the dinners page. The poster is a still from the
-// film at every size; the film itself loads only when it nears the screen,
-// in 720p on phones and 1080p elsewhere, and plays muted on a loop while on
-// screen (initFilms).
+// The Wintermute dinner recap (Eden's V2 film, 15 s, played silent; swapped
+// in at Alkida's request, 2026-10-28), shown on the homepage dinners band and
+// the dinners page. The poster is the film's opening shot at every size, so
+// the film fades in over a matching frame. The film itself loads only when it
+// nears the screen, in 720p on phones and 1080p elsewhere, and plays muted on
+// a loop while on screen (initFilms).
 const FILM = {
-  small: '/assets/video/wintermute-dinner-recap-720.mp4',
-  large: '/assets/video/wintermute-dinner-recap-1080.mp4',
+  small: '/assets/video/wintermute-recap-v2-720.mp4',
+  large: '/assets/video/wintermute-recap-v2-1080.mp4',
 };
 
 export function dinnerFilm() {
@@ -185,7 +186,7 @@ export function dinnerFilm() {
     <figure class="film" data-film>
       <div class="film__frame">
         ${picture({
-          dir: '/assets/images/dinners', base: 'wintermute-dinner-recap-poster', widths: [768, 1280, 1920],
+          dir: '/assets/images/dinners', base: 'wintermute-recap-v2-poster', widths: [768, 1280, 1920],
           sizes: '(max-width: 1280px) 100vw, 1184px', alt: '', width: 1920, height: 1080, fallback: 1280,
           className: 'film__poster',
         })}
