@@ -11,6 +11,18 @@ import { initFooter } from './components/footer.js';
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 
+// Vercel Web Analytics (switched on by Joe, 2026-10-28): visitors, pages,
+// devices and referrers in the Vercel dashboard, alongside the Google tag in
+// each page's head. Live site only, like that tag, so previews and local runs
+// don't count (www redirects to the bare domain).
+if (location.hostname === 'edencommunications.com') {
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  const insights = document.createElement('script');
+  insights.defer = true;
+  insights.src = '/_vercel/insights/script.js';
+  document.head.appendChild(insights);
+}
+
 // Initialize Lenis (smooth scrolling), except for people who ask their
 // system for reduced motion: they get the browser's normal scrolling.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
