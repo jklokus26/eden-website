@@ -1,0 +1,349 @@
+/* Hallmark · component system: the Eden kit · genre: editorial · design-system: DESIGN.md · designed-as-app · pre-emit critique: P5 H5 E4 S5 R4 V4 */
+
+/* The Eden kit (DESIGN.md, "The Eden kit"): one brand motif, one section
+   header, one interaction language and one signature motion, built once so
+   every page can take them. A page opts in by importing this file and
+   calling initKit (src/components/eden-kit.js) on its <main>; the nav and
+   footer sit outside <main> and keep their own styles. Nothing here hides
+   content until the script has run (it adds .kit-js), and with reduced
+   motion everything shows at once. Motion is transform, opacity and
+   clip-path only. */
+
+.look-2026 {
+  /* The live site's brand gradient (DESIGN.md tokens), used only as the
+     signature line. */
+  --gradient-purple: #951bff;
+  --gradient-sky: #1ca4ff;
+  --gradient-mint: #13ff99;
+
+  /* The signature line's color stops. Every line (section headers, quote
+     bars, hovered rows) draws from it in its own direction; a plain line
+     is one change here. */
+  --kit-line: var(--gradient-purple), var(--gradient-sky) 52%, var(--gradient-mint);
+
+  /* The scroll-filled lede: its words start dim and light up to white
+     behind a mint leading edge (the gradient's own end stop). */
+  --kit-lede-dim: var(--on-dark-rule);
+  --kit-lede-edge: var(--gradient-mint);
+
+  --ease-kit: cubic-bezier(0.3, 0, 0, 1);
+  --dur-line: 700ms;
+  --dur-rise: 750ms;
+  --dur-ink: 260ms;
+
+  /* The section header's label row: the touch-target height, so an action
+     link beside the label is tappable. Layouts that line up with the
+     signature line read it. */
+  --kit-label-row: 44px;
+
+  /* The ink box: solid white, text flips to the page's near-black. */
+  --ink-box: var(--ink);
+  --ink-on-box: var(--paper);
+}
+
+/* ─── Signature line ──────────────────────────────────────────────────── */
+
+/* A 1px hairline in the brand gradient. It draws left to right the first
+   time its section enters (initKit adds .is-drawn). */
+.look-2026 main .sig {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, var(--kit-line));
+  transform-origin: left center;
+}
+
+/* The vertical bar beside a quote draws top to bottom. */
+.look-2026 main .sig--down {
+  width: 1px;
+  height: auto;
+  background: linear-gradient(180deg, var(--kit-line));
+  transform-origin: center top;
+}
+
+.look-2026 .kit-js .sig {
+  transform: scaleX(0);
+  transition: transform var(--dur-line) var(--ease-kit);
+}
+
+.look-2026 .kit-js .sig--down {
+  transform: scaleY(0);
+  transition-delay: calc(160ms + var(--i, 0) * 80ms);
+}
+
+.look-2026 .kit-js .sig.is-drawn {
+  transform: none;
+}
+
+/* ─── Section header ──────────────────────────────────────────────────── */
+
+/* One stack, every section: the label, the signature line under it, then
+   the serif headline where the section has one. One column, never
+   label-left and heading-right; an action link may sit at the label's
+   right end. */
+.look-2026 main .kit-head {
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.look-2026 main .kit-head__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  min-height: var(--kit-label-row);
+}
+
+.look-2026 main .kit-head__top .t-label {
+  margin: 0;
+}
+
+.look-2026 main .kit-head .sig {
+  margin-top: var(--s-3);
+}
+
+.look-2026 main .kit-head__title {
+  margin-top: clamp(28px, 3.4vw, 48px);
+}
+
+/* Headline words rise from clipped masks (initKit splits them; screen
+   readers get the sentence once, from a hidden copy). The mask reaches a
+   little past the line so accents and descenders never clip. */
+.look-2026 main .kit-words .w {
+  display: inline-block;
+  clip-path: inset(-0.2em -0.1em -0.28em -0.1em);
+}
+
+.look-2026 main .kit-words .w__i {
+  display: inline-block;
+}
+
+/* They start a full line plus 0.4em down, clear of the mask's foot at any
+   leading (at the poster's 0.95, 118% left letter tops showing). */
+.look-2026 .kit-js .kit-words .w__i {
+  transform: translateY(calc(100% + 0.4em));
+  transition: transform var(--dur-rise) var(--ease-kit);
+  transition-delay: calc(140ms + var(--w, 0) * 80ms);
+}
+
+.look-2026 .kit-js .is-drawn .kit-words .w__i {
+  transform: none;
+}
+
+/* ─── Interaction language: the ink box ───────────────────────────────── */
+
+/* Rows and text links: on hover a solid white box wipes in from the left
+   and the text over it turns near-black, exactly at the box's edge (initKit
+   lays an inked copy of the content over the original and the copy is
+   revealed with clip-path). Mouse hover only; a touch press shows the box
+   straight away; keyboard focus keeps the mint ring. */
+.look-2026 main [data-ink],
+.look-2026 main .text-link {
+  position: relative;
+}
+
+/* The pressed box replaces the browser's own tap flash. */
+.look-2026 main :is([data-ink], .text-link, [data-ink-owner]) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.look-2026 main .ink {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: inherit;
+  grid-template-columns: inherit;
+  grid-template-rows: inherit;
+  flex-direction: inherit;
+  flex-wrap: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+  gap: inherit;
+  padding: inherit;
+  background: var(--ink-box);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path calc(var(--dur-ink) * 0.7) var(--ease-kit);
+  pointer-events: none;
+}
+
+.look-2026 main .ink,
+.look-2026 main .ink * {
+  color: var(--ink-on-box);
+  text-decoration-line: none;
+}
+
+/* Text links: the box hugs the words with a little room either side. */
+.look-2026 main .text-link > .ink {
+  inset: var(--s-2) calc(-1 * var(--s-2));
+  min-height: 0;
+  padding: 0 var(--s-2);
+}
+
+/* While the box covers it, the original underline stays neutral. */
+.look-2026 main .text-link:hover .text-link__label {
+  text-decoration-color: var(--link-rule);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 main :is([data-ink], .text-link):hover > .ink,
+  .look-2026 main [data-ink-owner]:hover :is([data-ink], .text-link) > .ink {
+    clip-path: inset(0);
+    transition-duration: var(--dur-ink);
+  }
+}
+
+/* Touch: the press itself is the feedback, no wipe to wait for. */
+.look-2026 main :is([data-ink], .text-link):active > .ink,
+.look-2026 main [data-ink-owner]:active :is([data-ink], .text-link) > .ink {
+  clip-path: inset(0);
+  transition: none;
+}
+
+/* A row's signature line: drawn along its foot, over the hairline, as the
+   box wipes in (the homepage's What we do rows), or on its own under a
+   coverage row (link rows, which keep no box: on a long list read by
+   scrolling, rows passing under a resting pointer would flash white). */
+.look-2026 main .sig-mark {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--kit-line));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform calc(var(--dur-ink) * 0.7) var(--ease-kit);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 main :is([data-ink], .rows__link):hover > .sig-mark {
+    transform: none;
+    transition-duration: var(--dur-ink);
+  }
+}
+
+.look-2026 main :is([data-ink], .rows__link):active > .sig-mark {
+  transform: none;
+  transition: none;
+}
+
+/* Buttons keep their look; their hover fill wipes in from the left the same
+   way instead of fading. */
+.look-2026 main .btn--primary,
+.look-2026 main .contact-submit {
+  position: relative;
+  isolation: isolate;
+}
+
+.look-2026 main .btn--primary::before,
+.look-2026 main .contact-submit::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--btn-bg-hover);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform calc(var(--dur-ink) * 0.7) var(--ease-kit);
+}
+
+.look-2026 main .btn--primary:hover,
+.look-2026 main .contact-submit:hover {
+  background: var(--btn-bg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 main .btn--primary:hover::before,
+  .look-2026 main .contact-submit:hover:not(:disabled)::before {
+    transform: none;
+    transition-duration: var(--dur-ink);
+  }
+}
+
+/* ─── Shared pieces on the kit ────────────────────────────────────────── */
+
+/* The contact band (buildContactBand, every page): the kit's label and
+   signature line over its headline, and the email address as an ink-box
+   link. On the photo the label takes the on-dark grey, never the page
+   grey. */
+.look-2026 main .band__head {
+  margin-bottom: clamp(28px, 3.4vw, 48px);
+}
+
+.look-2026 main .band__label {
+  color: var(--on-dark-muted);
+}
+
+.look-2026 main .band__sig {
+  margin-top: var(--s-3);
+}
+
+/* The email link gets a 44px-plus tap area without moving the text. */
+.look-2026 main .band__email[data-ink] {
+  display: inline-block;
+  padding-block: var(--s-3);
+  margin-block: calc(-1 * var(--s-3));
+}
+
+.look-2026 main .band__email > .ink {
+  inset: var(--s-2) calc(-1 * var(--s-2));
+  padding: var(--s-1) var(--s-2);
+}
+
+/* ─── Scroll-filled lede ──────────────────────────────────────────────── */
+
+/* One statement whose words light up from dim to white as the reader
+   scrolls through it, a mint leading edge about half a letter ahead of the
+   white (initKit sets each word's --p from 0 to 1 and shows --edge only on
+   the word being filled; a white copy and a mint copy of the word are
+   revealed over the dim one). The plain variant fills grey to white with no
+   edge. */
+.look-2026 .kit-js .kit-lede .w__i {
+  position: relative;
+  color: var(--kit-lede-dim);
+}
+
+.look-2026 .kit-js .kit-lede .w__i::before,
+.look-2026 .kit-js .kit-lede .w__i::after {
+  content: attr(data-w);
+  position: absolute;
+  inset: 0;
+  white-space: nowrap;
+}
+
+.look-2026 .kit-js .kit-lede .w__i::after {
+  color: var(--ink);
+  clip-path: inset(-0.3em calc(100% - var(--p, 0) * 100%) -0.3em -0.1em);
+}
+
+.look-2026 .kit-js .kit-lede .w__i::before {
+  color: var(--kit-lede-edge);
+  clip-path: inset(-0.3em calc(100% - var(--p, 0) * 100% - 0.6em) -0.3em calc(var(--p, 0) * 100%));
+  opacity: var(--edge, 0);
+}
+
+/* ─── Reduced motion: everything in place ─────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .look-2026 .kit-js .sig,
+  .look-2026 .kit-js .kit-words .w__i {
+    transform: none;
+    transition: none;
+  }
+
+  .look-2026 .kit-js .kit-lede .w__i {
+    color: var(--ink);
+  }
+
+  .look-2026 .kit-js .kit-lede .w__i::before,
+  .look-2026 .kit-js .kit-lede .w__i::after {
+    content: none;
+  }
+
+  .look-2026 main .ink,
+  .look-2026 main .sig-mark,
+  .look-2026 main .btn--primary::before,
+  .look-2026 main .contact-submit::before {
+    transition: none;
+  }
+}

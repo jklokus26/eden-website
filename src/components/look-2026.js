@@ -1,6 +1,7 @@
 // Shared pieces for pages on the Oct 2026 look (DESIGN.md): markup helpers,
 // the closing contact band, and the small behaviours every such page uses.
 import { buildContactSection } from './contact-form.js';
+import { sectionHead } from './eden-kit.js';
 import { lenis } from '../main.js';
 import { homeContactBand } from '../../data/site-content.js';
 
@@ -23,29 +24,46 @@ export function picture({ dir, base, widths, sizes, alt, width, height, eager = 
   `;
 }
 
+// Keeps a hyphenated word on one line ("AI-driven", "high-net-worth"), a
+// number with the word before it ("Fortune 500") and an amount with its unit
+// ("$10 billion"), as the homepage's case entries do. For plain text only.
+export function keepWords(text) {
+  return text
+    .replace(/\S+-\S+/g, w => `<span class="keep">${w}</span>`)
+    .replace(/ (?=\d)/g, '&nbsp;')
+    .replace(/(\d) (thousand|million|billion|trillion)\b/gi, '$1&nbsp;$2');
+}
+
 export function textLink(href, label, extra = '') {
   return `<a class="text-link" href="${href}"${extra}><span class="text-link__label">${label}</span>${ARROW}</a>`;
 }
 
-// The opening of an inner page: the label, the headline and an optional
-// short intro beside it, on the same spacing as the dinners page.
-export function pageHead({ label, title, lead = '', id = 'page-title' }) {
+// The opening of an inner page on the bold kit (DESIGN.md, "Page opening"):
+// the kit's label and signature line, then the headline at poster size, its
+// words rising as the page opens, and an optional intro under it, starting
+// on the headline's left edge and set in two columns on laptops (Services,
+// About). A title given as a list sets one sentence to a line; `long` takes
+// the step down for a sentence-length headline.
+export function pageHead({ label, title, lead = '', id = 'page-title', long = false }) {
+  const size = long ? 'poster poster--long' : 'poster';
+  const h1 = Array.isArray(title)
+    ? `<h1 id="${id}" class="${size} page-head__title">${title.map(t => `<span class="page-head__line" data-rise>${t}</span>`).join(' ')}</h1>`
+    : `<h1 id="${id}" class="${size} page-head__title" data-rise>${title}</h1>`;
   return `
     <section class="page-head" aria-labelledby="${id}">
-      <div class="wrap page-head__grid">
-        <div class="page-head__title">
-          <p class="t-label t-label--dot">${label}</p>
-          <h1 id="${id}" class="t-h2">${title}</h1>
-        </div>
-        ${lead ? `<div class="page-head__lead">${[].concat(lead).map(p => `<p>${p}</p>`).join('')}</div>` : ''}
+      <div class="wrap">
+        ${sectionHead({ label })}
+        ${h1}
+        ${lead ? `<div class="page-head__lead" data-reveal style="--i: 4">${[].concat(lead).map(p => `<p>${keepWords(p)}</p>`).join('')}</div>` : ''}
       </div>
     </section>
   `;
 }
 
 // A case card: 16:9 photo, client, title, up to three figures and "View case
-// study". The whole card is the link. Used on the homepage, Our Results and
-// under each case study, inside a list (.work__grid or .case-grid).
+// study". The whole card is the link, and hovering it puts "View case study"
+// in the kit's ink box. Used on Our Results and under each case study,
+// inside a list (.case-grid); the homepage has its own spread.
 export function caseCard({ href, client, title, image, alt = '', metrics = [], note = '', more = 'View case study', heading = 'h3', i = 0 }) {
   const media = image
     ? `<picture>
@@ -55,14 +73,14 @@ export function caseCard({ href, client, title, image, alt = '', metrics = [], n
     : '';
   const facts = metrics.length
     ? `<dl class="case__metrics">
-        ${metrics.slice(0, 3).map(m => `<div class="case__metric"><dt>${m.label}</dt><dd>${m.number}</dd></div>`).join('')}
+        ${metrics.slice(0, 3).map(m => `<div class="case__metric"><dt>${keepWords(m.label)}</dt><dd>${m.number}</dd></div>`).join('')}
       </dl>`
-    : `<p class="case__note">${note}</p>`;
+    : note ? `<p class="case__note">${note}</p>` : '';
   return `
-    <li class="case" data-reveal style="--i: ${i % 3}">
+    <li class="case" data-reveal data-ink-owner style="--i: ${i % 3}">
       <div class="case__media">${media}</div>
       <p class="t-label case__client">${client}</p>
-      <${heading} class="t-card case__title"><a class="case__link" href="${href}">${title}</a></${heading}>
+      <${heading} class="t-card case__title"><a class="case__link" href="${href}">${keepWords(title)}</a></${heading}>
       ${facts}
       <span class="text-link case__more" aria-hidden="true"><span class="text-link__label">${more}</span>${ARROW}</span>
     </li>
@@ -141,10 +159,12 @@ export function initBios(root, team) {
   });
 }
 
-// The dark skyline band that closes a page, with the contact form on a paper
-// panel inside it (the form takes the place of the band's button). The band
-// carries id="contact" so every "Talk to Eden" lands on headline and form
-// together.
+// The dark skyline band that closes every page, with the contact form on a
+// paper panel inside it (the form takes the place of the band's button). The
+// band carries id="contact" so every "Talk to Eden" lands on headline and
+// form together. It opens with the Eden kit's label ("Talk to Eden") and
+// signature line, the headline's words rise, and the email address takes
+// the ink box.
 export function buildContactBand() {
   return `
     <section class="band on-dark" id="contact" aria-labelledby="band-title">
@@ -157,9 +177,10 @@ export function buildContactBand() {
       </div>
       <div class="wrap band__inner">
         <div class="band__copy">
-          <h2 id="band-title" class="t-h2 band__title">${homeContactBand.headline}</h2>
+          <div class="band__head"><p class="t-label band__label">${homeContactBand.label}</p><span class="sig band__sig" aria-hidden="true"></span></div>
+          <h2 id="band-title" class="t-h2 band__title" data-rise>${homeContactBand.headline}</h2>
           <p class="band__body">${homeContactBand.body}</p>
-          <p class="band__alt"><a class="band__email" href="mailto:hello@edencommunications.com">hello@edencommunications.com</a></p>
+          <p class="band__alt"><a class="band__email" href="mailto:hello@edencommunications.com" data-ink>hello@edencommunications.com</a></p>
           <ul class="band__words">${homeContactBand.words.map(w => `<li>${w}</li>`).join('')}</ul>
         </div>
         <div class="band__panel">

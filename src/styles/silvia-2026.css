@@ -1,6 +1,7 @@
-/* Silvia client story, Oct 2026 look. Tokens, chrome and the contact band
-   live in look-2026.css; the system is described in DESIGN.md. Structure
-   follows the Version 1 brief from Pomp's team (2026-10-23). */
+/* Silvia client story, on the bold kit. Tokens, chrome and the contact band
+   live in look-2026.css, the kit and its bold variant in eden-kit.css and
+   eden-bold.css; the system is described in DESIGN.md. Structure follows
+   the Version 1 brief from Pomp's team (2026-10-23). */
 
 .look-2026 #silvia img {
   display: block;
@@ -20,12 +21,12 @@
   text-decoration-color: var(--accent);
 }
 
-/* A flat panel with a hairline edge, used for the Silvia brand panel, the
-   sidebar and the product panel. */
+/* The Silvia brand panel, the sidebar and the product panel: no box, a
+   hairline across the top (hairlines before boxes; boxes read as a software
+   template). */
 .look-2026 .spanel {
-  background: var(--paper-deep);
-  border: 1px solid var(--rule-strong);
-  padding: clamp(24px, 3vw, 40px);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule-strong);
 }
 
 .look-2026 .spanel__logo {
@@ -48,23 +49,26 @@
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 
+/* The kit's header across the top, then the name at poster size with the
+   line, copy and button under it, beside the Silvia panel. Both start on
+   the same line. */
 .look-2026 .shero {
-  padding: calc(var(--nav-h) + clamp(48px, 7vw, 96px)) 0 clamp(48px, 6vw, 80px);
+  padding: calc(var(--nav-h) + clamp(40px, 6vw, 88px)) 0 clamp(48px, 6vw, 80px);
+}
+
+.look-2026 .shero .kit-head {
+  margin-bottom: clamp(28px, 3.4vw, 48px);
 }
 
 .look-2026 .shero__grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
-  align-items: center;
+  align-items: start;
 }
 
 .look-2026 .shero__copy {
   grid-column: 1 / 7;
-}
-
-.look-2026 .shero__title {
-  margin-top: var(--s-5);
 }
 
 .look-2026 .shero__line {
@@ -83,18 +87,20 @@
   color: var(--ink-body);
 }
 
-/* The Silvia mark centred on its panel, the product line under it. */
+/* The Silvia mark level with the name (the header's line above already
+   rules the hero, so the panel drops its own), the product line and link
+   under it, all on the left like every block on the page. */
 .look-2026 .shero__panel {
   grid-column: 8 / 13;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-block: clamp(48px, 6vw, 88px);
+  align-items: flex-start;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .look-2026 .shero__panel .spanel__logo {
-  margin-bottom: var(--s-6);
+  margin: 0 0 var(--s-6);
 }
 
 .look-2026 .spanel__line {
@@ -115,8 +121,15 @@
     grid-column: 1 / -1;
   }
 
+  /* Stacked under the copy, the panel takes its hairline back. */
   .look-2026 .shero__panel {
     margin-top: var(--s-7);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--rule-strong);
+  }
+
+  .look-2026 .shero__panel .spanel__logo {
+    margin-top: var(--s-5);
   }
 }
 
@@ -144,7 +157,8 @@
 }
 
 .look-2026 .sfacts .text-link {
-  min-height: 0;
+  min-height: 44px;
+  margin-block: calc(-1 * var(--s-3));
   font-size: var(--t-body);
   font-weight: 400;
 }
@@ -248,7 +262,16 @@
 .look-2026 .sstory__aside {
   grid-column: 9 / 13;
   display: grid;
-  gap: var(--s-4);
+  gap: var(--s-7);
+}
+
+/* Beside the story the client panel drops its hairline so "The client"
+   sits level with "Service"; stacked under the story it keeps it. */
+@media (min-width: 901px) {
+  .look-2026 .sstory__aside > .spanel:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
 }
 
 /* The sidebar stays in view only where both panels fit under the nav;
@@ -302,43 +325,53 @@
 .look-2026 .scov__title,
 .look-2026 .sproduct__title {
   max-width: 18ch;
-  margin: var(--s-5) 0 var(--s-8);
 }
 
+/* The three points as rows between hairlines, each title beside what it
+   means, in the two columns of the Services rows (three equal columns of
+   heading and text read as a template's feature row). */
 .look-2026 .sopp__list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: var(--s-6);
   margin: 0;
   padding: 0;
   list-style: none;
+  border-bottom: 1px solid var(--rule);
 }
 
 .look-2026 .sopp__item {
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--rule-strong);
-}
-
-.look-2026 .sopp__num {
-  display: block;
-  margin-bottom: var(--s-4);
-  font-size: var(--t-small);
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-muted);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--rule);
 }
 
 .look-2026 .sopp__item h3 {
-  margin-bottom: var(--s-3);
+  grid-column: 1 / 7;
+  font-size: var(--t-h3);
 }
 
 .look-2026 .sopp__item p {
+  grid-column: 8 / 13;
   color: var(--ink-body);
+  text-wrap: pretty;
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  .look-2026 .sopp__item p {
+    grid-column: 7 / 13;
+  }
 }
 
 @media (max-width: 900px) {
-  .look-2026 .sopp__list {
-    grid-template-columns: minmax(0, 1fr);
-    row-gap: var(--s-7);
+  .look-2026 .sopp__item {
+    row-gap: var(--s-2);
+  }
+
+  .look-2026 .sopp__item h3,
+  .look-2026 .sopp__item p {
+    grid-column: 1 / -1;
+    max-width: 40rem;
   }
 }
 
@@ -346,10 +379,6 @@
 
 .look-2026 .scov {
   padding: var(--section) 0;
-}
-
-.look-2026 .scov__title {
-  margin-bottom: var(--s-7);
 }
 
 .look-2026 .scov__note {
@@ -369,12 +398,20 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
-  align-items: center;
+  align-items: start;
 }
 
 .look-2026 .sproduct__panel {
   grid-column: 1 / 6;
   margin: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* The panel opens with the kit's header, like the column beside it, so
+   both labels and lines share a line. */
+.look-2026 .sproduct__panel .spanel__logo {
+  margin-top: 0;
 }
 
 .look-2026 .sproduct__questions {
@@ -403,10 +440,6 @@
   grid-column: 7 / 13;
 }
 
-.look-2026 .sproduct__title {
-  margin-bottom: var(--s-6);
-}
-
 .look-2026 .sproduct__copy p {
   margin-bottom: var(--s-4);
   color: var(--ink-body);
@@ -430,48 +463,16 @@
   }
 }
 
-/* ─── FAQ ───────────────────────────────────────────────────────────── */
+/* ─── FAQ (the light chapter, as on Services) ───────────────────────── */
 
 .look-2026 .sfaq {
   padding: var(--section) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.look-2026 .sfaq__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--s-5);
-  align-items: start;
-}
-
-.look-2026 .sfaq__head {
-  grid-column: 1 / 5;
-}
-
-.look-2026 .sfaq__list {
-  grid-column: 6 / 13;
-}
-
-.look-2026 .sfaq__head h2 {
-  margin-top: var(--s-5);
-}
-
-@media (max-width: 900px) {
-  .look-2026 .sfaq__head,
-  .look-2026 .sfaq__list {
-    grid-column: 1 / -1;
-  }
-
-  .look-2026 .sfaq__list {
-    margin-top: var(--s-7);
-  }
 }
 
 /* ─── Closing Silvia call to action ─────────────────────────────────── */
 
 .look-2026 .scta {
   padding: var(--section) 0;
-  border-top: 1px solid var(--rule);
 }
 
 .look-2026 .scta__inner {
@@ -480,8 +481,9 @@
   align-items: flex-start;
 }
 
-.look-2026 .scta h2 {
-  margin: var(--s-5) 0 var(--s-4);
+.look-2026 .scta .kit-head {
+  align-self: stretch;
+  margin-bottom: var(--s-5);
 }
 
 .look-2026 .scta__body {

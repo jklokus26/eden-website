@@ -3,8 +3,10 @@ import '../styles/home-2026.css';
 import { initContactForm } from '../components/contact-form.js';
 import {
   ARROW, picture, textLink, buildContactBand, dinnerFilm, initFilms, initReveal, initAnchors, initNavState,
-  caseCard, memberCard, bioDialog, initBios,
+  memberCard, bioDialog, initBios,
 } from '../components/look-2026.js';
+import { sectionHead, initKit } from '../components/eden-kit.js';
+import { heroTicker, initBold } from '../components/eden-bold.js';
 import {
   homeHero,
   homeProof,
@@ -64,15 +66,6 @@ const CLIENT_HEIGHTS = {
 // Outlet heights for the press strip: PRESS_HEIGHTS in data/media-logos.js
 // (shared with Recent Work).
 
-// What we do: one photo per pillar. Desktop shows them one at a time beside
-// the list (the tall crop); phones show each above its pillar (the wide crop).
-// Position: "Lectern on stage" by Wesley Tingey
-// (https://unsplash.com/photos/bWRX_obQAl8); Build market visibility: a
-// broadcast camera filming an interview, by Sam McGhee
-// (https://unsplash.com/photos/KieCLNzKoBo), both Unsplash License, free for
-// commercial use. Open the right doors: Eden's own Wintermute dinner photo.
-const PILLAR_IMAGES = ['pillar-position', 'pillar-visibility', 'pillar-doors'];
-
 // Real moments, a client's where Eden has one (Alkida's Loom: "These images can
 // also be a little bit more interesting"; Joe, 2026-10-22: photos "that try to
 // match the frontier technology ringing the bell one"), graded to one warm
@@ -124,7 +117,9 @@ function clientName(cs) {
 // ─── Sections ─────────────────────────────────────────────────────────────
 
 // The cinematic hero, like the live site's: the photo (later Ebony's video)
-// edge to edge behind a dark overlay, the text at the bottom left. Eden's
+// edge to edge behind a dark overlay, the text at the bottom left. The kit
+// carries in lightly: the headline's words rise once as the page opens (a
+// short line above it read as an afterthought, Joe, 2026-10-28). Eden's
 // line is one solid color (Joe, 2026-10-22: the muted half "blends in too
 // well with the background"), with the words Alkida highlighted starting
 // their own line.
@@ -150,9 +145,10 @@ function buildHero() {
         })}
       </div>
       <div class="wrap hero__inner">
-        <h1 id="hero-title" class="t-display hero__title">${homeHero.headline}</h1>
+        <h1 id="hero-title" class="t-display hero__title" data-rise>${homeHero.headline}</h1>
         <div class="hero__text">${heroText()}</div>
       </div>
+      ${heroTicker()}
     </section>
   `;
 }
@@ -180,7 +176,7 @@ function buildProof() {
   return `
     <section class="proof" aria-labelledby="proof-title">
       <div class="wrap">
-        <h2 id="proof-title" class="t-label proof__title">${homeHero.tagline}</h2>
+        ${sectionHead({ label: homeHero.tagline, labelId: 'proof-title' })}
         <ul class="proof__figures">${figures}</ul>
         <div class="clients" data-marquee>
           <div class="clients__head">
@@ -200,55 +196,92 @@ function buildProof() {
   `;
 }
 
-function pillarPhoto(i, { wide = false, className = '', sizes }) {
-  return picture({
-    dir: HOME_DIR, base: `${PILLAR_IMAGES[i]}${wide ? '-wide' : ''}`, widths: [640, 1024, 1600], sizes,
-    width: 1600, height: wide ? 1067 : 2000, alt: '', className,
-  });
-}
-
-// The pillars as a list beside one large photo. On desktop the photo follows
-// the pillar under the pointer and otherwise steps through all three, with a
-// line filling along the active pillar to show the timing (initPillars).
-// Phones get each photo above its pillar and no stepping.
-// Each pillar links to the practice area on the Services page that delivers
-// it (01 Position -> #strategic-counsel, 02 -> #earned-media, 03 ->
-// #executive-visibility); the whole pillar is the link, as on the case cards.
+// A split: the header, the headline and the body in the left columns; the
+// headline is the section's one big statement, filled from grey to white as
+// the reader scrolls through it (the kit's lede). The three pillars run as an
+// index in the right columns: each row is the pillar's title as written with
+// a period, its short list, and an arrow, and the whole row links to the
+// practice area on the Services page that delivers it (Position ->
+// #strategic-counsel, Build market visibility -> #earned-media, Open the
+// right doors -> #executive-visibility). On hover the row inverts under the
+// kit's ink box and the signature line marks it.
 function buildWhatWeDo() {
-  const pillars = homeWhatWeDo.pillars.map((p, i) => `
-    <li class="pillar${i === 0 ? ' is-active' : ''}" data-reveal style="--i: ${i}">
-      <span class="pillar__rule" aria-hidden="true"><span class="pillar__progress"></span></span>
-      ${pillarPhoto(i, { wide: true, className: 'pillar__photo', sizes: '(max-width: 900px) 100vw, 1px' })}
-      <span class="pillar__num">${p.number}</span>
-      <h3 class="t-h3 pillar__title"><a class="pillar__link" href="/services#${services[i].anchorId}">${p.title}</a></h3>
-      <p class="pillar__text">${p.text}</p>
+  const rows = homeWhatWeDo.pillars.map((p, i) => `
+    <li data-reveal style="--i: ${i}">
+      <a class="what__row" href="/services#${services[i].anchorId}" data-ink>
+        <h3 class="what__line">${p.title}.</h3>
+        <p class="what__note">${p.text}</p>
+        ${ARROW}
+        <span class="sig-mark" aria-hidden="true"></span>
+      </a>
     </li>
   `).join('');
 
-  const stage = PILLAR_IMAGES.map((_, i) => pillarPhoto(i, {
-    className: `pillars__img${i === 0 ? ' is-active' : ''}`, sizes: '(max-width: 900px) 1px, 46vw',
-  })).join('');
-
   return `
     <section class="what" aria-labelledby="what-title">
-      <div class="wrap">
-        <p class="t-label t-label--dot sec-label" data-reveal>${homeWhatWeDo.sectionLabel}</p>
-        <div class="what__head">
-          <h2 id="what-title" class="t-h2 what__title" data-reveal>${homeWhatWeDo.headline}</h2>
-          <p class="what__body" data-reveal style="--i: 1">${homeWhatWeDo.body}</p>
+      <div class="wrap what__split">
+        <div class="what__lead">
+          ${sectionHead({
+            label: homeWhatWeDo.sectionLabel,
+            title: homeWhatWeDo.headline,
+            titleId: 'what-title',
+            titleClass: 'what__lede kit-lede',
+          })}
+          <p class="what__body" data-reveal>${homeWhatWeDo.body}</p>
         </div>
-        <div class="what__pillars">
-          <ol class="pillars">${pillars}</ol>
-          <div class="pillars__stage" data-reveal style="--i: 1">
-            <div class="pillars__media" aria-hidden="true">${stage}</div>
-            <button class="marquee__toggle pillars__toggle" type="button" aria-pressed="false" aria-label="Pause the rotating photos">
-              <svg class="marquee__icon marquee__icon--pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="2.5" height="10"/><rect x="8.5" y="2" width="2.5" height="10"/></svg>
-              <svg class="marquee__icon marquee__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
-            </button>
-          </div>
-        </div>
+        <ul class="what__index">${rows}</ul>
       </div>
     </section>
+  `;
+}
+
+// A hyphenated word never breaks at its hyphen ("AI-driven", "Sign-ups").
+function keepHyphens(text) {
+  return text.replace(/\S+-\S+/g, w => `<span class="story__keep">${w}</span>`);
+}
+
+// Selected work as a compact spread: the first case is the lead story (its
+// photo beside its headline, figures and plate), the other two run side by
+// side under it as shorter entries. Every figure is set the same way.
+// Homepage only: Our Results and the case study pages keep
+// the shared caseCard. The whole entry is the link, as on the case cards; the
+// headline is underlined at rest so it reads as one without a pointer. Each
+// case closes on a data plate (Room & Pillar's): its service and industries
+// from the case study data as small label rows over dashed hairlines. The
+// lead story ends on "View case study", which takes the kit's ink box when
+// the entry is hovered.
+function workStory({ href, client, title, image, alt = '', metrics = [], note = '', more = 'View case study', service = '', industry = '' }, i) {
+  const lead = i === 0;
+  const media = image
+    ? `<div class="story__media">
+        <picture>
+          ${image.webp ? `<source type="image/webp" srcset="${image.webp}">` : ''}
+          <img src="${image.src}" alt="${alt}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async">
+        </picture>
+      </div>`
+    : '';
+  // A case without figures yet (Silvia) shows its note, if any, in their place.
+  const facts = metrics.length
+    ? `<dl class="story__figures">
+        ${metrics.slice(0, 3).map(m => `<div class="story__figure"><dt>${keepHyphens(m.label)}</dt><dd>${m.number}</dd></div>`).join('')}
+      </dl>`
+    : note ? `<p class="story__note">${note}</p>` : '';
+  // Labels as on the case study pages (Service, Industry).
+  const rows = [['Service', service], ['Industry', industry]].filter(([, value]) => value);
+  const plate = rows.length
+    ? `<dl class="plate">
+        ${rows.map(([label, value]) => `<div class="plate__row"><dt>${label}</dt><dd>${value}</dd></div>`).join('')}
+      </dl>`
+    : '';
+  return `
+    <li class="story${lead ? ' story--lead' : ''}" data-reveal data-ink-owner style="--i: ${i}">
+      ${media}
+      <p class="t-label story__client">${client}</p>
+      <h3 class="story__title"><a class="story__link" href="${href}">${keepHyphens(title)}</a></h3>
+      ${facts}
+      ${plate}
+      ${lead ? `<span class="text-link story__more" aria-hidden="true"><span class="text-link__label">${more}</span>${ARROW}</span>` : ''}
+    </li>
   `;
 }
 
@@ -259,11 +292,13 @@ function buildWork() {
     title: cs.cardTitle || cs.subtitle,
     image: CASE_CARD_IMAGES[cs.slug],
     metrics: cs.metrics || [],
+    service: cs.service,
+    industry: cs.industries,
   }));
   // Silvia's card takes the second spot, Grip's, once it has figures (see
   // silviaStory in data/case-studies.js).
   if (silviaStory.metrics?.length) featured.splice(1, 1, silviaStory);
-  const cards = featured.slice(0, 3).map((card, i) => caseCard({ ...card, i })).join('');
+  const stories = featured.slice(0, 3).map(workStory).join('');
 
   // The outlet strip closes the section: the case results, then where clients ran.
   const press = PRESS_ORDER
@@ -275,11 +310,8 @@ function buildWork() {
   return `
     <section class="work" aria-labelledby="work-title">
       <div class="wrap">
-        <div class="sec-head">
-          <h2 id="work-title" class="t-label t-label--dot">Selected work</h2>
-          ${textLink('/results', 'View all work')}
-        </div>
-        <ul class="work__grid">${cards}</ul>
+        ${sectionHead({ label: 'Selected work', labelId: 'work-title', action: textLink('/results', 'View all work') })}
+        <ul class="work__spread">${stories}</ul>
         <div class="press" data-marquee>
           <div class="press__head">
             <h3 class="t-label">${PRESS_LABEL}</h3>
@@ -298,10 +330,12 @@ function buildWork() {
   `;
 }
 
+// Each quote has the signature line beside it as a vertical bar
+// (Cognichip's quote bar), drawn top to bottom as it arrives.
 function buildTestimonials() {
   const quotes = testimonials.map((t, i) => `
     <figure class="quote" data-reveal style="--i: ${i}">
-      <blockquote class="quote__text"><p>${t.quote}</p></blockquote>
+      <blockquote class="quote__text"><span class="sig sig--down" aria-hidden="true"></span><p>${t.quote}</p></blockquote>
       <figcaption class="quote__by">
         <span class="quote__name">${t.name}</span>
         <span class="quote__role">${t.title}, ${t.company.replace(/ /g, '&nbsp;')}</span>
@@ -312,7 +346,7 @@ function buildTestimonials() {
   return `
     <section class="quotes" aria-labelledby="quotes-title">
       <div class="wrap">
-        <h2 id="quotes-title" class="visually-hidden">What clients say</h2>
+        ${sectionHead({ label: 'What clients say', labelId: 'quotes-title' })}
         <div class="quotes__grid">${quotes}</div>
       </div>
     </section>
@@ -326,10 +360,10 @@ function buildDinners() {
   return `
     <section class="dinners on-dark" aria-labelledby="dinners-title">
       <div class="wrap">
+        ${sectionHead({ label: homeDinners.sectionLabel })}
         <div class="dinners__head">
           <div class="dinners__intro">
-            <p class="t-label t-label--dot" data-reveal>${homeDinners.sectionLabel}</p>
-            <h2 id="dinners-title" class="t-h2" data-reveal>${homeDinners.headline}</h2>
+            <h2 id="dinners-title" class="t-h2" data-rise>${homeDinners.headline}</h2>
           </div>
           <div class="dinners__copy">
             ${homeDinners.paragraphs.map((p, i) => `<p class="dinners__para" data-reveal style="--i: ${i + 1}">${p}</p>`).join('')}
@@ -360,7 +394,7 @@ function buildIndustries() {
   return `
     <section class="industries" aria-labelledby="industries-title">
       <div class="wrap">
-        <h2 id="industries-title" class="t-label t-label--dot sec-label">${homeIndustries.sectionLabel}</h2>
+        ${sectionHead({ label: homeIndustries.sectionLabel, labelId: 'industries-title' })}
         <ul class="industries__grid">${items}</ul>
       </div>
     </section>
@@ -369,11 +403,15 @@ function buildIndustries() {
 
 // Back on the homepage at Alkida's request (Loom, 2026-10-21), as a carousel
 // (call, 2026-10-22: "the carousel that then leads to like everyone's bio...
-// it doesn't really look good when it's displayed stagnantly"). About two and
-// a half portraits show at a time so it slides even with three people; it
-// swipes, scrolls sideways and steps with the arrows (initTeamCarousel). Each
-// card opens that person's bio. Alkida and Joseph join when their headshots
-// arrive.
+// it doesn't really look good when it's displayed stagnantly"). Whole
+// portraits only, two at a time (one on phones), so it slides even with three
+// people without cutting anyone off (Alkida, 2026-10-29: it "cuts off right
+// at Gabby's face... allowing users to swipe through the team members"). It
+// swipes, drags with a mouse, scrolls sideways and steps with the arrows, and
+// a line under it shows where you are (initTeamCarousel). Each card opens
+// that person's bio. Alkida and Joseph join when their headshots
+// arrive. The heading is the kit's label ("The team"), so the section opens
+// like every other.
 const ARROW_LEFT = '<span aria-hidden="true">←</span>';
 const ARROW_RIGHT = '<span aria-hidden="true">→</span>';
 
@@ -382,18 +420,23 @@ function buildTeam() {
 
   return `
     <section class="team" aria-labelledby="team-title">
-      <div class="wrap team__grid">
-        <div class="team__head">
-          <h2 id="team-title" class="t-h2" data-reveal>${teamHeading.headline}</h2>
-          <div class="team__links" data-reveal style="--i: 1">
-            ${textLink('/about', 'Meet the full team')}
-            <div class="team__arrows">
-              <button class="team__arrow" type="button" data-step="-1" aria-controls="team-track" aria-label="Previous people">${ARROW_LEFT}</button>
-              <button class="team__arrow" type="button" data-step="1" aria-controls="team-track" aria-label="Next people">${ARROW_RIGHT}</button>
+      <div class="wrap">
+        ${sectionHead({ label: teamHeading.headline, labelId: 'team-title' })}
+        <div class="team__grid">
+          <div class="team__head">
+            <div class="team__links" data-reveal>
+              ${textLink('/about', 'Meet the full team')}
+              <div class="team__arrows">
+                <button class="team__arrow" type="button" data-step="-1" aria-controls="team-track" aria-label="Previous people">${ARROW_LEFT}</button>
+                <button class="team__arrow" type="button" data-step="1" aria-controls="team-track" aria-label="Next people">${ARROW_RIGHT}</button>
+              </div>
             </div>
           </div>
+          <div class="team__track" data-reveal style="--i: 1">
+            <ul class="team__list" id="team-track" aria-label="Team">${members}</ul>
+            <div class="team__progress" aria-hidden="true"><span class="team__progress-thumb"><span class="team__progress-ink"></span></span></div>
+          </div>
         </div>
-        <ul class="team__list" id="team-track" aria-label="Team" data-lenis-prevent-wheel data-reveal style="--i: 1">${members}</ul>
       </div>
       ${bioDialog()}
     </section>
@@ -407,8 +450,10 @@ function buildTeam() {
 // aria-pressed says whether it's paused; the icon swaps to play. A strip also
 // rests while it's off screen or the tab is hidden. A strip with data-speed
 // (px per second) gets its loop time from its own width, so it moves at that
-// speed at every screen size. Reduced motion shows the strips still.
+// speed at every screen size (data-speed-narrow, if set, on phones). Reduced
+// motion shows the strips still.
 function initMarquee(root) {
+  const narrow = window.matchMedia('(max-width: 640px)');
   root.querySelectorAll('[data-marquee]').forEach(box => {
     const toggle = box.querySelector('.marquee__toggle');
     const marquee = box.querySelector('.marquee');
@@ -418,11 +463,11 @@ function initMarquee(root) {
       toggle.setAttribute('aria-pressed', String(paused));
     });
 
-    const speed = Number(marquee.dataset.speed);
+    const speed = () => Number((narrow.matches && marquee.dataset.speedNarrow) || marquee.dataset.speed);
     const track = marquee.querySelector('.marquee__track');
-    if (speed && track && 'ResizeObserver' in window) {
+    if (speed() && track && 'ResizeObserver' in window) {
       new ResizeObserver(() => {
-        marquee.style.setProperty('--marquee-dur', `${Math.round(track.offsetWidth / speed)}s`);
+        marquee.style.setProperty('--marquee-dur', `${Math.round(track.offsetWidth / speed())}s`);
       }).observe(track);
     }
 
@@ -469,92 +514,25 @@ function initCountUp(root) {
   counts.forEach(el => io.observe(el));
 }
 
-// What we do: on desktop the large photo shows the active pillar. Pointing at
-// a pillar shows its photo and stops the stepping; otherwise it steps every
-// few seconds while the section is on screen. The button pauses and resumes
-// the stepping. Phones and reduced motion: no stepping.
-function initPillars(root) {
-  const section = root.querySelector('.what__pillars');
-  if (!section) return;
-  const items = [...section.querySelectorAll('.pillar')];
-  const photos = [...section.querySelectorAll('.pillars__img')];
-  const toggle = section.querySelector('.pillars__toggle');
-  if (!items.length || photos.length !== items.length) return;
-
-  // 4s a step (Joe, 2026-10-22: 6s "seemed to move a little bit too slow").
-  // The fill line reads the same value.
-  const STEP = 4000;
-  const desktop = window.matchMedia('(min-width: 901px)');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let active = 0;
-  let timer = null;
-  let inView = false;
-  let stopped = reduce.matches;
-
-  const show = (i) => {
-    active = i;
-    items.forEach((el, k) => el.classList.toggle('is-active', k === i));
-    photos.forEach((el, k) => el.classList.toggle('is-active', k === i));
-  };
-
-  const schedule = () => {
-    clearTimeout(timer);
-    const cycling = !stopped && inView && desktop.matches;
-    // Restart the fill line from empty on every step.
-    section.classList.remove('is-cycling');
-    if (!cycling) return;
-    void section.offsetWidth;
-    section.classList.add('is-cycling');
-    timer = setTimeout(() => { show((active + 1) % items.length); schedule(); }, STEP);
-  };
-
-  const stop = () => {
-    stopped = true;
-    toggle.setAttribute('aria-pressed', 'true');
-    schedule();
-  };
-
-  items.forEach((el, i) => {
-    el.addEventListener('pointerenter', (e) => {
-      if (e.pointerType !== 'mouse' || !desktop.matches) return;
-      show(i);
-      if (!stopped) stop();
-    });
-    // Tabbing to a pillar's link shows its photo, as pointing at it does.
-    el.addEventListener('focusin', () => {
-      if (!desktop.matches) return;
-      show(i);
-      if (!stopped) stop();
-    });
-  });
-
-  toggle.addEventListener('click', () => {
-    stopped = !stopped;
-    toggle.setAttribute('aria-pressed', String(stopped));
-    schedule();
-  });
-
-  section.style.setProperty('--pillar-step', `${STEP}ms`);
-  if (stopped) toggle.setAttribute('aria-pressed', 'true');
-  desktop.addEventListener('change', schedule);
-  // Reduced motion switched on mid-visit stops the stepping for good.
-  reduce.addEventListener('change', () => { if (reduce.matches) stop(); });
-  if (!('IntersectionObserver' in window)) return;
-  new IntersectionObserver(([entry]) => {
-    inView = entry.isIntersecting;
-    schedule();
-  }, { threshold: 0.35 }).observe(section);
-}
-
 // Team carousel: the arrows step one portrait at a time and switch off at
 // either end; with nothing to scroll (wide screens, few people) they hide.
 // Swipe and sideways scrolling are the browser's own, snapping to a portrait.
+// A mouse can drag it too: the track follows the pointer one to one, and on
+// release a quick throw moves on a portrait in its direction while a slow
+// one settles on the nearest portrait (a drag that moved doesn't open
+// a bio). The line under it shows how much is in view and where.
+// The line is a scrubber too: press anywhere on it to jump there, or drag
+// it, and the track follows (Joe, 2026-10-29: "click on it and like drag it
+// to scroll"); on release it settles on the nearest portrait.
 function initTeamCarousel(root) {
   const track = root.querySelector('.team__list');
   const arrows = [...root.querySelectorAll('.team__arrow')];
   const box = root.querySelector('.team__arrows');
+  const progress = root.querySelector('.team__progress');
+  const thumb = progress && progress.querySelector('.team__progress-thumb');
   if (!track || arrows.length !== 2) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const behavior = () => (reduce.matches ? 'auto' : 'smooth');
 
   const step = () => {
     const card = track.querySelector('.member');
@@ -566,10 +544,15 @@ function initTeamCarousel(root) {
     box.hidden = max <= 2;
     arrows[0].disabled = track.scrollLeft <= 2;
     arrows[1].disabled = track.scrollLeft >= max - 2;
+    if (thumb) {
+      progress.hidden = max <= 2;
+      thumb.style.width = `${(track.clientWidth / track.scrollWidth) * 100}%`;
+      thumb.style.transform = `translateX(${(track.scrollLeft / track.clientWidth) * 100}%)`;
+    }
   };
 
   arrows.forEach(btn => btn.addEventListener('click', () => {
-    track.scrollBy({ left: Number(btn.dataset.step) * step(), behavior: reduce.matches ? 'auto' : 'smooth' });
+    track.scrollBy({ left: Number(btn.dataset.step) * step(), behavior: behavior() });
   }));
   // A card that takes keyboard focus slides fully into view.
   track.addEventListener('focusin', (e) => {
@@ -578,8 +561,107 @@ function initTeamCarousel(root) {
     const c = card.getBoundingClientRect();
     const t = track.getBoundingClientRect();
     const shift = c.left < t.left ? c.left - t.left : c.right > t.right ? c.right - t.right : 0;
-    if (shift) track.scrollBy({ left: shift, behavior: reduce.matches ? 'auto' : 'smooth' });
+    if (shift) track.scrollBy({ left: shift, behavior: behavior() });
   });
+
+  // Mouse drag. Touch and trackpads already swipe natively. The drag only
+  // takes over after 6px, so a plain click still opens a bio.
+  let drag = null;
+  track.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    drag = { id: e.pointerId, x: e.clientX, left: track.scrollLeft, moved: false, hist: [[e.timeStamp, e.clientX]] };
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 6) return;
+      drag.moved = true;
+      track.setPointerCapture(e.pointerId);
+      track.classList.add('is-dragging');
+    }
+    track.scrollLeft = drag.left - dx;
+    drag.hist.push([e.timeStamp, e.clientX]);
+    if (drag.hist.length > 6) drag.hist.shift();
+  });
+  let scrub = null;
+  // Snapping stays off until the settle ends, so the track doesn't jump to
+  // the nearest portrait first; a new grab during the settle takes over.
+  const settled = () => { if (!drag && !scrub) track.classList.remove('is-dragging'); };
+  const settle = () => {
+    const size = step();
+    const max = track.scrollWidth - track.clientWidth;
+    track.scrollTo({ left: Math.max(0, Math.min(max, Math.round(track.scrollLeft / size) * size)), behavior: behavior() });
+    track.addEventListener('scrollend', settled, { once: true });
+    setTimeout(settled, 800);
+  };
+  const swallowClick = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
+  const release = (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const { moved, hist } = drag;
+    drag = null;
+    if (!moved) return;
+    // Release speed over the last few moves (px per second, scroll direction).
+    const [t0, x0] = hist[0];
+    const [t1, x1] = hist[hist.length - 1];
+    const v = t1 > t0 ? -((x1 - x0) / (t1 - t0)) * 1000 : 0;
+    const size = step();
+    const page = track.scrollLeft / size;
+    const index = Math.abs(v) > 300 ? (v > 0 ? Math.ceil(page) : Math.floor(page)) : Math.round(page);
+    const max = track.scrollWidth - track.clientWidth;
+    track.scrollTo({ left: Math.max(0, Math.min(max, index * size)), behavior: behavior() });
+    track.addEventListener('scrollend', settled, { once: true });
+    setTimeout(settled, 800);
+    // The click that ends a drag doesn't open a bio.
+    track.addEventListener('click', swallowClick, { capture: true });
+    setTimeout(() => track.removeEventListener('click', swallowClick, { capture: true }), 0);
+  };
+  // The scrubber: the thumb stays under the point where it was grabbed (a
+  // press on the rail centres it there first), and the track follows it.
+  if (thumb) {
+    const follow = (x) => {
+      const r = progress.getBoundingClientRect();
+      track.scrollLeft = ((x - r.left - scrub.offset) / r.width) * track.scrollWidth;
+    };
+    progress.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      const t = thumb.getBoundingClientRect();
+      const onThumb = e.clientX >= t.left && e.clientX <= t.right;
+      scrub = { id: e.pointerId, offset: onThumb ? e.clientX - t.left : t.width / 2 };
+      progress.setPointerCapture(e.pointerId);
+      progress.classList.add('is-scrubbing');
+      track.classList.add('is-dragging');
+      follow(e.clientX);
+    });
+    progress.addEventListener('pointermove', (e) => {
+      if (scrub && e.pointerId === scrub.id) follow(e.clientX);
+    });
+    const endScrub = (e) => {
+      if (!scrub || e.pointerId !== scrub.id) return;
+      scrub = null;
+      progress.classList.remove('is-scrubbing');
+      settle();
+    };
+    progress.addEventListener('pointerup', endScrub);
+    progress.addEventListener('pointercancel', endScrub);
+  }
+
+  // Over the photos an up-down wheel scrolls the page, with the site's
+  // smooth scrolling, like anywhere else (Joe, 2026-10-29: it caught the
+  // scroll); only a sideways swipe moves the track, so the smooth scroller
+  // steps aside for those alone.
+  track.addEventListener('wheel', (e) => {
+    track.toggleAttribute('data-lenis-prevent-wheel', Math.abs(e.deltaX) > Math.abs(e.deltaY));
+  }, { passive: true });
+
+  track.addEventListener('dragstart', (e) => e.preventDefault());
+  track.addEventListener('pointerup', release);
+  track.addEventListener('pointercancel', release);
+
+  // The portraits rise one after another as the section arrives (CSS).
+  track.querySelectorAll('.member').forEach((m, i) => m.style.setProperty('--m', i));
+
   track.addEventListener('scroll', update, { passive: true });
   if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
   update();
@@ -596,21 +678,29 @@ function initHomepage() {
     buildProof(),
     buildWhatWeDo(),
     buildWork(),
-    buildTestimonials(),
+    // The quotes and industries are one light chapter in the bold variant.
     // Industries sit right under the client quotes: the repositioning is the
     // point of the rebrand (Alkida's Loom, 2026-10-21).
-    buildIndustries(),
+    `<div class="chapter">${buildTestimonials()}${buildIndustries()}</div>`,
     buildDinners(),
     buildTeam(),
     buildContactBand(),
   ].join(''));
 
+  // The bold variant of the kit, Eden's pick (Slack, 2026-10-29).
+  main.classList.add('kit-bold');
+
+  // The kit's ink box also marks the team cards' "Read bio" (shared markup,
+  // so it's marked here).
+  main.querySelectorAll('.member__button').forEach(el => el.setAttribute('data-ink-owner', ''));
+  main.querySelectorAll('.member__more').forEach(el => el.setAttribute('data-ink', ''));
+  initKit(main);
+  initBold(main);
   initReveal(main);
   initAnchors(main);
   initNavState();
   initMarquee(main);
   initCountUp(main);
-  initPillars(main);
   initFilms(main);
   initTeamCarousel(main);
   initBios(main, team);

@@ -1,0 +1,450 @@
+/* Hallmark · variant: the Eden kit, bold · genre: editorial · design-system: DESIGN.md · designed-as-app · pre-emit critique: P5 H4 E4 S5 R3 V5 */
+
+/* The bold variant (DESIGN.md, "The bold variant"): the kit turned up, all
+   under class kit-bold on <main>. Same palette and faces; bigger type, a
+   "going to print" hero entrance, a press ticker, a pointer photo and a
+   light chapter. Motion stays on
+   transform, opacity and clip-path, and everything holds still under
+   reduced motion. */
+
+.look-2026 {
+  /* The light chapter: white paper (the palette's white) with the page's
+     near-black as ink, at full, body and muted strength. */
+  --chapter-paper: #ffffff;
+  --chapter-ink: #0a0a06;
+  --chapter-ink-body: rgba(10, 10, 6, 0.86);
+  --chapter-ink-muted: rgba(10, 10, 6, 0.62);
+  --chapter-rule: rgba(10, 10, 6, 0.12);
+  --chapter-rule-strong: rgba(10, 10, 6, 0.2);
+  --chapter-link-rule: rgba(10, 10, 6, 0.3);
+  --dur-chapter: 900ms;
+}
+
+/* ─── Headlines: the kit's word rise, slower in the hero ─────────────── */
+
+/* The sweeping-block reveal read as abrupt (Joe, 2026-10-28), so headlines
+   take the kit's own rise from clipped masks; the hero's is slower and waits
+   for the photo's entrance to begin. */
+.look-2026 .kit-bold.kit-js .hero__title .w__i {
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-duration: 1100ms, 700ms;
+  transition-delay: calc(260ms + var(--w, 0) * 90ms);
+}
+
+.look-2026 .kit-bold.kit-js .hero__title.is-drawn .w__i {
+  opacity: 1;
+}
+
+/* ─── Hero: the statement at poster size ─────────────────────────────── */
+
+.look-2026 .kit-bold .hero--cinema .hero__title {
+  max-width: 7.5em;
+  font-size: clamp(3.5rem, 1rem + 8.4vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+/* ─── Proof band: the figures at poster size ─────────────────────────── */
+
+@media (min-width: 641px) {
+  .look-2026 .kit-bold .proof__value {
+    font-size: clamp(3rem, 1rem + 5.6vw, 7.5rem);
+    letter-spacing: -0.045em;
+  }
+}
+
+/* ─── What we do: giant index rows, a photo on the pointer ───────────── */
+
+/* Stacked: the header and the lede across the width, the body under the
+   lede's second half, then the three lines as giant rows. */
+.look-2026 .kit-bold .what__split {
+  display: block;
+}
+
+.look-2026 .kit-bold .what__lede {
+  max-width: 14em;
+  font-size: clamp(2.75rem, 1rem + 4.6vw, 5.75rem);
+}
+
+.look-2026 .kit-bold .what__index {
+  margin-top: clamp(64px, 8vw, 120px);
+}
+
+@media (min-width: 901px) {
+  /* Sized so the longest ("Build market visibility.") fills, never wraps. */
+  .look-2026 .kit-bold .what__line {
+    font-size: min(7.6vw, 6.75rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .look-2026 .kit-bold .what__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-block: clamp(28px, 2.6vw, 40px);
+  }
+}
+
+/* The photo that trails the pointer (built by initBold). */
+.look-2026 .kit-bold .follow {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: clamp(220px, 20vw, 320px);
+  pointer-events: none;
+}
+
+.look-2026 .kit-bold .follow__frame {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 200ms var(--ease-out), transform 260ms var(--ease-out);
+}
+
+.look-2026 .kit-bold .follow.is-shown .follow__frame {
+  opacity: 1;
+  transform: none;
+}
+
+.look-2026 .kit-bold .follow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: var(--photo-grade);
+  transition: opacity 180ms var(--ease-out);
+}
+
+.look-2026 .kit-bold .follow img.is-on {
+  opacity: 1;
+}
+
+/* ─── Selected work: photos lean in on hover ─────────────────────────── */
+
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 .kit-bold .story__media img {
+    transition: transform 450ms var(--ease-kit);
+  }
+
+  .look-2026 .kit-bold .story:hover .story__media img {
+    transform: scale(1.04);
+  }
+}
+
+/* ─── Team: portraits rise in, then lean in on hover ─────────────────── */
+
+/* As the section arrives, the portraits rise from their frames one after
+   another (the kit's word rise, at photo scale); under a mouse a portrait
+   leans in like the case photos. Neither runs with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .look-2026 .kit-bold.js-reveal .team__track .member__photo {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 900ms var(--ease-kit);
+    transition-delay: calc(150ms + var(--m, 0) * 120ms);
+  }
+
+  .look-2026 .kit-bold.js-reveal .team__track.is-in .member__photo {
+    clip-path: inset(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .look-2026 .kit-bold .team .member__photo img {
+    transition: transform 450ms var(--ease-kit);
+  }
+
+  .look-2026 .kit-bold .team .member__button:hover .member__photo img {
+    transform: scale(1.04);
+  }
+}
+
+/* ─── Hero entrance ──────────────────────────────────────────────────── */
+
+/* It sits in the hero's photo layer, under its dark overlay, and plays once
+   as the page opens (initBold). With reduced motion it doesn't run and the
+   still photo shows. */
+.look-2026 .kit-bold .hero-fx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Going to print: the hero opens as a coarse newsprint dot screen of the
+   photo (fading in), holds a beat, then one press pass runs left to right:
+   a band of finer dots leads, and the photograph and the coverage ticker
+   print in together behind it. All of it is one soft-edged mask moving at
+   one pace (initBold draws the two dot screens once on a canvas). */
+.look-2026 .kit-bold .hero {
+  --press-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --press-dur: 2600ms;
+  --press-lag: 280ms;
+}
+
+.look-2026 .kit-bold .hero-fx__print {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: press-in 450ms var(--ease-out) both;
+}
+
+@keyframes press-in {
+  from { opacity: 0; }
+}
+
+.look-2026 .kit-bold .hero-fx__print--fine,
+.look-2026 .kit-bold .hero.is-print .hero__bg > picture,
+.look-2026 .kit-bold .hero.is-print .ticker {
+  -webkit-mask-image: linear-gradient(90deg, #000 0 42%, transparent 58% 100%);
+  mask-image: linear-gradient(90deg, #000 0 42%, transparent 58% 100%);
+  /* 240% wide so the soft edge (about 38% of the hero) starts fully off
+     the left and ends fully off the right. */
+  -webkit-mask-size: 240% 100%;
+  mask-size: 240% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+}
+
+/* The pass is only timed once printing starts, so the masks take their
+   starting place instantly. The photo and the ticker follow the finer dots
+   by about a quarter second. */
+.look-2026 .kit-bold .hero.is-printing .hero-fx__print--fine,
+.look-2026 .kit-bold .hero.is-printing .hero__bg > picture,
+.look-2026 .kit-bold .hero.is-printing .ticker {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+  transition:
+    -webkit-mask-position var(--press-dur) var(--press-ease),
+    mask-position var(--press-dur) var(--press-ease);
+}
+
+.look-2026 .kit-bold .hero.is-printing .hero__bg > picture,
+.look-2026 .kit-bold .hero.is-printing .ticker {
+  transition-delay: var(--press-lag);
+}
+
+/* ─── The light chapter (Cypher's theme flip) ────────────────────────── */
+
+/* The quotes and industries on white paper with near-black ink, one
+   chapter. It opens with a wipe from the left (initBold), the kit's ink box
+   at the scale of a page; its text is inside the white, so no frame ever
+   shows light text on light paper or dark on dark. */
+.look-2026 .kit-bold .chapter {
+  --ink: var(--chapter-ink);
+  --ink-body: var(--chapter-ink-body);
+  --ink-muted: var(--chapter-ink-muted);
+  --rule: var(--chapter-rule);
+  --rule-strong: var(--chapter-rule-strong);
+  --link-rule: var(--chapter-link-rule);
+  --label-strong: var(--chapter-ink);
+  --figure: var(--chapter-ink);
+  --paper-deep: transparent;
+  /* The mint ring is near invisible on white; ink shows it. */
+  --accent: var(--chapter-ink);
+  /* On white the ink box turns over: a near-black box, white text. */
+  --ink-box: var(--chapter-ink);
+  --ink-on-box: var(--chapter-paper);
+  background-color: var(--chapter-paper);
+  color: var(--ink-body);
+}
+
+.look-2026 .kit-bold .chapter.is-closed {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--dur-chapter) var(--ease-kit);
+}
+
+.look-2026 .kit-bold .chapter.is-closed.is-open {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ─── The press ticker (foot of the hero) ────────────────────────────── */
+
+/* A white band across the foot of the hero, near-black ink on the light
+   chapter's paper (Alkida, 2026-10-29: on the frosted dark band it was "easy
+   to miss"; Prosek's, Ebony's reference, is a light band): the label, then
+   the coverage running right to left, then the pause button. It prints in
+   with the photo, in the same pass (above). The hero makes room for it. */
+.look-2026 .kit-bold .hero--cinema {
+  --ticker-h: 56px;
+  padding-bottom: calc(clamp(56px, 7vw, 104px) + var(--ticker-h));
+}
+
+.look-2026 .kit-bold .ticker {
+  --ink: var(--chapter-ink);
+  --ink-body: var(--chapter-ink-body);
+  --ink-muted: var(--chapter-ink-muted);
+  --accent: var(--chapter-ink);
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  height: var(--ticker-h);
+  padding-inline: var(--gutter);
+  background: var(--chapter-paper);
+  color: var(--ink);
+}
+
+.look-2026 .kit-bold .ticker__label {
+  flex: none;
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.look-2026 .kit-bold .marquee--ticker {
+  flex: 1;
+  min-width: 0;
+}
+
+.look-2026 .kit-bold .marquee--ticker .marquee__track {
+  gap: var(--s-8);
+  padding-right: var(--s-8);
+  min-height: 0;
+  animation-duration: var(--marquee-dur, 60s);
+}
+
+.look-2026 .kit-bold .ticker__item {
+  align-items: baseline;
+  gap: var(--s-3);
+  white-space: nowrap;
+}
+
+.look-2026 .kit-bold .ticker__client {
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+.look-2026 .kit-bold .ticker__outlet {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.look-2026 .kit-bold .ticker__headline {
+  font-size: var(--t-lead);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.look-2026 .kit-bold .ticker__toggle {
+  flex: none;
+  margin: 0 -14px 0 0;
+}
+
+@media (max-width: 900px) {
+  .look-2026 .kit-bold .hero--cinema {
+    --ticker-h: 48px;
+  }
+
+  .look-2026 .kit-bold .ticker__label {
+    display: none;
+  }
+
+  .look-2026 .kit-bold .ticker__headline {
+    font-size: var(--t-body);
+  }
+}
+
+/* Short laptop screens keep their tighter hero foot, plus the ticker. */
+@media (min-width: 901px) and (max-height: 820px) {
+  .look-2026 .kit-bold .hero--cinema {
+    padding-bottom: calc(48px + var(--ticker-h));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Still: the newest headlines on one line, clipped at the edge. */
+  .look-2026 .kit-bold .marquee--ticker .marquee__track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: auto;
+    gap: var(--s-8);
+  }
+}
+
+/* ─── Inner pages: the bold kit across the site (2026-10-30) ─────────── */
+
+/* Each inner page opens on its headline at poster size, a step under the
+   homepage hero (8.5rem against 10rem) and set like it. A long headline
+   (the dinners page) takes the What we do lede's size. */
+.look-2026 .kit-bold .poster {
+  max-width: 12em;
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 1rem + 7vw, 8.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.look-2026 .kit-bold .poster--long {
+  max-width: 15em;
+  font-size: var(--t-poster-long);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Photos rise from their frames as they arrive, like the homepage team's
+   portraits: a .frame-rise that reveals on scroll holds still and its photo
+   wipes up inside it instead of fading in. The frame itself is never
+   clipped, so the browser still sees it arrive. Not used inside the light
+   chapter, whose wipe is the reveal. */
+@media (prefers-reduced-motion: no-preference) {
+  .look-2026 .kit-bold.js-reveal .frame-rise[data-reveal] {
+    opacity: 1;
+    transform: none;
+    background-color: transparent;
+  }
+
+  .look-2026 .kit-bold.js-reveal .frame-rise[data-reveal] > * {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 900ms var(--ease-kit);
+    transition-delay: calc(150ms + var(--i, 0) * 120ms);
+  }
+
+  .look-2026 .kit-bold.js-reveal .frame-rise[data-reveal].is-in > * {
+    clip-path: inset(0);
+  }
+}
+
+/* Case cards: the photo leans in on mouse hover, like the homepage's
+   Selected work. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .look-2026 .kit-bold .case__media img {
+    transition: transform 450ms var(--ease-kit);
+  }
+
+  .look-2026 .kit-bold .case:hover .case__media img {
+    transform: scale(1.04);
+  }
+}
+
+/* Link rows (Recent Work, Silvia's coverage): on mouse hover the signature
+   line draws along the row's foot (the kit's .sig-mark) and the headline
+   takes its underline. No ink box on these lists. */
+.look-2026 .kit-bold .rows__link {
+  position: relative;
+}
+
+/* ─── Reduced motion: everything in place ─────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .look-2026 .kit-bold .chapter.is-closed {
+    clip-path: none;
+    transition: none;
+  }
+
+}

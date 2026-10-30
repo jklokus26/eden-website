@@ -24,8 +24,8 @@ export const CASE_CARD_IMAGES = {
 
 // Silvia's client story lives at /silvia, not under /case-studies (Pomp,
 // through Alkida, 2026-10-23), so its card is described here for the
-// homepage and Our Results. It has no figures yet, so the figures' place
-// stays empty on Our Results. Alkida wants it on the homepage in Grip's place
+// homepage and Our Results. It has no figures yet, so on Our Results it
+// closes the page as a client story row rather than a card. Alkida wants it on the homepage in Grip's place
 // (2026-10-27), but Joe keeps Grip there until Alkida sends Silvia's figures:
 // add them here as metrics: [{ number, label }, ...] and Silvia's card takes
 // Grip's homepage spot on its own. Then swap Grip's line for Silvia's in the
@@ -34,6 +34,8 @@ export const silviaStory = {
   href: '/silvia',
   client: 'Silvia',
   title: 'Bringing a personal AI CFO into the media conversation',
+  // The Silvia page's own line under its headline, verbatim.
+  summary: 'Eden Communications helped Silvia earn media attention for a new way to understand your money.',
   image: { src: '/assets/images/silvia-card.jpg', width: 1600, height: 900 },
   alt: 'The Silvia logo',
   more: 'View client story',

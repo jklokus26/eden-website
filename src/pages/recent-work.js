@@ -6,10 +6,12 @@ import { initContactForm } from '../components/contact-form.js';
 import {
   ARROW, pageHead, buildContactBand, focusSection, initReveal, initAnchors, initNavState,
 } from '../components/look-2026.js';
+import { initBoldPage } from '../components/eden-bold.js';
 
-// Recent Work, Oct 2026 look (DESIGN.md): the client filter, then the
+// Recent Work, on the bold kit (DESIGN.md): the client filter, then the
 // coverage as link rows, 15 at a time. Copy and coverage come from
-// data/coverage.js.
+// data/coverage.js. The filters take the kit's ink box; a hovered row draws
+// the signature line along its foot.
 
 const ITEMS_PER_PAGE = 15;
 
@@ -44,10 +46,9 @@ function buildOutlet(item) {
   return `<span class="rows__outlet rw__logo-cell"><span class="rw__wordmark">${item.publication}</span></span>`;
 }
 
-// One row. Rows without a URL are not links. reveal: only the first rows
-// fade in as they scroll into view; rows added by a filter or Load More
-// appear at once.
-function buildRow(item, i, reveal) {
+// One row. Rows without a URL are not links. Rows don't fade in: a long list
+// of staggered entrances never settled (design audit, 2026-10-30).
+function buildRow(item) {
   const inner = `
     ${buildOutlet(item)}
     <div class="rw__text">
@@ -60,9 +61,9 @@ function buildRow(item, i, reveal) {
     </span>
   `;
   const row = item.externalUrl
-    ? `<a class="rows__link" href="${item.externalUrl}" target="_blank" rel="noopener noreferrer">${inner}${ARROW}</a>`
+    ? `<a class="rows__link" href="${item.externalUrl}" target="_blank" rel="noopener noreferrer">${inner}${ARROW}<span class="sig-mark" aria-hidden="true"></span></a>`
     : `<div class="rows__link rw__static">${inner}</div>`;
-  return `<li class="rows__item"${reveal ? ` data-reveal style="--i: ${i % 3}"` : ''}>${row}</li>`;
+  return `<li class="rows__item">${row}</li>`;
 }
 
 function buildRecentWork() {
@@ -72,10 +73,10 @@ function buildRecentWork() {
   // One filter per client, in the order they first appear.
   const clients = [...new Set(coverageItems.map(i => i.client))];
   const filter = (value, label, pressed) =>
-    `<button class="rw__filter" type="button" data-filter="${value}" aria-pressed="${pressed}" aria-controls="coverage-list">${label}</button>`;
+    `<button class="rw__filter" type="button" data-filter="${value}" aria-pressed="${pressed}" aria-controls="coverage-list" data-ink>${label}</button>`;
 
   main.innerHTML = `
-    ${pageHead({ label: 'Recent Work', title: "Our clients' wins", id: 'recent-work-title' })}
+    ${pageHead({ label: 'Recent Work', title: 'Our clients’ wins', id: 'recent-work-title' })}
 
     <section class="rw">
       <div class="wrap">
@@ -109,13 +110,13 @@ function buildRecentWork() {
     loadMoreWrap.hidden = visibleCount >= total;
   }
 
-  function render(reveal = false) {
+  function render() {
     const filtered = getFiltered();
-    listEl.innerHTML = filtered.slice(0, visibleCount).map((item, i) => buildRow(item, i, reveal)).join('');
+    listEl.innerHTML = filtered.slice(0, visibleCount).map(buildRow).join('');
     updateLoadMore(filtered.length);
   }
 
-  render(true);
+  render();
 
   // Load More adds the next rows under the ones already shown and moves
   // focus to the first new row, so keyboard and screen reader users carry on
@@ -124,7 +125,7 @@ function buildRecentWork() {
     const filtered = getFiltered();
     const next = filtered.slice(visibleCount, visibleCount + ITEMS_PER_PAGE);
     if (!next.length) return;
-    listEl.insertAdjacentHTML('beforeend', next.map((item, i) => buildRow(item, i, false)).join(''));
+    listEl.insertAdjacentHTML('beforeend', next.map(buildRow).join(''));
     const firstNew = listEl.children[visibleCount];
     visibleCount += ITEMS_PER_PAGE;
     updateLoadMore(filtered.length);
@@ -148,6 +149,7 @@ function initRecentWorkPage() {
   const main = document.getElementById('recent-work');
   buildRecentWork();
   if (!main) return;
+  initBoldPage(main);
   initReveal(main);
   initAnchors(main);
   initNavState();

@@ -1,5 +1,6 @@
-/* Recent Work, Oct 2026 look. Tokens, chrome, the link rows and the contact
-   band live in look-2026.css; the system is described in DESIGN.md. */
+/* Recent Work, on the bold kit. Tokens, chrome, the link rows and the
+   contact band live in look-2026.css, the kit and its bold variant in
+   eden-kit.css and eden-bold.css; the system is described in DESIGN.md. */
 
 .look-2026 .rw {
   padding-bottom: var(--section);
@@ -7,7 +8,8 @@
 
 /* ─── Client filter ─────────────────────────────────────────────────── */
 
-/* Quiet text buttons; the selected one in ink and underlined. */
+/* Quiet text buttons that take the kit's ink box: it wipes in on mouse
+   hover and stays on the selected one, so the choice reads at a glance. */
 .look-2026 .rw__filters {
   display: flex;
   flex-wrap: wrap;
@@ -16,18 +18,15 @@
 }
 
 .look-2026 .rw__filter {
+  display: inline-flex;
+  align-items: center;
   min-height: 44px;
   font-size: var(--t-small);
   font-weight: 500;
   line-height: 1.2;
   color: var(--ink-muted);
   white-space: nowrap;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 6px;
-  transition: color var(--dur-ui) var(--ease-out),
-              text-decoration-color var(--dur-ui) var(--ease-out);
+  transition: color var(--dur-ui) var(--ease-out);
 }
 
 .look-2026 .rw__filter:hover,
@@ -35,8 +34,15 @@
   color: var(--ink);
 }
 
-.look-2026 .rw__filter[aria-pressed="true"] {
-  text-decoration-color: var(--ink);
+/* The box hugs the label with a little room either side, as on text
+   links. */
+.look-2026 main .rw__filter > .ink {
+  inset: var(--s-2) calc(-1 * var(--s-2));
+  padding: 0 var(--s-2);
+}
+
+.look-2026 main .rw__filter[aria-pressed="true"] > .ink {
+  clip-path: inset(0);
 }
 
 /* ─── Coverage rows ─────────────────────────────────────────────────── */

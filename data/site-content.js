@@ -149,8 +149,11 @@ export const homeIndustries = {
 };
 
 // The doc's band also has a "Talk to Eden" button; on the site the contact
-// form sits in the band itself, so the form takes the button's place.
+// form sits in the band itself, so the form takes the button's place. On
+// pages using the Eden kit the button's label opens the band as its section
+// label.
 export const homeContactBand = {
+  label: 'Talk to Eden',
   headline: 'Your reputation should arrive before you do.',
   body: 'If you’re entering a bigger market, raising your profile or defining a new category, we’d like to hear what you’re building.',
   words: ['People', 'Ideas', 'Markets', 'Opportunity'],

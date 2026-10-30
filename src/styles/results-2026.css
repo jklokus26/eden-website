@@ -1,12 +1,91 @@
-/* Our Results page, Oct 2026 look. Tokens, the page opening, the case
-   cards and the contact band live in look-2026.css; the system is
-   described in DESIGN.md. */
+/* Our Results page, on the bold kit. Tokens, the page opening, the case
+   cards and the contact band live in look-2026.css, the kit and its bold
+   variant in eden-kit.css and eden-bold.css; the system is described in
+   DESIGN.md. */
 
 .look-2026 .results {
   padding: 0 0 var(--section);
 }
 
-.look-2026 .results .case-grid {
-  padding-top: clamp(40px, 5vw, 64px);
-  border-top: 1px solid var(--rule);
+/* Silvia's client story, first under the opening: the kit's header, then
+   one row, the logo in the first card's column and the headline, summary
+   and link from the second's (the grid below shares the columns). The
+   whole row is the link; hovering it inks "View client story" like a
+   card. */
+.look-2026 .rstory {
+  padding: 0 0 clamp(64px, 8vw, 112px);
+}
+
+.look-2026 .rstory__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--s-6);
+  align-items: center;
+}
+
+.look-2026 .rstory__logo {
+  display: block;
+  width: min(100%, 200px);
+  height: auto;
+}
+
+.look-2026 .rstory__text {
+  grid-column: 2 / -1;
+}
+
+.look-2026 .rstory__title {
+  max-width: 24em;
+  text-wrap: balance;
+}
+
+.look-2026 .rstory__link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color var(--dur-ui) var(--ease-out);
+}
+
+.look-2026 .rstory__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.look-2026 .rstory__row:hover .rstory__link {
+  text-decoration-color: var(--link-rule);
+}
+
+.look-2026 .rstory__summary {
+  max-width: 36rem;
+  margin-top: var(--s-3);
+  color: var(--ink-body);
+  text-wrap: pretty;
+}
+
+.look-2026 .rstory__more {
+  margin-top: var(--s-4);
+}
+
+@media (max-width: 1024px) {
+  .look-2026 .rstory__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .look-2026 .rstory__row {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--s-5);
+  }
+
+  .look-2026 .rstory__logo {
+    width: 150px;
+  }
+
+  .look-2026 .rstory__text {
+    grid-column: 1;
+  }
 }

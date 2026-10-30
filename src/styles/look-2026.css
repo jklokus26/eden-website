@@ -9,9 +9,10 @@
    (deliverables/eden/website-clone/src/styles: global.css, nav.css,
    contact-form.css, home.css) and its DESIGN.md; where the two disagree,
    the live code wins (Joe, 2026-10-22). No color here is new. The live
-   site's purple-sky-mint gradient is not used: Joe, 2026-10-22, it reads
-   "a little corny, a little childish... rather than professional and
-   buttoned up."
+   site's purple-sky-mint gradient appears only as the Eden kit's 1px
+   signature line (src/styles/eden-kit.css): Joe, 2026-10-22, as a text
+   fill it reads "a little corny, a little childish... rather than
+   professional and buttoned up."
 
    One theme, dark: Eden picked it over the light preview on 2026-10-23
    (Alkida: "good to push the dark version of the website for now"). */
@@ -57,6 +58,7 @@
   --font-sans: 'Geist', 'Helvetica Neue', Arial, sans-serif;
 
   --t-display: clamp(2.75rem, 1.7rem + 3.7vw, 4.875rem);
+  --t-poster-long: clamp(2.5rem, 1rem + 4.6vw, 5.75rem);
   --t-h2: clamp(2.125rem, 1.5rem + 2.6vw, 3.625rem);
   --t-h3: clamp(1.5rem, 1.2rem + 0.9vw, 1.875rem);
   --t-card: clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem);
@@ -118,6 +120,10 @@ html:has(> body.look-2026) {
   max-width: var(--container);
   margin: 0 auto;
   padding-inline: var(--gutter);
+}
+
+.look-2026 .keep {
+  white-space: nowrap;
 }
 
 .look-2026 .visually-hidden {
@@ -691,59 +697,54 @@ html:has(> body.look-2026) {
 
 /* ─── Page opening (inner pages) ────────────────────────────────────── */
 
-/* The label and headline on the left, an optional short intro on the right,
-   on the dinners page's spacing. Stacked below 900px. */
+/* The kit's header (label, signature line), then the headline at poster
+   size (.poster, eden-bold.css) with an optional intro under it on its
+   left edge, two columns on laptops (look-2026.js pageHead). */
 .look-2026 .page-head {
-  padding: calc(var(--nav-h) + clamp(48px, 7vw, 96px)) 0 clamp(48px, 6vw, 80px);
+  padding: calc(var(--nav-h) + clamp(40px, 6vw, 88px)) 0 clamp(56px, 7vw, 104px);
 }
 
-.look-2026 .page-head__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--s-5);
-  align-items: start;
+.look-2026 .page-head .kit-head {
+  margin-bottom: clamp(28px, 3.4vw, 48px);
 }
 
-.look-2026 .page-head__title {
-  grid-column: 1 / 8;
-}
-
-.look-2026 .page-head__title h1 {
-  max-width: 18ch;
-  margin-top: var(--s-5);
-}
-
-/* The intro starts level with the headline (past the label and its gap). */
+/* The intro under the headline, on its left edge: two columns on laptops
+   (the grid's halves, so the second starts on the grid's middle line), one
+   below 900px. Paragraphs never split across the columns. */
 .look-2026 .page-head__lead {
-  grid-column: 9 / 13;
-  padding-top: calc(var(--t-label) * 1.35 + var(--s-5) + 0.5rem);
+  margin-top: clamp(32px, 4vw, 56px);
 }
 
-/* Small laptops: the intro gains a column for a comfortable measure. */
-@media (min-width: 901px) and (max-width: 1200px) {
+@media (min-width: 901px) {
   .look-2026 .page-head__lead {
-    grid-column: 8 / 13;
+    columns: 2;
+    column-gap: var(--s-5);
+  }
+}
+
+@media (max-width: 900px) {
+  .look-2026 .page-head__lead {
+    max-width: 40rem;
   }
 }
 
 .look-2026 .page-head__lead p {
+  margin-bottom: var(--s-5);
+  font-size: var(--t-lead);
+  line-height: 1.7;
   color: var(--ink-body);
+  text-wrap: pretty;
+  break-inside: avoid;
 }
 
-.look-2026 .page-head__lead p + p {
-  margin-top: var(--s-4);
+.look-2026 .page-head__lead p:last-child {
+  margin-bottom: 0;
 }
 
-@media (max-width: 900px) {
-  .look-2026 .page-head__title,
-  .look-2026 .page-head__lead {
-    grid-column: 1 / -1;
-  }
-
-  .look-2026 .page-head__lead {
-    margin-top: var(--s-6);
-    padding-top: 0;
-  }
+/* A title set one sentence to a line. */
+.look-2026 .page-head__line {
+  display: block;
+  text-wrap: balance;
 }
 
 /* ─── Questions (FAQ rows) ──────────────────────────────────────────── */
@@ -794,10 +795,17 @@ html:has(> body.look-2026) {
   outline-offset: 4px;
 }
 
+/* Answers run most of the width, up to the toggle's column, at the lead
+   size (Joe, 2026-10-30: at 40rem they sat "very condensed to the left"):
+   fewer lines, at up to about 120 characters a line, longer than the
+   site's usual measure by Joe's choice (52rem would hold them near 100). */
 .look-2026 .faq__item p {
-  max-width: 40rem;
+  max-width: 64rem;
   padding-bottom: var(--s-5);
+  font-size: var(--t-lead);
+  line-height: 1.65;
   color: var(--ink-body);
+  text-wrap: pretty;
 }
 
 .look-2026 .faq__item p + p {
@@ -939,7 +947,7 @@ html:has(> body.look-2026) {
 }
 
 /* The card's note takes the figures' place when a client has no figures
-   yet (Silvia). */
+   yet. */
 .look-2026 .case__note {
   align-self: start;
   margin-top: var(--s-4);
@@ -997,7 +1005,9 @@ html:has(> body.look-2026) {
 
 /* Figures sit as rows (figure left, label right) so every label stays on
    one line at every width. The figure column scales with the figure size
-   (3.4em fits "4,050%"); a longer figure widens its own row. */
+   (3.8em fits "4,050%"); a longer figure widens its own row. The figures
+   are Geist, tabular, like every figure on the site (the homepage's, since
+   2026-10-28), so data reads apart from the serif headlines. */
 .look-2026 .case__metrics {
   align-self: start;
   margin-top: var(--s-5);
@@ -1006,7 +1016,7 @@ html:has(> body.look-2026) {
 
 .look-2026 .case__metric {
   display: grid;
-  grid-template-columns: minmax(calc(var(--t-figure-sm) * 3.4), max-content) minmax(0, 1fr);
+  grid-template-columns: minmax(calc(var(--t-figure-sm) * 3.8), max-content) minmax(0, 1fr);
   align-items: baseline;
   column-gap: var(--s-3);
   padding-block: var(--s-3);
@@ -1016,12 +1026,13 @@ html:has(> body.look-2026) {
 .look-2026 .case__metric dd {
   grid-column: 1;
   grid-row: 1;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--t-figure-sm);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.01em;
-  font-variant-numeric: lining-nums;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
   color: var(--figure);
 }
 
@@ -1034,9 +1045,70 @@ html:has(> body.look-2026) {
 }
 
 .look-2026 .case__more {
+  grid-row: 5;
   align-self: end;
   justify-self: start;
   margin-top: var(--s-4);
+}
+
+/* A card left alone on the grid's last row takes the whole row: its photo
+   under the first column's photos, its words across the rest (the third
+   of three related cases on tablets). Never on
+   phones, where every card has the row to itself. */
+@media (min-width: 1025px) {
+  .look-2026 .case-grid > .case:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, auto) 1fr;
+    column-gap: var(--s-6);
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(3n + 1) > * {
+    grid-column: 2 / -1;
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(3n + 1) > .case__media {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: start;
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(3n + 1) > .case__client {
+    margin-top: 0;
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(3n + 1) > .case__more {
+    grid-row: auto;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .look-2026 .case-grid > .case:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, auto) 1fr;
+    column-gap: var(--s-6);
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(odd) > * {
+    grid-column: 2 / -1;
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(odd) > .case__media {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: start;
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(odd) > .case__client {
+    margin-top: 0;
+  }
+
+  .look-2026 .case-grid > .case:last-child:nth-child(odd) > .case__more {
+    grid-row: auto;
+  }
 }
 
 .look-2026 .case:hover .case__more .text-link__label {

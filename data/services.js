@@ -4,7 +4,7 @@ export const services = [
     title: 'Strategic Counsel & Narrative Development',
     tagline: 'We define the story your market needs to hear \u2014 then build the architecture to make it land across every surface that matters.',
     anchorId: 'strategic-counsel',
-    intro: 'We define the story your market needs to hear \u2014 then build the strategy to make it land. That starts with knowing the landscape before anyone else does: what competitors are saying, where the media conversation is heading, and where the openings are.',
+    intro: 'That starts with knowing the landscape before anyone else does: what competitors are saying, where the media conversation is heading, and where the openings are.',
     subServices: [
       { name: 'Corporate positioning and messaging refinement', description: 'Sharpening how your company talks about itself to the press, investors, and the market.' },
       { name: 'Executive narrative and thought leadership', description: 'Building the ideas and angles that make your leadership quotable and sought-after.' },
@@ -31,7 +31,7 @@ export const services = [
     title: 'Executive Visibility & Stakeholder Access',
     tagline: 'The best companies have leaders the market knows by name. We put yours in the rooms, on the stages, and in the publications that move capital and close deals.',
     anchorId: 'executive-visibility',
-    intro: 'The best companies have leaders the market knows by name. But visibility alone isn\u2019t the goal \u2014 access is. We put your executives in front of the journalists, investors, and industry leaders who shape markets and move capital. And we build the rooms where that happens.',
+    intro: 'But visibility alone isn\u2019t the goal \u2014 access is. We put your executives in front of the journalists, investors, and industry leaders who shape markets and move capital. And we build the rooms where that happens.',
     subServices: [
       { name: 'Executive bylines and op-eds', description: 'Original thought leadership in the publications that define your industry\u2019s conversation.' },
       { name: 'Speaking and conference strategy', description: 'Securing and preparing for the stages that build authority and drive business development.' },

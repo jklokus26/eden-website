@@ -3,12 +3,15 @@ import '../styles/case-study-2026.css';
 import { caseStudies, CASE_CARD_IMAGES, relatedFor } from '../../data/case-studies.js';
 import { initContactForm } from '../components/contact-form.js';
 import {
-  ARROW, caseCard, buildContactBand, initReveal, initAnchors, initNavState,
+  ARROW, caseCard, keepWords, buildContactBand, initReveal, initAnchors, initNavState,
 } from '../components/look-2026.js';
+import { sectionHead } from '../components/eden-kit.js';
+import { initBoldPage } from '../components/eden-bold.js';
 
-// One case study, Oct 2026 look (DESIGN.md): the opening with the case
-// photo, the story beside a sticky "By the numbers" sidebar, three more
-// case cards, then the contact band. Copy comes from data/case-studies.js.
+// One case study, on the bold kit (DESIGN.md): the opening (the client's name
+// at poster size, the deck beside the case photo), the story beside a sticky
+// "By the numbers" sidebar, three more case cards on the page's light
+// chapter, then the contact band. Copy comes from data/case-studies.js.
 
 function getSlugFromPath() {
   // Path: /case-studies/grip-shipping (or .html in dev)
@@ -24,7 +27,7 @@ function casePhoto(cs) {
   const image = CASE_CARD_IMAGES[cs.slug];
   if (!image) return '';
   return `
-    <div class="cs-head__media" data-reveal>
+    <div class="cs-head__media frame-rise" data-reveal>
       <picture>
         ${image.webp ? `<source type="image/webp" srcset="${image.webp}">` : ''}
         <img src="${image.src}" alt="${cs.alt}" width="${image.width}" height="${image.height}"
@@ -38,7 +41,8 @@ function sidebarFigures(metrics) {
   if (!metrics || !metrics.length) return '';
   return `
     <div class="cs-figures">
-      <h2 class="t-label t-label--dot">By the numbers</h2>
+      <h2 class="t-label">By the numbers</h2>
+      <span class="sig cs-figures__sig" aria-hidden="true"></span>
       <dl class="cs-figures__list">
         ${metrics.map(m => `
           <div class="cs-figure">
@@ -87,13 +91,12 @@ function buildCaseStudy() {
 
   main.innerHTML = `
     <section class="cs-head" aria-labelledby="cs-title">
-      <div class="wrap cs-head__grid">
-        <div class="cs-head__copy">
-          <p class="t-label t-label--dot">Case Study</p>
-          <h1 id="cs-title" class="t-h2 cs-head__title">${cleanTitle}</h1>
-          <p class="cs-head__deck">${cs.subtitle}</p>
+      <div class="wrap">
+        ${sectionHead({ label: 'Case Study', title: cleanTitle, titleId: 'cs-title', titleTag: 'h1', titleClass: 'poster' })}
+        <div class="cs-head__grid">
+          <p class="cs-head__deck" data-reveal style="--i: 3">${keepWords(cs.subtitle)}</p>
+          ${casePhoto(cs)}
         </div>
-        ${casePhoto(cs)}
       </div>
     </section>
 
@@ -125,27 +128,30 @@ function buildCaseStudy() {
       </div>
     </section>
 
-    ${related.length ? `
-      <section class="cs-more" aria-labelledby="more-title">
-        <div class="wrap">
-          <h2 id="more-title" class="t-label t-label--dot cs-more__label">More Case Studies</h2>
-          <ul class="case-grid">${relatedCards}</ul>
-        </div>
-      </section>
-    ` : ''}
+    <div class="chapter">
+      ${related.length ? `
+        <section class="cs-more" aria-labelledby="more-title">
+          <div class="wrap">
+            ${sectionHead({ label: 'More Case Studies', labelId: 'more-title' })}
+            <ul class="case-grid">${relatedCards}</ul>
+          </div>
+        </section>
+      ` : ''}
 
-    ${cs.isLast ? `
-      <section class="cs-end">
-        <div class="wrap cs-end__inner" data-reveal>
-          <p class="t-card cs-end__text">${cs.lastMessage}</p>
-          <a class="text-link cs-end__link" href="/results"><span class="arrow" aria-hidden="true">←</span><span class="text-link__label">Back to all case studies</span></a>
-        </div>
-      </section>
-    ` : ''}
+      ${cs.isLast ? `
+        <section class="cs-end">
+          <div class="wrap cs-end__inner" data-reveal>
+            <p class="t-card cs-end__text">${cs.lastMessage}</p>
+            <a class="text-link cs-end__link" href="/results"><span class="arrow" aria-hidden="true">←</span><span class="text-link__label">Back to all case studies</span></a>
+          </div>
+        </section>
+      ` : ''}
+    </div>
 
     ${buildContactBand()}
   `;
 
+  initBoldPage(main);
   initReveal(main);
   initAnchors(main);
 }

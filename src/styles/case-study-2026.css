@@ -1,6 +1,7 @@
-/* Case study pages, Oct 2026 look. Tokens, the case cards and the contact
-   band live in look-2026.css; the system is described in DESIGN.md. The
-   story with its sticky sidebar follows the Silvia page's layout. */
+/* Case study pages, on the bold kit. Tokens, the case cards and the contact
+   band live in look-2026.css, the kit and its bold variant in eden-kit.css
+   and eden-bold.css; the system is described in DESIGN.md. The story with
+   its sticky sidebar follows the Silvia page's layout. */
 
 .look-2026 #case-study picture,
 .look-2026 #case-study img {
@@ -9,11 +10,15 @@
 
 /* ─── Opening ───────────────────────────────────────────────────────── */
 
-/* Label, client and deck on the left, the case photo on the right, both
-   starting at the top so the label sits where every inner page's label
-   sits. Stacked below 900px, the photo under the words. */
+/* The kit's header with the client at poster size across the width, then
+   the deck on the left and the case photo on the right, rising from its
+   frame. Stacked below 900px, the photo under the deck. */
 .look-2026 .cs-head {
-  padding: calc(var(--nav-h) + clamp(48px, 7vw, 96px)) 0 clamp(48px, 6vw, 80px);
+  padding: calc(var(--nav-h) + clamp(40px, 6vw, 88px)) 0 clamp(56px, 7vw, 104px);
+}
+
+.look-2026 .cs-head .kit-head {
+  margin-bottom: 0;
 }
 
 .look-2026 .cs-head__grid {
@@ -21,22 +26,13 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
   align-items: start;
-}
-
-.look-2026 .cs-head__copy {
-  grid-column: 1 / 7;
-  padding-right: var(--s-6);
-}
-
-.look-2026 .cs-head__title {
-  max-width: 14ch;
-  margin-top: var(--s-5);
+  margin-top: clamp(40px, 5vw, 72px);
 }
 
 .look-2026 .cs-head__deck {
-  max-width: 30ch;
-  margin-top: var(--s-5);
-  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  grid-column: 1 / 6;
+  max-width: 24ch;
+  font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.75rem);
   font-weight: 500;
   line-height: 1.3;
   color: var(--ink);
@@ -58,13 +54,9 @@
 }
 
 @media (max-width: 900px) {
-  .look-2026 .cs-head__copy,
+  .look-2026 .cs-head__deck,
   .look-2026 .cs-head__media {
     grid-column: 1 / -1;
-  }
-
-  .look-2026 .cs-head__copy {
-    padding-right: 0;
   }
 
   .look-2026 .cs-head__media {
@@ -152,28 +144,32 @@
   color: var(--ink);
 }
 
-/* The sidebar stays in view under the nav while the story scrolls. */
+/* The sidebar stays in view under the nav while the story scrolls. No
+   boxes: the figures open with the kit's label and line, the call to action
+   sits under a hairline. */
 .look-2026 .cs-aside {
   grid-column: 9 / 13;
   position: sticky;
   top: calc(var(--nav-h) + var(--s-4));
   display: grid;
-  gap: var(--s-4);
+  gap: var(--s-7);
 }
 
-/* Flat panels with a hairline edge, as on the Silvia page. */
-.look-2026 .cs-figures,
 .look-2026 .cs-cta {
-  padding: var(--s-6);
-  background: var(--paper-deep);
-  border: 1px solid var(--rule-strong);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule-strong);
+}
+
+.look-2026 .cs-figures__sig {
+  margin-top: var(--s-3);
 }
 
 .look-2026 .cs-figures__list {
   margin: var(--s-4) 0 0;
 }
 
-/* Figure above its label, hairlines between. */
+/* Figure above its label, hairlines between (the signature line is the
+   first). */
 .look-2026 .cs-figure {
   display: flex;
   flex-direction: column-reverse;
@@ -182,18 +178,23 @@
   border-top: 1px solid var(--rule);
 }
 
+.look-2026 .cs-figure:first-child {
+  border-top: 0;
+}
+
 .look-2026 .cs-figure:last-child {
   padding-bottom: 0;
 }
 
+/* Geist, tabular, like every figure on the site. */
 .look-2026 .cs-figure dd {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: min(var(--t-figure), 3rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
   color: var(--figure);
 }
 
@@ -219,14 +220,25 @@
   }
 }
 
+/* Tablets and phones: the figures come first, before the story, and the
+   call to action after it. */
 @media (max-width: 900px) {
-  .look-2026 .cs-story,
   .look-2026 .cs-aside {
+    display: contents;
+  }
+
+  .look-2026 .cs-story,
+  .look-2026 .cs-figures,
+  .look-2026 .cs-cta {
     grid-column: 1 / -1;
   }
 
-  .look-2026 .cs-aside {
-    position: static;
+  .look-2026 .cs-figures {
+    order: -1;
+    margin-bottom: var(--s-8);
+  }
+
+  .look-2026 .cs-cta {
     margin-top: var(--s-8);
   }
 }
@@ -243,18 +255,14 @@
   .look-2026 .cs-figure:last-child {
     justify-content: flex-end;
     padding-bottom: 0;
+    border-top: 0;
   }
 }
 
-/* ─── More case studies ─────────────────────────────────────────────── */
+/* ─── More case studies (the light chapter) ─────────────────────────── */
 
 .look-2026 .cs-more {
   padding: var(--section) 0;
-  border-top: 1px solid var(--rule);
-}
-
-.look-2026 .cs-more__label {
-  margin-bottom: var(--s-7);
 }
 
 /* ─── End of the case studies (the last one only) ───────────────────── */

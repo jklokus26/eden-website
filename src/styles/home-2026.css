@@ -1,3 +1,5 @@
+/* Hallmark · redesign: homepage "Signature" (Spotlight + the Eden kit) · genre: editorial · design-system: DESIGN.md · designed-as-app · pre-emit critique: P5 H5 E4 S5 R4 V4 */
+
 /* Homepage sections, Oct 2026 look. Tokens and shared chrome live in
    look-2026.css; the system is described in DESIGN.md. */
 
@@ -8,29 +10,11 @@
   display: block;
 }
 
-/* Every section sits on one rhythm; the hairline that opens a section is
-   container-wide, never full-bleed. */
-.look-2026 .sec-label {
-  margin-bottom: var(--s-6);
-}
+/* Every section opens with the kit's header (src/styles/eden-kit.css): the
+   label, the signature line, then the headline where there is one. */
 
-.look-2026 .sec-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-5);
-  margin-bottom: var(--s-6);
-}
-
-.look-2026 .sec-head--ruled {
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--rule);
-}
-
-/* Three-up rows (pillars, case studies, industries) share one grid. */
-.look-2026 .work__grid,
-.look-2026 .industries__grid,
-.look-2026 .what__head {
+/* Three-up rows (industries) share one grid. */
+.look-2026 .industries__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--col-gap);
@@ -242,11 +226,6 @@
   padding: var(--band) 0 clamp(40px, 5vw, 56px);
 }
 
-.look-2026 .proof__title {
-  margin-bottom: var(--s-6);
-  text-wrap: balance;
-}
-
 .look-2026 .proof__figures {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -266,13 +245,15 @@
   border-left: 0;
 }
 
+/* Geist, like every figure on the homepage, so data reads apart from the
+   serif headlines; tabular, so the width holds while it counts up. */
 .look-2026 .proof__value {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--t-figure);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
   color: var(--ink);
 }
 
@@ -440,343 +421,409 @@
   padding: var(--section) 0;
 }
 
-.look-2026 .what__head {
-  align-items: start;
-}
-
-.look-2026 .what__title {
-  grid-column: 1 / 3;
-}
-
-.look-2026 .what__body {
-  grid-column: 3;
-  max-width: 30rem;
-  color: var(--ink-body);
-}
-
-.look-2026 .what__pillars {
+/* A split on laptops (Stage's): the header, the lede and the body in
+   columns 1-5, the pillar index in columns 7-12 with its top hairline level
+   with the signature line. Stacked below 900px. */
+.look-2026 .what__split {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
-  align-items: center;
-  margin-top: clamp(56px, 7vw, 96px);
+  align-items: start;
 }
 
-.look-2026 .pillars {
-  grid-column: 1 / 7;
+.look-2026 .what__lead {
+  grid-column: 1 / 6;
+  min-width: 0;
+}
+
+.look-2026 .what__lead .kit-head {
+  margin-bottom: 0;
+}
+
+/* The lede: the section's one big statement, filled from grey to white as
+   it scrolls through (the kit's lede). Capped so it sets in about four
+   lines in its five columns. */
+.look-2026 .what__lede {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: min(var(--t-display), 5.4vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.look-2026 .what__body {
+  max-width: 32rem;
+  margin-top: clamp(32px, 3.4vw, 48px);
+  color: var(--ink-body);
+}
+
+/* The index: one row per pillar between hairlines. */
+.look-2026 .what__index {
+  --row-bleed: var(--s-4);
+  grid-column: 7 / 13;
+  margin-top: calc(var(--kit-label-row) + var(--s-3));
+  border-top: 1px solid var(--rule-strong);
   list-style: none;
+}
+
+.look-2026 .what__index > li {
   border-bottom: 1px solid var(--rule-strong);
 }
 
-/* Each pillar: number in its own column, title and text beside it. The rule
-   above it carries the fill line that times the photo stepping. */
-.look-2026 .pillar {
+/* Each row: the line across the top, its list and the arrow under it. The
+   row reaches a little past the text on both sides, so the ink box and the
+   focus ring have room around the words; the text stays on the grid. */
+.look-2026 .what__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: var(--s-5);
+  row-gap: var(--s-2);
+  align-items: baseline;
+  margin-inline: calc(-1 * var(--row-bleed));
+  padding: clamp(28px, 3vw, 44px) var(--row-bleed);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* Each line owns its line: sized so the longest ("Build market
+   visibility.") fits the index's six columns, never wrapping. */
+.look-2026 .what__line {
+  grid-column: 1 / -1;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: min(var(--t-h2), 3.7vw);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.look-2026 .what__note {
+  grid-column: 1;
+  max-width: 26rem;
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+}
+
+.look-2026 .what__row .arrow {
+  grid-column: 2;
+  justify-self: end;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* The signature line along the row's foot (.sig-mark) is the kit's
+   (eden-kit.css). */
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 .what__row:hover .arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* Tablets and phones: stacked, the index across the width under the
+   body. */
+@media (max-width: 900px) {
+  .look-2026 .what__lead,
+  .look-2026 .what__index {
+    grid-column: 1 / -1;
+  }
+
+  .look-2026 .what__lede {
+    max-width: 13em;
+    font-size: var(--t-display);
+  }
+
+  .look-2026 .what__index {
+    margin-top: clamp(56px, 7vw, 96px);
+  }
+
+  .look-2026 .what__line {
+    font-size: min(var(--t-h2), 8.4vw);
+  }
+}
+
+@media (max-width: 640px) {
+  .look-2026 .what__index {
+    --row-bleed: var(--s-3);
+  }
+
+  .look-2026 .what__row {
+    padding-block: var(--s-5);
+  }
+
+  .look-2026 .what__row:focus-visible {
+    outline-offset: 1px;
+  }
+}
+
+/* ─── Selected work ─────────────────────────────────────────────────── */
+
+/* Sized to sit in about one laptop screen (a 14" MacBook Pro's 1512 x 860
+   window): the lead story as a row, its photo beside its text, then the
+   other two side by side under a hairline, each a smaller photo beside its
+   headline. Every figure in the section is set the same way, in three equal
+   columns, so the numbers line up from story to story. */
+.look-2026 .work {
+  padding: 0 0 var(--section);
+}
+
+/* No row gap: the pair below the lead shares the spread's rows (subgrid),
+   and a gap there would open between their own rows. */
+.look-2026 .work__spread {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--s-8);
+  list-style: none;
+}
+
+/* Each entry places its pieces by area, so the lead and the other two
+   share one markup. */
+.look-2026 .story {
   position: relative;
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  column-gap: var(--s-4);
-  padding: clamp(24px, 2.6vw, 36px) 0;
+  column-gap: var(--s-5);
+  align-items: start;
+  min-width: 0;
 }
 
-.look-2026 .pillar__rule {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
+.look-2026 .story--lead {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto auto auto auto 1fr;
+  grid-template-areas:
+    "media client"
+    "media title"
+    "media figures"
+    "media plate"
+    "media more"
+    "media .";
+  column-gap: var(--s-8);
+  margin-bottom: var(--s-7);
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* The other two share their rows (subgrid), so their figures and plates
+   stay level even when one headline or label runs a line longer. */
+.look-2026 .story:not(.story--lead) {
+  grid-row: span 5;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  grid-template-rows: subgrid;
+  grid-template-areas:
+    "media client"
+    "media title"
+    "media ."
+    "figures figures"
+    "plate plate";
+  row-gap: 0;
+}
+
+.look-2026 .story__media {
+  grid-area: media;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: linear-gradient(var(--rule-strong), var(--rule-strong)) 0 50% / 100% 1px no-repeat;
+  background: var(--paper-deep);
 }
 
-.look-2026 .pillar__progress {
-  position: absolute;
-  inset: 0;
-  background: var(--ink);
-  transform: scaleX(0);
-  transform-origin: left center;
+.look-2026 .story__media picture {
+  height: 100%;
 }
 
-.look-2026 .is-cycling .pillar.is-active .pillar__progress {
-  animation: pillar-fill var(--pillar-step, 4000ms) linear forwards;
+.look-2026 .story__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--photo-grade);
 }
 
-@keyframes pillar-fill {
-  to { transform: scaleX(1); }
+/* The client as a small tracked label over the serif headline. */
+.look-2026 .story__client {
+  grid-area: client;
+  margin-bottom: var(--s-3);
 }
 
-/* (Under #home, since every picture there is display: block.) */
-.look-2026 #home .pillar__photo {
-  display: none;
+.look-2026 .story__title {
+  grid-area: title;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--t-card);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
-.look-2026 .pillar__num {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  padding-top: 0.6em;
-  font-size: var(--t-label);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--ink-muted);
-  font-variant-numeric: tabular-nums;
+.look-2026 .story--lead .story__title {
+  max-width: 24ch;
+  font-size: max(var(--t-card), calc(var(--t-h2) * 0.6));
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
 }
 
-/* Inactive titles rest at 60% (still over 3:1 at this size) and fade up. */
-.look-2026 .pillar__title {
-  grid-column: 2;
-  margin: 0 0 var(--s-2);
-  opacity: 0.6;
-  transition: opacity 300ms var(--ease-out);
-}
-
-.look-2026 .pillar__text {
-  grid-column: 2;
-  max-width: 34ch;
-  color: var(--ink-muted);
-}
-
-/* The title links to its practice area on the Services page and the whole
-   pillar is the link (as on the case cards); the underline shows on hover. */
-.look-2026 .pillar__link {
-  color: inherit;
+/* The whole entry is the link. Its headline carries a fine underline at
+   rest, so it reads as a link on a phone too; on hover the underline
+   brightens and the lead's "View case study" takes the ink box. */
+.look-2026 .story__link {
+  color: var(--ink);
   text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-decoration-color: var(--link-rule);
+  text-decoration-thickness: max(1px, 0.025em);
+  text-underline-offset: 0.12em;
   transition: text-decoration-color var(--dur-ui) var(--ease-out);
 }
 
-.look-2026 .pillar__link::after {
+.look-2026 .story__link::after {
   content: '';
   position: absolute;
   inset: 0;
 }
 
-.look-2026 .pillar:hover .pillar__link,
-.look-2026 .pillar__link:focus-visible {
-  text-decoration-color: var(--link-rule);
+.look-2026 .story:hover .story__link {
+  text-decoration-color: var(--ink);
 }
 
-.look-2026 .pillar.is-active .pillar__title {
-  opacity: 1;
+.look-2026 .story__keep {
+  white-space: nowrap;
 }
 
-.look-2026 .pillar.is-active .pillar__num {
-  color: var(--ink);
+/* Figures: one size everywhere, three equal columns, each figure over its
+   label; the figures share one line and the labels the next (subgrid).
+   Set in Geist so the data reads apart from the serif headlines. */
+.look-2026 .story__figures {
+  grid-area: figures;
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  column-gap: var(--s-5);
+  margin-top: var(--s-5);
 }
 
-/* The large photo: three stacked, the active one fades in and settles. */
-.look-2026 .pillars__stage {
-  grid-column: 8 / 13;
-  position: relative;
+.look-2026 .story__figure {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: var(--s-2);
+  min-width: 0;
 }
 
-.look-2026 .pillars__media {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--band-bg);
+.look-2026 .story__figure dd {
+  grid-row: 1;
+  align-self: end;
+  font-family: var(--font-sans);
+  font-size: var(--t-figure-sm);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--figure);
 }
 
-.look-2026 .pillars__img,
-.look-2026 .pillars__img img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.look-2026 .story__figure dt {
+  grid-row: 2;
+  font-size: var(--t-small);
+  line-height: 1.35;
+  color: var(--ink-muted);
 }
 
-.look-2026 .pillars__img {
-  opacity: 0;
-  transition: opacity 600ms var(--ease-out);
+/* A case without figures yet (Silvia) shows its note in their place. */
+.look-2026 .story__note {
+  grid-area: figures;
+  margin-top: var(--s-4);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
 }
 
-.look-2026 .pillars__img img {
-  object-fit: cover;
-  filter: var(--photo-grade);
-  transform: scale(1.04);
-  transition: transform 1400ms var(--ease-out);
+/* The data plate (Room & Pillar's stacked cells): each small tracked label
+   over its value, on the figures' three columns, so Service sits under the
+   first figure and Industry runs under the other two. No rules: a label at
+   one edge and its value at the other read as disconnected (Joe,
+   2026-10-28). */
+.look-2026 .plate {
+  grid-area: plate;
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--s-5);
+  margin-top: var(--s-5);
 }
 
-.look-2026 .pillars__img.is-active {
-  opacity: 1;
+.look-2026 .plate__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  min-width: 0;
 }
 
-.look-2026 .pillars__img.is-active img {
-  transform: none;
+.look-2026 .plate__row + .plate__row {
+  grid-column: span 2;
 }
 
-/* Pause control on the photo: a dark disc so it reads on any frame. */
-.look-2026 .pillars__toggle {
-  position: absolute;
-  right: var(--s-3);
-  bottom: var(--s-3);
-  margin: 0;
-  border-radius: 50%;
-  color: var(--on-dark);
-  background: var(--disc);
-  transition: background-color var(--dur-ui) var(--ease-out);
+.look-2026 .plate__row dt {
+  font-size: var(--t-label);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
-.look-2026 .pillars__toggle:hover {
-  color: var(--on-dark);
-  background: var(--disc-hover);
+.look-2026 .plate__row dd {
+  font-size: var(--t-small);
+  line-height: 1.4;
+  color: var(--ink-body);
 }
 
-.look-2026 .pillars__toggle:focus-visible {
-  outline: 2px solid var(--paper);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px var(--ink);
+.look-2026 .story__more {
+  grid-area: more;
+  margin-top: var(--s-3);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .look-2026 .pillars__img,
-  .look-2026 .pillars__img img,
-  .look-2026 .pillar__title {
-    transition: none;
-  }
-
-  .look-2026 .pillars__img img {
-    transform: none;
-  }
-
-  .look-2026 .pillars__toggle {
-    display: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .look-2026 .what__title,
-  .look-2026 .what__body {
-    grid-column: 1 / -1;
-  }
-
-  .look-2026 .what__body {
-    margin-top: var(--s-5);
-  }
-
-  /* Phones and tablets: each pillar is a photo with its words under it. */
-  .look-2026 .what__pillars {
-    display: block;
-  }
-
-  .look-2026 .pillars__stage {
-    display: none;
-  }
-
-  .look-2026 .pillars {
-    display: grid;
-    row-gap: var(--s-7);
-    border-bottom: 0;
-  }
-
-  .look-2026 .pillar {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 0;
-  }
-
-  .look-2026 .pillar__rule {
-    display: none;
-  }
-
-  .look-2026 .pillar__num,
-  .look-2026 .pillar__title,
-  .look-2026 .pillar__text {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .look-2026 #home .pillar__photo {
-    display: block;
-    grid-column: 1 / -1;
-    aspect-ratio: 3 / 2;
-    margin-bottom: var(--s-5);
-    overflow: hidden;
-    background: var(--paper-deep);
-  }
-
-  .look-2026 .pillar__photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: var(--photo-grade);
-  }
-
-  .look-2026 .pillar__num {
-    padding-top: 0;
-    margin-bottom: var(--s-2);
-    color: var(--ink-muted);
-  }
-
-  .look-2026 .pillar__title {
-    opacity: 1;
-  }
-
-  .look-2026 .pillar__text {
-    max-width: none;
-  }
-}
-
-/* Tablets: photo beside the words, so the three pillars don't run long. */
-@media (min-width: 641px) and (max-width: 900px) {
-  /* The words sit as one block, centred beside the photo. */
-  .look-2026 .pillar {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    grid-template-rows: 1fr auto auto auto 1fr;
-    column-gap: var(--s-6);
-  }
-
-  .look-2026 #home .pillar__photo {
-    grid-column: 1;
-    grid-row: 1 / -1;
-    aspect-ratio: 4 / 3;
-    margin-bottom: 0;
-  }
-
-  .look-2026 .pillar__num,
-  .look-2026 .pillar__title,
-  .look-2026 .pillar__text {
-    grid-column: 2;
-  }
-
-  .look-2026 .pillar__num { grid-row: 2; }
-  .look-2026 .pillar__title { grid-row: 3; }
-  .look-2026 .pillar__text { grid-row: 4; }
-}
-
-/* ─── Selected work ─────────────────────────────────────────────────── */
-
-.look-2026 .work {
-  padding: 0 0 var(--section);
-}
-
-.look-2026 .work__grid {
-  grid-auto-rows: auto;
-}
-
-@media (max-width: 900px) {
-  .look-2026 .work__grid {
+/* Tablets: the lead's photo over its text; the other two one under the
+   other, each still a smaller photo beside its headline. */
+@media (max-width: 899px) {
+  .look-2026 .work__spread {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .look-2026 .work__grid .case {
-    grid-row: auto;
+  .look-2026 .story--lead {
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
-    display: flex;
-    flex-direction: column;
+    grid-template-areas: "media" "client" "title" "figures" "plate" "more";
   }
 
-  .look-2026 .work__grid .case + .case {
+  .look-2026 .story--lead .story__media {
+    margin-bottom: var(--s-5);
+  }
+
+  .look-2026 .story:not(.story--lead) {
+    grid-row: auto;
+    grid-template-rows: auto auto 1fr auto auto;
+  }
+
+  .look-2026 .story + .story + .story {
     margin-top: var(--s-7);
     padding-top: var(--s-7);
     border-top: 1px solid var(--rule);
   }
+}
 
-  .look-2026 .work__grid .case__metrics {
-    align-self: stretch;
+/* Phones: every entry stacked, photo first. */
+@media (max-width: 640px) {
+  .look-2026 .story:not(.story--lead) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas: "media" "client" "title" "figures" "plate";
   }
 
-  .look-2026 .work__grid .case__more {
-    align-self: flex-start;
+  .look-2026 .story:not(.story--lead) .story__media {
+    margin-bottom: var(--s-5);
   }
 }
 
@@ -793,10 +840,27 @@
   gap: var(--s-8) clamp(40px, 6vw, 96px);
 }
 
+/* The signature line stands beside each quote as a short vertical bar
+   (Cognichip's quote bar): a fixed length beside the opening three lines,
+   so the bars match whatever the quotes' lengths. The opening mark hangs
+   between bar and text. */
 .look-2026 .quote {
+  --quote-pad: clamp(20px, 2.2vw, 32px);
   display: flex;
   flex-direction: column;
   margin: 0;
+  padding-left: var(--quote-pad);
+}
+
+.look-2026 .quote__text {
+  position: relative;
+}
+
+.look-2026 .quote .sig--down {
+  position: absolute;
+  top: calc(var(--t-quote) * 0.28);
+  left: calc(-1 * var(--quote-pad));
+  height: calc(var(--t-quote) * 3.52);
 }
 
 .look-2026 .quote__text p {
@@ -937,10 +1001,6 @@
   grid-column: 1 / 7;
 }
 
-.look-2026 .dinners__intro .t-h2 {
-  margin-top: var(--s-5);
-}
-
 .look-2026 .dinners__copy {
   grid-column: 8 / 13;
 }
@@ -999,6 +1059,12 @@
 
 /* ─── Team: a carousel of portraits ───────────────────────────────── */
 
+/* "Read bio" takes the ink box when its card is hovered or pressed. */
+.look-2026 main .member__more > .ink {
+  inset: calc(-1 * var(--s-1)) calc(-1 * var(--s-2));
+  padding: var(--s-1) var(--s-2);
+}
+
 .look-2026 .team {
   padding: var(--section) 0;
 }
@@ -1014,10 +1080,6 @@
 
 .look-2026 .team__head {
   grid-column: 1 / 4;
-}
-
-.look-2026 .team__head .t-h2 {
-  margin-bottom: var(--s-3);
 }
 
 .look-2026 .team__links {
@@ -1056,14 +1118,23 @@
   cursor: default;
 }
 
-/* The track scrolls sideways and snaps to a portrait. About two and a half
-   portraits show, so the last one is cut by the edge and invites a swipe. */
-.look-2026 .team__list {
-  --per-view: 2.5;
+/* The track scrolls sideways and snaps to a portrait. Two whole portraits
+   show (one on phones), never one cut by the edge (Alkida, 2026-10-29: it
+   "cuts off right at Gabby's face"); the arrows and the line under it say
+   there's more. */
+.look-2026 .team__track {
   grid-column: 4 / 13;
+  min-width: 0;
+}
+
+.look-2026 .team__list {
+  --per-view: 2;
   display: flex;
   column-gap: var(--s-5);
   overflow-x: auto;
+  /* Sideways only: a few pixels of up-down room made the wheel scroll the
+     photos before the page. */
+  overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -1075,7 +1146,7 @@
 }
 
 .look-2026 .member {
-  flex: 0 0 calc((100% - (var(--per-view) - 0.5) * var(--s-5)) / var(--per-view));
+  flex: 0 0 calc((100% - (var(--per-view) - 1) * var(--s-5)) / var(--per-view));
   scroll-snap-align: start;
 }
 
@@ -1085,11 +1156,92 @@
   }
 }
 
-/* Tablets and phones: heading row on top, the carousel across the full
+/* A mouse drags the track (initTeamCarousel); while it does, and while it
+   settles, snapping and smooth scrolling step aside so it follows 1:1. */
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 .team__list {
+    cursor: grab;
+  }
+}
+
+.look-2026 .team__list.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.look-2026 .team__list.is-dragging .member__button {
+  pointer-events: none;
+}
+
+/* How much of the team is in view, and where: a hairline rail with the
+   signature line as the thumb, its width the share in view, sliding with
+   the track (initTeamCarousel sets both; it moves by transform only). It is
+   also a scrubber: press the rail to jump, drag the thumb to scroll. The
+   hit area is 32px tall around the 2px line; under a mouse the thumb
+   thickens to show it can be grabbed. */
+.look-2026 .team__progress {
+  position: relative;
+  height: 32px;
+  margin-top: var(--s-3);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.look-2026 .team__progress[hidden] {
+  display: none;
+}
+
+.look-2026 .team__progress::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15px;
+  height: 2px;
+  background: var(--rule);
+}
+
+.look-2026 .team__progress-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: grab;
+}
+
+.look-2026 .team__progress-ink {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--kit-line, var(--ink), var(--ink)));
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .look-2026 .team__progress:hover .team__progress-ink {
+    transform: scaleY(2.5);
+  }
+}
+
+.look-2026 .team__progress.is-scrubbing,
+.look-2026 .team__progress.is-scrubbing .team__progress-thumb {
+  cursor: grabbing;
+}
+
+.look-2026 .team__progress.is-scrubbing .team__progress-ink {
+  transform: scaleY(2.5);
+}
+
+/* Tablets and phones: the link row on top, the carousel across the full
    width. */
 @media (max-width: 900px) {
   .look-2026 .team__head,
-  .look-2026 .team__list {
+  .look-2026 .team__track {
     grid-column: 1 / -1;
   }
 
@@ -1101,39 +1253,25 @@
     margin-bottom: var(--s-6);
   }
 
-  .look-2026 .team__head .t-h2 {
-    margin-bottom: 0;
-  }
-
   .look-2026 .team__links {
     flex-direction: row;
     align-items: center;
   }
-
-  .look-2026 .team__list {
-    --per-view: 2.3;
-  }
 }
 
-/* Phones: one portrait and a slice of the next; swipe to move. The arrows
-   give way to the swipe, and the link sits under the heading. */
+/* Phones: one whole portrait at a time; swipe or tap the arrows. */
 @media (max-width: 640px) {
-  .look-2026 .team__head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--s-3);
-  }
-
-  .look-2026 .team__arrows {
-    display: none;
+  .look-2026 .team__links {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .look-2026 .team__list {
-    --per-view: 1.35;
+    --per-view: 1;
     column-gap: var(--s-4);
   }
 
   .look-2026 .member {
-    flex-basis: calc((100% - 0.85 * var(--s-4)) / 1.35);
+    flex-basis: 100%;
   }
 }

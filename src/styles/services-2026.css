@@ -1,6 +1,7 @@
-/* Services page, Oct 2026 look. Tokens, chrome, the page opening, the FAQ
-   rows and the contact band live in look-2026.css; the system is described
-   in DESIGN.md. */
+/* Services page, on the bold kit. Tokens, chrome, the page opening, the FAQ
+   rows and the contact band live in look-2026.css, the kit and its bold
+   variant in eden-kit.css and eden-bold.css; the system is described in
+   DESIGN.md. */
 
 /* ─── Practice areas ────────────────────────────────────────────────── */
 
@@ -9,194 +10,124 @@
 }
 
 /* The space between practice areas sits outside each section, so a link to
-   one (/services#earned-media) lands on its hairline, clear of the nav. */
+   one (/services#earned-media) lands on its label, clear of the nav. */
 .look-2026 .practice + .practice {
   margin-top: var(--section);
 }
 
-/* Label and title in columns 1-7, the tagline and intro in 9-12, as in the
-   page opening. */
-.look-2026 .practice__head {
+/* Under the kit's header, two columns that start on one line (the
+   homepage's What we do): the title, tagline and intro in columns 1-5, the
+   services in 7-12, each name over what it is between hairlines. The two
+   columns also end on one line (Joe, 2026-10-30: the left side "too short
+   compared to the text on the right"): the tagline is set as a deck, the
+   list is compact, and when the left runs longer the services share out
+   the extra height. */
+.look-2026 .practice .kit-head {
+  margin-bottom: clamp(28px, 3.4vw, 48px);
+}
+
+.look-2026 .practice__layout {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--s-5);
-  align-items: start;
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--rule-strong);
+  align-items: stretch;
+}
+
+.look-2026 .practice__head {
+  grid-column: 1 / 6;
+  align-self: start;
 }
 
 .look-2026 .practice__title {
-  grid-column: 1 / 8;
-}
-
-.look-2026 .practice__title .t-h2 {
-  max-width: 20ch;
-  margin-top: var(--s-5);
-}
-
-.look-2026 .practice__label {
-  display: flex;
-  gap: var(--s-3);
-  color: var(--label-strong);
-}
-
-.look-2026 .practice__pillar-num {
-  color: var(--ink-muted);
-  font-variant-numeric: tabular-nums;
+  max-width: 12em;
 }
 
 .look-2026 .practice__copy {
-  grid-column: 9 / 13;
-  padding-top: calc(var(--t-label) * 1.35 + var(--s-5));
+  max-width: 34rem;
+  margin-top: var(--s-7);
 }
 
+/* The tagline as the practice's deck, a step under the case studies'. */
 .look-2026 .practice__tagline {
-  font-size: var(--t-lead);
-  line-height: 1.5;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  line-height: 1.4;
   color: var(--ink);
   text-wrap: pretty;
 }
 
 .look-2026 .practice__intro {
-  margin-top: var(--s-4);
+  margin-top: var(--s-5);
+  font-size: var(--t-lead);
+  line-height: 1.6;
   color: var(--ink-body);
   text-wrap: pretty;
 }
 
-/* The five services: number, name, then what it is, between hairlines. The
-   description lines up with the intro above it. */
 .look-2026 .practice__list {
-  margin-top: clamp(40px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  grid-column: 7 / 13;
   list-style: none;
   border-bottom: 1px solid var(--rule);
 }
 
+/* Each service grows evenly when the list has height to spare, its name
+   and description centred in the row, so the rows stay even. */
 .look-2026 .practice__item {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--s-5);
-  align-items: baseline;
-  padding: var(--s-5) 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--s-3) 0 var(--s-4);
   border-top: 1px solid var(--rule);
 }
 
-.look-2026 .practice__num {
-  grid-column: 1;
-  font-size: var(--t-label);
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-muted);
+/* The header's line already rules the top: the first service sits level
+   with the title, with no second line under the header's. */
+.look-2026 .practice__item:first-child {
+  justify-content: flex-start;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .look-2026 .practice__name {
-  grid-column: 2 / 8;
-  max-width: 28ch;
   text-wrap: balance;
 }
 
 .look-2026 .practice__desc {
-  grid-column: 9 / 13;
+  max-width: 36rem;
+  margin-top: var(--s-1);
   color: var(--ink-body);
   text-wrap: pretty;
 }
 
-/* Small laptops: the right-hand column gains a column so the copy keeps a
-   comfortable measure, in line with the page opening's intro above it. */
-@media (min-width: 901px) and (max-width: 1200px) {
-  .look-2026 .practice__copy,
-  .look-2026 .practice__desc {
-    grid-column: 8 / 13;
-  }
-
-  .look-2026 .practice__name {
-    grid-column: 2 / 7;
-  }
-}
-
-/* Tablets: the intro under the title, the service's description under its
-   name. */
+/* Tablets and phones: the title and copy, then the services under them. */
 @media (max-width: 900px) {
-  .look-2026 .practice__title,
-  .look-2026 .practice__copy {
+  .look-2026 .practice__head,
+  .look-2026 .practice__list {
     grid-column: 1 / -1;
   }
 
   .look-2026 .practice__copy {
     max-width: 40rem;
-    padding-top: 0;
     margin-top: var(--s-5);
   }
 
-  .look-2026 .practice__item {
-    grid-template-columns: 3rem minmax(0, 1fr);
-    column-gap: var(--s-3);
-    row-gap: var(--s-2);
-  }
-
-  .look-2026 .practice__num {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .look-2026 .practice__name,
-  .look-2026 .practice__desc {
-    grid-column: 2;
-    max-width: 40rem;
+  .look-2026 .practice__list {
+    margin-top: clamp(40px, 6vw, 56px);
   }
 }
 
-/* ─── FAQ ───────────────────────────────────────────────────────────── */
+/* ─── FAQ (the light chapter) ───────────────────────────────────────── */
 
 .look-2026 .sv-faq {
-  padding-bottom: var(--section);
+  padding: var(--section) 0;
 }
 
-.look-2026 .sv-faq__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--s-5);
-  align-items: start;
-}
-
-.look-2026 .sv-faq__head {
-  grid-column: 1 / 5;
-  padding-top: var(--s-6);
-  border-top: 1px solid var(--rule-strong);
-}
-
-.look-2026 .sv-faq__head h2 {
-  max-width: 12ch;
-  margin-top: var(--s-5);
-}
-
-.look-2026 .sv-faq__list {
-  grid-column: 6 / 13;
+.look-2026 .sv-faq .kit-head__title {
+  max-width: 14ch;
 }
 
 .look-2026 .sv-faq__list summary h3 {
   text-wrap: balance;
-}
-
-/* Small laptops: a column more for the heading, so "asked questions"
-   stays on one line. */
-@media (max-width: 1200px) {
-  .look-2026 .sv-faq__head {
-    grid-column: 1 / 6;
-  }
-
-  .look-2026 .sv-faq__list {
-    grid-column: 7 / 13;
-  }
-}
-
-@media (max-width: 900px) {
-  .look-2026 .sv-faq__head,
-  .look-2026 .sv-faq__list {
-    grid-column: 1 / -1;
-  }
-
-  .look-2026 .sv-faq__list {
-    margin-top: var(--s-7);
-  }
 }
