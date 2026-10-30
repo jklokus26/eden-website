@@ -7,11 +7,13 @@ import {
   ARROW, pageHead, buildContactBand, focusSection, initReveal, initAnchors, initNavState,
 } from '../components/look-2026.js';
 import { initBoldPage } from '../components/eden-bold.js';
+import { escapeHtml as esc, safeUrl } from '../components/escape.js';
 
 // Recent Work, on the bold kit (DESIGN.md): the client filter, then the
 // coverage as link rows, 15 at a time. Copy and coverage come from
 // data/coverage.js. The filters take the kit's ink box; a hovered row draws
-// the signature line along its foot.
+// the signature line along its foot. Coverage values are escaped as they're
+// written (esc, safeUrl): a script fills data/coverage.js from Eden's sheet.
 
 const ITEMS_PER_PAGE = 15;
 
@@ -41,9 +43,9 @@ function buildOutlet(item) {
   const logo = LOGOS[OUTLET_NAMES[item.logoKey]];
   if (logo) {
     const h = Math.round((PRESS_HEIGHTS[logo.name] || 26) * LOGO_SCALE);
-    return `<span class="rows__outlet rw__logo-cell"><span class="ink-logo rw__logo" role="img" aria-label="${item.publication}" style="--src: url('${logo.logo}'); --r: ${logo.ratio}; --h: ${h}px"></span></span>`;
+    return `<span class="rows__outlet rw__logo-cell"><span class="ink-logo rw__logo" role="img" aria-label="${esc(item.publication)}" style="--src: url('${logo.logo}'); --r: ${logo.ratio}; --h: ${h}px"></span></span>`;
   }
-  return `<span class="rows__outlet rw__logo-cell"><span class="rw__wordmark">${item.publication}</span></span>`;
+  return `<span class="rows__outlet rw__logo-cell"><span class="rw__wordmark">${esc(item.publication)}</span></span>`;
 }
 
 // One row. Rows without a URL are not links. Rows don't fade in: a long list
@@ -52,16 +54,17 @@ function buildRow(item) {
   const inner = `
     ${buildOutlet(item)}
     <div class="rw__text">
-      <h2 class="t-card rows__headline">${item.title}</h2>
-      ${item.summary ? `<p class="rw__summary">${item.summary}</p>` : ''}
+      <h2 class="t-card rows__headline">${esc(item.title)}</h2>
+      ${item.summary ? `<p class="rw__summary">${esc(item.summary)}</p>` : ''}
     </div>
     <span class="rw__meta">
-      <time class="rows__date" datetime="${item.datePublished}">${formatDate(item.datePublished)}</time>
-      <span class="t-label rw__client">${item.client}</span>
+      <time class="rows__date" datetime="${esc(item.datePublished)}">${esc(formatDate(item.datePublished))}</time>
+      <span class="t-label rw__client">${esc(item.client)}</span>
     </span>
   `;
-  const row = item.externalUrl
-    ? `<a class="rows__link" href="${item.externalUrl}" target="_blank" rel="noopener noreferrer">${inner}${ARROW}<span class="sig-mark" aria-hidden="true"></span></a>`
+  const href = safeUrl(item.externalUrl);
+  const row = href
+    ? `<a class="rows__link" href="${href}" target="_blank" rel="noopener noreferrer">${inner}${ARROW}<span class="sig-mark" aria-hidden="true"></span></a>`
     : `<div class="rows__link rw__static">${inner}</div>`;
   return `<li class="rows__item">${row}</li>`;
 }
@@ -73,7 +76,7 @@ function buildRecentWork() {
   // One filter per client, in the order they first appear.
   const clients = [...new Set(coverageItems.map(i => i.client))];
   const filter = (value, label, pressed) =>
-    `<button class="rw__filter" type="button" data-filter="${value}" aria-pressed="${pressed}" aria-controls="coverage-list" data-ink>${label}</button>`;
+    `<button class="rw__filter" type="button" data-filter="${esc(value)}" aria-pressed="${pressed}" aria-controls="coverage-list" data-ink>${esc(label)}</button>`;
 
   main.innerHTML = `
     ${pageHead({ label: 'Recent Work', title: 'Our clients’ wins', id: 'recent-work-title' })}

@@ -4,8 +4,8 @@
   "description": "Eden Communications website clone",
   "scripts": {
     "dev": "vite",
-    "build": "node tests/photo-sizes.test.mjs && vite build",
-    "test": "node tests/contact-form.test.mjs && node tests/photo-sizes.test.mjs",
+    "build": "node tests/photo-sizes.test.mjs && node tests/coverage-escape.test.mjs && vite build",
+    "test": "node tests/contact-form.test.mjs && node tests/photo-sizes.test.mjs && node tests/coverage-escape.test.mjs",
     "preview": "vite preview"
   },
   "keywords": [],
