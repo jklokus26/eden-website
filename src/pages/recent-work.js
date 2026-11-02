@@ -24,6 +24,9 @@ const OUTLET_NAMES = {
   'yahoo-finance': 'Yahoo Finance', 'the-block': 'The Block', 'wsj': 'The Wall Street Journal',
   'financial-times': 'Financial Times', 'forbes': 'Forbes', 'reuters': 'Reuters',
   'new-york-times': 'The New York Times', 'bloomberg-law': 'Bloomberg Law',
+  'axios': 'Axios', 'business-insider': 'Business Insider', 'cnn': 'CNN', 'fox-business': 'Fox Business',
+  'cheddar-news': 'Cheddar News', 'blockworks': 'Blockworks', 'cointelegraph': 'CoinTelegraph', 'inc': 'Inc.',
+  'new-york-post': 'New York Post', 'washington-post': 'The Washington Post', 'usa-today': 'USA Today',
 };
 const LOGOS = Object.fromEntries(mediaLogos.map(l => [l.name, l]));
 
