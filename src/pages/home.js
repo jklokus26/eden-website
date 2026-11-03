@@ -409,8 +409,8 @@ function buildIndustries() {
 // at Gabby's face... allowing users to swipe through the team members"). It
 // swipes, drags with a mouse, scrolls sideways and steps with the arrows, and
 // a line under it shows where you are (initTeamCarousel). Each card opens
-// that person's bio. Alkida and Joseph join when their headshots
-// arrive. The heading is the kit's label ("The team"), so the section opens
+// that person's bio. Five people since Alkida and Joseph joined
+// (2026-11-03). The heading is the kit's label ("The team"), so the section opens
 // like every other.
 const ARROW_LEFT = '<span aria-hidden="true">←</span>';
 const ARROW_RIGHT = '<span aria-hidden="true">→</span>';

@@ -26,8 +26,8 @@ function buildOpening() {
 // bio" opens the shared bio dialog). The founder, first in data/team.js,
 // leads on a row of her own with her short bio beside her; everyone else
 // comes two to a row with no bio on the page, so rows stay even whatever
-// the bios' lengths and however many people join (Alkida and Joseph are
-// next, 2026-10-30).
+// the bios' lengths and however many people join (five since Alkida and
+// Joseph joined, 2026-11-03).
 function memberTile(m, i) {
   const lead = i === 0;
   const tags = (m.expertise || []).map(t => `<li>${t}</li>`).join('');

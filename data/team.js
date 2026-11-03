@@ -32,4 +32,26 @@ export const team = [
     linkedin: 'https://www.linkedin.com/in/gabriellegomez/',
     expertise: ['Financial Services', 'Campaign Strategy', 'Executive Visibility'],
   },
+  // Alkida and Joseph: bios, keywords, LinkedIns and headshots from Eden's
+  // "Staff Bios" doc and Staff Headshots folder (Alkida, 2026-11-03); titles
+  // from the LinkedIn profiles that doc links. Portraits cropped to the
+  // others' framing from the full-length originals, at 1000px.
+  {
+    name: 'Alkida Koleci',
+    role: 'Director of Operations',
+    photo: '/assets/images/team-alkida.webp',
+    alt: 'Alkida Koleci, Director of Operations at Eden Communications, professional headshot',
+    bio: "Alkida Koleci is a strategic operator with a deep technical background. She partners with leadership to turn growth goals into the operating models, systems, and teams that make them achievable. Her career spans IT, enterprise systems, project management, and business operations, so she sees both the big picture and how the pieces fit together underneath it. She has led multi-market expansions, modernized operations for organizations of more than 2,000 people, and built scalable infrastructure from the ground up. At Eden, she leads operations and helps shape how the agency grows across digital assets, financial services, and frontier technology. She holds a BS in Information Technology, summa cum laude, from St. Francis College.",
+    linkedin: 'https://www.linkedin.com/in/alkidakoleci/',
+    expertise: ['Business Operations', 'Scaling Strategy', 'Systems Architecture'],
+  },
+  {
+    name: 'Joseph Clark',
+    role: 'Senior Associate',
+    photo: '/assets/images/team-joseph.webp',
+    alt: 'Joseph Clark, Senior Associate at Eden Communications, professional headshot',
+    bio: "Joseph Clark combines front-office financial services experience along with a deep understanding of the media from his time as a reporter and communications professional on Capitol Hill. He worked in J.P. Morgan’s Commercial Bank before pursuing a career in journalism and communications. He has reported on national security and politics from the halls of Congress, the White House and abroad in Ukraine for The Washington Times. Prior to joining Eden, he was the deputy communications director for the House Foreign Affairs Committee where he honed his skills in leveraging media opportunities to influence outcomes. Prior to working in the private sector, Joseph served as an intelligence officer in the U.S. Navy.",
+    linkedin: 'https://www.linkedin.com/in/joseph-c-20b747b2/',
+    expertise: ['Institutional Finance', 'Policy & Regulatory Communications', 'Media Relations'],
+  },
 ];
