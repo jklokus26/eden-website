@@ -1131,6 +1131,14 @@ export const coverageItems = [
     logoKey: 'fortune',
   },
   {
+    title: 'LayerZero, Keeta enable tokenized bank deposits across Ethereum, Solana and Base',
+    publication: 'The Block',
+    externalUrl: 'https://www.theblock.co/news/business/2026-07-23-layerzero-keeta-enable-tokenized-bank-deposits-across-ethereum-solana-and-base-409507',
+    datePublished: '2026-07-23',
+    client: 'LayerZero',
+    logoKey: 'the-block',
+  },
+  {
     title: 'Poorly Reasoned\'?: SEC\'s Semiannual Reporting Proposal Hits Wall of Opposition',
     publication: 'Law.com',
     externalUrl: 'https://www.law.com/nationallawjournal/2026/07/21/poorly-reasoned-secs-semiannual-reporting-proposal-hits-wall-of-opposition/',
