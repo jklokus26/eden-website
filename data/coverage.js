@@ -99,6 +99,14 @@ export const coverageItems = [
     logoKey: 'bloomberg',
   },
   {
+    title: 'The Future of Stock Trading: Tokenization, AI Agents and 24/7 Financial Markets',
+    publication: 'Fintech TV',
+    externalUrl: 'https://cms.fintech.tv/the-future-of-stock-trading-tokenization-ai-agents-and-24-7-financial-markets/',
+    datePublished: '2026-10-21',
+    client: 'Alpaca',
+    logoKey: 'fintech-tv',
+  },
+  {
     title: 'Democrats\' Musk-ask questions',
     publication: 'POLITICO',
     externalUrl: 'https://www.politico.com/newsletters/playbook/2026/10/20/democrats-musk-ask-questions-01127679',
