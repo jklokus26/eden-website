@@ -19,6 +19,14 @@ export const coverageItems = [
     logoKey: 'coindesk',
   },
   {
+    title: 'Broadridge runs Wall Street’s market plumbing. Tokenization may expand its role',
+    publication: 'CNBC',
+    externalUrl: 'https://www.cnbc.com/2026/10/30/broadridge-tokenization-stock.html',
+    datePublished: '2026-10-30',
+    client: 'Ondo',
+    logoKey: 'cnbc',
+  },
+  {
     title: 'Crypto Market Makers Are Better Prepared for the AI Trading Boom Than Wall Street',
     publication: 'Fintech TV',
     externalUrl: 'https://cms.fintech.tv/crypto-market-makers-are-better-prepared-for-the-ai-trading-boom-than-wall-street/',
@@ -209,6 +217,14 @@ export const coverageItems = [
     datePublished: '2026-10-13',
     client: 'LayerZero',
     logoKey: 'coindesk',
+  },
+  {
+    title: 'Robostrategy CEO Andrew Kang showcases \'Taku\' the robot and talks the physical AI race',
+    publication: 'CNBC',
+    externalUrl: 'https://www.cnbc.com/video/2026/10/13/robostrategy-ceo-andrew-kang-showcases-taku-the-robot-and-talks-the-physical-ai-race.html',
+    datePublished: '2026-10-13',
+    client: 'RoboStrategy',
+    logoKey: 'cnbc',
   },
   {
     title: 'Bitcoin And Crypto Just Quietly Hit A Massive Price ‘Inflection Point’—But There’s A Nasty Catch',
@@ -2338,6 +2354,14 @@ export const coverageItems = [
     datePublished: '2026-02-06',
     client: 'Wintermute',
     logoKey: 'fortune',
+  },
+  {
+    title: 'Crypto Spurs SEC–CFTC Cooperation, But Regulatory Lines Remain Blurry',
+    publication: 'Law.com',
+    externalUrl: 'https://www.law.com/nationallawjournal/2026/02/05/crypto-spurs-seccftc-cooperation-but-regulatory-lines-remain-blurry/',
+    datePublished: '2026-02-06',
+    client: 'Reed Smith',
+    logoKey: 'law-com',
   },
   {
     title: 'Crypto Takes a Deep Slide Despite Trump\u2019s Support',
