@@ -35,11 +35,13 @@ export const team = [
   // Alkida and Joseph: bios, keywords, LinkedIns and headshots from Eden's
   // "Staff Bios" doc and Staff Headshots folder (Alkida, 2026-11-03); titles
   // from the LinkedIn profiles that doc links. Portraits cropped to the
-  // others' framing from the full-length originals, at 1000px.
+  // others' framing from the full-length originals, at 1000px. Alkida's
+  // carries ?v=2: her crop changed after it went live, and /assets files
+  // are cached for a year (vercel.json), so a new crop needs a new address.
   {
     name: 'Alkida Koleci',
     role: 'Director of Operations',
-    photo: '/assets/images/team-alkida.webp',
+    photo: '/assets/images/team-alkida.webp?v=2',
     alt: 'Alkida Koleci, Director of Operations at Eden Communications, professional headshot',
     bio: "Alkida Koleci is a strategic operator with a deep technical background. She partners with leadership to turn growth goals into the operating models, systems, and teams that make them achievable. Her career spans IT, enterprise systems, project management, and business operations, so she sees both the big picture and how the pieces fit together underneath it. She has led multi-market expansions, modernized operations for organizations of more than 2,000 people, and built scalable infrastructure from the ground up. At Eden, she leads operations and helps shape how the agency grows across digital assets, financial services, and frontier technology. She holds a BS in Information Technology, summa cum laude, from St. Francis College.",
     linkedin: 'https://www.linkedin.com/in/alkidakoleci/',
