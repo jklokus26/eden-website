@@ -1220,7 +1220,10 @@ html:has(> body.look-2026) {
 /* Bio dialog content. The portrait keeps its 4:5 shape at the top of its
    column, as on the cards: stretched to a long bio's height it was trimmed
    at the sides and cut Alkida's arm (Joe, 2026-11-03). It sits inside the
-   body's margins, its top level with the name, like the About page. */
+   body's margins (the same as the text's), centered on the text from name
+   to LinkedIn: beside a long bio, pinned to the top it left a gap under it
+   (Joe, same day). Where the bio is shorter than the photo, it fills the
+   height and the text starts level with its top. */
 .look-2026 .bio {
   position: relative;
   display: grid;
@@ -1229,6 +1232,7 @@ html:has(> body.look-2026) {
 }
 
 .look-2026 .bio__photo {
+  align-self: center;
   aspect-ratio: 4 / 5;
   margin: clamp(56px, 6vw, 72px) 0 clamp(28px, 4vw, 48px) clamp(28px, 4vw, 48px);
 }
