@@ -233,8 +233,8 @@
 
 /* ─── The light chapter (Cypher's theme flip) ────────────────────────── */
 
-/* The quotes and industries on white paper with near-black ink, one
-   chapter. It opens with a wipe from the left (initBold), the kit's ink box
+/* White paper with near-black ink (the homepage's industries and its quotes
+   are one chapter each). It opens with a wipe from the left (initBold), the kit's ink box
    at the scale of a page; its text is inside the white, so no frame ever
    shows light text on light paper or dark on dark. */
 .look-2026 .kit-bold .chapter {

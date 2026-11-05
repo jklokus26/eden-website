@@ -135,15 +135,15 @@ export const homeIndustries = {
   items: [
     {
       name: 'Financial Services',
-      areas: ['Capital markets', 'Asset management', 'Fintech', 'Investment banking', 'Professional services'],
+      areas: ['Capital Markets', 'Asset Management', 'Fintech', 'Investment Banking', 'Professional Services'],
     },
     {
       name: 'Digital Assets',
-      areas: ['Tokenization', 'Stablecoins', 'Trading', 'Infrastructure', 'Institutional crypto'],
+      areas: ['Tokenization', 'Stablecoins', 'Trading', 'Infrastructure', 'Institutional Crypto'],
     },
     {
       name: 'Frontier Technology',
-      areas: ['AI', 'Energy', 'Defense', 'Advanced manufacturing', 'Emerging infrastructure'],
+      areas: ['AI', 'Energy', 'Defense', 'Advanced Manufacturing', 'Emerging Infrastructure'],
     },
   ],
 };

@@ -2,8 +2,8 @@
 // system turned up, for Eden to compare. A page takes it by adding class
 // kit-bold to its <main> and calling initBold after initKit. Pieces: headline
 // words revealed by a sweeping block (Room & Pillar's bar wipe), a photo that
-// follows the pointer over the What we do rows (Cypher's image swap), a light
-// chapter for the quotes and industries that opens with the kit's ink-box
+// follows the pointer over the What we do rows (Cypher's image swap), light
+// chapters for the industries and the quotes that open with the kit's ink-box
 // wipe (Cypher's theme flip, made with a wipe so the text is never caught
 // mid-fade), a "going to print" hero entrance and a press ticker under the
 // hero. Eden picked this variant (Slack, 2026-10-29); the inner pages take
@@ -123,26 +123,28 @@ function initFollow(root) {
   });
 }
 
-// The quotes and industries are one light chapter, white paper with dark
-// ink throughout. It opens once, wiping in from the left like the kit's ink
-// box, when its top reaches three quarters of the way down the screen. The
-// text sits inside the white, so every visible line is always dark on white;
-// nothing fades between the two. With reduced motion it's simply there.
+// A light chapter is white paper with dark ink throughout (the homepage has
+// two: industries, then the client quotes). Each opens once, wiping in from
+// the left like the kit's ink box, when its top reaches three quarters of the
+// way down the screen. The text sits inside the white, so every visible line
+// is always dark on white; nothing fades between the two. With reduced motion
+// it's simply there.
 function initChapter(root) {
-  const chapter = root.querySelector('.chapter');
-  if (!chapter || reduce.matches || !('IntersectionObserver' in window)) return;
-  chapter.classList.add('is-closed');
-  const io = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) return;
-    chapter.classList.add('is-open');
-    // The wipe is the chapter's reveal: everything inside it shows as it
-    // opens, so nothing waits on scroll-triggered reveals that may have
-    // passed while it was still closed.
-    chapter.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in'));
-    chapter.querySelectorAll('.sig, [data-rise]').forEach(el => el.classList.add('is-drawn'));
-    io.disconnect();
-  }, { rootMargin: '0px 0px -25% 0px' });
-  io.observe(chapter);
+  if (reduce.matches || !('IntersectionObserver' in window)) return;
+  root.querySelectorAll('.chapter').forEach((chapter) => {
+    chapter.classList.add('is-closed');
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      chapter.classList.add('is-open');
+      // The wipe is the chapter's reveal: everything inside it shows as it
+      // opens, so nothing waits on scroll-triggered reveals that may have
+      // passed while it was still closed.
+      chapter.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in'));
+      chapter.querySelectorAll('.sig, [data-rise]').forEach(el => el.classList.add('is-drawn'));
+      io.disconnect();
+    }, { rootMargin: '0px 0px -25% 0px' });
+    io.observe(chapter);
+  });
 }
 
 // ─── Hero entrance ───────────────────────────────────────────────────────

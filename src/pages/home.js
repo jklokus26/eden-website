@@ -677,11 +677,13 @@ function initHomepage() {
     buildHero(),
     buildProof(),
     buildWhatWeDo(),
+    // Industries above Selected work (Alkida, Slack 2026-11-05: "move the
+    // industries we serve higher up, perhaps above 'Selected Work'"), each of
+    // industries and the client quotes its own light chapter in the bold
+    // variant, so the page runs dark, light, dark, light.
+    `<div class="chapter">${buildIndustries()}</div>`,
     buildWork(),
-    // The quotes and industries are one light chapter in the bold variant.
-    // Industries sit right under the client quotes: the repositioning is the
-    // point of the rebrand (Alkida's Loom, 2026-10-21).
-    `<div class="chapter">${buildTestimonials()}${buildIndustries()}</div>`,
+    `<div class="chapter">${buildTestimonials()}</div>`,
     buildDinners(),
     buildTeam(),
     buildContactBand(),

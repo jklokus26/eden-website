@@ -570,6 +570,12 @@
   padding: 0 0 var(--section);
 }
 
+/* Under the industries chapter (2026-11-05) it no longer follows What we do's
+   bottom padding, so it takes a top padding of its own. */
+.look-2026 .chapter + .work {
+  padding-top: var(--section);
+}
+
 /* No row gap: the pair below the lead shares the spread's rows (subgrid),
    and a gap there would open between their own rows. */
 .look-2026 .work__spread {

@@ -62,9 +62,9 @@ Bloomberg, CNBC, Wall Street Journal, New York Times, Reuters, Axios, Forbes, Fo
 
 ## Industries Served
 
-- Financial Services: capital markets, asset management, fintech, investment banking, professional services
-- Digital Assets: tokenization, stablecoins, trading, infrastructure, institutional crypto
-- Frontier Technology: AI, energy, defense, advanced manufacturing, emerging infrastructure
+- Financial Services: Capital Markets, Asset Management, Fintech, Investment Banking, Professional Services
+- Digital Assets: Tokenization, Stablecoins, Trading, Infrastructure, Institutional Crypto
+- Frontier Technology: AI, Energy, Defense, Advanced Manufacturing, Emerging Infrastructure
 
 Past case studies also cover renewable energy, logistics and franchise technology.
 
