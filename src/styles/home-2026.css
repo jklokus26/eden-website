@@ -89,24 +89,26 @@
   background: var(--paper);
 }
 
-/* The reel's frame (2026-11-05). Laptops: the whole 16:9 shot, 68% of the
+/* The reel's frame (2026-11-05). Laptops: the 16:9 shot at 76% of the
    width, flush to the right edge and centred between the top of the hero
    and the ticker (shorter, if the hero is too short for it), so each shot
-   sits on the clear side of the fade (below), uncropped. Its left, top and
-   bottom edges dissolve over long eased fades into a glow of its own
-   colours (the canvas, painted by initGlow, 1.7 times the frame's size and
-   blurred), so it never reads as a window in flat black. History, Joe on
-   the same day: a frame beside the text from 46% cropped about half of each
-   shot ("a lot of the shots get cut off on the left"); full width put the
-   left half of each shot under the text; the first 68% frame "goes from
-   solid to just this transparent window... too abrupt". A full-width shot
-   is about 93% of a laptop's width at the hero's height, so it can't fill
-   the height and sit on the clear side too; shifting it right only moves
-   the crop to the right edge. Tablets and phones: a band across the top
-   that fades into the page above the headline (below), no glow. The still
-   and the reel share the frame and the crop, so the reel starts exactly
-   where the still is; both carry the shared photo grade in their files, so
-   no filter here. */
+   sits on the clear side of the fade (below). It dissolves from the right:
+   an oval fade centred on its right edge, eased at both ends (smoothstep
+   stops) so no edge or corner shows, into a glow of its own colours (the
+   canvas, painted by initGlow, 1.7 times the frame's size and blurred).
+   History, Joe on the same day: a frame beside the text from 46% cropped
+   about half of each shot ("a lot of the shots get cut off on the left");
+   full width put the left half of each shot under the text; a 68% frame
+   with straight feathered edges "goes from solid to just this transparent
+   window... too abrupt", then with longer ones "still is pretty abrupt...
+   increase the amount that it actually fades". A full-width shot is about
+   93% of a laptop's width at the hero's height, so it can't fill the
+   height and sit on the clear side too; shifting it right only moves the
+   crop to the right edge. Tablets and phones: a band across the top that
+   fades into the page above the headline (below), no glow. The still and
+   the reel share the frame and the crop, so the reel starts exactly where
+   the still is; both carry the shared photo grade in their files, so no
+   filter here. */
 .look-2026 .hero__bg picture,
 .look-2026 .hero__video {
   position: absolute;
@@ -120,7 +122,7 @@
 @media (min-width: 901px) {
   .look-2026 .hero__bg {
     container-type: size;
-    --reel-h: min(68cqw * 9 / 16, 100cqh - var(--ticker-h, 0px));
+    --reel-h: min(76cqw * 9 / 16, 100cqh - var(--ticker-h, 0px));
   }
 
   .look-2026 .hero__bg picture,
@@ -136,12 +138,18 @@
 
   .look-2026 .hero__bg picture,
   .look-2026 .hero__video {
-    --reel-side: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.06) 5%, rgba(0, 0, 0, 0.2) 11%, rgba(0, 0, 0, 0.42) 18%, rgba(0, 0, 0, 0.66) 26%, rgba(0, 0, 0, 0.85) 34%, #000 42%);
-    --reel-ends: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.25) 6%, rgba(0, 0, 0, 0.6) 13%, rgba(0, 0, 0, 0.88) 20%, #000 26%, #000 74%, rgba(0, 0, 0, 0.88) 80%, rgba(0, 0, 0, 0.6) 87%, rgba(0, 0, 0, 0.25) 94%, transparent 100%);
-    -webkit-mask-image: var(--reel-side), var(--reel-ends);
-    -webkit-mask-composite: source-in;
-    mask-image: var(--reel-side), var(--reel-ends);
-    mask-composite: intersect;
+    --reel-fade: radial-gradient(ellipse 105% 80% at 100% 50%,
+      rgba(0, 0, 0, 1) 34%,
+      rgba(0, 0, 0, 0.957) 42.25%,
+      rgba(0, 0, 0, 0.844) 50.5%,
+      rgba(0, 0, 0, 0.684) 58.75%,
+      rgba(0, 0, 0, 0.5) 67%,
+      rgba(0, 0, 0, 0.316) 75.25%,
+      rgba(0, 0, 0, 0.156) 83.5%,
+      rgba(0, 0, 0, 0.043) 91.75%,
+      rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: var(--reel-fade);
+    mask-image: var(--reel-fade);
   }
 
   .look-2026 .hero__glow {
@@ -149,7 +157,7 @@
     transform: scale(1.7);
     transform-origin: 100% 50%;
     filter: blur(56px);
-    opacity: 0.5;
+    opacity: 0.6;
   }
 }
 
@@ -178,8 +186,16 @@
   opacity: 1;
 }
 
+/* Then the still goes, or it shows through wherever the frame fades (the
+   opening skyline ghosted over the faces). */
+.look-2026 .hero.is-playing .hero__bg picture {
+  visibility: hidden;
+  transition: visibility 0s 240ms;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .look-2026 .hero__video {
+  .look-2026 .hero__video,
+  .look-2026 .hero.is-playing .hero__bg picture {
     transition: none;
   }
 
