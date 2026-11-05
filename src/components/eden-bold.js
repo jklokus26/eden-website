@@ -209,9 +209,47 @@ function initReel(hero) {
   }, { threshold: 0.25 }).observe(hero);
 }
 
+// The glow around the reel on laptops (2026-11-05): the shot's own colours,
+// drawn 32x18 and blurred by CSS, so the frame fades into its own light
+// rather than into flat black (Joe: the frame went "from solid to just this
+// transparent window"). The still paints it until the reel plays; about 15
+// paints a second is plenty for a blur.
+function initGlow(hero, video) {
+  const canvas = hero.querySelector('.hero__glow');
+  const ctx = canvas && canvas.getContext('2d');
+  if (!ctx) return;
+  const laptop = window.matchMedia('(min-width: 901px)');
+  const still = hero.querySelector('.hero__bg img');
+  const paint = (src) => {
+    if (laptop.matches) ctx.drawImage(src, 0, 0, canvas.width, canvas.height);
+  };
+  const paintStill = () => { if (still && still.complete && still.naturalWidth) paint(still); };
+  if (still) still.addEventListener('load', paintStill);
+  paintStill();
+  let running = false;
+  let last = 0;
+  const tick = (now) => {
+    if (video.paused) { running = false; return; }
+    if (now - last > 66) { paint(video); last = now; }
+    requestAnimationFrame(tick);
+  };
+  video.addEventListener('playing', () => {
+    if (running) return;
+    running = true;
+    requestAnimationFrame(tick);
+  });
+  laptop.addEventListener('change', () => {
+    if (video.readyState >= 2) paint(video); else paintStill();
+  });
+}
+
 export function initBold(root) {
   const hero = root.querySelector('.hero');
-  if (hero) initReel(hero);
+  if (hero) {
+    initReel(hero);
+    const video = hero.querySelector('.hero__video');
+    if (video) initGlow(hero, video);
+  }
   initFollow(root);
   initChapter(root);
 }
