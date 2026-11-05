@@ -89,22 +89,41 @@
   background: var(--paper);
 }
 
+/* The reel's frame (2026-11-05). Laptops: the right of the hero, edge to
+   edge to the right, top and bottom, fading into the page on its left, so
+   the text sits on clean near-black and never on the footage (Joe: full
+   bleed behind the words "doesn't look good with the text"; the reel's
+   faces, captions and name bars ran through the headline and buttons).
+   Tablets and phones: a band across the top that fades into the page above
+   the headline (below). The still and the reel share the frame and the
+   crop, so the reel starts exactly where the still is; both carry the
+   shared photo grade in their files, so no filter here. */
+.look-2026 .hero__bg {
+  --reel-left: 46%;
+}
+
 .look-2026 .hero__bg picture,
-.look-2026 .hero__bg img,
 .look-2026 .hero__video {
+  position: absolute;
+  top: 0;
+  left: var(--reel-left);
+  width: calc(100% - var(--reel-left));
+  height: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 12%, rgba(0, 0, 0, 0.75) 24%, #000 34%);
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 12%, rgba(0, 0, 0, 0.75) 24%, #000 34%);
+}
+
+.look-2026 .hero__bg img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-/* The still and the reel take the same crop, so the reel starts exactly
-   where the still is. Both carry the shared photo grade in their files, so
-   no filter here. */
 .look-2026 .hero__bg img,
 .look-2026 .hero__video {
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 50% 40%;
 }
 
 /* The reel shows over its still once it's actually playing. The still is
@@ -165,13 +184,14 @@
    Stock Exchange" reads on the facade (Joe, 2026-10-22: "lighten that the
    black overlay like another 10, 15%", then "slightly darker... maybe a
    5-10%").
-   With the reel (2026-11-05) two more layers: a shade under the nav, since
-   some shots carry a caption across their top ("George Arison, CEO of
-   Grindr" sat behind the links, which fell to 3.4:1), and a deeper foot,
-   which sinks the broadcast captions and price tapes that sit in the
-   bottom third of most shots and keeps the faces in the middle bright. */
+   With the reel (2026-11-05) the text sits off the footage, so the left to
+   right darkening went: a shade under the nav (some shots carry a caption
+   across their top; "George Arison, CEO of Grindr" sat behind the links),
+   a deeper foot that sinks the broadcast captions and price tapes in the
+   bottom third of most shots, and a light dim so the reel sits into the
+   dark page. */
 .look-2026 .hero__bg {
-  --hero-nav-shade: linear-gradient(to bottom, rgba(2, 4, 8, 0.72) 0, rgba(2, 4, 8, 0.62) 72px, rgba(2, 4, 8, 0) 220px);
+  --hero-nav-shade: linear-gradient(to bottom, rgba(2, 4, 8, 0.8) 0, rgba(2, 4, 8, 0.7) 72px, rgba(2, 4, 8, 0) 220px);
   --hero-foot: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 6, 0.5) 78%, var(--paper) 100%);
 }
 
@@ -182,7 +202,7 @@
   background:
     var(--hero-nav-shade),
     var(--hero-foot),
-    linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 30%, rgba(3, 5, 15, 0.65) 56%, rgba(5, 10, 30, 0.1) 100%);
+    rgba(2, 4, 8, 0.14);
 }
 
 .look-2026 .hero--cinema .hero__inner {
@@ -202,20 +222,11 @@
 }
 
 /* Smaller laptops: a narrower column (first set so the old Stock Exchange
-   photo's "STOCK" cleared the paragraph), which leaves more of the reel in
-   view. Here the column runs to about 45% of the width, so the darkest stop
-   holds to 40% (2026-11-05: at 24% the headline fell to 6.9:1 over the
-   reel's brightest shots; now every line stays above 7.5:1). */
+   photo's "STOCK" cleared the paragraph), which keeps the text clear of the
+   reel's frame. */
 @media (min-width: 901px) and (max-width: 1279px) {
   .look-2026 .hero--cinema .hero__text {
     max-width: 25rem;
-  }
-
-  .look-2026 .hero__bg::after {
-    background:
-      var(--hero-nav-shade),
-      var(--hero-foot),
-      linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 40%, rgba(3, 5, 15, 0.65) 62%, rgba(5, 10, 30, 0.1) 100%);
   }
 }
 
@@ -236,15 +247,26 @@
   }
 }
 
-/* Phones and tablets: the tall crop, darker toward the bottom where the
-   text sits. */
+/* Phones and tablets: the reel as a band across the top, the text under it
+   on the page color. */
 @media (max-width: 900px) {
-  /* Room for the facade and its "STOCK EXCHANGE" above the headline, short
-     phones included (the hero then runs past the first screen). */
+  /* Room for the reel above the headline, short phones included (the hero
+     then runs past the first screen). */
   .look-2026 .hero--cinema {
     min-height: 100svh;
     padding-top: calc(var(--nav-h) + 270px);
     overflow: clip;
+  }
+
+  /* The band runs behind the nav and fades into the page just under where
+     the headline starts (2026-11-05). */
+  .look-2026 .hero__bg picture,
+  .look-2026 .hero__video {
+    left: 0;
+    width: 100%;
+    height: calc(var(--nav-h) + 270px + 96px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 58%, rgba(0, 0, 0, 0.5) 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 58%, rgba(0, 0, 0, 0.5) 78%, transparent 100%);
   }
 
   /* On the photo only the nav's shade at the top and the page color at the
@@ -279,6 +301,12 @@
 @media (max-width: 640px) {
   .look-2026 .hero__body {
     margin: var(--s-4) 0 var(--s-5);
+  }
+
+  /* Phones take the reel's 3:4 crop; its faces sit a little above centre. */
+  .look-2026 .hero__bg img,
+  .look-2026 .hero__video {
+    object-position: 50% 30%;
   }
 }
 

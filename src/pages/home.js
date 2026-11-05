@@ -31,9 +31,9 @@ const HOME_DIR = '/assets/images/home';
 // Eden's sizzle reel (Alkida, Slack 2026-11-05: "the video below
 // incorporated at the top of the website, replacing the stock exchange
 // image"; Isaac Levi's "V4 EDEN WEBSITE VIDEO"). The still is the reel's
-// first frame, the lower Manhattan aerial, so the print entrance shows it and
-// the reel takes over from it without a jump. A wide file for laptops and a
-// 3:4 centre crop for phones and tablets, both with the shared photo grade
+// first frame, the lower Manhattan aerial, so the reel takes over from it
+// without a jump. A wide file for laptops and a
+// 3:4 centre crop for phones, both with the shared photo grade
 // baked in. Until 2026-11-05 the hero was the New York Stock Exchange facade
 // (hero-cinema-*, Maxim Klimashin on Unsplash).
 const HERO_IMAGE = {
@@ -144,9 +144,9 @@ function buildHero() {
     <section class="hero hero--cinema" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
         ${picture({
-          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920], sizes: '100vw',
+          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920], sizes: '(min-width: 901px) 54vw, 100vw',
           alt: '', width: 1920, height: 1080, eager: true, fallback: 1600,
-          narrow: { media: '(max-width: 900px)', base: HERO_IMAGE.tall, widths: [810], sizes: '100vw' },
+          narrow: { media: '(max-width: 640px)', base: HERO_IMAGE.tall, widths: [810], sizes: '100vw' },
         })}
         <video class="hero__video" muted playsinline loop preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true"
           data-wide="${HERO_REEL.wide}" data-tall="${HERO_REEL.tall}"></video>

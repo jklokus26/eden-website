@@ -2,8 +2,8 @@
 
 /* The bold variant (DESIGN.md, "The bold variant"): the kit turned up, all
    under class kit-bold on <main>. Same palette and faces; bigger type, a
-   "going to print" hero entrance, a press ticker, a pointer photo and a
-   light chapter. Motion stays on
+   sizzle reel in the hero, a press ticker, a pointer photo and light
+   chapters. Motion stays on
    transform, opacity and clip-path, and everything holds still under
    reduced motion. */
 
@@ -163,74 +163,6 @@
   }
 }
 
-/* ─── Hero entrance ──────────────────────────────────────────────────── */
-
-/* It sits in the hero's photo layer, under its dark overlay, and plays once
-   as the page opens (initBold). With reduced motion it doesn't run and the
-   still photo shows. */
-.look-2026 .kit-bold .hero-fx {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Going to print: the hero opens as a coarse newsprint dot screen of the
-   photo (fading in), holds a beat, then one press pass runs left to right:
-   a band of finer dots leads, and the photograph and the coverage ticker
-   print in together behind it. All of it is one soft-edged mask moving at
-   one pace (initBold draws the two dot screens once on a canvas). */
-.look-2026 .kit-bold .hero {
-  --press-ease: cubic-bezier(0.65, 0, 0.35, 1);
-  --press-dur: 2600ms;
-  --press-lag: 280ms;
-}
-
-.look-2026 .kit-bold .hero-fx__print {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  animation: press-in 450ms var(--ease-out) both;
-}
-
-@keyframes press-in {
-  from { opacity: 0; }
-}
-
-.look-2026 .kit-bold .hero-fx__print--fine,
-.look-2026 .kit-bold .hero.is-print .hero__bg > picture,
-.look-2026 .kit-bold .hero.is-print .ticker {
-  -webkit-mask-image: linear-gradient(90deg, #000 0 42%, transparent 58% 100%);
-  mask-image: linear-gradient(90deg, #000 0 42%, transparent 58% 100%);
-  /* 240% wide so the soft edge (about 38% of the hero) starts fully off
-     the left and ends fully off the right. */
-  -webkit-mask-size: 240% 100%;
-  mask-size: 240% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: 100% 0;
-  mask-position: 100% 0;
-}
-
-/* The pass is only timed once printing starts, so the masks take their
-   starting place instantly. The photo and the ticker follow the finer dots
-   by about a quarter second. */
-.look-2026 .kit-bold .hero.is-printing .hero-fx__print--fine,
-.look-2026 .kit-bold .hero.is-printing .hero__bg > picture,
-.look-2026 .kit-bold .hero.is-printing .ticker {
-  -webkit-mask-position: 0 0;
-  mask-position: 0 0;
-  transition:
-    -webkit-mask-position var(--press-dur) var(--press-ease),
-    mask-position var(--press-dur) var(--press-ease);
-}
-
-.look-2026 .kit-bold .hero.is-printing .hero__bg > picture,
-.look-2026 .kit-bold .hero.is-printing .ticker {
-  transition-delay: var(--press-lag);
-}
-
 /* ─── The light chapter (Cypher's theme flip) ────────────────────────── */
 
 /* White paper with near-black ink (the homepage's industries and its quotes
@@ -270,8 +202,8 @@
 /* A white band across the foot of the hero, near-black ink on the light
    chapter's paper (Alkida, 2026-10-29: on the frosted dark band it was "easy
    to miss"; Prosek's, Ebony's reference, is a light band): the label, then
-   the coverage running right to left, then the pause button. It prints in
-   with the photo, in the same pass (above). The hero makes room for it. */
+   the coverage running right to left, then the pause button. The hero
+   makes room for it. */
 .look-2026 .kit-bold .hero--cinema {
   --ticker-h: 56px;
   padding-bottom: calc(clamp(56px, 7vw, 104px) + var(--ticker-h));

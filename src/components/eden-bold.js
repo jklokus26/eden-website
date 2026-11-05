@@ -5,9 +5,9 @@
 // follows the pointer over the What we do rows (Cypher's image swap), light
 // chapters for the industries and the quotes that open with the kit's ink-box
 // wipe (Cypher's theme flip, made with a wipe so the text is never caught
-// mid-fade), a "going to print" hero entrance and a press ticker under the
-// hero. Eden picked this variant (Slack, 2026-10-29); the inner pages take
-// it through initBoldPage.
+// mid-fade), the hero's sizzle reel and a press ticker under the hero.
+// Eden picked this variant (Slack, 2026-10-29); the inner pages take it
+// through initBoldPage.
 import '../styles/eden-bold.css';
 import { initKit } from './eden-kit.js';
 import { coverageItems } from '../../data/coverage.js';
@@ -33,7 +33,7 @@ const PILLAR_PHOTOS = [
 // outlet, client, headline. Hand-picked so each item is proof of Eden's work
 // for a named client: no dollar prices (under the Stock Exchange it read as
 // a live price tape), no market or political news without the client, and
-// nothing from Ondo (on hold) or ProCap. It prints in with the hero photo.
+// nothing from Ondo (on hold) or ProCap.
 // A white band, at the pace of the Prosek ticker Ebony pointed to (Slack,
 // 2026-10-29: "easy to miss", "move a little faster"): about 200px a second,
 // 150 on phones. It moves like the logo strips (a pause button, still on
@@ -147,118 +147,40 @@ function initChapter(root) {
   });
 }
 
-// ─── Hero entrance ───────────────────────────────────────────────────────
-// It waits for the photo to be ready, so the motion is seen, and doesn't run
-// with reduced motion.
-
-const nextFrame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-const ready = img => (img.complete && img.naturalWidth ? Promise.resolve() : new Promise(r => { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); }));
-
-// Going to print: the hero opens as the photo in coarse white newsprint dots
-// on the page color, holds a beat so the dots read, then one press pass runs
-// left to right, finer dots leading, the photograph and the coverage ticker
-// printing in together behind it. The two dot screens are drawn once each;
-// the pass is CSS (classes on the hero section).
-async function heroPrint(bg, photo) {
-  const img = photo.querySelector('img');
-  const hero = bg.parentElement;
-  hero.classList.add('is-print');
-  await ready(img);
-  const box = bg.getBoundingClientRect();
-  const W = Math.round(box.width);
-  const H = Math.round(box.height);
-  const dpr = Math.min(2, window.devicePixelRatio || 1);
-  const narrow = window.matchMedia('(max-width: 900px)').matches;
-
-  // The photo's crop on screen (object-fit: cover at its object-position).
-  const [px, py] = getComputedStyle(img).objectPosition.split(' ').map(v => parseFloat(v) / 100);
-  const s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
-  const dw = img.naturalWidth * s;
-  const dh = img.naturalHeight * s;
-  const ox = (W - dw) * px;
-  const oy = (H - dh) * py;
-  const sample = document.createElement('canvas');
-  const sctx = sample.getContext('2d', { willReadFrequently: true });
-  const paper = getComputedStyle(bg).backgroundColor;
-
-  const screen = (cell, extra = '') => {
-    const canvas = document.createElement('canvas');
-    canvas.className = `hero-fx__print ${extra}`;
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    const cols = Math.ceil(W / cell);
-    const rows = Math.ceil(H / cell);
-    sample.width = cols;
-    sample.height = rows;
-    sctx.drawImage(img, ox / cell, oy / cell, dw / cell, dh / cell);
-    const data = sctx.getImageData(0, 0, cols, rows).data;
-    ctx.fillStyle = paper;
-    ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const k = (r * cols + c) * 4;
-        const lum = (0.2126 * data[k] + 0.7152 * data[k + 1] + 0.0722 * data[k + 2]) / 255;
-        const rad = cell * 0.56 * Math.sqrt(lum);
-        if (rad < 0.4) continue;
-        const cx = c * cell + cell / 2;
-        const cy = r * cell + cell / 2;
-        ctx.moveTo(cx + rad, cy);
-        ctx.arc(cx, cy, rad, 0, Math.PI * 2);
-      }
-    }
-    ctx.fill();
-    return canvas;
-  };
-
-  const fx = document.createElement('div');
-  fx.className = 'hero-fx';
-  fx.append(screen(narrow ? 12 : 16), screen(narrow ? 5 : 6, 'hero-fx__print--fine'));
-  // Under the photo, which is masked until it prints.
-  bg.insertBefore(fx, photo);
-  await nextFrame();
-  // Hold the dots long enough to read as newsprint, then print.
-  await new Promise(r => setTimeout(r, 1000));
-  hero.classList.add('is-printing');
-  await new Promise(r => setTimeout(r, 2600 + 280 + 200));
-  fx.remove();
-  hero.classList.remove('is-print', 'is-printing');
-}
-
-// Eden's sizzle reel (2026-11-05) takes over from the still once the print
-// pass is done; the still is its first frame, so the picture simply starts
-// moving. It downloads while the print runs (after the still has loaded, so
-// it never slows the still). Like the dinner film: it plays while the hero
-// is on screen, the button pauses and resumes it and a visitor's pause holds,
-// reduced motion and data saver keep the still with the button on play, and
-// if the browser refuses to autoplay (iPhone Low Power Mode) the button
-// shows play.
-function initReel(hero, img, printed) {
+// ─── Hero reel ───────────────────────────────────────────────────────────
+// Eden's sizzle reel (2026-11-05) is the hero's motion. It starts as soon as
+// it can play, over its own first frame (the still), so the picture simply
+// starts moving. It replaced the "going to print" entrance the same day
+// (Joe: with the video the effect was "overdoing it", and holding the reel
+// until the pass was done left it still for about three seconds). Like the
+// dinner film: it plays while the hero is on screen, the button pauses and
+// resumes it and a visitor's pause holds, reduced motion and data saver keep
+// the still with the button on play, and if the browser refuses to autoplay
+// (iPhone Low Power Mode) the button shows play.
+function initReel(hero) {
   const video = hero.querySelector('.hero__video');
   const toggle = hero.querySelector('.hero__toggle');
   if (!video || !toggle) return;
   const saveData = Boolean(navigator.connection && navigator.connection.saveData);
   let held = reduce.matches || saveData;
-  let started = false;
-  let onScreen = true;
 
+  const show = () => { toggle.hidden = false; };
   const load = () => {
     if (video.getAttribute('src')) return;
-    video.src = window.matchMedia('(max-width: 900px)').matches ? video.dataset.tall : video.dataset.wide;
+    // Phones take the 3:4 crop; tablets' band is about 16:9, so they take the wide file.
+    video.src = window.matchMedia('(max-width: 640px)').matches ? video.dataset.tall : video.dataset.wide;
     video.preload = 'auto';
   };
   const play = () => {
     load();
     const attempt = video.play();
-    if (attempt) attempt.catch(() => toggle.setAttribute('aria-pressed', 'true'));
+    if (attempt) attempt.catch(() => { toggle.setAttribute('aria-pressed', 'true'); show(); });
   };
 
   video.addEventListener('playing', () => {
     hero.classList.add('is-playing');
     toggle.setAttribute('aria-pressed', 'false');
+    show();
   });
   video.addEventListener('pause', () => toggle.setAttribute('aria-pressed', 'true'));
   reduce.addEventListener('change', () => {
@@ -276,31 +198,20 @@ function initReel(hero, img, printed) {
     }
   });
 
-  ready(img).then(() => { if (!held) load(); });
-  printed.then(() => {
-    started = true;
-    toggle.hidden = false;
-    if (!held && onScreen) play();
-  });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      onScreen = entry.isIntersecting;
-      if (onScreen && started && !held) play();
-      else if (!onScreen && !video.paused) video.pause();
-    }, { threshold: 0.25 }).observe(hero);
+  if (held) show();
+  if (!('IntersectionObserver' in window)) {
+    if (!held) play();
+    return;
   }
-}
-
-function initHero(root) {
-  const bg = root.querySelector('.hero__bg');
-  const photo = bg && bg.querySelector(':scope > picture');
-  if (!photo) return;
-  const printed = reduce.matches ? Promise.resolve() : heroPrint(bg, photo);
-  initReel(bg.parentElement, photo.querySelector('img'), printed);
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && !held) play();
+    else if (!entry.isIntersecting && !video.paused) video.pause();
+  }, { threshold: 0.25 }).observe(hero);
 }
 
 export function initBold(root) {
-  initHero(root);
+  const hero = root.querySelector('.hero');
+  if (hero) initReel(hero);
   initFollow(root);
   initChapter(root);
 }
