@@ -30,24 +30,21 @@ const PILLAR_PHOTOS = [
 
 // The press ticker along the foot of the hero, like the NYSE tape or the
 // Times Square zipper, running Eden's real coverage (data/coverage.js):
-// outlet, client, headline. Hand-picked so each item is proof of Eden's work
-// for a named client: no dollar prices (under the Stock Exchange it read as
-// a live price tape), no market or political news without the client, and
-// nothing from Ondo (on hold) or ProCap.
+// outlet, client, headline. Eden picks the articles: these four are
+// Alkida's list (Slack, 2026-11-05, "Can we replace the articles on the
+// 'Recent coverage' banner with some others?"; she linked one Forbes piece
+// twice), in her order, pending Ebony's final input. A title must match its
+// coverage.js entry exactly or the item is dropped.
 // A white band, at the pace of the Prosek ticker Ebony pointed to (Slack,
 // 2026-10-29: "easy to miss", "move a little faster"): about 200px a second,
 // 150 on phones. It moves like the logo strips (a pause button, still on
 // hover, rests off screen, stands still with reduced motion); its items
 // aren't links while they move.
 const TICKER = [
-  'Why influential Wintermute founder Evgeny Gaevoy thinks crypto has strayed from its cypherpunk roots',
-  'Stellar CMO: Why Stablecoins Are the Gateway to Mainstream Crypto',
-  'Quantum Computing Awaits Its ChatGPT Moment',
-  'AI mania is helping cap crypto’s upside, Wintermute says',
-  'Crypto Rallies Are Getting Shorter: Wintermute CEO',
-  'Reed Smith: Arbitration Is Now the Global Go-To for Crypto Exchange Disputes',
-  'Gaevoy: This is a crisis of faith in prices, not technology',
-  'Marshall Islands launches world’s first blockchain-based UBI on Stellar blockchain',
+  'There’s Not Enough Robot Training Data. This Startup Plans To Fix That',
+  '‘Infinite Demand For Robots:’ Inside Matter Venture Partners’ $450 Million Bet On Physical AI',
+  'AI Is Changing How Companies Access Capital Markets',
+  'Canton-based trading platform Cancore raises $7.2 million at $60 million token valuation',
 ];
 
 export function heroTicker() {
