@@ -28,17 +28,21 @@ import { team } from '../../data/team.js';
 
 const HOME_DIR = '/assets/images/home';
 
-// Hero photo until Ebony's updated sizzle reel arrives (the call,
-// 2026-10-22: "that would be like the landing background video"): the New
-// York Stock Exchange facade, by Maxim Klimashin on Unsplash
-// (https://unsplash.com/photos/1QSXCd0LHVs, Unsplash License, free for
-// commercial use, no attribution required). The dark theme uses it edge to
-// edge (a wide crop, a tall one for phones); the light theme frames a 3:2
-// band of the pediment.
+// Eden's sizzle reel (Alkida, Slack 2026-11-05: "the video below
+// incorporated at the top of the website, replacing the stock exchange
+// image"; Isaac Levi's "V4 EDEN WEBSITE VIDEO"). The still is the reel's
+// first frame, the lower Manhattan aerial, so the print entrance shows it and
+// the reel takes over from it without a jump. A wide file for laptops and a
+// 3:4 centre crop for phones and tablets, both with the shared photo grade
+// baked in. Until 2026-11-05 the hero was the New York Stock Exchange facade
+// (hero-cinema-*, Maxim Klimashin on Unsplash).
 const HERO_IMAGE = {
-  base: 'hero-cinema',
-  tall: 'hero-cinema-tall',
-  alt: 'The sculpted pediment and columns of the New York Stock Exchange on Wall Street',
+  base: 'hero-reel',
+  tall: 'hero-reel-tall',
+};
+const HERO_REEL = {
+  wide: '/assets/video/hero-reel-1080.mp4',
+  tall: '/assets/video/hero-reel-tall.mp4',
 };
 
 // Label over the outlet logos (ours; the doc has none).
@@ -116,8 +120,9 @@ function clientName(cs) {
 
 // ─── Sections ─────────────────────────────────────────────────────────────
 
-// The cinematic hero, like the live site's: the photo (later Ebony's video)
-// edge to edge behind a dark overlay, the text at the bottom left. The kit
+// The cinematic hero, like the live site's: Eden's sizzle reel edge to edge
+// behind a dark overlay (its first frame as the still until it plays), the
+// text at the bottom left, a pause button at the bottom right. The kit
 // carries in lightly: the headline's words rise once as the page opens (a
 // short line above it read as an afterthought, Joe, 2026-10-28). Eden's
 // line is one solid color (Joe, 2026-10-22: the muted half "blends in too
@@ -139,15 +144,21 @@ function buildHero() {
     <section class="hero hero--cinema" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
         ${picture({
-          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920, 2600, 3600], sizes: '100vw',
-          alt: '', width: 2600, height: 1625, eager: true, fallback: 1600,
-          narrow: { media: '(max-width: 900px)', base: HERO_IMAGE.tall, widths: [750, 1200], sizes: '100vw' },
+          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920], sizes: '100vw',
+          alt: '', width: 1920, height: 1080, eager: true, fallback: 1600,
+          narrow: { media: '(max-width: 900px)', base: HERO_IMAGE.tall, widths: [810], sizes: '100vw' },
         })}
+        <video class="hero__video" muted playsinline loop preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true"
+          data-wide="${HERO_REEL.wide}" data-tall="${HERO_REEL.tall}"></video>
       </div>
       <div class="wrap hero__inner">
         <h1 id="hero-title" class="t-display hero__title" data-rise>${homeHero.headline}</h1>
         <div class="hero__text">${heroText()}</div>
       </div>
+      <button class="film__toggle hero__toggle" type="button" aria-pressed="true" aria-label="Pause the background video" hidden>
+        <svg class="film__icon film__icon--pause" viewBox="0 0 14 14" aria-hidden="true"><rect x="3" y="2" width="2.5" height="10"/><rect x="8.5" y="2" width="2.5" height="10"/></svg>
+        <svg class="film__icon film__icon--play" viewBox="0 0 14 14" aria-hidden="true"><path d="M4 2v10l8-5z"/></svg>
+      </button>
       ${heroTicker()}
     </section>
   `;

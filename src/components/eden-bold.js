@@ -228,11 +228,75 @@ async function heroPrint(bg, photo) {
   hero.classList.remove('is-print', 'is-printing');
 }
 
+// Eden's sizzle reel (2026-11-05) takes over from the still once the print
+// pass is done; the still is its first frame, so the picture simply starts
+// moving. It downloads while the print runs (after the still has loaded, so
+// it never slows the still). Like the dinner film: it plays while the hero
+// is on screen, the button pauses and resumes it and a visitor's pause holds,
+// reduced motion and data saver keep the still with the button on play, and
+// if the browser refuses to autoplay (iPhone Low Power Mode) the button
+// shows play.
+function initReel(hero, img, printed) {
+  const video = hero.querySelector('.hero__video');
+  const toggle = hero.querySelector('.hero__toggle');
+  if (!video || !toggle) return;
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+  let held = reduce.matches || saveData;
+  let started = false;
+  let onScreen = true;
+
+  const load = () => {
+    if (video.getAttribute('src')) return;
+    video.src = window.matchMedia('(max-width: 900px)').matches ? video.dataset.tall : video.dataset.wide;
+    video.preload = 'auto';
+  };
+  const play = () => {
+    load();
+    const attempt = video.play();
+    if (attempt) attempt.catch(() => toggle.setAttribute('aria-pressed', 'true'));
+  };
+
+  video.addEventListener('playing', () => {
+    hero.classList.add('is-playing');
+    toggle.setAttribute('aria-pressed', 'false');
+  });
+  video.addEventListener('pause', () => toggle.setAttribute('aria-pressed', 'true'));
+  reduce.addEventListener('change', () => {
+    if (!reduce.matches) return;
+    held = true;
+    video.pause();
+  });
+  toggle.addEventListener('click', () => {
+    if (video.paused) {
+      held = false;
+      play();
+    } else {
+      held = true;
+      video.pause();
+    }
+  });
+
+  ready(img).then(() => { if (!held) load(); });
+  printed.then(() => {
+    started = true;
+    toggle.hidden = false;
+    if (!held && onScreen) play();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen && started && !held) play();
+      else if (!onScreen && !video.paused) video.pause();
+    }, { threshold: 0.25 }).observe(hero);
+  }
+}
+
 function initHero(root) {
   const bg = root.querySelector('.hero__bg');
   const photo = bg && bg.querySelector(':scope > picture');
-  if (!photo || reduce.matches) return;
-  heroPrint(bg, photo);
+  if (!photo) return;
+  const printed = reduce.matches ? Promise.resolve() : heroPrint(bg, photo);
+  initReel(bg.parentElement, photo.querySelector('img'), printed);
 }
 
 export function initBold(root) {

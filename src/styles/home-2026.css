@@ -70,8 +70,8 @@
 /* Cinematic (dark), like the live site: the photo runs edge to edge under a
    clear nav, behind the live hero overlay's near-black (dark on the left
    where the text sits, lighter over the facade), fading into the page at the
-   bottom. The text sits at the bottom left. The frame takes Ebony's sizzle
-   reel as the background video when it arrives. */
+   bottom. The text sits at the bottom left. Since 2026-11-05 the picture is
+   Eden's sizzle reel, its first frame as the still until it plays. */
 .look-2026 .hero--cinema {
   position: relative;
   isolation: isolate;
@@ -90,17 +90,71 @@
 }
 
 .look-2026 .hero__bg picture,
-.look-2026 .hero__bg img {
+.look-2026 .hero__bg img,
+.look-2026 .hero__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-.look-2026 .hero__bg img {
+/* The still and the reel take the same crop, so the reel starts exactly
+   where the still is. Both carry the shared photo grade in their files, so
+   no filter here. */
+.look-2026 .hero__bg img,
+.look-2026 .hero__video {
   object-fit: cover;
-  object-position: 70% 40%;
-  filter: var(--photo-grade);
+  object-position: 50% 50%;
+}
+
+/* The reel shows over its still once it's actually playing. The still is
+   its first frame, so the fade only bridges the codec's slight difference;
+   kept short so the still doesn't sit over the moving shot. */
+.look-2026 .hero__video {
+  opacity: 0;
+  transition: opacity 240ms var(--ease-out);
+}
+
+.look-2026 .hero.is-playing .hero__video {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .look-2026 .hero__video {
+    transition: none;
+  }
+
+  .look-2026 .hero--cinema .hero__toggle {
+    transition-property: background-color, opacity;
+  }
+}
+
+/* The reel's pause button (the dinner film's disc) at the hero's bottom
+   right, just above the ticker, centred over the ticker's own pause button
+   (which hangs 14px past the gutter). */
+.look-2026 .hero--cinema .hero__toggle {
+  right: calc(var(--gutter) - 14px);
+  bottom: calc(var(--ticker-h, 0px) + var(--s-4));
+}
+
+/* Hidden until the print pass is done (the disc's display: grid would
+   otherwise override the attribute), then it rises in with the reel. */
+.look-2026 .hero--cinema .hero__toggle[hidden] {
+  display: none;
+}
+
+.look-2026 .hero--cinema .hero__toggle {
+  transition:
+    background-color var(--dur-ui) var(--ease-out),
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+@starting-style {
+  .look-2026 .hero--cinema .hero__toggle {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }
 
 /* Overlay stops copied from the live hero (rgba(2, 4, 8, 0.92),
@@ -110,13 +164,24 @@
    Each stop sits about 6 points lighter than the live site's so "New York
    Stock Exchange" reads on the facade (Joe, 2026-10-22: "lighten that the
    black overlay like another 10, 15%", then "slightly darker... maybe a
-   5-10%"). */
+   5-10%").
+   With the reel (2026-11-05) two more layers: a shade under the nav, since
+   some shots carry a caption across their top ("George Arison, CEO of
+   Grindr" sat behind the links, which fell to 3.4:1), and a deeper foot,
+   which sinks the broadcast captions and price tapes that sit in the
+   bottom third of most shots and keeps the faces in the middle bright. */
+.look-2026 .hero__bg {
+  --hero-nav-shade: linear-gradient(to bottom, rgba(2, 4, 8, 0.72) 0, rgba(2, 4, 8, 0.62) 72px, rgba(2, 4, 8, 0) 220px);
+  --hero-foot: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 6, 0.5) 78%, var(--paper) 100%);
+}
+
 .look-2026 .hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
+    var(--hero-nav-shade),
+    var(--hero-foot),
     linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 30%, rgba(3, 5, 15, 0.65) 56%, rgba(5, 10, 30, 0.1) 100%);
 }
 
@@ -136,9 +201,11 @@
   max-width: 36rem;
 }
 
-/* Smaller laptops: the photo is cut to the screen's height, so the
-   inscription sits further left; a narrower column keeps "STOCK" clear of
-   the paragraph. */
+/* Smaller laptops: a narrower column (first set so the old Stock Exchange
+   photo's "STOCK" cleared the paragraph), which leaves more of the reel in
+   view. Here the column runs to about 45% of the width, so the darkest stop
+   holds to 40% (2026-11-05: at 24% the headline fell to 6.9:1 over the
+   reel's brightest shots; now every line stays above 7.5:1). */
 @media (min-width: 901px) and (max-width: 1279px) {
   .look-2026 .hero--cinema .hero__text {
     max-width: 25rem;
@@ -146,8 +213,9 @@
 
   .look-2026 .hero__bg::after {
     background:
-      linear-gradient(to bottom, transparent 66%, var(--paper) 100%),
-      linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 24%, rgba(3, 5, 15, 0.65) 46%, rgba(5, 10, 30, 0.1) 100%);
+      var(--hero-nav-shade),
+      var(--hero-foot),
+      linear-gradient(90deg, rgba(2, 4, 8, 0.86) 0%, rgba(2, 4, 8, 0.86) 40%, rgba(3, 5, 15, 0.65) 62%, rgba(5, 10, 30, 0.1) 100%);
   }
 }
 
@@ -179,16 +247,12 @@
     overflow: clip;
   }
 
-  .look-2026 .hero__bg img {
-    object-position: 50% 0%;
-  }
-
   /* On the photo only the nav's shade at the top and the page color at the
      very bottom; the dark behind the words travels with them (::before
      below), so it starts just above the headline at any screen height. */
   .look-2026 .hero__bg::after {
     background:
-      linear-gradient(to bottom, rgba(3, 5, 15, 0.65) 0, rgba(5, 10, 30, 0.1) 150px),
+      linear-gradient(to bottom, rgba(3, 5, 15, 0.78) 0, rgba(3, 5, 15, 0.7) 64px, rgba(5, 10, 30, 0.1) 200px),
       linear-gradient(to bottom, transparent 85%, var(--paper) 100%);
   }
 

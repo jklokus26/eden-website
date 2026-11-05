@@ -358,6 +358,14 @@
   }
 }
 
+/* Phones: the hero's buttons run the width, so the reel's pause button
+   takes a row of its own under them, above the ticker's (2026-11-05). */
+@media (max-width: 640px) {
+  .look-2026 .kit-bold .hero--cinema {
+    padding-bottom: calc(76px + var(--ticker-h));
+  }
+}
+
 /* Short laptop screens keep their tighter hero foot, plus the ticker. */
 @media (min-width: 901px) and (max-height: 820px) {
   .look-2026 .kit-bold .hero--cinema {
