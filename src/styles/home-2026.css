@@ -89,18 +89,50 @@
   background: var(--paper);
 }
 
-/* The reel's frame (2026-11-05). Laptops: edge to edge, so each shot shows
-   whole (in a frame beside the text the 16:9 shots lost about half their
-   width; Joe: "a lot of the shots get cut off on the left"). The dark that
-   keeps the text legible is a fade across it, below. Tablets and phones: a
-   band across the top that fades into the page above the headline (below).
-   The still and the reel share the frame and the crop, so the reel starts
-   exactly where the still is; both carry the shared photo grade in their
-   files, so no filter here. */
+/* The reel's frame (2026-11-05). Laptops: the whole 16:9 shot, 68% of the
+   width, flush to the right edge and centred between the top of the hero
+   and the ticker (shorter, if the hero is too short for it), its left, top
+   and bottom edges feathered into the page. So each shot sits on the clear
+   side of the fade (below), uncropped. History, Joe on the same day: a
+   frame beside the text from 46% cropped about half of each shot ("a lot
+   of the shots get cut off on the left"); full width under the fade put
+   the left half of each shot under the text ("back to a lot of the shots
+   being cut or cropped on the left"); a full-width shot is about 93% of a
+   laptop's width at the hero's height, so it can't fill the height and sit
+   on the clear side too. Shifting a full-width shot right only moves the
+   crop to the right edge. Tablets and phones: a band across the top that
+   fades into the page above the headline (below). The still and the reel
+   share the frame and the crop, so the reel starts exactly where the still
+   is; both carry the shared photo grade in their files, so no filter
+   here. */
 .look-2026 .hero__bg picture,
 .look-2026 .hero__video {
   position: absolute;
   inset: 0;
+}
+
+@media (min-width: 901px) {
+  .look-2026 .hero__bg {
+    container-type: size;
+  }
+
+  .look-2026 .hero__bg picture,
+  .look-2026 .hero__video {
+    --reel-h: min(68cqw * 9 / 16, 100cqh - var(--ticker-h, 0px));
+    inset: auto;
+    top: calc((100cqh - var(--ticker-h, 0px) - var(--reel-h)) / 2);
+    right: 0;
+    width: calc(var(--reel-h) * 16 / 9);
+    height: var(--reel-h);
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0, #000 24%),
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent 0, #000 24%),
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+  }
 }
 
 .look-2026 .hero__bg img {
