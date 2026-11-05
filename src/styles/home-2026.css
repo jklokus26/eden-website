@@ -89,28 +89,18 @@
   background: var(--paper);
 }
 
-/* The reel's frame (2026-11-05). Laptops: the right of the hero, edge to
-   edge to the right, top and bottom, fading into the page on its left, so
-   the text sits on clean near-black and never on the footage (Joe: full
-   bleed behind the words "doesn't look good with the text"; the reel's
-   faces, captions and name bars ran through the headline and buttons).
-   Tablets and phones: a band across the top that fades into the page above
-   the headline (below). The still and the reel share the frame and the
-   crop, so the reel starts exactly where the still is; both carry the
-   shared photo grade in their files, so no filter here. */
-.look-2026 .hero__bg {
-  --reel-left: 46%;
-}
-
+/* The reel's frame (2026-11-05). Laptops: edge to edge, so each shot shows
+   whole (in a frame beside the text the 16:9 shots lost about half their
+   width; Joe: "a lot of the shots get cut off on the left"). The dark that
+   keeps the text legible is a fade across it, below. Tablets and phones: a
+   band across the top that fades into the page above the headline (below).
+   The still and the reel share the frame and the crop, so the reel starts
+   exactly where the still is; both carry the shared photo grade in their
+   files, so no filter here. */
 .look-2026 .hero__bg picture,
 .look-2026 .hero__video {
   position: absolute;
-  top: 0;
-  left: var(--reel-left);
-  width: calc(100% - var(--reel-left));
-  height: 100%;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 12%, rgba(0, 0, 0, 0.75) 24%, #000 34%);
-  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 12%, rgba(0, 0, 0, 0.75) 24%, #000 34%);
+  inset: 0;
 }
 
 .look-2026 .hero__bg img {
@@ -178,19 +168,32 @@
 
 /* Overlay stops copied from the live hero (rgba(2, 4, 8, 0.92),
    rgba(3, 5, 15, 0.7), rgba(5, 10, 30, 0.15)), laid left to right, then a
-   fade to the page color at the bottom. The darkest stop holds across the
-   text column so the stonework stays behind the words, not through them.
-   Each stop sits about 6 points lighter than the live site's so "New York
-   Stock Exchange" reads on the facade (Joe, 2026-10-22: "lighten that the
-   black overlay like another 10, 15%", then "slightly darker... maybe a
-   5-10%").
-   With the reel (2026-11-05) the text sits off the footage, so the left to
-   right darkening went: a shade under the nav (some shots carry a caption
-   across their top; "George Arison, CEO of Grindr" sat behind the links),
-   a deeper foot that sinks the broadcast captions and price tapes in the
-   bottom third of most shots, and a light dim so the reel sits into the
+   fade to the page color at the bottom.
+   With the reel (2026-11-05): a fade from near solid at the left edge to
+   clear by the middle, so the text column sits on dark and the right half
+   shows the footage (Joe: "furthest left is basically fully solid but it
+   gets more transparent as it goes right... basically fully transparent on
+   the right half"). The stops ease out rather than run straight, so the fade
+   has no visible edge, and they move with the end of the headline, which
+   runs from 51% of the width at 1440 to 57% on a 1728 screen (0.34px per
+   pixel of width, measured), so the word "Reputation" sits on the same dark
+   on every large screen. Smaller laptops hold the dark further still
+   (below). Then a shade under the nav (some shots carry a
+   caption across their top; "George Arison, CEO of Grindr" sat behind the
+   links), a deeper foot that sinks the broadcast captions and price tapes in
+   the bottom third of most shots, and a light dim so the reel sits into the
    dark page. */
 .look-2026 .hero__bg {
+  --fade-shift: clamp(0px, (100vw - 1440px) * 0.34, 100px);
+  --hero-side: linear-gradient(90deg,
+    rgba(2, 4, 8, 0.95) 0,
+    rgba(2, 4, 8, 0.92) calc(24% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.84) calc(36% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.66) calc(44% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.42) calc(50% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.2) calc(56% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.06) calc(62% + var(--fade-shift)),
+    rgba(2, 4, 8, 0) calc(68% + var(--fade-shift)));
   --hero-nav-shade: linear-gradient(to bottom, rgba(2, 4, 8, 0.8) 0, rgba(2, 4, 8, 0.7) 72px, rgba(2, 4, 8, 0) 220px);
   --hero-foot: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 6, 0.5) 78%, var(--paper) 100%);
 }
@@ -200,6 +203,7 @@
   position: absolute;
   inset: 0;
   background:
+    var(--hero-side),
     var(--hero-nav-shade),
     var(--hero-foot),
     rgba(2, 4, 8, 0.14);
@@ -222,9 +226,14 @@
 }
 
 /* Smaller laptops: a narrower column (first set so the old Stock Exchange
-   photo's "STOCK" cleared the paragraph), which keeps the text clear of the
-   reel's frame. */
+   photo's "STOCK" cleared the paragraph), which keeps the text on the dark
+   side of the fade, and the fade held a little further right: the hero is
+   short here, so the reel's broadcast name bars rise behind the paragraph. */
 @media (min-width: 901px) and (max-width: 1279px) {
+  .look-2026 .hero__bg {
+    --fade-shift: 5vw;
+  }
+
   .look-2026 .hero--cinema .hero__text {
     max-width: 25rem;
   }
