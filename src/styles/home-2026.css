@@ -89,26 +89,22 @@
   background: var(--paper);
 }
 
-/* The reel's frame (2026-11-05). Laptops: the 16:9 shot at 76% of the
-   width, flush to the right edge and centred between the top of the hero
-   and the ticker (shorter, if the hero is too short for it), so each shot
-   sits on the clear side of the fade (below). It dissolves from the right:
-   an oval fade centred on its right edge, eased at both ends (smoothstep
-   stops) so no edge or corner shows, into a glow of its own colours (the
-   canvas, painted by initGlow, 1.7 times the frame's size and blurred).
-   History, Joe on the same day: a frame beside the text from 46% cropped
-   about half of each shot ("a lot of the shots get cut off on the left");
-   full width put the left half of each shot under the text; a 68% frame
-   with straight feathered edges "goes from solid to just this transparent
-   window... too abrupt", then with longer ones "still is pretty abrupt...
-   increase the amount that it actually fades". A full-width shot is about
-   93% of a laptop's width at the hero's height, so it can't fill the
-   height and sit on the clear side too; shifting it right only moves the
-   crop to the right edge. Tablets and phones: a band across the top that
-   fades into the page above the headline (below), no glow. The still and
-   the reel share the frame and the crop, so the reel starts exactly where
-   the still is; both carry the shared photo grade in their files, so no
-   filter here. */
+/* The reel's frame (2026-11-05). Laptops: the 16:9 shot as tall as the
+   hero above the ticker (as wide as the screen, if that's shorter),
+   nudged 8% past the right edge so its subjects sit clear of the text, its
+   left side fading in gradually over the glow of its own colours (the
+   canvas, painted by initGlow, 1.5 times the frame's size and blurred),
+   under a fade that is never solid (below). History, Joe on the same day:
+   a frame beside the text cropped about half of each shot; full width put
+   the left half of each shot under the text; a 68% frame, then a 76% one
+   in an oval fade, read as "basically fully solid almost throughout half
+   of the screen" and still "too abrupt"; he asked for the video to be
+   realigned so less of each shot is lost in the dark, "relatively subtle,
+   but enough to make a difference". Tablets and phones: a band across the
+   top that fades into the page above the headline (below), no glow. The
+   still and the reel share the frame and the crop, so the reel starts
+   exactly where the still is; both carry the shared photo grade in their
+   files, so no filter here. */
 .look-2026 .hero__bg picture,
 .look-2026 .hero__video {
   position: absolute;
@@ -122,7 +118,8 @@
 @media (min-width: 901px) {
   .look-2026 .hero__bg {
     container-type: size;
-    --reel-h: min(76cqw * 9 / 16, 100cqh - var(--ticker-h, 0px));
+    --reel-h: min(100cqw * 9 / 16, 100cqh - var(--ticker-h, 0px));
+    --reel-w: calc(var(--reel-h) * 16 / 9);
   }
 
   .look-2026 .hero__bg picture,
@@ -132,29 +129,55 @@
     inset: auto;
     top: calc((100cqh - var(--ticker-h, 0px) - var(--reel-h)) / 2);
     right: 0;
-    width: calc(var(--reel-h) * 16 / 9);
+    width: var(--reel-w);
     height: var(--reel-h);
   }
 
+  /* Nudged 8% right (that much of the shot's right edge runs off the
+     screen) so less of its left side sits in the dark; its left side
+     fades in over 40% of its width, eased at both ends, and its top and
+     bottom over 10% where the hero is taller than the shot. */
   .look-2026 .hero__bg picture,
   .look-2026 .hero__video {
-    --reel-fade: radial-gradient(ellipse 105% 80% at 100% 50%,
-      rgba(0, 0, 0, 1) 34%,
-      rgba(0, 0, 0, 0.957) 42.25%,
-      rgba(0, 0, 0, 0.844) 50.5%,
-      rgba(0, 0, 0, 0.684) 58.75%,
-      rgba(0, 0, 0, 0.5) 67%,
-      rgba(0, 0, 0, 0.316) 75.25%,
-      rgba(0, 0, 0, 0.156) 83.5%,
-      rgba(0, 0, 0, 0.043) 91.75%,
+    right: calc(var(--reel-w) * -0.08);
+    --reel-side: linear-gradient(90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.043) 5%,
+      rgba(0, 0, 0, 0.156) 10%,
+      rgba(0, 0, 0, 0.316) 15%,
+      rgba(0, 0, 0, 0.5) 20%,
+      rgba(0, 0, 0, 0.684) 25%,
+      rgba(0, 0, 0, 0.844) 30%,
+      rgba(0, 0, 0, 0.957) 35%,
+      rgba(0, 0, 0, 1) 40%);
+    --reel-ends: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.043) 1.25%,
+      rgba(0, 0, 0, 0.156) 2.5%,
+      rgba(0, 0, 0, 0.316) 3.75%,
+      rgba(0, 0, 0, 0.5) 5%,
+      rgba(0, 0, 0, 0.684) 6.25%,
+      rgba(0, 0, 0, 0.844) 7.5%,
+      rgba(0, 0, 0, 0.957) 8.75%,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(0, 0, 0, 0.957) 91.25%,
+      rgba(0, 0, 0, 0.844) 92.5%,
+      rgba(0, 0, 0, 0.684) 93.75%,
+      rgba(0, 0, 0, 0.5) 95%,
+      rgba(0, 0, 0, 0.316) 96.25%,
+      rgba(0, 0, 0, 0.156) 97.5%,
+      rgba(0, 0, 0, 0.043) 98.75%,
       rgba(0, 0, 0, 0) 100%);
-    -webkit-mask-image: var(--reel-fade);
-    mask-image: var(--reel-fade);
+    -webkit-mask-image: var(--reel-side), var(--reel-ends);
+    -webkit-mask-composite: source-in;
+    mask-image: var(--reel-side), var(--reel-ends);
+    mask-composite: intersect;
   }
 
   .look-2026 .hero__glow {
     display: block;
-    transform: scale(1.7);
+    transform: scale(1.5);
     transform-origin: 100% 50%;
     filter: blur(56px);
     opacity: 0.6;
@@ -235,9 +258,10 @@
 /* Overlay stops copied from the live hero (rgba(2, 4, 8, 0.92),
    rgba(3, 5, 15, 0.7), rgba(5, 10, 30, 0.15)), laid left to right, then a
    fade to the page color at the bottom.
-   With the reel (2026-11-05): a fade from 0.8 at the left edge (not solid:
-   the reel's glow shows through; Joe: "maybe it doesn't even have to be
-   full solid black") to clear by the middle, so the text column sits on dark and the right half
+   With the reel (2026-11-05): a fade from 0.7 at the left edge (never
+   solid: the reel and its glow show through; Joe: "maybe it doesn't even
+   have to be full solid black", "more transparent until further left") to
+   clear by about three quarters, so the text column sits on dark and the right half
    shows the footage (Joe: "furthest left is basically fully solid but it
    gets more transparent as it goes right... basically fully transparent on
    the right half"). The stops ease out rather than run straight, so the fade
@@ -253,14 +277,14 @@
 .look-2026 .hero__bg {
   --fade-shift: clamp(0px, (100vw - 1440px) * 0.34, 100px);
   --hero-side: linear-gradient(90deg,
-    rgba(2, 4, 8, 0.8) 0,
-    rgba(2, 4, 8, 0.76) calc(24% + var(--fade-shift)),
-    rgba(2, 4, 8, 0.68) calc(36% + var(--fade-shift)),
-    rgba(2, 4, 8, 0.54) calc(44% + var(--fade-shift)),
-    rgba(2, 4, 8, 0.36) calc(50% + var(--fade-shift)),
-    rgba(2, 4, 8, 0.18) calc(56% + var(--fade-shift)),
-    rgba(2, 4, 8, 0.06) calc(62% + var(--fade-shift)),
-    rgba(2, 4, 8, 0) calc(68% + var(--fade-shift)));
+    rgba(2, 4, 8, 0.7) 0,
+    rgba(2, 4, 8, 0.66) calc(22% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.58) calc(34% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.5) calc(43% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.4) calc(51% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.22) calc(59% + var(--fade-shift)),
+    rgba(2, 4, 8, 0.06) calc(67% + var(--fade-shift)),
+    rgba(2, 4, 8, 0) calc(74% + var(--fade-shift)));
   --hero-nav-shade: linear-gradient(to bottom, rgba(2, 4, 8, 0.8) 0, rgba(2, 4, 8, 0.7) 72px, rgba(2, 4, 8, 0) 220px);
   --hero-foot: linear-gradient(to bottom, transparent 50%, rgba(10, 10, 6, 0.5) 78%, var(--paper) 100%);
 }

@@ -145,7 +145,7 @@ function buildHero() {
       <div class="hero__bg" aria-hidden="true">
         <canvas class="hero__glow" width="32" height="18"></canvas>
         ${picture({
-          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920], sizes: '(min-width: 901px) 76vw, 100vw',
+          dir: HOME_DIR, base: HERO_IMAGE.base, widths: [1280, 1920], sizes: '(min-width: 901px) 92vw, 100vw',
           alt: '', width: 1920, height: 1080, eager: true, fallback: 1600,
           narrow: { media: '(max-width: 640px)', base: HERO_IMAGE.tall, widths: [810], sizes: '100vw' },
         })}
