@@ -13,10 +13,8 @@
 // on every page but Silvia's. A <noscript> style in the head still shows the
 // copy to the rare visitor who has JavaScript off.
 //
-// Also built here: the sitemap (every page, Recent Work dated by its newest
-// article), llms-full.txt (every page's copy as one text file for AI tools),
-// and the structured data that comes from data files (team, services, case
-// study list, FAQ).
+// Also built here: the sitemap (every page) and the structured data that
+// comes from data files (team, services, case study list, FAQ).
 import { dirname, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { caseStudies, relatedFor, silviaStory } from '../data/case-studies.js';
@@ -302,14 +300,13 @@ const HIDE_COPY = '<style>.crawler-copy{display:none}</style><noscript><style>.c
 // "<" written as \u003c so no value can close the script tag.
 const ldScript = (json) => `<script type="application/ld+json">\n${json.replace(/</g, '\\u003c')}\n</script>`;
 
-// Every page, for the sitemap. Only Recent Work gets a date (its newest
-// article), the one date that is always right; Google ignores dates it can't
-// trust, and the other pages change too irregularly to keep dated by hand.
+// Every page, for the sitemap. No dates: Google uses a page's date only when
+// it is the page's last real update and ignores dates it can't trust, and
+// nothing here records when a page last changed (Codex review, 2026-11-07).
 function sitemap() {
-  const newest = coverageItems.map(c => c.datePublished).filter(Boolean).sort().pop();
   const paths = ['/', '/about', '/services', '/results', '/recent-work', '/dinners', '/silvia',
     ...caseStudies.map(cs => `/case-studies/${cs.slug}`)];
-  const urls = paths.map(p => `  <url>\n    <loc>${SITE}${p === '/' ? '/' : p}</loc>${p === '/recent-work' && newest ? `\n    <lastmod>${newest}</lastmod>` : ''}\n  </url>`);
+  const urls = paths.map(p => `  <url>\n    <loc>${SITE}${p}</loc>\n  </url>`);
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
 

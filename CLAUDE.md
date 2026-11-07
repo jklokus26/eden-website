@@ -13,6 +13,7 @@ Marketing website for Eden Communications, a crypto and fintech PR agency.
 3. **Follow existing patterns exactly.** When adding new content (case studies, team members, news items), copy the structure of an existing entry. Do not invent new fields or change the data shape.
 4. **Images go in `public/assets/images/`**, logos in `public/assets/logos/`. Use descriptive filenames (e.g., `team-firstname.png`, `client-name-logo.png`). Always add alt text.
 5. **Add a new page to the sitemap list** in `build/crawler-fallbacks.js` (`sitemap()`), which builds `sitemap.xml`. Case studies are added from `data/case-studies.js` on their own.
+   `public/e5d3775a22312a254fe9d2172a8c960f.txt` is the site's IndexNow key (lets us tell Bing, which feeds ChatGPT search and Copilot, that pages changed). Keep it.
 
 ## Safe Changes (data/ files)
 
