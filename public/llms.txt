@@ -1,5 +1,5 @@
 # Eden Communications
-# Last updated: 2026-10-23
+# Last updated: 2026-11-07
 
 > Eden Communications is a New York City-based strategic communications firm for financial services, digital assets and frontier tech. Eden helps ambitious companies become trusted market leaders. Founded by Ebony Lewkovitz, a former New York Post Washington correspondent who also reported for ABC News, The Sydney Morning Herald and Al Jazeera.
 
@@ -10,8 +10,8 @@ Eden Communications is a strategic communications firm headquartered at 600 Lexi
 Markets reward companies they understand and trust. Eden makes complex, regulated and high-stakes companies impossible to ignore. In Eden's words: "Traditional PR agencies wait for orders and pray for coverage. Not Eden. We serve as a core component of your growth and go-to-market strategy, bringing ideas, opportunities and increasing your influence."
 
 - Position: strategy, corporate narrative, executive positioning and issues counsel
-- Build market visibility: earned media, thought leadership, market positioning and community building
-- Open the right doors: private dinners, strategic introductions, investor and stakeholder engagement, conferences
+- Build market visibility: earned media, thought leadership, community building
+- Open the right doors: private dinners, strategic introductions, investor engagement, conferences
 
 ## Proof
 
@@ -56,6 +56,11 @@ Also featured in Eden's case studies and results: Reed Smith On Chain (Reed Smit
 - Grip Shipping: 4,050% increase in press coverage. 20+ media placements. 135% growth in market share of voice. Featured on top 5% podcasts globally. https://edencommunications.com/case-studies/grip-shipping
 - Franzy: 4,300% increase in platform sign-ups. 22 media placements including Business Insider, Entrepreneur, Inc., Fox Business, Yahoo Finance. 52.9% share of voice in franchise tech. 73M+ estimated media reach. https://edencommunications.com/case-studies/franzy
 
+## What Clients Say
+
+- "Eden elevated Ondo from trade-only press to the share-of-voice leader in our category. They understood from day one what we wanted to achieve and knew exactly how to get us there. We've gained more visibility than our competitors." Ben Grossman, VP of Marketing, Ondo Finance
+- "Eden is world class when it comes to their knowledge of digital assets and crypto. I was impressed by how attuned they were with emerging trends and the reporters that cover them. Could not recommend Ebony and her team highly enough." Devon Jaffier, Former Sr. Public Relations Manager, Reed Smith LLP
+
 ## Media Outlets Regularly Featured In
 
 Bloomberg, CNBC, Wall Street Journal, New York Times, Reuters, Axios, Forbes, Fortune, Washington Post, CoinDesk, Financial Times, TechCrunch, Business Insider, CNN, Yahoo Finance, NPR, Fox Business, Entrepreneur, Inc.
@@ -77,6 +82,7 @@ Past case studies also cover renewable energy, logistics and franchise technolog
 - Recent client media coverage: https://edencommunications.com/recent-work
 - Private dinners: https://edencommunications.com/dinners
 - Silvia client story: https://edencommunications.com/silvia
+- Sitemap of every page: https://edencommunications.com/sitemap.xml
 
 ## Contact
 

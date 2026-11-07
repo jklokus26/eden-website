@@ -14,7 +14,7 @@ Marketing website for Eden Communications, a crypto and fintech PR agency.
 2. **Only change what was asked for.** Do not make unsolicited changes to files outside the scope of the request. If someone asks to update a team bio, only edit `data/team.js`. Do not also "improve" animations, restyle components, or refactor code.
 3. **Follow existing patterns exactly.** When adding new content (case studies, team members, news items), copy the structure of an existing entry. Do not invent new fields or change the data shape.
 4. **Images go in `public/assets/images/`**, logos in `public/assets/logos/`. Use descriptive filenames (e.g., `team-firstname.png`, `client-name-logo.png`). Always add alt text.
-5. **Update `public/sitemap.xml`** whenever adding a new page.
+5. **Add a new page to the sitemap list** in `build/crawler-fallbacks.js` (`sitemap()`), which builds `sitemap.xml`. Case studies are added from `data/case-studies.js` on their own.
 
 ## Safe Changes (data/ files)
 
@@ -41,11 +41,11 @@ This is a multi-file change. Follow these steps in order:
 2. Create a new HTML file in `case-studies/` — copy `case-studies/grip-shipping.html` as a template, update the meta tags (title, description, og:title, og:description, og:url, canonical URL)
 3. Register the new page in `vite.config.js` — add an entry to `rollupOptions.input`
 4. Add a URL rewrite in `vercel.json` if the URL needs clean routing
-5. Add the URL to `public/sitemap.xml`
+5. Add the URL to the sitemap list in `build/crawler-fallbacks.js` (`sitemap()`)
 
 ## Taking a Case Study Down (and Back Up)
 
-Move its entry from `data/case-studies.js` to `data/case-studies-on-hold.js` (nothing imports that file, so its text never ships): the homepage, Our Results, every "More Case Studies" row and the crawler text then skip it, and related picks top up from the rest. Also remove its input from `vite.config.js`, add a temporary (307) redirect to `/results` in `vercel.json`, and take it out of `public/sitemap.xml`, `public/llms.txt` and the homepage `<noscript>`. Reverse each step to restore. Ondo has been on hold this way since 2026-10-26.
+Move its entry from `data/case-studies.js` to `data/case-studies-on-hold.js` (nothing imports that file, so its text never ships): the homepage, Our Results, every "More Case Studies" row and the crawler text then skip it, and related picks top up from the rest. Also remove its input from `vite.config.js`, add a temporary (307) redirect to `/results` in `vercel.json`, and take it out of `public/llms.txt` (the sitemap and the homepage's crawler text follow `data/case-studies.js` on their own). Reverse each step to restore. Ondo has been on hold this way since 2026-10-26.
 
 ## Adding a New Page
 
@@ -55,9 +55,9 @@ Only do this if explicitly requested. New pages require:
 2. A page renderer in `src/pages/` (copy an existing one)
 3. A route in `src/main.js`
 4. Registration in `vite.config.js`
-5. Entry in `public/sitemap.xml`
+5. Entry in the sitemap list in `build/crawler-fallbacks.js` (`sitemap()`)
 6. Navigation link in `navLinks` (`data/site-content.js`), which the nav and footer both read
-7. If the page draws its content with JavaScript, its full-text fallback for crawlers that don't run JavaScript (most AI search crawlers) in `build/crawler-fallbacks.js`, generated from the same data file
+7. If the page draws its content with JavaScript, its full-text copy for crawlers and AI page readers that don't run JavaScript in `build/crawler-fallbacks.js`, generated from the same data file (`tests/crawler-copy.test.mjs` checks every page has one, with links to every other page)
 
 ## Design Reference
 
@@ -79,7 +79,7 @@ These files control site structure and behavior. They can all be modified when t
 | `src/components/look-2026.js` | Shared pieces: page opening, case cards, team portraits and bio dialog, contact band, fade-up reveal |
 | `src/styles/*.css` | Layout, spacing, responsive breakpoints (one file per page/component) |
 | `src/components/` | Nav, footer, contact form, shared page pieces |
-| `build/crawler-fallbacks.js` | At build time, writes each JavaScript-drawn page's full text into its `<noscript>` so AI crawlers can read it |
+| `build/crawler-fallbacks.js` | At build time, writes each JavaScript-drawn page's full text into a hidden `<div class="crawler-copy">` in its `<main>` (removed by `src/main.js` before the page draws) so AI crawlers and page readers can read it; also builds `sitemap.xml` and the structured data that comes from data files. Not a `<noscript>`: Mozilla Readability and Claude's web fetch drop those |
 | `src/pages/` | Page-specific rendering logic (one file per page) |
 | `src/main.js` | Page routing — determines which page renderer to load |
 | `public/assets/video/` | Hero background video (WebM + MP4 with baked color grading) |

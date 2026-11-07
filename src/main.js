@@ -11,6 +11,11 @@ import { initFooter } from './components/footer.js';
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 
+// The page's text copy for crawlers and AI page readers (build/crawler-fallbacks.js)
+// is hidden by a style in the head; take it out before the page draws itself,
+// so the drawn page is the only copy in the document.
+document.querySelectorAll('.crawler-copy').forEach(el => el.remove());
+
 // Vercel Web Analytics (switched on by Joe, 2026-10-28): visitors, pages,
 // devices and referrers in the Vercel dashboard, alongside the Google tag in
 // each page's head. Live site only, like that tag, so previews and local runs

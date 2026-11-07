@@ -5,8 +5,9 @@
 // prior to sharing publicly"). To restore: move the entry back to the top of
 // `caseStudies` in data/case-studies.js, put the ondo input back in
 // vite.config.js, drop the /case-studies/ondo redirect in vercel.json, and
-// re-add its line to public/sitemap.xml, public/llms.txt and the homepage
-// <noscript> (all as of commit b11f9d5). Its page, case-studies/ondo.html,
+// re-add its line to public/llms.txt (as of commit b11f9d5; the sitemap and
+// the homepage's crawler text follow data/case-studies.js on their own since
+// 2026-11-07). Its page, case-studies/ondo.html,
 // and its photos are untouched.
 export const onHoldCaseStudies = [
   {
