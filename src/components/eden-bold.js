@@ -33,7 +33,7 @@ const PILLAR_PHOTOS = [
 // outlet, client, headline. Eden picks the articles: these four are
 // Alkida's list (Slack, 2026-11-05, "Can we replace the articles on the
 // 'Recent coverage' banner with some others?"; she linked one Forbes piece
-// twice), in her order, pending Ebony's final input. A title must match its
+// twice), in her order; Ebony approved it 2026-11-12. A title must match its
 // coverage.js entry exactly or the item is dropped.
 // A white band, at the pace of the Prosek ticker Ebony pointed to (Slack,
 // 2026-10-29: "easy to miss", "move a little faster"): about 200px a second,
